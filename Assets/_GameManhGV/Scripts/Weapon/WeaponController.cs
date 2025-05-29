@@ -124,30 +124,33 @@ public class WeaponController : Singleton<WeaponController>
             shootBasedOnGunDirection = !shootBasedOnGunDirection;
             Debug.Log("Shoot based on gun direction: " + shootBasedOnGunDirection);
         }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            print("Bắn xong quái 1");
-            //TODO: nếu chưa hướng dẫn reload thì hướng dẫn reload
-            if (!instructReload)
-            {
-                instructReload = true;
-                EventManager.Invoke(EventName.InstructReload, true);
-            }
-        }
-
         if (Input.GetKeyDown(KeyCode.R))
         {
-            print("Hướng dẫn rocket");
-            if(!instructRoket)
-            {
-                instructRoket = true;
-                EventManager.Invoke(EventName.InstructRocket, true);
-            }
+            InstructRocket();
         }
         
     }
-    
+
+    public void InstructRocket()
+    {
+        //print("Hướng dẫn rocket");
+        if(!instructRoket)
+        {
+            instructRoket = true;
+            EventManager.Invoke(EventName.InstructRocket, true);
+        }
+    }
+
+    public void InstructReload()
+    {
+        //TODO: nếu chưa hướng dẫn reload thì hướng dẫn reload
+        if (!instructReload)
+        {
+            instructReload = true;
+            EventManager.Invoke(EventName.InstructReload, true);
+        }
+    }
+
     /// <summary>
     /// Kiểm tra xem con trỏ chuột có đang hover trên UI element không
     /// </summary>
@@ -444,7 +447,7 @@ public class WeaponController : Singleton<WeaponController>
                 }
                 if (takeDamageController != null) takeDamageController.TakeDamage(damageInfo);
                 typeEffect = PoolType.vfx_BloodEffectZom;
-                Debug.Log(damageType.ToString() + " " + weaponInfo.damage + " " + hit.collider.name);
+//                Debug.Log(damageType.ToString() + " " + weaponInfo.damage + " " + hit.collider.name);
             }
             else if (IsInRewardLayer(hit.collider.gameObject))
             {

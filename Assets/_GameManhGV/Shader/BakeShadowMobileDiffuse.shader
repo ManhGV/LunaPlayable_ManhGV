@@ -19,7 +19,7 @@ Shader "Horus/BakeShadowMobileDiffuse"
     {
         Tags
         {
-            "RenderType"="Opaque"
+            "Queue" = "Transparent-350" "IgnoreProjector" = "True" "RenderType" = "Transparent"
         }
         LOD 150
 
@@ -119,7 +119,7 @@ Shader "Horus/BakeShadowMobileDiffuse"
     {
         Tags
         {
-            "RenderType" = "Opaque"
+            "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent"
         }
         LOD
         100
@@ -174,7 +174,7 @@ Shader "Horus/BakeShadowMobileDiffuse"
         {
             Tags
             {
-                "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent"
+                "Queue" = "Transparent+650" "IgnoreProjector" = "True" "RenderType" = "Transparent"
             }
 
             ZWrite Off
