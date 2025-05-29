@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using static GameConstants;
 public class GameUnit : MonoBehaviour
 {
     public PoolType PoolType;

@@ -8,29 +8,15 @@ public class UIManager : Singleton<UIManager>
     Dictionary<System.Type, UICanvas> canvasPrefabs = new Dictionary<System.Type, UICanvas>();
     [SerializeField] List<UICanvas> canvasListInit = new List<UICanvas>();
     [SerializeField] Transform parent;
-    
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        parent = transform;
-    }
-#endif
-
     protected override void Awake()
     {
-        //load ui prefab tu resource
-        UICanvas[] prefabs = Resources.LoadAll<UICanvas>("UI/");
-        for (int i = 0; i < prefabs.Length; i++)
+        for (int i = 1; i < canvasListInit.Count; i++)
         {
-            print(prefabs[i].gameObject.name);  
-            canvasPrefabs.Add(prefabs[i].GetType(), prefabs[i]);
-        }
-        
-        for (int i = 0; i < canvasListInit.Count; i++)
-        {
-            print(canvasListInit[i].gameObject.name);  
+            canvasListInit[i].gameObject.SetActive(false);
+            canvasActives.Add(canvasListInit[i].GetType(), canvasListInit[i]);
             canvasPrefabs.Add(canvasListInit[i].GetType(), canvasListInit[i]);
         }
+        canvasListInit[0].gameObject.SetActive(true);
     }
 
     //mo canvas

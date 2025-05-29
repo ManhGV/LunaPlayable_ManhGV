@@ -495,7 +495,7 @@ namespace Verpha.HierarchyDesigner
 
         [MenuItem(HD_Common_Constants.Activate_UI + "/Activate All Texts - TextMeshPro", false, HD_Common_Constants.MenuPriorityNine + 3)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Activate)]
-        public static void MenuItem_Activate_TextMeshPro() => HD_Common_Operations.Activate_AllTMPComponentIfAvailable<TMPro.TMP_Text>(true);
+        public static void MenuItem_Activate_TextMeshPro() => HD_Common_Operations.Activate_AllTMPComponentIfAvailable<Text>(true);
 
         [MenuItem(HD_Common_Constants.Activate_UI + "/Activate All Raw Images", false, HD_Common_Constants.MenuPriorityNine + 4)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Activate)]
@@ -519,11 +519,11 @@ namespace Verpha.HierarchyDesigner
 
         [MenuItem(HD_Common_Constants.Activate_UI + "/Activate All Dropdowns - TextMeshPro", false, HD_Common_Constants.MenuPriorityTen + 8)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Activate)]
-        public static void MenuItem_Activate_DropdownTextMeshPro() => HD_Common_Operations.Activate_AllTMPComponentIfAvailable<TMPro.TMP_Dropdown>(true);
+        public static void MenuItem_Activate_DropdownTextMeshPro() => HD_Common_Operations.Activate_AllTMPComponentIfAvailable<Dropdown>(true);
 
         [MenuItem(HD_Common_Constants.Activate_UI + "/Activate All Input Fields - TextMeshPro", false, HD_Common_Constants.MenuPriorityTen + 8)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Activate)]
-        public static void MenuItem_Activate_InputFieldTextMeshPro() => HD_Common_Operations.Activate_AllTMPComponentIfAvailable<TMPro.TMP_InputField>(true);
+        public static void MenuItem_Activate_InputFieldTextMeshPro() => HD_Common_Operations.Activate_AllTMPComponentIfAvailable<InputField>(true);
 
         [MenuItem(HD_Common_Constants.Activate_UI + "/Activate All Canvases", false, HD_Common_Constants.MenuPriorityEleven + 8)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Activate)]
@@ -857,7 +857,7 @@ namespace Verpha.HierarchyDesigner
 
         [MenuItem(HD_Common_Constants.Deactivate_UI + "/Deactivate All Texts - TextMeshPro", false, HD_Common_Constants.MenuPriorityNine + 3)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Deactivate)]
-        public static void MenuItem_Deactivate_TextMeshPro() => HD_Common_Operations.Activate_AllTMPComponentIfAvailable<TMPro.TMP_Text>(false);
+        public static void MenuItem_Deactivate_TextMeshPro() => HD_Common_Operations.Activate_AllTMPComponentIfAvailable<Text>(false);
 
         [MenuItem(HD_Common_Constants.Deactivate_UI + "/Deactivate All Raw Images", false, HD_Common_Constants.MenuPriorityNine + 4)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Deactivate)]
@@ -881,11 +881,11 @@ namespace Verpha.HierarchyDesigner
 
         [MenuItem(HD_Common_Constants.Deactivate_UI + "/Deactivate All Dropdowns - TextMeshPro", false, HD_Common_Constants.MenuPriorityTen + 8)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Deactivate)]
-        public static void MenuItem_Deactivate_DropdownTextMeshPro() => HD_Common_Operations.Activate_AllTMPComponentIfAvailable<TMPro.TMP_Dropdown>(false);
+        public static void MenuItem_Deactivate_DropdownTextMeshPro() => HD_Common_Operations.Activate_AllTMPComponentIfAvailable<Dropdown>(false);
 
         [MenuItem(HD_Common_Constants.Deactivate_UI + "/Deactivate All Input Fields - TextMeshPro", false, HD_Common_Constants.MenuPriorityTen + 8)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Deactivate)]
-        public static void MenuItem_Deactivate_InputFieldTextMeshPro() => HD_Common_Operations.Activate_AllTMPComponentIfAvailable<TMPro.TMP_InputField>(false);
+        public static void MenuItem_Deactivate_InputFieldTextMeshPro() => HD_Common_Operations.Activate_AllTMPComponentIfAvailable<InputField>(false);
 
         [MenuItem(HD_Common_Constants.Deactivate_UI + "/Deactivate All Canvases", false, HD_Common_Constants.MenuPriorityEleven + 8)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Deactivate)]
@@ -1231,7 +1231,7 @@ namespace Verpha.HierarchyDesigner
 
         [MenuItem(HD_Common_Constants.Count_UI + "/Count All Texts - TextMeshPro", false, HD_Common_Constants.MenuPriorityTen + 3)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Count)]
-        public static void MenuItem_Count_TextMeshPro() => HD_Common_Operations.Count_AllTMPComponentIfAvailable<TMPro.TMP_Text>("Text - TextMeshPro");
+        public static void MenuItem_Count_TextMeshPro() => HD_Common_Operations.Count_AllTMPComponentIfAvailable<Text>("Text - TextMeshPro");
 
         [MenuItem(HD_Common_Constants.Count_UI + "/Count All Raw Images", false, HD_Common_Constants.MenuPriorityTen + 4)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Count)]
@@ -1255,11 +1255,11 @@ namespace Verpha.HierarchyDesigner
 
         [MenuItem(HD_Common_Constants.Count_UI + "/Count All Dropdowns - TextMeshPro", false, HD_Common_Constants.MenuPriorityEleven + 8)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Count)]
-        public static void MenuItem_Count_DropdownTextMeshPro() => HD_Common_Operations.Count_AllTMPComponentIfAvailable<TMPro.TMP_Dropdown>("Dropdowns - TextMeshPro");
+        public static void MenuItem_Count_DropdownTextMeshPro() => HD_Common_Operations.Count_AllTMPComponentIfAvailable<Dropdown>("Dropdowns - TextMeshPro");
 
         [MenuItem(HD_Common_Constants.Count_UI + "/Count All Input Fields - TextMeshPro", false, HD_Common_Constants.MenuPriorityEleven + 8)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Count)]
-        public static void MenuItem_Count_InputFieldTextMeshPro() => HD_Common_Operations.Count_AllTMPComponentIfAvailable<TMPro.TMP_InputField>("Input Fields - TextMeshPro");
+        public static void MenuItem_Count_InputFieldTextMeshPro() => HD_Common_Operations.Count_AllTMPComponentIfAvailable<InputField>("Input Fields - TextMeshPro");
 
         [MenuItem(HD_Common_Constants.Count_UI + "/Count All Canvases", false, HD_Common_Constants.MenuPriorityTwelve + 8)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Count)]
@@ -1597,7 +1597,7 @@ namespace Verpha.HierarchyDesigner
 
         [MenuItem(HD_Common_Constants.Lock_UI + "/Lock All Texts - TextMeshPro", false, HD_Common_Constants.MenuPriorityTen + 3)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Lock)]
-        public static void MenuItem_Lock_TextMeshPro() => HD_Common_Operations.Lock_AllTMPComponentIfAvailable<TMPro.TMP_Text>(true);
+        public static void MenuItem_Lock_TextMeshPro() => HD_Common_Operations.Lock_AllTMPComponentIfAvailable<Text>(true);
 
         [MenuItem(HD_Common_Constants.Lock_UI + "/Lock All Raw Images", false, HD_Common_Constants.MenuPriorityTen + 4)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Lock)]
@@ -1621,11 +1621,11 @@ namespace Verpha.HierarchyDesigner
 
         [MenuItem(HD_Common_Constants.Lock_UI + "/Lock All Dropdowns - TextMeshPro", false, HD_Common_Constants.MenuPriorityEleven + 8)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Lock)]
-        public static void MenuItem_Lock_DropdownTextMeshPro() => HD_Common_Operations.Lock_AllTMPComponentIfAvailable<TMPro.TMP_Dropdown>(true);
+        public static void MenuItem_Lock_DropdownTextMeshPro() => HD_Common_Operations.Lock_AllTMPComponentIfAvailable<Dropdown>(true);
 
         [MenuItem(HD_Common_Constants.Lock_UI + "/Lock All Input Fields - TextMeshPro", false, HD_Common_Constants.MenuPriorityEleven + 8)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Lock)]
-        public static void MenuItem_Lock_InputFieldTextMeshPro() => HD_Common_Operations.Lock_AllTMPComponentIfAvailable<TMPro.TMP_InputField>(true);
+        public static void MenuItem_Lock_InputFieldTextMeshPro() => HD_Common_Operations.Lock_AllTMPComponentIfAvailable<InputField>(true);
 
         [MenuItem(HD_Common_Constants.Lock_UI + "/Lock All Canvases", false, HD_Common_Constants.MenuPriorityTwelve + 8)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Lock)]
@@ -1963,7 +1963,7 @@ namespace Verpha.HierarchyDesigner
 
         [MenuItem(HD_Common_Constants.Unlock_UI + "/Unlock All Texts - TextMeshPro", false, HD_Common_Constants.MenuPriorityTen + 3)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Unlock)]
-        public static void MenuItem_Unlock_TextMeshPro() => HD_Common_Operations.Lock_AllTMPComponentIfAvailable<TMPro.TMP_Text>(false);
+        public static void MenuItem_Unlock_TextMeshPro() => HD_Common_Operations.Lock_AllTMPComponentIfAvailable<Text>(false);
 
         [MenuItem(HD_Common_Constants.Unlock_UI + "/Unlock All Raw Images", false, HD_Common_Constants.MenuPriorityTen + 4)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Unlock)]
@@ -1987,11 +1987,11 @@ namespace Verpha.HierarchyDesigner
 
         [MenuItem(HD_Common_Constants.Unlock_UI + "/Unlock All Dropdowns - TextMeshPro", false, HD_Common_Constants.MenuPriorityEleven + 8)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Unlock)]
-        public static void MenuItem_Unlock_DropdownTextMeshPro() => HD_Common_Operations.Lock_AllTMPComponentIfAvailable<TMPro.TMP_Dropdown>(false);
+        public static void MenuItem_Unlock_DropdownTextMeshPro() => HD_Common_Operations.Lock_AllTMPComponentIfAvailable<Dropdown>(false);
 
         [MenuItem(HD_Common_Constants.Unlock_UI + "/Unlock All Input Fields - TextMeshPro", false, HD_Common_Constants.MenuPriorityEleven + 8)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Unlock)]
-        public static void MenuItem_Unlock_InputFieldTextMeshPro() => HD_Common_Operations.Lock_AllTMPComponentIfAvailable<TMPro.TMP_InputField>(false);
+        public static void MenuItem_Unlock_InputFieldTextMeshPro() => HD_Common_Operations.Lock_AllTMPComponentIfAvailable<InputField>(false);
 
         [MenuItem(HD_Common_Constants.Unlock_UI + "/Unlock All Canvases", false, HD_Common_Constants.MenuPriorityTwelve + 8)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Unlock)]
@@ -2347,7 +2347,7 @@ namespace Verpha.HierarchyDesigner
 
         [MenuItem(HD_Common_Constants.Select_UI + "/Select All Texts - TextMeshPro", false, HD_Common_Constants.MenuPriorityThirteen + 4)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Select)]
-        public static void MenuItem_Select_TextMeshPro() => HD_Common_Operations.Select_AllTMPComponentIfAvailable<TMPro.TMP_Text>();
+        public static void MenuItem_Select_TextMeshPro() => HD_Common_Operations.Select_AllTMPComponentIfAvailable<Text>();
 
         [MenuItem(HD_Common_Constants.Select_UI + "/Select All Raw Images", false, HD_Common_Constants.MenuPriorityThirteen + 5)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Select)]
@@ -2371,11 +2371,11 @@ namespace Verpha.HierarchyDesigner
 
         [MenuItem(HD_Common_Constants.Select_UI + "/Select All Dropdowns - TextMeshPro", false, HD_Common_Constants.MenuPriorityFourteen + 9)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Select)]
-        public static void MenuItem_Select_DropdownTextMeshPro() => HD_Common_Operations.Select_AllTMPComponentIfAvailable<TMPro.TMP_Dropdown>();
+        public static void MenuItem_Select_DropdownTextMeshPro() => HD_Common_Operations.Select_AllTMPComponentIfAvailable<Dropdown>();
 
         [MenuItem(HD_Common_Constants.Select_UI + "/Select All Input Fields - TextMeshPro", false, HD_Common_Constants.MenuPriorityFourteen + 9)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Select)]
-        public static void MenuItem_Select_InputFieldTextMeshPro() => HD_Common_Operations.Select_AllTMPComponentIfAvailable<TMPro.TMP_InputField>();
+        public static void MenuItem_Select_InputFieldTextMeshPro() => HD_Common_Operations.Select_AllTMPComponentIfAvailable<InputField>();
 
         [MenuItem(HD_Common_Constants.Select_UI + "/Select All Canvases", false, HD_Common_Constants.MenuPriorityFifteen + 9)]
         [HD_Common_Attributes(HierarchyDesigner_Attribute_Tools.Select)]

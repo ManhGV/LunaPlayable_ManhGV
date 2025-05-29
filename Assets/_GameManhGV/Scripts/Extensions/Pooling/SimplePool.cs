@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static GameConstants;
 
 public static class SimplePool
 {
@@ -123,7 +124,10 @@ public class Pool
             unit = inactives.Dequeue();
         }
 
-        unit.TF.SetLocalPositionAndRotation(pos, rot);
+        //unit.TF.SetLocalPositionAndRotation(pos, rot);
+        unit.TF.localPosition = pos;
+        unit.TF.localRotation = rot;
+
         actives.Add(unit);
         unit.gameObject.SetActive(true);
         return unit;

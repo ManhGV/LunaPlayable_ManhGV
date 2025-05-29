@@ -8,7 +8,7 @@ public class PoolControl : MonoBehaviour
     {
         ///load tu resource 
         GameUnit[] gameUnits = Resources.LoadAll<GameUnit>("Pool/");
-
+        
         for (int i = 0; i < gameUnits.Length; i++)
         {
             SimplePool.Preload(gameUnits[i], 0, new GameObject(gameUnits[i].name).transform);
@@ -28,11 +28,4 @@ public class PoolAmount
     public GameUnit prefab;
     public Transform parent;
     public int amount;
-}
-
-public enum PoolType
-{
-    Bullet_1 = 0,
-    Bullet_2 = 1,
-    Bullet_3 = 2
 }
