@@ -55,6 +55,16 @@ public class ColliderCopyToolDragAndDrop : EditorWindow
             EditorGUILayout.EndHorizontal();
         }
 
+        EditorGUILayout.Space(20);
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("🧹 Clear Left", GUILayout.Height(30)))
+            for (int i = 0; i < targetObjects.Count; i++)
+                targetObjects[i] = null;
+        if (GUILayout.Button("🧹 Clear Right", GUILayout.Height(30)))
+        for (int i = 0; i < sourceObjects.Count; i++)
+            sourceObjects[i] = null;
+        EditorGUILayout.EndHorizontal();
+
         EditorGUILayout.Space(15);
         GUILayout.Label("🎯 Drag GameObjects Below", EditorStyles.boldLabel);
 
