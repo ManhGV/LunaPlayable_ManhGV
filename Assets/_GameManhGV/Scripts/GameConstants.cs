@@ -11,16 +11,17 @@ public static class GameConstants
         zombieNorsuit,
         zombieNornurse,
         zombieNornursemix,
-        zombieNorwormanmix,
-        zombieNorwormanmixClim,
-        BossChainsaw,
+        BossSwat,
     }
     public enum PoolType
     {
-        Projectile_Bullet_Norman = 0,
-        Projectile_Bullet_Norma = 1,
-        vfx_BloodEffectZom = 2,
-        vfx_ConcreteImpact = 3,
+        None = 0,
+        Projectile_Bullet_Norman = 1,
+        Projectile_Bullet_Norma = 2,
+        vfx_BloodEffectZom = 3,
+        vfx_ConcreteImpact = 4,
+        Boss_Zom_Swat = 5,
+        
     }
     public enum RewardType
     {
@@ -28,5 +29,10 @@ public static class GameConstants
         RapidFire,
         ChangeMachineGun,
         ChangeRocket,
+    }
+    public enum GameState
+    {
+        Playing,
+        Paused,
     }
 }

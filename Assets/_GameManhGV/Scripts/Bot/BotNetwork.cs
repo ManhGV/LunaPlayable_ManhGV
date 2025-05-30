@@ -1,34 +1,27 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
-public class BotNetwork : MonoBehaviour, ITakeDamage
+public class BotNetwork : GameUnit, ITakeDamage
 {
     [SerializeField] private bool isBoss;
-    [SerializeField] BotConfigSO botConfigSO;
-    [SerializeField] Image healthBarUI;
-    [SerializeField] Transform healthBarTransform;
+    public AudioSource _audioSource;
+    [SerializeField] private BotConfigSO botConfigSO;
+    [SerializeField] private Image healthBarUI;
+    [SerializeField] private Transform healthBarTransform;
     [SerializeField] private int _currentHealth;
     [SerializeField] private bool isImmortal;
     [SerializeField] private bool isDead;
     public bool IsDeadExplosion;
-    
     public  WayPoint wayPoint;
 
-    [Header("Change Anim")] [SerializeField]
-    private string currentAnimName;
-
+    [Header("Change Anim")]
+    [SerializeField] private string currentAnimName;
     [SerializeField] private Animator anim;
-
-    public BotConfigSO BotConfigSO => botConfigSO;
-    
     [SerializeField] private List<GameObject> detectors = new List<GameObject>();
-    
+    public BotConfigSO BotConfigSO => botConfigSO;
     public bool IsDead => isDead;
     public int currentHealth => _currentHealth;
     public bool IsImmortal => isImmortal;
@@ -185,12 +178,30 @@ public class BotNetwork : MonoBehaviour, ITakeDamage
         }
     }
 
+    public void SetFloatAnim(string _name, float value) => anim.SetFloat(_name, value);
+    public void SetIntAnim(string _name, int value) => anim.SetInteger(_name, value);
+    
     public void ActiveFalseDetectors()
     {
         foreach (GameObject VARIABLE in detectors)
         {
             VARIABLE.SetActive(false);
         }
+    }
+    
+    public void RotaToTarget()
+    {
+        Vector3 direction = LocalPlayer.Instance.GetLocalPlayer() - TF.position;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+
+        Vector3 euler = rotation.eulerAngles;
+        euler.x = 0f;
+        TF.rotation = Quaternion.Euler(euler);
+    }
+
+    public void OnDespawn()
+    {
+        SimplePool.Despawn(this);
     }
 }
 

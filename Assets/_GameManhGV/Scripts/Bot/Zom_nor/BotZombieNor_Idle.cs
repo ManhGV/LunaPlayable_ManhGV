@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.TextCore.Text;
 using UnityEngine;
 
 public class BotZombieNor_Idle : BaseState<BotZomNorState>

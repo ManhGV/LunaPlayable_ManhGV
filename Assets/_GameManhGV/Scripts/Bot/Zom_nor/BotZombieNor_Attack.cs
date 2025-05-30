@@ -1,16 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BotZombieNor_Attack : BaseState<BotZomNorState>
 {
+    [SerializeField] private float timerAttackDefault;
     private float timerAttack;
+    private Transform Mytrans;
 
     public override void EnterState()
     {
         thisBotNetwork.ChangeAnim("Attack");
         isDoneState = false;
-        timerAttack = 1.28f;
+        timerAttack = timerAttackDefault;
+        thisBotNetwork.RotaToTarget();
     }
 
     public override void UpdateState()

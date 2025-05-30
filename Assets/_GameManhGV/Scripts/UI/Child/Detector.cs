@@ -1,13 +1,12 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class Detector : MonoBehaviour
 {
     [SerializeField] private bool PlayAwake;
-    [SerializeField] private float _scaleDefault;
+    private float _scaleDefault = 1f;
     [Header("Look Camera")]
     [SerializeField] private Transform cameraTransform;
     
@@ -21,21 +20,36 @@ public class Detector : MonoBehaviour
     [SerializeField] private float lifeTime = 2f;
     private Coroutine _currentCoroutine;
     private Coroutine _ActiveFalseCoroutine;
+    [SerializeField] private Transform _detector;
+
+    [Header("Health")] 
+    [SerializeField] private bool _isBoss;
+    [SerializeField] private BossZomSwat_Attack _bossZomSwatAttack;
+    [SerializeField] private int _skillIndex;
+    [SerializeField] private int _maxHealth = 100;
+    [SerializeField] private int _currentHealth;
+    public Image healthImage;
+    bool _deadDetector;
     
-#if UNITY_EDITOR
-    private void OnValidate()
+
+    private void Awake()
     {
-        cameraTransform = Camera.main.transform;
+        cameraTransform = GameManager.Instance.GetMainCameraTransform();
     }
-#endif
+
     private void OnEnable()
     {
-        transform.localScale = Vector3.one * _scaleDefault;
+        healthImage.fillAmount = 1f;
+        _deadDetector = false;
+        _currentHealth = _maxHealth;
+        _detector.localScale = Vector3.one * _scaleDefault;
         _originalScale = Vector3.one * _scaleDefault;
         _ActiveFalseCoroutine = StartCoroutine(DisableThis());
         
         if(PlayAwake)
             Play();
+        else
+            gameObject.SetActive(false);
     }
 
     private void OnDisable()
@@ -48,7 +62,7 @@ public class Detector : MonoBehaviour
     {
         if (cameraTransform != null)
         {
-            transform.LookAt(cameraTransform);
+            _detector.LookAt(cameraTransform);
         }
     }
 
@@ -72,20 +86,34 @@ public class Detector : MonoBehaviour
     {
         Vector3 targetScale = _originalScale;
         Vector3 startScale = _originalScale * _scaleMultiplier;
-        print(targetScale+"  "+startScale);
 
         // Gán giá trị phóng to ngay lập tức
-        transform.localScale = startScale;
+        _detector.localScale = startScale;
 
         while (true)
         {
-            if (Vector3.Distance(transform.localScale, targetScale) > 0.001f)
-                transform.localScale = Vector3.MoveTowards(transform.localScale, targetScale, _scaleSpeed * Time.deltaTime);
+            if (Vector3.Distance(_detector.localScale, targetScale) > 0.001f)
+                _detector.localScale = Vector3.MoveTowards(_detector.localScale, targetScale, _scaleSpeed * Time.deltaTime);
             else
                 break;
             yield return null;
         }
-
         _currentCoroutine = null;
+    }
+    
+    public void SetHealthImage(int damage)
+    {
+        if(_deadDetector)
+            return;
+        _currentHealth -= damage;
+        
+        if (_currentHealth <= 0)
+        {
+            _deadDetector = true;
+            _currentHealth = 0;
+            healthImage.fillAmount = 0;
+            _bossZomSwatAttack.Stun();
+        }
+        healthImage.fillAmount = (float)_currentHealth / (float)_maxHealth;
     }
 }

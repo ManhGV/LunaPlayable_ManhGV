@@ -43,6 +43,21 @@ public class HumanMoveBase : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Không sử dung BotConfigSO
+    /// </summary>
+    /// <param name="point">Điểm cần đi tới</param>
+    /// <param name="speed">Tốc độ</param>
+    public void SetBotMove(Transform point, float speed)
+    {
+        if (!botNet.IsDead)
+        {
+            var targetRotation = Quaternion.LookRotation(point.position - myTrans.position);
+            myTrans.rotation = Quaternion.Slerp(myTrans.rotation, targetRotation, 10 * Time.deltaTime);
+            myTrans.position = Vector3.MoveTowards(myTrans.position, point.position, speed* Time.deltaTime);
+        }
+    }
+    
     void CheckParent()
     {
         if (myTrans.parent != null)

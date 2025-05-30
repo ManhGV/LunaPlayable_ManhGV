@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3414586519370205717}
   - component: {fileID: 5600396869522614360}
   - component: {fileID: 8794130411824128050}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 4245571956553505361}
   - component: {fileID: 6854851993044580833}
   - component: {fileID: 5849815477363083656}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: InSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 7974025508379655639}
   - component: {fileID: 5217259103513279851}
   - component: {fileID: 862381807496937155}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: OutSide_Health_Old
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,8 +237,7 @@ GameObject:
   - component: {fileID: 1716856872797736918}
   - component: {fileID: 8926311681191553072}
   - component: {fileID: 2598066401522329160}
-  - component: {fileID: 6158944057220438167}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +254,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.634}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3414586519370205717}
   m_Father: {fileID: 0}
@@ -310,7 +309,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &2598066401522329160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,24 +327,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 1911
---- !u!114 &6158944057220438167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7263098664815117378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b7c1dba169a66149b5018c22788ef46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayAwake: 1
-  _scaleDefault: 1
-  cameraTransform: {fileID: 0}
-  _scaleSpeed: 60
-  _scaleMultiplier: 10
-  lifeTime: 5
 --- !u!1 &7720986177160681486
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +339,7 @@ GameObject:
   - component: {fileID: 5765674025643878044}
   - component: {fileID: 4798581989047238221}
   - component: {fileID: 3568994701958008642}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: InSide_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +431,7 @@ GameObject:
   - component: {fileID: 2954558689282372270}
   - component: {fileID: 4122057346567916003}
   - component: {fileID: 8510073261561773109}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: InSide_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +523,7 @@ GameObject:
   - component: {fileID: 8915560249337271170}
   - component: {fileID: 2087110414532082891}
   - component: {fileID: 4512013209050961997}
-  m_Layer: 5
+  m_Layer: 11
   m_Name: OutSide_Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}

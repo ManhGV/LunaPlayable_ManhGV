@@ -29,7 +29,7 @@ public class BotZombieNor : MonoBehaviour
     BotZombieNor_DeadExplosion _deadExplosionState;
     public BotZombieNor_Start _startState;
 
-
+    
     private void Awake()
     {
         Init();

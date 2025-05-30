@@ -11,6 +11,7 @@ public class WeaponController : Singleton<WeaponController>
 {
     [SerializeField] public WeaponInfo weaponInfo;
     [SerializeField] private LayerMask botLayerMask;
+    [SerializeField] private LayerMask armorBossLayerMask;
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private LayerMask rewardLayerMask;
     [SerializeField] private LayerMask gasLayerMask;
@@ -102,6 +103,8 @@ public class WeaponController : Singleton<WeaponController>
 #if UNITY_EDITOR
         GizmodTuVe();
 #endif
+        if(GameManager.Instance.GetGameState()!= GameConstants.GameState.Playing)
+            return;
         
         HandleGatlingGunRotation();
         // if (!UIEndGame.Instance.IsShowEndGame)
@@ -391,6 +394,11 @@ public class WeaponController : Singleton<WeaponController>
         return ((1 << obj.layer) & botLayerMask ) != 0;
     }
     
+    private bool IsInArmorBossLayer(GameObject obj)
+    {
+        return ((1 << obj.layer) & armorBossLayerMask ) != 0;
+    }
+    
     public static class LayerConstants
     {
         public static readonly int WeakPointLayer = 10; // Giả sử layer 10 là WeakPoint
@@ -421,7 +429,7 @@ public class WeaponController : Singleton<WeaponController>
         Vector3 posGizmod = GizmodTuVe();
         bullet.Init((posGizmod - muzzle.position).normalized,posGizmod);
         
-        bool CheckRayCast = Physics.Raycast(ray, out var hit, Mathf.Infinity, botLayerMask|gasLayerMask| rewardLayerMask| groundLayerMask | LayerConstants.WeakPointMask);
+        bool CheckRayCast = Physics.Raycast(ray, out var hit, Mathf.Infinity, botLayerMask | armorBossLayerMask |gasLayerMask| rewardLayerMask| groundLayerMask | LayerConstants.WeakPointMask);
         PoolType typeEffect = PoolType.vfx_ConcreteImpact;
         if (CheckRayCast)
         {
@@ -448,6 +456,21 @@ public class WeaponController : Singleton<WeaponController>
                 if (takeDamageController != null) takeDamageController.TakeDamage(damageInfo);
                 typeEffect = PoolType.vfx_BloodEffectZom;
 //                Debug.Log(damageType.ToString() + " " + weaponInfo.damage + " " + hit.collider.name);
+            }
+            else if (IsInArmorBossLayer(hit.collider.gameObject))
+            {
+                Detector detector = hit.transform.gameObject.GetComponent<Detector>();
+                if (detector != null)
+                    detector.SetHealthImage(damageInfo.damage);
+                
+                damageInfo.damage /= 3;
+                var takeDamageController = hit.transform.gameObject.GetComponent<ITakeDamage>();
+                if (takeDamageController == null)
+                {
+                    takeDamageController = hit.transform.root.gameObject.GetComponent<ITakeDamage>();
+                }
+                if (takeDamageController != null) takeDamageController.TakeDamage(damageInfo);
+
             }
             else if (IsInRewardLayer(hit.collider.gameObject))
             {
@@ -614,7 +637,7 @@ public class WeaponController : Singleton<WeaponController>
     {
         var distance = Vector3.Distance(origin, target);
         var ray = new Ray(origin, target - origin);
-        return !Physics.Raycast(ray, out _, distance, botLayerMask | rewardLayerMask | groundLayerMask);
+        return !Physics.Raycast(ray, out _, distance, botLayerMask| armorBossLayerMask  | rewardLayerMask | groundLayerMask);
     }
 
     // Thêm phương thức dừng âm thanh bắn
