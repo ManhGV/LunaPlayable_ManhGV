@@ -2,18 +2,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BotZombieNor_Attack : BaseState<BotZomNorState>
 {
-    [SerializeField] private float timerAttackDefault;
+    private int animType;
     private float timerAttack;
     private Transform Mytrans;
 
     public override void EnterState()
     {
-        thisBotNetwork.ChangeAnim("Attack");
+        animType = Random.Range(0, 2);
+        thisBotNetwork.SetAnimAndType("Attack",animType);
+        
         isDoneState = false;
-        timerAttack = timerAttackDefault;
+        if(animType == 0)
+            timerAttack = 1.53f;
+        else
+            timerAttack = .54f;
         thisBotNetwork.RotaToTarget();
     }
 

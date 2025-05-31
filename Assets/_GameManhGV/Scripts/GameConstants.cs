@@ -8,10 +8,10 @@ public static class GameConstants
     public enum BotType
     {
         None,
-        zombieNorsuit,
-        zombieNornurse,
-        zombieNornursemix,
-        BossSwat,
+        BotZomNorNurse = PoolType.BotZomNorNurse,
+        BotZomNorPatient = PoolType.BotZomNorPatient,
+        BotZomNorGirl = PoolType.BotZomNorGirl,
+        BossZomSwat = PoolType.Boss_Zom_Swat,
     }
     public enum PoolType
     {
@@ -20,8 +20,10 @@ public static class GameConstants
         Projectile_Bullet_Norma = 2,
         vfx_BloodEffectZom = 3,
         vfx_ConcreteImpact = 4,
-        Boss_Zom_Swat = 5,
-        
+        BotZomNorPatient = 5,
+        BotZomNorNurse = 6,
+        BotZomNorGirl = 7,
+        Boss_Zom_Swat = 8,
     }
     public enum RewardType
     {

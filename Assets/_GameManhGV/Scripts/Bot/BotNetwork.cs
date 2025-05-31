@@ -9,12 +9,15 @@ public class BotNetwork : GameUnit, ITakeDamage
     [SerializeField] private bool isBoss;
     public AudioSource _audioSource;
     [SerializeField] private BotConfigSO botConfigSO;
+    [Header("Health Bar")]
     [SerializeField] private Image healthBarUI;
     [SerializeField] private Transform healthBarTransform;
     [SerializeField] private int _currentHealth;
     [SerializeField] private bool isImmortal;
     [SerializeField] private bool isDead;
     public bool IsDeadExplosion;
+    
+    [Header("Point To Move")]
     public  WayPoint wayPoint;
 
     [Header("Change Anim")]
@@ -35,7 +38,13 @@ public class BotNetwork : GameUnit, ITakeDamage
 
     private Coroutine hideHealthBarCoroutine; // Tham chiếu tới Coroutine
     public Transform mainCameraTranform;
-    
+
+
+    public void Init(WayPoint _wayPoint)
+    {
+        wayPoint = _wayPoint;
+        transform.position = _wayPoint.WayPoints[0].transform.position;
+    }
     
     private void Awake()
     {
@@ -181,6 +190,17 @@ public class BotNetwork : GameUnit, ITakeDamage
     public void SetFloatAnim(string _name, float value) => anim.SetFloat(_name, value);
     public void SetIntAnim(string _name, int value) => anim.SetInteger(_name, value);
     
+    public void SetAnimAndType(string _name, int animType)
+    {
+        anim.SetInteger("AnimType", animType);
+        if (currentAnimName != _name)
+        {
+            anim.ResetTrigger(_name);
+            currentAnimName = _name;
+            anim.SetTrigger(currentAnimName);
+        }
+    }
+    
     public void ActiveFalseDetectors()
     {
         foreach (GameObject VARIABLE in detectors)
@@ -201,6 +221,7 @@ public class BotNetwork : GameUnit, ITakeDamage
 
     public void OnDespawn()
     {
+        print("Despawn BotNetwork: " + gameObject.name);
         SimplePool.Despawn(this);
     }
 }

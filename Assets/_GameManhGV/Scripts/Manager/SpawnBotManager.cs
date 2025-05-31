@@ -1,0 +1,28 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SpawnBotManager : Singleton<SpawnBotManager>
+{
+    private PathManager _pathManager;
+    [SerializeField] private GameConstants.PoolType poolType;
+    [SerializeField] private List<BotNetwork> botInScene = new List<BotNetwork>();
+    public int CountBotInScene => botInScene.Count;
+    public int allBotsToSpawn => botInScene.Count;
+    private void Start()
+    {
+        _pathManager = PathManager.Instance;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            WayPoint wayPoint = _pathManager.GetWayPoint(poolType);
+            BotNetwork botNetwork = SimplePool.Spawn<BotNetwork>(poolType, wayPoint.WayPoints[0].position, Quaternion.identity);
+            botNetwork.Init(wayPoint);
+            botInScene.Add(botNetwork);
+        }
+    }
+}

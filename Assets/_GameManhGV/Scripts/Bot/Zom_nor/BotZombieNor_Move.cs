@@ -5,14 +5,30 @@ using UnityEngine;
 public class BotZombieNor_Move : BaseState<BotZomNorState>
 {
     [SerializeField] private HumanMoveBase humanMoveBase;
+    [SerializeField] private bool moveType_2;
     private WayPoint path;
-    protected int moveIndex;
+    private int moveIndex;
+    private int typeMove;
+    private float speedTypeIndex;
     
     public override void EnterState()
     {
-        thisBotNetwork.ChangeAnim("Move");
+        if(moveType_2)
+            typeMove = 2;
+        else
+            typeMove = Random.Range(0, 4);
+        
+        thisBotNetwork.SetAnimAndType("Move",typeMove);
         path = thisBotNetwork.wayPoint;
-        moveIndex = 0;
+        
+        if (typeMove == 0)
+            speedTypeIndex = .9f;
+        else if (typeMove == 1)
+            speedTypeIndex = .87f;
+        else if (typeMove == 2)
+            speedTypeIndex = .28f;
+        else
+            speedTypeIndex = 3f;
         isDoneState = false;
     }
 
@@ -22,7 +38,7 @@ public class BotZombieNor_Move : BaseState<BotZomNorState>
         {
             if (!humanMoveBase.isHaveParent && moveIndex < path.WayPoints.Count)
             {
-                humanMoveBase.SetBotMove(path.WayPoints[moveIndex]);
+                humanMoveBase.SetBotMove(path.WayPoints[moveIndex],speedTypeIndex);
                 float distance = Vector3.Distance(humanMoveBase.myTrans.position, path.WayPoints[moveIndex].position);
                 if (distance < 0.1)
                 {

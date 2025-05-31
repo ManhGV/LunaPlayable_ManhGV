@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Detector : MonoBehaviour
 {
-    [SerializeField] private bool PlayAwake;
+    [SerializeField] private bool DonActiveFalse;
     private float _scaleDefault = 1f;
     [Header("Look Camera")]
     [SerializeField] private Transform cameraTransform;
@@ -44,12 +44,8 @@ public class Detector : MonoBehaviour
         _currentHealth = _maxHealth;
         _detector.localScale = Vector3.one * _scaleDefault;
         _originalScale = Vector3.one * _scaleDefault;
-        _ActiveFalseCoroutine = StartCoroutine(DisableThis());
-        
-        if(PlayAwake)
-            Play();
-        else
-            gameObject.SetActive(false);
+        if (!DonActiveFalse)
+            _ActiveFalseCoroutine = StartCoroutine(DisableThis());
     }
 
     private void OnDisable()

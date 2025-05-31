@@ -2,69 +2,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using static GameConstants;
 
-public class PathManager : MonoBehaviour
+public class PathManager : Singleton<PathManager>
 {
     [SerializeField] public List<WayPointlist> Listwaypoint;
-    public static PathManager Instance;
 
-    private void Awake()
+    public WayPoint GetWayPoint(PoolType poolType)
     {
-        Instance = this;
-    }
-
-    public WayPoint GetWayPoint(BotType botType)
-    {
-        var wayPointList = Listwaypoint.Find(list => list.botType == botType);
-        //var wayPointList;
-
+        var wayPointList = Listwaypoint.Find(list => list.botType == (BotType) poolType);
         if (wayPointList != null)
         {
             var paths = wayPointList._wayPointlist;
-            var availablePaths = paths.FindAll(x => x.IsUse == false);
-            if (availablePaths.Count == 0)
-                throw new Exception("No available paths for bot type: " + botType);
-
-            int randomIndex = UnityEngine.Random.Range(0, availablePaths.Count);
-            availablePaths[randomIndex].IsUse = false;
-            StartCoroutine(IEDelay(availablePaths, randomIndex));
-            return availablePaths[randomIndex];
+            if (paths.Count == 0)
+                throw new Exception("No available paths for bot type: " + poolType);
+            
+            int index = wayPointList.GetIndexPath();
+            return paths[index];
         }
-        throw new Exception("No paths found for bot type: " + botType);
-    }
 
-    private IEnumerator IEDelay(List<WayPoint> availablePaths, int randomIndex)
-    {
-        yield return new WaitForSeconds(1f);
-        availablePaths[randomIndex].IsUse = false;
-    }
-
-    public void ResetPath()
-    {
-        foreach (var wayPointList in Listwaypoint)
-        {
-            Reset(wayPointList._wayPointlist);
-        }
-    }
-
-    private void Reset(List<WayPoint> paths)
-    {
-        foreach (var path in paths)
-        {
-            path.IsUse = false;
-        }
+        throw new Exception("No paths found for bot type: " + poolType);
     }
 }
 
 [Serializable]
 public class WayPointlist
 {
-    public List<WayPoint> _wayPointlist;
     public BotType botType;
+    private int indexPath;
+    public List<WayPoint> _wayPointlist;
     public GameObject SamplePrefab;
-    public int WayPointTotal;
-    public List<listLimitWayPoint> listLimitWayPoint;
+    public int GetIndexPath()
+    {
+        indexPath++;
+        
+        if (indexPath >= _wayPointlist.Count)
+            indexPath = 0;
+        
+        return indexPath;
+    }
 }
 
 [Serializable]
@@ -82,7 +59,6 @@ public class LimitWayPoint
 [Serializable]
 public class WayPoint
 {
-    public bool IsUse;
     public List<Transform> WayPoints = new List<Transform>();
     public List<Transform> AttackWayPoints = new List<Transform>();
 }

@@ -1,11 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BotZombieNor_Start : BaseState<BotZomNorState>
 {
-    [SerializeField] float timeStart;
+    [SerializeField] int typeStart; // 0: Bình thường hoặc đang ăn xác, 1: nhảy từ trên xuống
+    [SerializeField] bool dontUseTimer;
     float timer;
 
     private void OnTakeDamage(int obj)
@@ -16,15 +14,24 @@ public class BotZombieNor_Start : BaseState<BotZomNorState>
     public override void EnterState()
     {
         thisBotNetwork.OnTakeDamage += OnTakeDamage;
-        thisBotNetwork.ChangeAnim("Start");
+        thisBotNetwork.SetAnimAndType("Start", typeStart);
         isDoneState = false;
-        timer = timeStart;
+        if (typeStart == 1)
+        {
+            dontUseTimer = false;
+            timer = 2.34f;
+        }
+        else
+            timer = 5f;
     }
 
     public override void UpdateState()
     {
+        if(dontUseTimer)
+            return;
         if (isDoneState)
             return; 
+        
         timer -= Time.deltaTime;
         if (timer <= 0)
             isDoneState = true;

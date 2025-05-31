@@ -5,10 +5,12 @@ using UnityEngine;
 public class BossZomSwat_Idle : BaseState<BossZomSwatState>
 {
     private float timereload;
+    int animType;
 
     public override void EnterState()
     {
-        thisBotNetwork.ChangeAnim("Idle");
+        animType = Random.Range(0, 2);
+        thisBotNetwork.SetAnimAndType("Idle",animType);
         isDoneState = false;
         timereload = thisBotNetwork.BotConfigSO.coolDownAttack;
     }

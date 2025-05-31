@@ -76,7 +76,7 @@ namespace Verpha.HierarchyDesigner
 
             newName = HD_Common_GUI.DrawTextField("New Name", fieldsWidth, string.Empty, newName, true, "The new name that the selected GameObjects will be renamed to.");
             automaticIndexing = HD_Common_GUI.DrawToggle("Auto-Index", fieldsWidth, automaticIndexing, true, true, "The selected GameObjects will be renamed with indexes (e.g., (1), (2), (3), ...).");
-            if (automaticIndexing) { startingIndex = HD_Common_GUI.DrawIntField("Starting Index", fieldsWidth, startingIndex, 0, true, "The starting value of the index (e.g., a value of 10 will start the indexing at (10), and so on)."); }
+            if (automaticIndexing) { startingIndex = HD_Common_GUI.DrawIntField("Starting Index", fieldsWidth, startingIndex, 0, true, "The starting value of the indexPath (e.g., a value of 10 will start the indexing at (10), and so on)."); }
             #endregion
 
             GUILayout.Space(10);

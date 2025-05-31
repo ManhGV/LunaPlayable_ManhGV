@@ -143,7 +143,7 @@ public class MeshCombiner : MonoBehaviour
 		// First MeshFilter belongs to this GameObject so we don't need it:
 		CombineInstance[] combineInstances = new CombineInstance[meshFilters.Length-1];
 
-		// If it will be over 65535 then use the 32 bit index buffer:
+		// If it will be over 65535 then use the 32 bit indexPath buffer:
 		long verticesLength = 0;
 
 		for(int i = 0; i < meshFilters.Length-1; i++) // Skip first MeshFilter belongs to this GameObject in this loop.
@@ -244,7 +244,7 @@ public class MeshCombiner : MonoBehaviour
 		#region Combine children Meshes with the same Material to create submeshes for final Mesh:
 		List<CombineInstance> finalMeshCombineInstancesList = new List<CombineInstance>();
 
-		// If it will be over 65535 then use the 32 bit index buffer:
+		// If it will be over 65535 then use the 32 bit indexPath buffer:
 		long verticesLength = 0;
 
 		for(int i = 0; i < uniqueMaterialsList.Count; i++) // Create each Mesh (submesh) from Meshes with the same Material.
@@ -264,7 +264,7 @@ public class MeshCombiner : MonoBehaviour
 						{
 							CombineInstance combineInstance = new CombineInstance();
 							combineInstance.subMeshIndex = k; // Mesh may consist of smaller parts - submeshes.
-															  // Every part have different index. If there are 3 submeshes
+															  // Every part have different indexPath. If there are 3 submeshes
 															  // in Mesh then MeshRender needs 3 Materials to render them.
 							combineInstance.mesh = meshFilters[j+1].sharedMesh;
 							combineInstance.transform = meshFilters[j+1].transform.localToWorldMatrix;
