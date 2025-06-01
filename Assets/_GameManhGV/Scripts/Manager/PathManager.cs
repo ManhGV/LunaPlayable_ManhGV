@@ -7,7 +7,7 @@ using static GameConstants;
 
 public class PathManager : Singleton<PathManager>
 {
-    [SerializeField] public List<WayPointlist> Listwaypoint;
+    public List<WayPointlist> Listwaypoint;
 
     public WayPoint GetWayPoint(PoolType poolType)
     {
@@ -31,7 +31,7 @@ public class WayPointlist
 {
     public BotType botType;
     private int indexPath;
-    public List<WayPoint> _wayPointlist;
+    public List<WayPoint> _wayPointlist = new List<WayPoint>();
     public GameObject SamplePrefab;
     public int GetIndexPath()
     {

@@ -355,7 +355,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8500894954550403274}
   - component: {fileID: 8742386872671515448}
-  - component: {fileID: 2174622785617746329}
   m_Layer: 7
   m_Name: Armature
   m_TagString: Untagged
@@ -400,19 +399,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2174622785617746329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3307411504967156113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5090a9021ec638428dfe030f4f80537, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 8742386872671515448}
 --- !u!1 &3341966918779200491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,7 +1121,6 @@ GameObject:
   - component: {fileID: 2046373968466489634}
   - component: {fileID: 5217481168455160654}
   - component: {fileID: 1852738567951325660}
-  - component: {fileID: 4989325162762865159}
   - component: {fileID: 2560074243112890656}
   - component: {fileID: 8893831130879371026}
   - component: {fileID: 6544445450049660925}
@@ -1157,7 +1142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6291367735044788001}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0.84, y: 0, z: 12.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1308,21 +1293,6 @@ MonoBehaviour:
   anim: {fileID: 8742386872671515448}
   detectors: []
   mainCameraTranform: {fileID: 0}
---- !u!114 &4989325162762865159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6291367735044788001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d77014d0fa0aa34fa458d5669d19744, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisBotNetwork: {fileID: 1852738567951325660}
-  typeStart: 0
-  dontUseTimer: 1
 --- !u!114 &2560074243112890656
 MonoBehaviour:
   m_ObjectHideFlags: 0
