@@ -7,7 +7,7 @@ using static GameConstants;
 
 public class PathManager : Singleton<PathManager>
 {
-    public List<WayPointlist> Listwaypoint;
+    public List<WayPointlist> Listwaypoint = new List<WayPointlist>();
 
     public WayPoint GetWayPoint(PoolType poolType)
     {
