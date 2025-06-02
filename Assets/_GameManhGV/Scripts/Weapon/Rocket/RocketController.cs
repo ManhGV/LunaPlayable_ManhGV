@@ -17,9 +17,10 @@ public class RocketController : Singleton<RocketController>
     [Header("ExplosionAudio")] 
     public AudioSource _audioSource;
     public AudioClip explosionAudio;
-    
-    private void Awake()
+
+    protected override void Awake()
     {
+        base.Awake();
         _fireAnim.Play("FPS_anim_W38_Idle");
     }
     

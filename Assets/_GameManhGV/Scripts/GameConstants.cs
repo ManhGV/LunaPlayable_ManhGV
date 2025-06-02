@@ -17,7 +17,7 @@ public static class GameConstants
     {
         None = 0,
         Projectile_Bullet_Norman = 1,
-        Projectile_Bullet_Norma = 2,
+        Projectile_Bullet_BBQ = 2,
         vfx_BloodEffectZom = 3,
         vfx_ConcreteImpact = 4,
         BotZomNorPatient = 5,

@@ -30,7 +30,7 @@ Shader "Horus/Local Weapon/Decoration - Glow"
             #pragma fragment frag
             #pragma multi_compile_fog
 
-            #include "Assets/_GameManhGV/Shader/ShaderHr.cginc"
+            #include "ShaderHr.cginc"
 
             sampler2D _MainTex;
             half4 _Color, _GlowColor;

@@ -70,7 +70,12 @@ public class WeaponController : Singleton<WeaponController>
         UIManager.Instance.GetUI<Canvas_GamePlay>().Init();
         Invoke(nameof(Init),.1f);
     }
-    
+
+    private void Start()
+    {
+        Instance = this;
+    }
+
     private void Init()
     {
         EventManager.Invoke(EventName.UpdateBulletCount, _currentBulletCount);
@@ -515,7 +520,7 @@ public class WeaponController : Singleton<WeaponController>
     void PlayRandomAttackSound()
     {
         // AudioClip clip = AudioManager.Instance.GetAudioAttackClip();
-        // if (clip != null)
+        // if (clip != null)    
         // {
         //     //_audioSource.clip = clip;
         //     _audioSourceHit.PlayOneShot(clip);
@@ -525,7 +530,7 @@ public class WeaponController : Singleton<WeaponController>
     {
         if (IsChange)
         {
-            _bulletType = PoolType.Projectile_Bullet_Norma;
+            _bulletType = PoolType.Projectile_Bullet_BBQ;
         }
         else
         {
