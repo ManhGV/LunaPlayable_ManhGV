@@ -145,6 +145,8 @@ public class BotNetwork : GameUnit, ITakeDamage
         if (healthBarTransform == null) return;
         healthBarTransform.gameObject.SetActive(false);
         OnBotNetWorkDead?.Invoke(this);
+        
+        AchievementEvaluator.Instance.OnBotKilled(1f,false);
     }
 
     private void SetHealthBar(float currentHealth)
