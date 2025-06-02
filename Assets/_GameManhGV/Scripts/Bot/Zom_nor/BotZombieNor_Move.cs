@@ -7,7 +7,7 @@ public class BotZombieNor_Move : BaseState<BotZomNorState>
     [SerializeField] private HumanMoveBase humanMoveBase;
     [SerializeField] private bool moveType_2;
     private WayPoint path;
-    private int moveIndex;
+    private int moveIndex = 0;
     private int typeMove;
     private float speedTypeIndex;
     
@@ -18,9 +18,6 @@ public class BotZombieNor_Move : BaseState<BotZomNorState>
         else
             typeMove = Random.Range(0, 4);
         
-        thisBotNetwork.SetAnimAndType("Move",typeMove);
-        path = thisBotNetwork.wayPoint;
-        
         if (typeMove == 0)
             speedTypeIndex = .9f;
         else if (typeMove == 1)
@@ -29,7 +26,15 @@ public class BotZombieNor_Move : BaseState<BotZomNorState>
             speedTypeIndex = .28f;
         else
             speedTypeIndex = 3f;
+        
+        path = thisBotNetwork.wayPoint;
+        thisBotNetwork.SetAnimAndType("Move",typeMove);
         isDoneState = false;
+    }
+
+    public void Init()
+    {
+        moveIndex = 0;
     }
 
     public override void UpdateState()

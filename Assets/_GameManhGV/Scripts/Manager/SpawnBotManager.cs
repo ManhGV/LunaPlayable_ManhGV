@@ -5,20 +5,25 @@ using UnityEngine;
 
 public class SpawnBotManager : Singleton<SpawnBotManager>
 {
-    private PathManager _pathManager;
+    [SerializeField] private PathManager _pathManager;
     [SerializeField] private ConfigGame dataBotSpawn;
     [SerializeField] private List<BotNetwork> botInScene = new List<BotNetwork>();
+    
     public int CountBotInScene => botInScene.Count;
-    public int allBotsToSpawn => botInScene.Count;
-    private void Start()
+    public int AllBotsToSpawn;
+    
+    protected override void Awake()
     {
-        _pathManager = PathManager.Instance;
-        SpawnBot(dataBotSpawn);
+        base.Awake();
+
+        foreach (BotConfig VARIABLE in dataBotSpawn.fightRound.botConfigs)
+            AllBotsToSpawn += VARIABLE.botQuantity;
+        
     }
 
-    void SpawnBot(ConfigGame _configGame)
+    public void SpawnBot()
     {
-        foreach(BotConfig botConfig in _configGame.fightRound.botConfigs)
+        foreach(BotConfig botConfig in dataBotSpawn.fightRound.botConfigs)
             StartCoroutine(IEOnSpawnBot(botConfig));
     }
 
@@ -31,7 +36,7 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         for (int i = 0; i < _botConfig.botQuantity; i++)
         {
             
-            wayPoint = _pathManager.GetWayPoint((GameConstants.PoolType)_botConfig.botType);
+            wayPoint = _pathManager.GetWayPoint(GameConstants.PoolType.None);
             poolType = (GameConstants.PoolType)_botConfig.botType;
             BotNetwork botNetwork = SimplePool.Spawn<BotNetwork>(poolType, wayPoint.WayPoints[0].position, Quaternion.identity);
             botNetwork.Init(wayPoint);
@@ -39,5 +44,11 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
 
             yield return new WaitForSeconds(_botConfig.botDelaySpawn);
         }
+    }
+
+    public void RemoveBotDead(BotNetwork _botNetwork)
+    {
+        botInScene.Remove(_botNetwork);
+        //TODO: Add logic tính điểm còn lại
     }
 }

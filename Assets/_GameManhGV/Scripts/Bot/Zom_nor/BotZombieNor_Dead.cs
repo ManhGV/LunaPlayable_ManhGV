@@ -35,6 +35,7 @@ public class BotZombieNor_Dead : BaseState<BotZomNorState>
 
     public void TutorialReload()
     {
+        SpawnBotManager.Instance.SpawnBot();
         WeaponController weaponController = WeaponController.Instance;
         tutorialReload = weaponController.instructReload;
         if (!tutorialReload)

@@ -29,13 +29,8 @@ public class BotZombieNor : MonoBehaviour
     BotZombieNor_DeadExplosion _deadExplosionState;
     public BotZombieNor_Start _startState;
 
-    
-    private void Awake()
-    {
-        Init();
-    }
 
-    private void Init()
+    private void Awake()
     {
         _idle = GetComponent<BotZombieNor_Idle>();
         _idle.Initialize(BotZomNorState.Idle);
@@ -65,16 +60,27 @@ public class BotZombieNor : MonoBehaviour
 
             stateController.Add(BotZomNorState.Start, _startState);
         }
+
     }
 
     void OnEnable()
+    {
+        Init();
+        Invoke(nameof(Enanle), 0.1f);
+    }
+    
+    private void Init()
+    {
+        _moveState.Init();
+    }
+
+    private void Enanle()
     {
         botNetwork.OnTakeDamage += OnTakeDame;
         if (haveStart)
             _currentState = stateController[BotZomNorState.Start];
         else
             _currentState = stateController[BotZomNorState.Move];
-
         _currentState.EnterState();
     }
 
@@ -90,6 +96,9 @@ public class BotZombieNor : MonoBehaviour
 
     void Update()
     {
+        if (_currentState == null)
+            return;
+
         BotZomNorState nextState = _currentState.GetNextState();
         if (_currentState.StateKey.Equals(nextState) && !_isTransition)
         {

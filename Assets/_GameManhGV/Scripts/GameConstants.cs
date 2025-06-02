@@ -24,6 +24,8 @@ public static class GameConstants
         BotZomNorNurse = 6,
         BotZomNorGirl = 7,
         Boss_Zom_Swat = 8,
+        bullet_Rocket = 9,
+        vfx_ExplosionRocket = 10,
     }
     public enum RewardType
     {

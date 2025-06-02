@@ -128,7 +128,6 @@ public class Canvas_GamePlay : UICanvas
             GameManager.Instance.ResumeGame();
             UIManager.Instance.CloseUIDirectly<Canvas_BazookaIntroduction>();
         }
-        print("Shoot Rocket");
-        // weaponController.OnShootRocket();
+        RocketController.Instance.Fire();
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using static GameConstants;
+using Random = System.Random;
 
 public class PathManager : Singleton<PathManager>
 {
@@ -18,8 +17,8 @@ public class PathManager : Singleton<PathManager>
             if (paths.Count == 0)
                 throw new Exception("No available paths for bot type: " + poolType);
             
-            int index = wayPointList.GetIndexPath();
-            return paths[index];
+            // int index = wayPointList.GetIndexPath();
+            return paths[UnityEngine.Random.Range(0, paths.Count)];
         }
 
         throw new Exception("No paths found for bot type: " + poolType);
@@ -32,7 +31,6 @@ public class WayPointlist
     public BotType botType;
     private int indexPath;
     public List<WayPoint> _wayPointlist = new List<WayPoint>();
-    public GameObject SamplePrefab;
     public int GetIndexPath()
     {
         indexPath++;

@@ -52,11 +52,18 @@ public class HumanMoveBase : MonoBehaviour
     {
         if (!botNet.IsDead)
         {
-            var targetRotation = Quaternion.LookRotation(point.position - myTrans.position);
-            myTrans.rotation = Quaternion.Slerp(myTrans.rotation, targetRotation, 10 * Time.deltaTime);
-            myTrans.position = Vector3.MoveTowards(myTrans.position, point.position, speed* Time.deltaTime);
+            Vector3 direction = point.position - myTrans.position;
+            direction.y = 0f; // Loại bỏ quay theo trục Y
+            if (direction != Vector3.zero) // Tránh lỗi khi hai điểm trùng nhau
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                myTrans.rotation = Quaternion.Slerp(myTrans.rotation, targetRotation, 10 * Time.deltaTime);
+            }
+
+            myTrans.position = Vector3.MoveTowards(myTrans.position, point.position, speed * Time.deltaTime);
         }
     }
+
     
     void CheckParent()
     {

@@ -44,23 +44,35 @@ public class BotNetwork : GameUnit, ITakeDamage
     {
         wayPoint = _wayPoint;
         transform.position = _wayPoint.WayPoints[0].transform.position;
+        _currentHealth = botConfigSO.health;
+        isImmortal = false;
+        isDead = false;
+        IsDeadExplosion = false;
     }
-    
+
+    private void OnEnable()
+    {
+        OnBotDead += Die;
+    }
+
+    private void OnDisable()
+    {
+        OnBotDead -= Die;
+    }
+
+
     private void Awake()
     {
         if (mainCameraTranform == null)
         {
             mainCameraTranform = Camera.main.transform;
         }
-        OnBotDead+= Die;
-        _currentHealth = botConfigSO.health;
 
         if (healthBarTransform != null)
         {
              healthBarTransform.gameObject.SetActive(false); 
         }    
         //healthBar.enabled = false; // Ẩn thanh máu khi khởi tạo
-        isImmortal = false;
     }
 
     public void TakeDamage(DamageInfo damageInfo)
@@ -89,14 +101,9 @@ public class BotNetwork : GameUnit, ITakeDamage
     private void CheckImmortalStatus()
     {
         if (_currentHealth <= botConfigSO.health * (botConfigSO.HealthThreshold / 100f))
-        {
             isImmortal = true;
-            
-        }
         else
-        {
             isImmortal = false;
-        }
     }
 
     public void CacularHealth(DamageInfo damageInfo)
@@ -132,6 +139,7 @@ public class BotNetwork : GameUnit, ITakeDamage
     }
     public void Die()
     {
+        SpawnBotManager.Instance.RemoveBotDead(this);
         isDead = true;
         _currentHealth = 0;
         if (healthBarTransform == null) return;
