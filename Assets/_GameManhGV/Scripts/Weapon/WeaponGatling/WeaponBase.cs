@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static GameConstants;
@@ -16,46 +16,41 @@ public class WeaponBase : Singleton<WeaponBase>
     [SerializeField] private LayerMask rewardLayerMask;
     [SerializeField] private LayerMask gasLayerMask;
 
-    [Header("Muzzle")]
-    [SerializeField] private Transform _muzzleTrans;
-
-    [SerializeField] private Animation _animation;
-    [SerializeField] private PoolType _bulletType; // Lo?i ??n s? ???c b?n
-    [SerializeField] private ParticleSystem[] _fireEffect;
-    [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioSource _audioSourceHit;
-    [SerializeField] private bool _isShowCard;
-
     [Header("Snake Camera")]
-    [SerializeField] private Transform shakeCam; // Bi?n ?? tham chi?u ??n MainCamera
+    [SerializeField] private Transform shakeCam; // Biến để tham chiếu đến MainCamera
     [SerializeField] private float shakeCamMin;
     [SerializeField] private float shakeCamMax;
     [SerializeField] private bool IsShowLunaEndGame;
 
     private Transform _cameraTransform;
     private Camera _camera;
-    private float _timeSinceLastShoot = 0f; // Th?i gian t? l?n b?n cu?i c�ng
-    private int _currentBulletCount; // S? l??ng ??n hi?n t?i trong b?ng
-    private int _defaultBulletCount; // S? l??ng ??n hi?n t?i trong b?ng
+    protected float _timeSinceLastShoot = 0f; // Thời gian từ lần bắn cuối cùng
+    protected int _currentBulletCount; // Số lượng đạn hiện tại trong băng
+    protected int _defaultBulletCount; // Số lượng đạn hiện tại trong băng
     public int CurrentBulletCount => _currentBulletCount;
     public int DefaultBulletCount => _defaultBulletCount;
-    private bool _isReloading = false; // Tr?ng th�i ?ang n?p ??n
-    private float currentRotationSpeed = 0f; // T?c ?? quay hi?n t?i c?a n�ng s�ng
-    private bool isShooting = false; // Tr?ng th�i ?ang b?n
-    private bool canShoot = false; // Tr?ng th�i c� th? b?n
-    private bool isBarrelSpinning = false; // Tr?ng th�i n�ng s�ng ?ang quay
-    private Coroutine shootingCoroutine;
+    protected bool _isReloading = false; // Trạng thái đang nạp đạn
+    protected bool isShooting = false; // Trạng thái đang bắn
+    protected bool canShoot = false; // Trạng thái có thể bắn
+    protected Coroutine shootingCoroutine;
 
     [Header("DrawGizmod")]
-
+    [SerializeField] LayerMask boxLayer;
     [SerializeField] private float distance;
 
-    [Header("Tutorial")]
-    public bool instructReload = false;
-    public bool instructRoket = false;
+    [Header("Lằng nhằng")]
+    [SerializeField] protected Animation _animation;
+    [SerializeField] protected PoolType _bulletType;  // Loại đạn sẽ được bắn
+    [SerializeField] protected ParticleSystem[] _fireEffect;
+    [SerializeField] protected AudioSource _audioSource;
+    [SerializeField] protected AudioSource _audioSourceHit;
+    [SerializeField] protected bool _isShowCard;
 
-    // ki?m tra c� ang ?n v�o UI kh�ng
-    // B? nh? t?m cho ki?m tra UI - static ?? t�i s? d?ng
+    [Header("Muzzle")]
+    [SerializeField] protected Transform _muzzleTrans;
+
+    // kiểm tra có ang ấn vào UI không
+    // Bộ nhớ tạm cho kiểm tra UI - static để tái sử dụng
     private static readonly PointerEventData PointerEventData = new PointerEventData(EventSystem.current);
     private static readonly List<RaycastResult> RaycastResults = new List<RaycastResult>();
 
@@ -65,7 +60,7 @@ public class WeaponBase : Singleton<WeaponBase>
         _bulletType = PoolType.Projectile_Bullet_Norman;
         _camera = Camera.main;
         _cameraTransform = _camera.transform;
-        _currentBulletCount = weaponInfo.bulletCount; // Kh?i t?o s? l??ng ??n
+        _currentBulletCount = weaponInfo.bulletCount; // Khởi tạo số lượng đạn
         _defaultBulletCount = _currentBulletCount;
         AssignAnimationClips();
         UIManager.Instance.GetUI<Canvas_GamePlay>().Init();
@@ -77,34 +72,27 @@ public class WeaponBase : Singleton<WeaponBase>
         Instance = this;
     }
 
-    private void Init()
+    protected virtual void Init()
     {
         EventManager.Invoke(EventName.UpdateBulletCount, _currentBulletCount);
         EventManager.Invoke(EventName.UpdateBulletCountDefault, _defaultBulletCount);
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         EventManager.AddListener<bool>(EventName.OnShowLunaEndGame, OnShowLunaEndGame);
-        EventManager.AddListener<bool>(EventName.OnChangeFireRate, OnChangeFireRate);
     }
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         EventManager.RemoveListener<bool>(EventName.OnShowLunaEndGame, OnShowLunaEndGame);
-        EventManager.RemoveListener<bool>(EventName.OnChangeFireRate, OnChangeFireRate);
     }
 
-    private void OnShowLunaEndGame(bool IsShow)
+    protected virtual void OnShowLunaEndGame(bool IsShow)
     {
         IsShowLunaEndGame = IsShow;
     }
 
-    public bool IsReloadFull()
-    {
-        return _currentBulletCount >= weaponInfo.bulletCount;
-    }
-
-    private void Update()
+    protected virtual void Update()
     {
 #if UNITY_EDITOR
         GizmodTuVe();
@@ -112,195 +100,107 @@ public class WeaponBase : Singleton<WeaponBase>
         if (GameManager.Instance.GetGameState() != GameConstants.GameState.Playing)
             return;
 
-        HandleGatlingGunRotation();
-        // if (!UIEndGame.Instance.IsShowEndGame)
-        // {
         if (!IsPointerOverUI())
             OnShooting();
-        // }
-        // if (UIEndGame.Instance.IsShowEndGame )
-        // {
-        //     isShooting = false;
-        //     StopGunEffect();
-        // }
-
-
-        if (Input.GetKeyDown(KeyCode.R))
+        if (false)//end game
         {
-            InstructRocket();
-        }
-
-    }
-
-    public void InstructRocket()
-    {
-        //print("H??ng d?n rocket");
-        if (!instructRoket)
-        {
-            instructRoket = true;
-            EventManager.Invoke(EventName.InstructRocket, true);
-        }
-    }
-
-    public void InstructReload()
-    {
-        //TODO: n?u ch?a h??ng d?n reload th� h??ng d?n reload
-        if (!instructReload)
-        {
-            instructReload = true;
-            EventManager.Invoke(EventName.InstructReload, true);
+            isShooting = false;
+            StopGunEffect();
         }
     }
 
     /// <summary>
-    /// Ki?m tra xem con tr? chu?t c� ?ang hover tr�n UI element kh�ng
+    /// Kiểm tra xem con trỏ chuột có đang hover trên UI element không
     /// </summary>
-    /// <returns>True n?u pointer ?ang tr�n UI, false n?u kh�ng</returns>
+    /// <returns>True nếu pointer đang trên UI, false nếu không</returns>
     public static bool IsPointerOverUI()
     {
         if (EventSystem.current == null) return false;
 
-        // C?p nh?t v? tr� con tr? hi?n t?i
+        // Cập nhật vị trí con trỏ hiện tại
         PointerEventData.position = Input.mousePosition;
         RaycastResults.Clear();
 
-        // Th?c hi?n raycast ?? ki?m tra UI elements
+        // Thực hiện raycast để kiểm tra UI elements
         EventSystem.current.RaycastAll(PointerEventData, RaycastResults);
         return RaycastResults.Count > 0;
     }
 
-    private void AssignAnimationClips()
+    protected virtual void AssignAnimationClips()
     {
-        if (_animation != null && weaponInfo != null)
-        {
-            _animation.AddClip(weaponInfo.Fire, "Fire");
-            _animation.AddClip(weaponInfo.Idle, "Idle");
-            _animation.AddClip(weaponInfo._reloadAnimIn, "ReloadIn");
-            _animation.AddClip(weaponInfo._reloadAnimOn, "ReloadOn");
-            _animation.AddClip(weaponInfo._reloadAnimOut, "ReloadOut");
-        }
+
     }
 
     private void OnShooting()
     {
-        if (_isReloading)//IsIngameGUI || 
+        if (_isReloading)
             return;
 
         _timeSinceLastShoot += Time.deltaTime;
 
         if (Input.GetMouseButton(0))
         {
-            UICrosshairItem.Instance.Narrow_Crosshair();
-            if (!isShooting)
-            {
-                isShooting = true;
-                if (shootingCoroutine == null)
-                {
-                    shootingCoroutine = StartCoroutine(StartShootingAfterDelay());
-                }
-                if (!isBarrelSpinning)//&& !EventSystem.current.IsPointerOverGameObject()
-                {
-                    _audioSource.clip = weaponInfo.AudioStartBarrel;
-                    _audioSource.Play();
-                    isBarrelSpinning = true;
-                }
-            }
-
-            if (canShoot && _timeSinceLastShoot >= weaponInfo.FireRate)
-            {
-                if (_currentBulletCount <= 0 && !weaponInfo.infiniteBullet)
-                {
-                    OnReload();
-                }
-                else
-                {
-                    Shoot();
-                    _timeSinceLastShoot = 0f;
-
-                    if (!weaponInfo.infiniteBullet)
-                    {
-                        _currentBulletCount--;
-                        if (_currentBulletCount <= 3 && !instructReload)
-                        {
-                            instructReload = true;
-                            EventManager.Invoke(EventName.InstructReload, true);
-                        }
-
-                        //Debug.Log("Bullet fired. Remaining bullets: " + _currentBulletCount);
-                        EventManager.Invoke(EventName.UpdateBulletCount, _currentBulletCount);
-                    }
-                    PlayGunEffect(); // K�ch ho?t hi?u ?ng n? s�ng
-                }
-            }
+            LogicPlayGun();
         }
         else
         {
-            if (isShooting)
-            {
-                StopShootingSound();
-                isShooting = false;
-                canShoot = false; // Reset canShoot when stopping shooting
-                if (shootingCoroutine != null)
-                {
-                    StopCoroutine(shootingCoroutine);
-                    shootingCoroutine = null;
-                }
-                if (isBarrelSpinning)
-                {
-                    _audioSource.clip = weaponInfo.AudioEndBarrel;
-                    _audioSource.Play();
-                    isBarrelSpinning = false;
-                }
-                StopGunEffect(); // D?ng hi?u ?ng n? s�ng
-            }
+            LogicStopGun();
         }
     }
-    public void OnReload()
-    {
 
-        if (_isReloading || _currentBulletCount == _defaultBulletCount)
-            return;
-        _isReloading = true;
-        StartCoroutine(Reload());
-        StopGunEffect();
-        UICrosshairItem.Instance.ResetCorosshair();
-    }
-    public int GetCurrentAmmo()
+    private void LogicStopGun()
     {
-        return _currentBulletCount;
-    }
-    private void HandleGatlingGunRotation()
-    {
-        if (weaponInfo.isGatlingGun)
+        if (isShooting)
         {
-            if (isShooting)
+            StopShootingSound();
+            isShooting = false;
+            canShoot = false; // Reset canShoot when stopping shooting
+            if (shootingCoroutine != null)
             {
-                currentRotationSpeed += (weaponInfo.MaxSpeedRotaBarrel / Mathf.Max(1, weaponInfo.WaitToShoot)) * Time.deltaTime;
-                if (currentRotationSpeed >= weaponInfo.MaxSpeedRotaBarrel)
-                {
-                    currentRotationSpeed = weaponInfo.MaxSpeedRotaBarrel;
-                }
+                StopCoroutine(shootingCoroutine);
+                shootingCoroutine = null;
             }
-            else if (currentRotationSpeed > weaponInfo.MinSpeedRotaBarrel)
+            StopGunEffect(); // Dừng hiệu ứng nổ súng
+        }
+    }
+
+    protected virtual void LogicPlayGun()
+    {
+        UICrosshairItem.Instance.Narrow_Crosshair();
+        if (!isShooting)
+        {
+            isShooting = true;
+            if (shootingCoroutine == null)
+                shootingCoroutine = StartCoroutine(StartShootingAfterDelay());
+        }
+
+        if (canShoot && _timeSinceLastShoot >= weaponInfo.FireRate)
+        {
+            if (_currentBulletCount <= 0 && !weaponInfo.infiniteBullet)
+                OnReload();
+            else
             {
-                currentRotationSpeed -= (weaponInfo.MaxSpeedRotaBarrel / weaponInfo.TimeMinSpeed) * Time.deltaTime;
-                if (currentRotationSpeed <= weaponInfo.MinSpeedRotaBarrel)
+                Shoot();
+                _timeSinceLastShoot = 0f;
+
+                if (!weaponInfo.infiniteBullet)
                 {
-                    currentRotationSpeed = weaponInfo.MinSpeedRotaBarrel;
+                    _currentBulletCount--;
+
+                    EventManager.Invoke(EventName.UpdateBulletCount, _currentBulletCount);
                 }
+                PlayGunEffect(); // Kích hoạt hiệu ứng nổ súng
             }
         }
     }
 
-    private IEnumerator StartShootingAfterDelay()
+    protected IEnumerator StartShootingAfterDelay()
     {
         yield return new WaitForSeconds(weaponInfo.WaitToShoot);
         canShoot = true;
         shootingCoroutine = null;
     }
 
-
-    [SerializeField] LayerMask boxLayer;
     public Vector3 GizmodTuVe()
     {
         Ray ray = new Ray(shakeCam.position, shakeCam.forward);
@@ -308,11 +208,11 @@ public class WeaponBase : Singleton<WeaponBase>
 
         Debug.DrawLine(ray.origin, ray.origin + ray.direction * distance, Color.red);
 
-        // B?n raycast
+        // Bắn raycast
         if (Physics.Raycast(ray, out hit, distance, boxLayer))
         {
-            // Debug.Log("Va ch?m t?i v? tr�: " + hit.point);
-            // Debug.Log("Kho?ng c�ch ??n box: " + hit.distance);
+            // Debug.Log("Va chạm tại vị trí: " + hit.point);
+            // Debug.Log("Khoảng cách đến box: " + hit.distance);
 
             Debug.DrawLine(hit.point, hit.point + Vector3.up * 0.1f, Color.green);
             return hit.point;
@@ -321,12 +221,14 @@ public class WeaponBase : Singleton<WeaponBase>
         return Vector3.one;
     }
 
-    private void Shoot()
+    protected virtual void Shoot()
     {
         if (this == null || _cameraTransform == null) return;
 
-        Vector3 forward=_cameraTransform.forward;
-        StartCoroutine(ShakeCamera(0.1f, 0.05f));
+        Vector3 forward= _cameraTransform.forward;
+            StartCoroutine(ShakeCamera(0.1f, 0.05f));
+
+        //        print(_cameraTransform.forward + "Forward: " + forward);
 
         forward += new Vector3(
             Random.Range(-weaponInfo.recoilAmount, weaponInfo.recoilAmount),
@@ -334,7 +236,7 @@ public class WeaponBase : Singleton<WeaponBase>
             Random.Range(-weaponInfo.recoilAmount, weaponInfo.recoilAmount)
         );
 
-        // B?n t? n�ng ??u ti�n
+        // Bắn từ nòng đầu tiên
         FireFromMuzzle(_muzzleTrans, forward);
 
         _animation.Play("Fire");
@@ -360,7 +262,7 @@ public class WeaponBase : Singleton<WeaponBase>
 
     public static class LayerConstants
     {
-        public static readonly int WeakPointLayer = 10; // Gi? s? layer 10 l� WeakPoint
+        public static readonly int WeakPointLayer = 10; // Giả sử layer 10 là WeakPoint
         public static readonly LayerMask WeakPointMask = 1 << WeakPointLayer;
     }
 
@@ -380,7 +282,6 @@ public class WeaponBase : Singleton<WeaponBase>
     }
     #endregion
 
-
     private void FireFromMuzzle(Transform muzzle, Vector3 forward)
     {
         var shotRotation = Quaternion.Euler(Random.insideUnitCircle * weaponInfo.inaccuracy) * forward;
@@ -395,9 +296,7 @@ public class WeaponBase : Singleton<WeaponBase>
         if (CheckRayCast)
         {
             //var damageType = hit.collider.CompareTag("WeakPoint")? DamageType.Weekness:DamageType.Normal;
-            var damageType = hit.collider.gameObject.layer == LayerConstants.WeakPointLayer
-                ? DamageType.Weekness
-                : DamageType.Normal;
+            var damageType = hit.collider.gameObject.layer == LayerConstants.WeakPointLayer? DamageType.Weekness: DamageType.Normal;
             //Debug.Log($"Raycast hit object: {hit.collider.gameObject.name}, Layer: {hit.collider.gameObject.layer}");
 
             var damageInfo = new DamageInfo()
@@ -416,7 +315,7 @@ public class WeaponBase : Singleton<WeaponBase>
                 }
                 if (takeDamageController != null) takeDamageController.TakeDamage(damageInfo);
                 typeEffect = PoolType.vfx_BloodEffectZom;
-                //                Debug.Log(damageType.ToString() + " " + weaponInfo.damage + " " + hit.collider.name);
+                // Debug.Log(damageType.ToString() + " " + weaponInfo.damage + " " + hit.collider.name);
             }
             else if (IsInArmorBossLayer(hit.collider.gameObject))
             {
@@ -453,26 +352,24 @@ public class WeaponBase : Singleton<WeaponBase>
                 }
                 if (takeDamageController1 != null) takeDamageController1.TakeDamage(damageInfo);
                 //Debug.Log(damageType.ToString() + " " + weaponInfo.damage + " " + hit.collider.name);
-                //PlayRandomAttackSound();
+                PlayRandomAttackSound();
                 typeEffect = PoolType.vfx_ConcreteImpact;
             }
             else if (IsInGasLayer(hit.collider.gameObject))
             {
-                // BinhGa binhGa = null;
-                // binhGa = hit.transform.gameObject.GetComponent<BinhGa>();
-                // if(binhGa !=null)
-                //     binhGa.Explosion();
-                //PlayRandomAttackSound();
+                OxygenTanks oxygenTanks = null;
+                oxygenTanks = hit.transform.gameObject.GetComponent<OxygenTanks>();
+                if (oxygenTanks != null)
+                    oxygenTanks.Explosion();
+                PlayRandomAttackSound();
                 typeEffect = PoolType.vfx_ConcreteImpact;
-                // print("Ban vao Ga");
             }
 
-            // T?o hi?u ?ng va ch?m
+            // Tạo hiệu ứng va chạm
             SimplePool.Spawn<Effect>(typeEffect, hit.point, Quaternion.identity).Init();
         }
         EventManager.Invoke(EventName.OnCheckBotTakeDamage, CheckRayCast);
     }
-
 
     void PlayRandomAttackSound()
     {
@@ -483,18 +380,18 @@ public class WeaponBase : Singleton<WeaponBase>
         //     _audioSourceHit.PlayOneShot(clip);
         // }
     }
-    private void OnChangeFireRate(bool IsChange)
-    {
-        if (IsChange)
-        {
-            _bulletType = PoolType.Projectile_Bullet_BBQ;
-        }
-        else
-        {
-            _bulletType = PoolType.Projectile_Bullet_Norman;
-        }
-    }
 
+    #region Reload
+    public void OnReload()
+    {
+
+        if (_isReloading || _currentBulletCount == _defaultBulletCount)
+            return;
+        _isReloading = true;
+        StartCoroutine(Reload());
+        StopGunEffect();
+        UICrosshairItem.Instance.ResetCorosshair();
+    }
 
     private IEnumerator Reload()
     {
@@ -518,109 +415,25 @@ public class WeaponBase : Singleton<WeaponBase>
         _isReloading = false;
 
         EventManager.Invoke(EventName.UpdateBulletCount, _currentBulletCount);
-
-        // Ph�t �m thanh khi s�ng ng?ng xoay n?u ?ang n?p ??n
-        if (isBarrelSpinning)
-        {
-            _audioSource.clip = weaponInfo.AudioEndBarrel;
-            _audioSource.Play();
-            isBarrelSpinning = false;
-        }
     }
+    #endregion
 
-    private IEnumerator DecreaseRotationSpeed()
-    {
-        while (currentRotationSpeed > weaponInfo.MinSpeedRotaBarrel)
-        {
-            currentRotationSpeed -= (weaponInfo.MaxSpeedRotaBarrel / weaponInfo.TimeMinSpeed) * Time.deltaTime;
-            if (currentRotationSpeed < weaponInfo.MinSpeedRotaBarrel)
-            {
-                currentRotationSpeed = weaponInfo.MinSpeedRotaBarrel;
-            }
-            yield return null;
-        }
-    }
-
-    private Transform FindPointedTransform()
-    {
-        // var minCrossHairDistance = float.MaxValue;
-        Transform pointedTransform = null;
-
-        // var bots = BotManager.Instance.BotNetworks;
-        // foreach (var bot in bots.Where(bot => bot != null && !bot.IsDead))
-        // {
-        //     CheckFireAssistCheckPos(bot.FireAssistCheckPos, ref minCrossHairDistance, ref pointedTransform);
-        // }
-        //
-        // var rewards = RewardManager.Instance.RewardNetworks;
-        // foreach (var reward in rewards.Where(reward => reward != null && !reward.IsCollected))
-        // {
-        //     CheckFireAssistCheckPos(reward.FireAssistCheckPos, ref minCrossHairDistance, ref pointedTransform);
-        // }
-
-        return pointedTransform;
-    }
-
-    private void CheckFireAssistCheckPos(List<Transform> fireAssistCheckPos, ref float minCrossHairDistance, ref Transform pointedTransform)
-    {
-        foreach (var checkPoint in fireAssistCheckPos)
-        {
-            var checkPosition = checkPoint.position;
-
-            if (!SatisfyAutoFireCondition(checkPosition, out var crossHairDistance) ||
-                crossHairDistance > minCrossHairDistance) continue;
-
-            minCrossHairDistance = crossHairDistance;
-            pointedTransform = checkPoint;
-        }
-    }
-
-    [SerializeField] private float radius = 33f;
-    private const float ReferenceWidth = 887;
-
-    private bool SatisfyAutoFireCondition(Vector3 target, out float distance)
-    {
-        var viewPosition = _camera.WorldToScreenPoint(target);
-        if (viewPosition.z < 0)
-        {
-            distance = float.MaxValue;
-            return false;
-        }
-        viewPosition.x -= Screen.width / 2f;
-        viewPosition.y -= Screen.height / 2f;
-
-        viewPosition *= ReferenceWidth / Screen.width;
-
-        distance = Mathf.Sqrt(viewPosition.x * viewPosition.x + viewPosition.y * viewPosition.y);
-        return distance < radius && IsClearShot(_cameraTransform.position, target);
-    }
-
-    private bool IsClearShot(Vector3 origin, Vector3 target)
-    {
-        var distance = Vector3.Distance(origin, target);
-        var ray = new Ray(origin, target - origin);
-        return !Physics.Raycast(ray, out _, distance, botLayerMask | armorBossLayerMask | rewardLayerMask | groundLayerMask);
-    }
-
-    // Th�m ph??ng th?c d?ng �m thanh b?n
-
+    // Thêm phương thức dừng âm thanh bắn
     private void StopShootingSound()
     {
         if (_audioSource.isPlaying && _audioSource.clip == weaponInfo.audioClip)
-        {
             _audioSource.Stop();
-        }
     }
 
-    // Th�m ph??ng th?c nh?n AnimationEvent
+    // Thêm phương thức nhận AnimationEvent
     public void AnimationAudioEvent()
     {
-        // Th?c hi?n h�nh ??ng khi s? ki?n AnimationAudioEvent ???c g?i
+        // Thực hiện hành động khi sự kiện AnimationAudioEvent được gọi
         //Debug.Log("AnimationAudioEvent called");
     }
 
-    // Th�m h�m rung l?c camera
-    private IEnumerator ShakeCamera(float duration, float magnitude)
+    // Thêm hàm rung lắc camera
+    protected IEnumerator ShakeCamera(float duration, float magnitude)
     {
         Quaternion originalRot = shakeCam.localRotation;
         float elapsed = 0.0f;
@@ -641,26 +454,19 @@ public class WeaponBase : Singleton<WeaponBase>
         EventManager.Invoke(EventName.OnCheckShakeCam, shakeCam.localEulerAngles);
     }
 
-
-    private void PlayGunEffect()
+    #region Play - Stop Gun Effect
+    protected virtual void PlayGunEffect()
     {
         foreach (ParticleSystem fireEffect in _fireEffect)
-        {
             if (fireEffect != null && !fireEffect.isPlaying)
-            {
                 fireEffect.Play();
-            }
-        }
     }
 
-    private void StopGunEffect()
+    protected virtual void StopGunEffect()
     {
         foreach (ParticleSystem fireEffect in _fireEffect)
-        {
             if (fireEffect != null && fireEffect.isPlaying)
-            {
                 fireEffect.Stop();
-            }
-        }
     }
+    #endregion
 }

@@ -28,7 +28,7 @@ public class Canvas_GamePlay : UICanvas
     
     private bool instructReload = false;
     private bool instructRocket = false;
-    private WeaponController weaponController;
+    private Weapon26 weapon26;
     public void Init()
     {
         EventManager.AddListener<int>(EventName.UpdateBulletCount, UpdateBulletCount);
@@ -37,7 +37,7 @@ public class Canvas_GamePlay : UICanvas
         
         EventManager.AddListener<bool>(EventName.InstructReload, InstructReload);
         EventManager.AddListener<bool>(EventName.InstructRocket, InstructRocket );
-        weaponController = WeaponController.Instance;
+        weapon26 = (Weapon26)WeaponBase.Instance;
     }
 
     private void OnReloading(float _timeReload)
@@ -117,7 +117,7 @@ public class Canvas_GamePlay : UICanvas
             GameManager.Instance.ResumeGame();
             UIManager.Instance.CloseUIDirectly<Canvas_ReloadIntroduction>();
         }
-        weaponController.OnReload();
+        weapon26.OnReload();
     }
     
     public void Btn_Rocket()
