@@ -98,7 +98,7 @@ public class BotZombieNor : MonoBehaviour
     {
         if (_currentState == null)
             return;
-
+        
         BotZomNorState nextState = _currentState.GetNextState();
         if (_currentState.StateKey.Equals(nextState) && !_isTransition)
         {

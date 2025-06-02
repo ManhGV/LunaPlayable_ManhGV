@@ -644,6 +644,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5731560096614700968}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4433024971327038026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4786870101428671889}
+  m_Layer: 7
+  m_Name: Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4786870101428671889
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4433024971327038026}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.16365665, y: -0.0023924597, z: -0.032611024, w: 0.9859753}
+  m_LocalPosition: {x: -0.0143738575, y: -0.11423431, z: -0.003928602}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 880366652976895981}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4501875733310145414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,6 +1084,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4786870101428671889}
   - {fileID: 3349860288296766703}
   m_Father: {fileID: 6345235234252007265}
   m_LocalEulerAnglesHint: {x: -5.6083355, y: -2.7263422, z: -0.22276962}
@@ -1277,6 +1309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PoolType: 6
+  isBotTutorial: 0
   isBoss: 0
   _audioSource: {fileID: 2046373968466489634}
   botConfigSO: {fileID: 11400000, guid: 8bce0cb18d4df554ab3aa0d45a481e6c, type: 2}
@@ -1286,6 +1319,7 @@ MonoBehaviour:
   isImmortal: 0
   isDead: 0
   IsDeadExplosion: 0
+  _posDamageGas: {x: 0, y: 0, z: 0}
   wayPoint:
     WayPoints: []
     AttackWayPoints: []
@@ -1364,6 +1398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisBotNetwork: {fileID: 1852738567951325660}
   tutorialReload: 0
+  _posCenter: {fileID: 4786870101428671889}
 --- !u!114 &2228595405124378887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1377,6 +1412,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisBotNetwork: {fileID: 1852738567951325660}
+  tutorialReload: 0
+  timerDelayDespawn: 0
 --- !u!1 &6384945440275088633
 GameObject:
   m_ObjectHideFlags: 0

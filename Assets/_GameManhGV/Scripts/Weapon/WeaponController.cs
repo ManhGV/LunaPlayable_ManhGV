@@ -501,10 +501,10 @@ public class WeaponController : Singleton<WeaponController>
                  typeEffect = PoolType.vfx_ConcreteImpact;
             }else if (IsInGasLayer(hit.collider.gameObject))
             {
-                // BinhGa binhGa = null;
-                // binhGa = hit.transform.gameObject.GetComponent<BinhGa>();
-                // if(binhGa !=null)
-                //     binhGa.Explosion();
+                OxygenTanks oxygenTanks = null;
+                oxygenTanks = hit.transform.gameObject.GetComponent<OxygenTanks>();
+                if(oxygenTanks !=null)
+                    oxygenTanks.Explosion();
                 //PlayRandomAttackSound();
                 typeEffect = PoolType.vfx_ConcreteImpact;
                 // print("Ban vao Ga");

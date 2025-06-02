@@ -26,6 +26,7 @@ public static class GameConstants
         Boss_Zom_Swat = 8,
         bullet_Rocket = 9,
         vfx_ExplosionRocket = 10,
+        vfx_ExplosionZombieNor = 11,
     }
     public enum RewardType
     {

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class BotNetwork : GameUnit, ITakeDamage
 {
+    public bool isBotTutorial;
     [SerializeField] private bool isBoss;
     public AudioSource _audioSource;
     [SerializeField] private BotConfigSO botConfigSO;
@@ -15,7 +16,10 @@ public class BotNetwork : GameUnit, ITakeDamage
     [SerializeField] private int _currentHealth;
     [SerializeField] private bool isImmortal;
     [SerializeField] private bool isDead;
+    
+    [Header("Dead Explosion")]
     public bool IsDeadExplosion;
+    [HideInInspector] public Vector3 _posDamageGas;
     
     [Header("Point To Move")]
     public  WayPoint wayPoint;
@@ -94,6 +98,15 @@ public class BotNetwork : GameUnit, ITakeDamage
 
             // Bắt đầu Coroutine để ẩn thanh máu sau 1 giây nếu không nhận thêm sát thương
             hideHealthBarCoroutine = StartCoroutine(HideHealthBarAfterDelay());
+        }
+        else if(damageInfo.damageType == DamageType.Gas)
+        {
+            _currentHealth -= damageInfo.damage;
+            if (!isBoss)
+            {
+                IsDeadExplosion = true;
+                Die();
+            }
         }
     }
     
@@ -228,11 +241,56 @@ public class BotNetwork : GameUnit, ITakeDamage
         euler.x = 0f;
         TF.rotation = Quaternion.Euler(euler);
     }
+    
+    
+    public int GetNearestDirection()
+    {
+        Vector3 toTarget = (_posDamageGas - TF.position).normalized;
+
+        // Các hướng cơ bản trong local space
+        Vector3 forward = TF.forward;
+        Vector3 right = TF.right;
+        Vector3 left = -TF.right;
+        Vector3 back = -TF.forward;
+
+        // Tính độ tương đồng (dot product)
+        float dotForward = Vector3.Dot(toTarget, forward);
+        float dotRight = Vector3.Dot(toTarget, right);
+        float dotLeft = Vector3.Dot(toTarget, left);
+        float dotBack = Vector3.Dot(toTarget, back);
+
+        // Tìm hướng có dot lớn nhất (góc gần nhất)
+        float maxDot = dotForward;
+        int direction = 0; // 0 = trước
+
+        if (dotRight > maxDot)
+        {
+            maxDot = dotRight;
+            direction = 1;
+        }
+
+        if (dotLeft > maxDot)
+        {
+            maxDot = dotLeft;
+            direction = 2;
+        }
+
+        if (dotBack > maxDot)
+        {
+            maxDot = dotBack;
+            direction = 3;
+        }
+
+        return direction;
+    }
 
     public void OnDespawn()
     {
-        print("Despawn BotNetwork: " + gameObject.name);
-        SimplePool.Despawn(this);
+        //        print("Despawn BotNetwork: " + gameObject.name);
+        if (isBotTutorial)
+            gameObject.SetActive(false);
+        else
+            SimplePool.Despawn(this);
     }
 }
 
