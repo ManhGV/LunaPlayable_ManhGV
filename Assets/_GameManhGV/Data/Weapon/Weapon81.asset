@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead3f111238b5e04684fd73b38635ae2, type: 3}
   m_Name: Weapon81
   m_EditorClassIdentifier: 
-  damage: 10
-  FireRate: 0.1
+  damage: 50
+  FireRate: 0.06
   audioClip: {fileID: 8300000, guid: b2cf29f91e4700240892787807a9f98f, type: 3}
   AudioStartBarrel: {fileID: 8300000, guid: b2cf29f91e4700240892787807a9f98f, type: 3}
   AudioEndBarrel: {fileID: 8300000, guid: b2cf29f91e4700240892787807a9f98f, type: 3}
@@ -21,14 +21,15 @@ MonoBehaviour:
   AudioReloadOut: {fileID: 8300000, guid: b2cf29f91e4700240892787807a9f98f, type: 3}
   inaccuracy: 0.01
   recoilAmount: 0.008
-  bulletCount: 30
+  bulletCount: 150
   reloadTime: 2
   infiniteBullet: 0
-  Fire: {fileID: 7400000, guid: e50ae25202b01c34797a16853ba78874, type: 2}
-  Idle: {fileID: 7400000, guid: 523dc819cda9c3f42a8f40808315b498, type: 2}
-  _reloadAnimIn: {fileID: 7400000, guid: 48d7321b7b3bd584a97c6add58195f82, type: 2}
-  _reloadAnimOn: {fileID: 7400000, guid: cd079bdb13ef2cf468465b1c7f9225d4, type: 2}
-  _reloadAnimOut: {fileID: 7400000, guid: 7598c9d6aff905e4da2586767f7e8c18, type: 2}
+  Fire: {fileID: 7400000, guid: c4a8b286c5dbb014bb5217401158ebfa, type: 2}
+  Fire_Right: {fileID: 7400000, guid: 0a70c62dd071fe844bd2c4187752bfd1, type: 2}
+  Idle: {fileID: 7400000, guid: 9cae1e0cb5d895d478b939b75927f456, type: 2}
+  _reloadAnimIn: {fileID: 7400000, guid: 6932ccbf78a72fa40b1a6fd9c29694cb, type: 2}
+  _reloadAnimOn: {fileID: 7400000, guid: 285830b4d543f3d42a27b42e7b07d4cd, type: 2}
+  _reloadAnimOut: {fileID: 7400000, guid: 4371344d8a4c68f4ba1817c942e74851, type: 2}
   WaitToShoot: 0
   MaxSpeedRotaBarrel: 0
   TimeMinSpeed: 0

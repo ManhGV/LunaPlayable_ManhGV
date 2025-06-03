@@ -82,7 +82,6 @@ public class Rocket : GameUnit
     }
     public void CheckHitExplosion()
     {
-        print("CheckHitExplosion");
         Collider[] cols = Physics.OverlapSphere(TF.position, _radiusExplosion, _layerHit);
         List<Transform> lstRoot = new List<Transform> ();
         foreach (Collider col in cols)

@@ -12,6 +12,9 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
     public int CountBotInScene => botInScene.Count;
     public int AllBotsToSpawn;
     
+    [Header("Gift")]
+    [SerializeField] GameObject giftWeapon81;
+    
     protected override void Awake()
     {
         base.Awake();
@@ -50,5 +53,16 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
     {
         botInScene.Remove(_botNetwork);
         //TODO: Add logic tính điểm còn lại
+    }
+    
+    public void ActiveGiftWeapon81(float _timer)
+    {
+        StartCoroutine(IEDelaySpawnGiftWeapon81(_timer));
+    }
+
+    private IEnumerator IEDelaySpawnGiftWeapon81(float _timer)
+    {
+        yield return new WaitForSeconds(_timer);
+        giftWeapon81.SetActive(true);
     }
 }

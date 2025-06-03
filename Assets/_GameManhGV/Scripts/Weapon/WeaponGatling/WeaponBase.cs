@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static GameConstants;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class WeaponBase : Singleton<WeaponBase>
 {
@@ -22,8 +23,8 @@ public class WeaponBase : Singleton<WeaponBase>
     [SerializeField] private float shakeCamMax;
     [SerializeField] private bool IsShowLunaEndGame;
 
-    private Transform _cameraTransform;
-    private Camera _camera;
+    protected Transform _cameraTransform;
+    protected Camera _camera;
     protected float _timeSinceLastShoot = 0f; // Thời gian từ lần bắn cuối cùng
     protected int _currentBulletCount; // Số lượng đạn hiện tại trong băng
     protected int _defaultBulletCount; // Số lượng đạn hiện tại trong băng
@@ -46,8 +47,10 @@ public class WeaponBase : Singleton<WeaponBase>
     [SerializeField] protected AudioSource _audioSourceHit;
     [SerializeField] protected bool _isShowCard;
 
+    [FormerlySerializedAs("_muzzleTrans1")]
+    [FormerlySerializedAs("_muzzleTrans")]
     [Header("Muzzle")]
-    [SerializeField] protected Transform _muzzleTrans;
+    [SerializeField] protected Transform _muzzleTrans_1;
 
     // kiểm tra có ang ấn vào UI không
     // Bộ nhớ tạm cho kiểm tra UI - static để tái sử dụng
@@ -57,7 +60,6 @@ public class WeaponBase : Singleton<WeaponBase>
     protected override void Awake()
     {
         base.Awake();
-        _bulletType = PoolType.Projectile_Bullet_Norman;
         _camera = Camera.main;
         _cameraTransform = _camera.transform;
         _currentBulletCount = weaponInfo.bulletCount; // Khởi tạo số lượng đạn
@@ -67,7 +69,7 @@ public class WeaponBase : Singleton<WeaponBase>
         Invoke(nameof(Init), .1f);
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         Instance = this;
     }
@@ -237,7 +239,7 @@ public class WeaponBase : Singleton<WeaponBase>
         );
 
         // Bắn từ nòng đầu tiên
-        FireFromMuzzle(_muzzleTrans, forward);
+        FireFromMuzzle(_muzzleTrans_1, forward);
 
         _animation.Play("Fire");
         _animation["Fire"].speed = 2.0f;
@@ -282,11 +284,10 @@ public class WeaponBase : Singleton<WeaponBase>
     }
     #endregion
 
-    private void FireFromMuzzle(Transform muzzle, Vector3 forward)
+    protected virtual void FireFromMuzzle(Transform muzzle, Vector3 forward)
     {
         var shotRotation = Quaternion.Euler(Random.insideUnitCircle * weaponInfo.inaccuracy) * forward;
         var ray = new Ray(_cameraTransform.position, shotRotation);
-
         BulletTrail bullet = SimplePool.Spawn<BulletTrail>(_bulletType, muzzle.position, muzzle.rotation);
         Vector3 posGizmod = GizmodTuVe();
         bullet.Init((posGizmod - muzzle.position).normalized, posGizmod);

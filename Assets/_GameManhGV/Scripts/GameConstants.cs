@@ -31,9 +31,7 @@ public static class GameConstants
     public enum RewardType
     {
         None,
-        RapidFire,
-        ChangeMachineGun,
-        ChangeRocket,
+        ChangeWeapon81,
     }
     public enum GameState
     {

@@ -11,7 +11,6 @@ public class Canvas_ReloadIntroduction : UICanvas
 
     private void OnEnable()
     {
-        print(WeaponBase.Instance.CurrentBulletCount);
         bulletCountCurrent.text = WeaponBase.Instance.CurrentBulletCount.ToString();
         bulletCountDefault.text = WeaponBase.Instance.DefaultBulletCount.ToString();
     }

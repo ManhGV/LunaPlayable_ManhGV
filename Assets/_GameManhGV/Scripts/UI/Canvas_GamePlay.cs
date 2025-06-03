@@ -25,6 +25,9 @@ public class Canvas_GamePlay : UICanvas
     
     [Header("Buttons Rocket")]
     [SerializeField] GameObject btnRocket;
+
+    [Header("Powerup Weapon")]
+    [SerializeField] private GameObject _powerupEffectUI;
     
     private bool instructReload = false;
     private bool instructRocket = false;
@@ -129,5 +132,10 @@ public class Canvas_GamePlay : UICanvas
             UIManager.Instance.CloseUIDirectly<Canvas_BazookaIntroduction>();
         }
         RocketController.Instance.Fire();
+    }
+
+    public void PowerupEffectUI()
+    {
+        _powerupEffectUI.SetActive(true);
     }
 }

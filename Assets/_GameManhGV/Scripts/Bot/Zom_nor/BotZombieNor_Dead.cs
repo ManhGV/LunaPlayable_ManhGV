@@ -50,7 +50,9 @@ public class BotZombieNor_Dead : BaseState<BotZomNorState>
 
     public void TutorialReload()
     {
-        SpawnBotManager.Instance.SpawnBot();
+        SpawnBotManager spawnBot = SpawnBotManager.Instance;
+        spawnBot.SpawnBot();
+        spawnBot.ActiveGiftWeapon81(5f);
         Weapon26 weapon26 = (Weapon26)WeaponBase.Instance;
         weapon26.InstructReload();
     }

@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class AchievementEvaluator : Singleton<AchievementEvaluator>
 {
-    
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         canRun = true;
     }
-    
+
     [Serializable]
     public struct MedalDetail
     {

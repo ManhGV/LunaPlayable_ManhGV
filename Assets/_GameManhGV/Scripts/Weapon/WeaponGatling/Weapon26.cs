@@ -10,7 +10,6 @@ public class Weapon26 : WeaponBase
     protected override void Awake()
     {
         base.Awake();
-        _bulletType = PoolType.Projectile_Bullet_Norman;
         AssignAnimationClips();
         UIManager.Instance.GetUI<Canvas_GamePlay>().Init();
         Invoke(nameof(Init), .1f);
