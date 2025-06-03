@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class BotNetwork : GameUnit, ITakeDamage
 {
+    public bool isBotActiveEqualTay;
     public bool isBotTutorial;
     [SerializeField] private bool isBoss;
     public AudioSource _audioSource;
@@ -75,7 +76,15 @@ public class BotNetwork : GameUnit, ITakeDamage
         if (healthBarTransform != null)
         {
              healthBarTransform.gameObject.SetActive(false); 
-        }    
+        }
+
+        if (isBotActiveEqualTay)
+        {
+            _currentHealth = botConfigSO.health;
+            isImmortal = false;
+            isDead = false;
+            IsDeadExplosion = false;
+        }
         //healthBar.enabled = false; // Ẩn thanh máu khi khởi tạo
     }
 
@@ -152,13 +161,12 @@ public class BotNetwork : GameUnit, ITakeDamage
     }
     public void Die()
     {
-        SpawnBotManager.Instance.RemoveBotDead(this);
         isDead = true;
         _currentHealth = 0;
         if (healthBarTransform == null) return;
         healthBarTransform.gameObject.SetActive(false);
         OnBotNetWorkDead?.Invoke(this);
-        
+        SpawnBotManager.Instance.RemoveBotDead(this);
         AchievementEvaluator.Instance.OnBotKilled(1f,false);
     }
 

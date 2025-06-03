@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class Canvas_GamePlay : UICanvas
 {
+    [Header("Game Process")] 
+    [SerializeField] private Image _processFiller;
+    [SerializeField] private Text _processText;
+    
     [Header("Buttons Reload")]
     [SerializeField] GameObject btnReload;
     [SerializeField] private GameObject AmmoQuantity;
@@ -34,6 +38,7 @@ public class Canvas_GamePlay : UICanvas
     private Weapon26 weapon26;
     public void Init()
     {
+        EventManager.AddListener<float>(EventName.UpdateGameProcess, UpdateGameProcess);
         EventManager.AddListener<int>(EventName.UpdateBulletCount, UpdateBulletCount);
         EventManager.AddListener<int>(EventName.UpdateBulletCountDefault, UpdateBulletCountDefault);
         EventManager.AddListener<float>(EventName.OnReloading, OnReloading);
@@ -41,6 +46,13 @@ public class Canvas_GamePlay : UICanvas
         EventManager.AddListener<bool>(EventName.InstructReload, InstructReload);
         EventManager.AddListener<bool>(EventName.InstructRocket, InstructRocket );
         weapon26 = (Weapon26)WeaponBase.Instance;
+    }
+
+    private void UpdateGameProcess(float arg0)
+    {
+        _processFiller.fillAmount = arg0;
+        SpawnBotManager spawnBotManager = SpawnBotManager.Instance;
+        _processText.text = spawnBotManager.KillBot+" / " + spawnBotManager.AllBotsToSpawn;
     }
 
     private void OnReloading(float _timeReload)

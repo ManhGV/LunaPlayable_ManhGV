@@ -128,4 +128,5 @@ public enum EventName
     OnPlayerTakeDameRocket,
     InstructReload,
     InstructRocket,
+    UpdateGameProcess,
 }

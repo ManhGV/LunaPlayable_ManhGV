@@ -1,0 +1,90 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BallisticArmor : MonoBehaviour
+{
+    [Header("Cấu hình")]
+    public float fallSpeed = 10f;            // Tốc độ rơi
+    public float rotationSpeed = 10f;            // Tốc độ xoay
+    public LayerMask groundLayer;            // Layer mặt đất
+    public float raycastDistance = 100f;     // Khoảng cách tia kiểm tra mặt đất
+    public float stopOffset = 0.01f;         // Khoảng cách dừng (tránh chạm quá sâu)
+    
+    [Header("Heal Armor")]
+    [SerializeField] bool importantArmor; // Kiểm tra áo giáp có bất tử không
+    [SerializeField] int maxHealthOneArmor = 100; // Máu tối đa của một mảnh giáp
+    [SerializeField] private int currentHealthOneArmor;
+    
+    [Header("Armor")]
+    [SerializeField] List<Transform> armorParts; // Các phần của áo giáp
+    [SerializeField] BoxCollider _armorCollider;
+
+    public void ExplosionArmor()
+    {
+        foreach (Transform VARIABLE in armorParts)
+            StartCoroutine(IEDropArmor(VARIABLE));
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if(importantArmor)
+            return;
+        currentHealthOneArmor -= damage;
+        if (currentHealthOneArmor <= 0)
+        {
+            CaculatorDropArmor();
+            currentHealthOneArmor = maxHealthOneArmor;
+        }
+    }
+    
+
+    private void CaculatorDropArmor()
+    {
+        StartCoroutine(IEDropArmor(armorParts[0]));
+        armorParts.Remove(armorParts[0]);
+        if (armorParts.Count == 0)
+        {
+            _armorCollider.enabled = false;
+            Invoke(nameof(ActiveFalseThis), 5f);
+        }
+    }
+
+    public void ActiveFalseThis() => gameObject.SetActive(false);
+    
+    IEnumerator IEDropArmor(Transform _armorPart)
+    {
+        _armorPart.parent = null;
+        Vector3 _targetPoint = FindGroundPoint(_armorPart);
+        while (true)
+        {
+            _armorPart.position = Vector3.MoveTowards(_armorPart.position, _targetPoint, fallSpeed * Time.deltaTime);
+            _armorPart.rotation = Quaternion.Lerp(_armorPart.rotation, Quaternion.Euler(Vector3.zero), rotationSpeed * Time.deltaTime);
+            
+            if (Vector3.Distance(_armorPart.position, _targetPoint) <= stopOffset)
+            {
+                Debug.Log("✅ Đã tiếp đất.");
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
+    /// <summary>
+    /// Raycast xuống để tìm điểm tiếp đất (Ground layer)
+    /// </summary>
+    /// <returns>true nếu có mặt đất</returns>
+    private Vector3 FindGroundPoint(Transform _transform)
+    {
+        Ray ray = new Ray(_transform.position, Vector3.down);
+        if (Physics.Raycast(ray, out RaycastHit hit, raycastDistance, groundLayer))
+        {
+            Debug.DrawLine(_transform.position, hit.point, Color.green, 3f);
+            return hit.point + Vector3.up * stopOffset;;
+        }
+
+        Debug.LogWarning("⚠ Không tìm thấy Ground bên dưới!");
+        return Vector3.zero;
+    }
+}

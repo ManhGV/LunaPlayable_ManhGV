@@ -270,7 +270,7 @@ public class WeaponBase : Singleton<WeaponBase>
 
     private bool IsInGroundLayerMask(GameObject obj)
     {
-        return ((1 << obj.layer) & (groundLayerMask | LayerConstants.WeakPointMask)) != 0;
+        return ((1 << obj.layer) & groundLayerMask) != 0;
     }
 
     private bool IsInRewardLayer(GameObject obj)
@@ -292,7 +292,7 @@ public class WeaponBase : Singleton<WeaponBase>
         Vector3 posGizmod = GizmodTuVe();
         bullet.Init((posGizmod - muzzle.position).normalized, posGizmod);
 
-        bool CheckRayCast = Physics.Raycast(ray, out var hit, Mathf.Infinity, botLayerMask | armorBossLayerMask | gasLayerMask | rewardLayerMask | groundLayerMask | LayerConstants.WeakPointMask);
+        bool CheckRayCast = Physics.Raycast(ray, out var hit, Mathf.Infinity, botLayerMask | armorBossLayerMask | gasLayerMask | rewardLayerMask | groundLayerMask );
         PoolType typeEffect = PoolType.vfx_ConcreteImpact;
         if (CheckRayCast)
         {
@@ -324,6 +324,10 @@ public class WeaponBase : Singleton<WeaponBase>
                 if (detector != null)
                     detector.SetHealthImage(damageInfo.damage);
 
+                BallisticArmor ballisticArmor = hit.transform.gameObject.GetComponent<BallisticArmor>();
+                if (ballisticArmor != null)
+                    ballisticArmor.TakeDamage(damageInfo.damage);
+                
                 damageInfo.damage /= 3;
                 var takeDamageController = hit.transform.gameObject.GetComponent<ITakeDamage>();
                 if (takeDamageController == null)

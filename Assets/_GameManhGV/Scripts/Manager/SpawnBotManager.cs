@@ -8,8 +8,9 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
     [SerializeField] private PathManager _pathManager;
     [SerializeField] private ConfigGame dataBotSpawn;
     [SerializeField] private List<BotNetwork> botInScene = new List<BotNetwork>();
-    
-    public int CountBotInScene => botInScene.Count;
+
+    public int KillBot => AllBotsToSpawn - _currentBot;
+    public int _currentBot;
     public int AllBotsToSpawn;
     
     [Header("Gift")]
@@ -21,7 +22,15 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
 
         foreach (BotConfig VARIABLE in dataBotSpawn.fightRound.botConfigs)
             AllBotsToSpawn += VARIABLE.botQuantity;
+        AllBotsToSpawn += 2;
+        _currentBot = AllBotsToSpawn;
         
+    }
+
+    private void Start()
+    {
+        float progress = (float) KillBot / (float)AllBotsToSpawn;
+        EventManager.Invoke(EventName.UpdateGameProcess, progress);
     }
 
     public void SpawnBot()
@@ -51,8 +60,10 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
 
     public void RemoveBotDead(BotNetwork _botNetwork)
     {
+        _currentBot--;
         botInScene.Remove(_botNetwork);
-        //TODO: Add logic tính điểm còn lại
+        float progress = (float) KillBot / (float)AllBotsToSpawn;
+        EventManager.Invoke(EventName.UpdateGameProcess, progress);
     }
     
     public void ActiveGiftWeapon81(float _timer)
