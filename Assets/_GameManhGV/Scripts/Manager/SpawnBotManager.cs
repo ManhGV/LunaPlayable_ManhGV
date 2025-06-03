@@ -16,10 +16,16 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
     [Header("Gift")]
     [SerializeField] GameObject giftWeapon81;
     
+    [Header("BossZomSwat")]
+    [SerializeField] GameObject _bossZomSwat;
+    [SerializeField] bool canCallBossZomSwat;
+    
     protected override void Awake()
     {
         base.Awake();
 
+        canCallBossZomSwat = true;
+        
         foreach (BotConfig VARIABLE in dataBotSpawn.fightRound.botConfigs)
             AllBotsToSpawn += VARIABLE.botQuantity;
         AllBotsToSpawn += 2;
@@ -33,6 +39,17 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         EventManager.Invoke(EventName.UpdateGameProcess, progress);
     }
 
+    private void Update()
+    {
+        if (canCallBossZomSwat && _currentBot <= 1)
+        {
+            canCallBossZomSwat = false;
+            Invoke(nameof(CallBossZomSwat), .4f);
+        }
+    }
+
+    public void CallBossZomSwat()=>_bossZomSwat.SetActive(true);
+    
     public void SpawnBot()
     {
         foreach(BotConfig botConfig in dataBotSpawn.fightRound.botConfigs)

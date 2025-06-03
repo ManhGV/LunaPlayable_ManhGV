@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BallisticArmor : MonoBehaviour
 {
+    [SerializeField] private Transform _bossParent;
+    
     [Header("Cấu hình")]
     public float fallSpeed = 10f;            // Tốc độ rơi
     public float rotationSpeed = 10f;            // Tốc độ xoay
@@ -56,7 +58,7 @@ public class BallisticArmor : MonoBehaviour
     IEnumerator IEDropArmor(Transform _armorPart)
     {
         _armorPart.parent = null;
-        Vector3 _targetPoint = FindGroundPoint(_armorPart);
+        Vector3 _targetPoint = new Vector3(_armorPart.position.x,_bossParent.position.y,_armorPart.position.z);
         while (true)
         {
             _armorPart.position = Vector3.MoveTowards(_armorPart.position, _targetPoint, fallSpeed * Time.deltaTime);
@@ -64,27 +66,10 @@ public class BallisticArmor : MonoBehaviour
             
             if (Vector3.Distance(_armorPart.position, _targetPoint) <= stopOffset)
             {
-                Debug.Log("✅ Đã tiếp đất.");
+//                Debug.Log("✅ Đã tiếp đất.");
                 yield break;
             }
             yield return null;
         }
-    }
-
-    /// <summary>
-    /// Raycast xuống để tìm điểm tiếp đất (Ground layer)
-    /// </summary>
-    /// <returns>true nếu có mặt đất</returns>
-    private Vector3 FindGroundPoint(Transform _transform)
-    {
-        Ray ray = new Ray(_transform.position, Vector3.down);
-        if (Physics.Raycast(ray, out RaycastHit hit, raycastDistance, groundLayer))
-        {
-            Debug.DrawLine(_transform.position, hit.point, Color.green, 3f);
-            return hit.point + Vector3.up * stopOffset;;
-        }
-
-        Debug.LogWarning("⚠ Không tìm thấy Ground bên dưới!");
-        return Vector3.zero;
     }
 }

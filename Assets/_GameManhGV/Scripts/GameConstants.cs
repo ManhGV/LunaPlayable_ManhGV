@@ -37,5 +37,6 @@ public static class GameConstants
     {
         Playing,
         Paused,
+        CutScene,
     }
 }

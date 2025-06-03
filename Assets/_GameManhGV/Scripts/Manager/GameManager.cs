@@ -4,6 +4,24 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private GameConstants.GameState gameState;
 
+    [Header("CutScene")]
+    [SerializeField] private GameObject _mainCamera;
+    [SerializeField] private GameObject _cutSceneCamera;
+
+    public void StartCutScene()
+    {
+        _mainCamera.SetActive(false);
+        _cutSceneCamera.SetActive(true);
+        gameState = GameConstants.GameState.CutScene;
+    }
+    
+    public void EndCutScene()
+    {
+        _mainCamera.SetActive(true);
+        _cutSceneCamera.SetActive(false);
+        gameState = GameConstants.GameState.Playing;
+    }
+    
     public void PauseGame()
     {
         Time.timeScale = 0f;

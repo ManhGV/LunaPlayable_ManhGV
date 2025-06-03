@@ -72,6 +72,9 @@ public class PlayerView : MonoBehaviour
 
     public void Update()
     {
+        if(GameManager.Instance.GetGameState() == GameConstants.GameState.CutScene)
+            return;
+        
         if (Input.GetMouseButton(0))
         {
             var input = new Vector2 { x = Input.GetAxis("Mouse X"), y = Input.GetAxis("Mouse Y") };

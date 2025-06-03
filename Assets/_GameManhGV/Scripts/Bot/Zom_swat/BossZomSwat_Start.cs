@@ -4,9 +4,9 @@ public class BossZomSwat_Start : BaseState<BossZomSwatState>
 {
     [SerializeField] float timeStart;
     float timer;
-
     public override void EnterState()
     {
+        GameManager.Instance.StartCutScene();
         isDoneState = false;
         timer = timeStart;
     }
@@ -22,7 +22,7 @@ public class BossZomSwat_Start : BaseState<BossZomSwatState>
 
     public override void ExitState()
     {
-        
+        GameManager.Instance.EndCutScene();
     }
 
     public override BossZomSwatState GetNextState()
