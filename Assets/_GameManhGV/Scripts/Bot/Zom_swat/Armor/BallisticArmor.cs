@@ -46,7 +46,7 @@ public class BallisticArmor : MonoBehaviour
     {
         StartCoroutine(IEDropArmor(armorParts[0]));
         armorParts.Remove(armorParts[0]);
-        if (armorParts.Count == 0)
+        if (armorParts.Count <= 0)
         {
             _armorCollider.enabled = false;
             Invoke(nameof(ActiveFalseThis), 5f);

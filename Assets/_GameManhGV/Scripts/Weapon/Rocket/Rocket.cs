@@ -64,9 +64,8 @@ public class Rocket : GameUnit
         OnDespawn();
         
         RocketController.Instance.PlayAudioExplosion();
-        ExplosionPool explosionPool = SimplePool.Spawn<ExplosionPool>(GameConstants.PoolType.vfx_ExplosionRocket, TF.position, Quaternion.identity);
+        Effect explosionPool = SimplePool.Spawn<Effect>(GameConstants.PoolType.vfx_ExplosionRocket, TF.position, Quaternion.identity);
         explosionPool.OnInit();
-        explosionPool.OnDespawn(3f);   
         RocketController.Instance.SnakeCameraRocket();
     }
     
@@ -93,23 +92,21 @@ public class Rocket : GameUnit
         }
         foreach(var elem in lstRoot)
         {
-            var takeDamageController = elem.gameObject.GetComponentInParent<ITakeDamage>();
-            if(takeDamageController != null)
-            {
                 // damageType = elem.CompareTag("WeakPoint") ? DamageType.Weekness : DamageType.Normal;
-                BotNetwork botnet = elem.gameObject.GetComponentInParent<BotNetwork>();
-                if (botnet != null)
-                {
-                    //botnet.posExplosion = transform.position;
-                }
-                
+            BotNetwork botnet = elem.gameObject.GetComponentInParent<BotNetwork>();
+            if (botnet != null)
+            {
                 var damageInfo = new DamageInfo()
                 {
                     damageType = DamageType.Gas,
                     damage = _dame,
                     name = elem.gameObject.name,
                 };
-                takeDamageController.TakeDamage(damageInfo);
+                botnet.TakeDamage(damageInfo);
+                if (botnet.isBoss)
+                {
+                    botnet.ExplosinArrmor();
+                }
             }
         }
     }

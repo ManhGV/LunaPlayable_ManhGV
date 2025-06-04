@@ -29,6 +29,11 @@ public class Canvas_GamePlay : UICanvas
     
     [Header("Buttons Rocket")]
     [SerializeField] GameObject btnRocket;
+    [SerializeField] GameObject getMoreRocket;
+    [SerializeField] Image rocketFill;
+    [SerializeField] Text rocketCooldown;
+    [SerializeField] Text rocketAmount;
+    Coroutine caculateFillCoroutine;
 
     [Header("Powerup Weapon")]
     [SerializeField] private GameObject _powerupEffectUI;
@@ -137,6 +142,9 @@ public class Canvas_GamePlay : UICanvas
     
     public void Btn_Rocket()
     {
+        if(caculateFillCoroutine != null)
+            return;
+        
         if (!instructRocket)
         {
             instructRocket = true;
@@ -144,10 +152,36 @@ public class Canvas_GamePlay : UICanvas
             UIManager.Instance.CloseUIDirectly<Canvas_BazookaIntroduction>();
         }
         RocketController.Instance.Fire();
+        caculateFillCoroutine = StartCoroutine(CaculatorFillCooldown());
+    }
+    
+    public IEnumerator CaculatorFillCooldown()
+    {
+        RocketController rocketController = RocketController.Instance;
+        rocketAmount.text = rocketController.currentAmount.ToString();
+        if (rocketController.currentAmount <= 0)
+        {
+            getMoreRocket.SetActive(true);
+        }
+        else
+        {
+            rocketFill.gameObject.SetActive(true);
+            while (rocketController.timer >= 0)
+            {
+                rocketFill.fillAmount = rocketController.GetFillAmount();
+                rocketCooldown.text = rocketController.timer.ToString("F1");
+                yield return null;
+            }
+
+            rocketFill.fillAmount = 0;
+            caculateFillCoroutine = null;
+            rocketFill.gameObject.SetActive(false);
+        }
     }
 
     public void PowerupEffectUI()
     {
         _powerupEffectUI.SetActive(true);
     }
+    
 }

@@ -4,42 +4,32 @@ using UnityEngine;
 [Serializable]
 public class Effect : GameUnit
 {
+    [SerializeField] private double _lifeTime;
     private float _timer;
 
-    [SerializeField] private double _lifeTime;
-
     [SerializeField] public ParticleSystem[] particles;
-    private Transform _parent;
-    private Vector3 _localPosition;
-
-    private bool haveParent = false;
     
-    public void Init()
+    [Header("Audio")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _audioClip;
+    
+    public void OnInit()
     {
+        if (_audioSource != null)
+            _audioSource.PlayOneShot(_audioClip);
+        
         _timer = 0;
         foreach (var item in particles)
-        {
             item.Play();
-        }
+                
         Update();
-    }
-
-    public void OnPushToPool()
-    {
     }
 
     private void Update()
     {
+        _timer += Time.deltaTime;
         if (_timer > _lifeTime)
             OnDespawn();
-        else
-        {
-            _timer += Time.deltaTime;
-            if (haveParent)
-            {
-                TF.position = _parent.TransformPoint(_localPosition);   
-            }
-        }
     }
 
     public void OnDespawn()

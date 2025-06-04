@@ -8,38 +8,34 @@ using UnityEngine;
 public class BotZombieNor_DeadExplosion : BaseState<BotZomNorState>
 {
     [SerializeField] private bool tutorialReload;
-    [SerializeField] private float timerDelayDespawn;
     public override void EnterState()
     {
         isDoneState = false;
         int animType = thisBotNetwork.GetNearestDirection();
-
-        timerDelayDespawn = 5f;
         
         thisBotNetwork.SetAnimAndType("DeadExplosion", animType);
         
         if(tutorialReload)
             Invoke(nameof(TutorialReload),.5f);
+
+        StartCoroutine(IEDelayAnimAndDespawn(3f));
+        thisBotNetwork.ActiveFalseDetectors();
     }
 
     public override void UpdateState()
     {
-        if(isDoneState)
-            return;
         
-        timerDelayDespawn -= Time.deltaTime;
-        if (timerDelayDespawn <= 0)
-        {
-            if(!thisBotNetwork.isBotTutorial)
-                thisBotNetwork.OnDespawn();
-            isDoneState = true;
-        }
     }
 
     public override void ExitState()
     {
     }
-
+    
+    private IEnumerator IEDelayAnimAndDespawn(float _timerDelay)
+    {
+        yield return new WaitForSeconds(_timerDelay);
+        thisBotNetwork.OnDespawn();
+    }
     public override BotZomNorState GetNextState()
     {
         return StateKey;

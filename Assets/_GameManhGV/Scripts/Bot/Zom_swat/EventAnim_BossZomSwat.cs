@@ -1,9 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EventAnim_BossZomSwat : MonoBehaviour
 {
-    [SerializeField] private ExplosionDor explosionDoor;
+    [SerializeField] private ExplosionDor _explosionDoor;
+    [SerializeField] private BotConfigSO _botConfig;
+    
+    [Header("Canvas - Active swat")]
+    [SerializeField] GameObject _canvasSwat;
     
     [Header("Snake Camera")]
     [SerializeField] private Transform _cameraSnakeCutScene;
@@ -11,11 +16,17 @@ public class EventAnim_BossZomSwat : MonoBehaviour
     [SerializeField] private float shakeCamMax;
     private Coroutine shakeCoroutine;
     
+    public void TakeDamagePlayer()
+    {
+        EventManager.Invoke(EventName.OnTakeDamagePlayer, _botConfig.damage);
+    }
+    
     public void ExplosionDoor()
     {
-        if (explosionDoor != null)
+        _explosionDoor.gameObject.SetActive(true);
+        if (_explosionDoor != null)
         {
-            explosionDoor.ExplosionDoor();
+            _explosionDoor.ExplosionDoor();
         }
     }
     
@@ -29,6 +40,7 @@ public class EventAnim_BossZomSwat : MonoBehaviour
     /// </summary>
     public void StartShakeCameraLoop(float magnitude)
     {
+        _canvasSwat.SetActive(true);
         if (shakeCoroutine != null) StopCoroutine(shakeCoroutine);
         shakeCoroutine = StartCoroutine(ShakeCameraLoop(magnitude));
     }
@@ -38,6 +50,7 @@ public class EventAnim_BossZomSwat : MonoBehaviour
     /// </summary>
     public void StopShakeCamera()
     {
+        _canvasSwat.SetActive(false);
         if (shakeCoroutine != null)
         {
             StopCoroutine(shakeCoroutine);

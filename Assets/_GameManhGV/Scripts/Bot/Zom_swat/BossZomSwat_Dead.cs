@@ -11,8 +11,6 @@ public class BossZomSwat_Dead : BaseState<BossZomSwatState>
         particle_Dead.Play();
         foreach (GameObject _body in body)
             _body.SetActive(false);
-        
-        thisBotNetwork.ChangeAnim("Dead");
         isDoneState = false;
         thisBotNetwork.ActiveFalseDetectors();
     }

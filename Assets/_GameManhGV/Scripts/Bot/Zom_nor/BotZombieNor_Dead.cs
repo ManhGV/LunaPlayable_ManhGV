@@ -5,7 +5,6 @@ public class BotZombieNor_Dead : BaseState<BotZomNorState>
 {
     [SerializeField] private bool tutorialReload = false;
     [SerializeField] private Transform _posCenter;
-    private Coroutine _coroutineDead;
     int animType;
     public override void EnterState()
     {
@@ -15,9 +14,9 @@ public class BotZombieNor_Dead : BaseState<BotZomNorState>
         thisBotNetwork.ActiveFalseDetectors();
 
         if (animType == 0)
-            _coroutineDead = StartCoroutine(IEDelayAnimAndDespawn(4f));
+            StartCoroutine(IEDelayAnimAndDespawn(4f));
         else if (animType == 1)
-            _coroutineDead = StartCoroutine(IEDelayAnimAndDespawn(5f));
+            StartCoroutine(IEDelayAnimAndDespawn(5f));
 
         if (tutorialReload)
             Invoke(nameof(TutorialReload), .5f);
@@ -32,7 +31,7 @@ public class BotZombieNor_Dead : BaseState<BotZomNorState>
         yield return new WaitForSeconds(_timerDelay);
         if (animType == 1)
         {
-            ExplosionPoolZomNor explosionPoolZomNor = SimplePool.Spawn<ExplosionPoolZomNor>(GameConstants.PoolType.vfx_ExplosionZombieNor, _posCenter.position, Quaternion.identity);
+            Effect explosionPoolZomNor = SimplePool.Spawn<Effect>(GameConstants.PoolType.vfx_ExplosionZombieNor, _posCenter.position, Quaternion.identity);
             explosionPoolZomNor.OnInit();
         }
         thisBotNetwork.OnDespawn();

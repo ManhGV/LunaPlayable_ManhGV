@@ -5,11 +5,13 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameConstants.GameState gameState;
 
     [Header("CutScene")]
+    [SerializeField] CanvasGroup _canvasGameplay;
     [SerializeField] private GameObject _mainCamera;
     [SerializeField] private GameObject _cutSceneCamera;
 
     public void StartCutScene()
     {
+        _canvasGameplay.alpha = 0;
         _mainCamera.SetActive(false);
         _cutSceneCamera.SetActive(true);
         gameState = GameConstants.GameState.CutScene;
@@ -17,6 +19,7 @@ public class GameManager : Singleton<GameManager>
     
     public void EndCutScene()
     {
+        _canvasGameplay.alpha = 1;
         _mainCamera.SetActive(true);
         _cutSceneCamera.SetActive(false);
         gameState = GameConstants.GameState.Playing;

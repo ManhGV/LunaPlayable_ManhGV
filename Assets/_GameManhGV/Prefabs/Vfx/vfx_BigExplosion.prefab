@@ -4938,8 +4938,8 @@ GameObject:
   - component: {fileID: 2405721875061266986}
   - component: {fileID: 4774690092951082497}
   - component: {fileID: 2414610169513860535}
-  - component: {fileID: -8792098608375873731}
   - component: {fileID: 4211658901759850292}
+  - component: {fileID: 851847418638965351}
   m_Layer: 0
   m_Name: vfx_BigExplosion
   m_TagString: Untagged
@@ -9866,22 +9866,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &-8792098608375873731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3251050504436148209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 929827f87aec98d4ba5f5abde4f6a2fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PoolType: 10
-  vfxExplosion: {fileID: 4774690092951082497}
-  _audioSource: {fileID: 4211658901759850292}
-  _audioExplosion: {fileID: 8300000, guid: 5e003f48152dc8544a1d7ab6543890f7, type: 3}
 --- !u!82 &4211658901759850292
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9978,3 +9962,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &851847418638965351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3251050504436148209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a471aa863e965948847f80d0854753b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PoolType: 10
+  _lifeTime: 2
+  particles:
+  - {fileID: 4774690092951082497}
+  - {fileID: 2685746480118749202}
+  _audioSource: {fileID: 0}
+  _audioClip: {fileID: 0}

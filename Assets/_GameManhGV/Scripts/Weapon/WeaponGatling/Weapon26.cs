@@ -5,7 +5,6 @@ public class Weapon26 : WeaponBase
 {
     [Header("Tutorial")]
     public bool instructReload = false;
-    public bool instructRoket = false;
 
     protected override void Awake()
     {
@@ -18,11 +17,6 @@ public class Weapon26 : WeaponBase
     protected override void Update()
     {
         base.Update();
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            InstructRocket();
-        }
     }
 
 
@@ -70,16 +64,6 @@ public class Weapon26 : WeaponBase
                 }
                 PlayGunEffect(); // Kích hoạt hiệu ứng nổ súng
             }
-        }
-    }
-
-    public void InstructRocket()
-    {
-        //print("Hướng dẫn rocket");
-        if (!instructRoket)
-        {
-            instructRoket = true;
-            EventManager.Invoke(EventName.InstructRocket, true);
         }
     }
 

@@ -7,11 +7,14 @@ public static class GameConstants
 {
     public enum BotType
     {
-        None,
+        None = 0,
+        poinZomLeoTreo = 1,
         BotZomNorNurse = PoolType.BotZomNorNurse,
         BotZomNorPatient = PoolType.BotZomNorPatient,
         BotZomNorGirl = PoolType.BotZomNorGirl,
         BossZomSwat = PoolType.Boss_Zom_Swat,
+        BotZomNorNurseTranNha = PoolType.BotZomNorNurseTranNha,
+        BotZomNorGirlTranNha = PoolType.BotZomNorGirlTranNha,
     }
     public enum PoolType
     {
@@ -27,6 +30,9 @@ public static class GameConstants
         bullet_Rocket = 9,
         vfx_ExplosionRocket = 10,
         vfx_ExplosionZombieNor = 11,
+        vfx_ShootGift = 12,
+        BotZomNorNurseTranNha = 13,
+        BotZomNorGirlTranNha = 14,
     }
     public enum RewardType
     {

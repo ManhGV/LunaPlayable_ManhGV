@@ -14,6 +14,7 @@ public enum BotZomNorState
 
 public class BotZombieNor : MonoBehaviour
 {
+    public bool _dontDelay;
     public Dictionary<BotZomNorState, BaseState<BotZomNorState>> stateController = new Dictionary<BotZomNorState, BaseState<BotZomNorState>>();
 
     public BaseState<BotZomNorState> _currentState;
@@ -66,7 +67,11 @@ public class BotZombieNor : MonoBehaviour
     void OnEnable()
     {
         Init();
-        Invoke(nameof(Enanle), 0.1f);
+        if (_dontDelay)
+        {
+            Enanle();
+        }else
+            Invoke(nameof(Enanle), 0.1f);
     }
     
     private void Init()

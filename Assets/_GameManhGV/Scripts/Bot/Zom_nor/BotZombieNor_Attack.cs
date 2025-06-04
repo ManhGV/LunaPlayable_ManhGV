@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,21 +6,26 @@ public class BotZombieNor_Attack : BaseState<BotZomNorState>
 {
     private int animType;
     private float timerAttack;
-    private Transform Mytrans;
-
+    private Coroutine _coroutineTakeDamagePlayer;
     public override void EnterState()
     {
+        print(gameObject.name+ " Attack");
         animType = Random.Range(0, 2);
         thisBotNetwork.SetAnimAndType("Attack",animType);
-        
         isDoneState = false;
-        if(animType == 0)
+        if (animType == 0)
+        {
             timerAttack = 1.53f;
+            _coroutineTakeDamagePlayer = StartCoroutine(IETakeDamagePlayer(0.55f));
+        }
         else
+        {
             timerAttack = .54f;
+            _coroutineTakeDamagePlayer = StartCoroutine(IETakeDamagePlayer( 0.35f));
+        }
         thisBotNetwork.RotaToTarget();
     }
-
+    
     public override void UpdateState()
     {
         if (isDoneState)
@@ -33,8 +36,17 @@ public class BotZombieNor_Attack : BaseState<BotZomNorState>
             isDoneState = true;
     }
 
+    public IEnumerator IETakeDamagePlayer(float _time)
+    {
+        yield return new WaitForSeconds(_time);
+        //print(thisBotNetwork.gameObject.name);
+        EventManager.Invoke(EventName.OnTakeDamagePlayer, thisBotNetwork.BotConfigSO.damage);
+    }
+
     public override void ExitState()
     {
+        if(_coroutineTakeDamagePlayer != null)
+            StopCoroutine(_coroutineTakeDamagePlayer);
     }
 
     public override BotZomNorState GetNextState()

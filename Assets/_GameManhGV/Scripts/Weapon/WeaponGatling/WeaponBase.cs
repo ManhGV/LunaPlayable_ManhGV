@@ -335,7 +335,8 @@ public class WeaponBase : Singleton<WeaponBase>
                     takeDamageController = hit.transform.root.gameObject.GetComponent<ITakeDamage>();
                 }
                 if (takeDamageController != null) takeDamageController.TakeDamage(damageInfo);
-
+                typeEffect = PoolType.vfx_ShootGift;
+                PlayRandomAttackSound();
             }
             else if (IsInRewardLayer(hit.collider.gameObject))
             {
@@ -346,7 +347,7 @@ public class WeaponBase : Singleton<WeaponBase>
                 }
                 if (rewardController != null) rewardController.TakeCollect(weaponInfo.damage);
                 PlayRandomAttackSound();
-                typeEffect = PoolType.vfx_ConcreteImpact;
+                typeEffect = PoolType.vfx_ShootGift;
             }
             else if (IsInGroundLayerMask(hit.collider.gameObject))
             {
@@ -357,7 +358,6 @@ public class WeaponBase : Singleton<WeaponBase>
                 }
                 if (takeDamageController1 != null) takeDamageController1.TakeDamage(damageInfo);
                 //Debug.Log(damageType.ToString() + " " + weaponInfo.damage + " " + hit.collider.name);
-                PlayRandomAttackSound();
                 typeEffect = PoolType.vfx_ConcreteImpact;
             }
             else if (IsInGasLayer(hit.collider.gameObject))
@@ -366,22 +366,20 @@ public class WeaponBase : Singleton<WeaponBase>
                 oxygenTanks = hit.transform.gameObject.GetComponent<OxygenTanks>();
                 if (oxygenTanks != null)
                     oxygenTanks.Explosion();
-                PlayRandomAttackSound();
                 typeEffect = PoolType.vfx_ConcreteImpact;
             }
 
             // Tạo hiệu ứng va chạm
-            SimplePool.Spawn<Effect>(typeEffect, hit.point, Quaternion.identity).Init();
+            SimplePool.Spawn<Effect>(typeEffect, hit.point, Quaternion.identity).OnInit();
         }
         EventManager.Invoke(EventName.OnCheckBotTakeDamage, CheckRayCast);
     }
 
-    void PlayRandomAttackSound()
+    void PlayRandomAttackSound()//kêu keng keng
     {
         // AudioClip clip = AudioManager.Instance.GetAudioAttackClip();
         // if (clip != null)    
         // {
-        //     //_audioSource.clip = clip;
         //     _audioSourceHit.PlayOneShot(clip);
         // }
     }

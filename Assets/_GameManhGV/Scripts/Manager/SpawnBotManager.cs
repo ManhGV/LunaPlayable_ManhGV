@@ -44,8 +44,15 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         if (canCallBossZomSwat && _currentBot <= 1)
         {
             canCallBossZomSwat = false;
-            Invoke(nameof(CallBossZomSwat), .4f);
+            Invoke(nameof(CallBossZomSwat), 1f);
+            StartCoroutine(IEOnTutorialRocket());
         }
+    }
+
+    private IEnumerator IEOnTutorialRocket()
+    {
+        yield return new WaitForSeconds(30f);
+        RocketController.Instance.InstructRocket();
     }
 
     public void CallBossZomSwat()=>_bossZomSwat.SetActive(true);
@@ -65,9 +72,12 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         for (int i = 0; i < _botConfig.botQuantity; i++)
         {
             
-            wayPoint = _pathManager.GetWayPoint(GameConstants.PoolType.None);
             poolType = (GameConstants.PoolType)_botConfig.botType;
-            BotNetwork botNetwork = SimplePool.Spawn<BotNetwork>(poolType, wayPoint.WayPoints[0].position, Quaternion.identity);
+            if ((int)poolType < 12)
+                wayPoint = _pathManager.GetWayPoint(GameConstants.BotType.None);
+            else
+                wayPoint = _pathManager.GetWayPoint(GameConstants.BotType.poinZomLeoTreo);
+            BotNetwork botNetwork = SimplePool.Spawn<BotNetwork>(poolType, wayPoint.WayPoints[0].position, Quaternion.Euler(0, 180, 0));
             botNetwork.Init(wayPoint);
             botInScene.Add(botNetwork);
 

@@ -6,9 +6,14 @@ using UnityEngine.UI;
 
 public class BotNetwork : GameUnit, ITakeDamage
 {
+    [Header("Bắn rocket 1 lần ngã")]
+    public bool canExplosionArmor;
+    [SerializeField] BallisticArmor[] arrBallisticArmor;
+    [Space(10)]
+    
     public bool isBotActiveEqualTay;
     public bool isBotTutorial;
-    [SerializeField] private bool isBoss;
+    public bool isBoss;
     public AudioSource _audioSource;
     [SerializeField] private BotConfigSO botConfigSO;
     [Header("Health Bar")]
@@ -44,7 +49,6 @@ public class BotNetwork : GameUnit, ITakeDamage
     private Coroutine hideHealthBarCoroutine; // Tham chiếu tới Coroutine
     public Transform mainCameraTranform;
 
-
     public void Init(WayPoint _wayPoint)
     {
         wayPoint = _wayPoint;
@@ -53,19 +57,9 @@ public class BotNetwork : GameUnit, ITakeDamage
         isImmortal = false;
         isDead = false;
         IsDeadExplosion = false;
-    }
-
-    private void OnEnable()
-    {
         OnBotDead += Die;
     }
-
-    private void OnDisable()
-    {
-        OnBotDead -= Die;
-    }
-
-
+    
     private void Awake()
     {
         if (mainCameraTranform == null)
@@ -86,6 +80,8 @@ public class BotNetwork : GameUnit, ITakeDamage
             IsDeadExplosion = false;
         }
         //healthBar.enabled = false; // Ẩn thanh máu khi khởi tạo
+        if(isBotActiveEqualTay)
+            OnBotDead += Die;
     }
 
     public void TakeDamage(DamageInfo damageInfo)
@@ -94,10 +90,10 @@ public class BotNetwork : GameUnit, ITakeDamage
         
         OnTakeDamage?.Invoke(damageInfo.damage);
         
-        CacularHealth(damageInfo);
         
         if(healthBarTransform != null && damageInfo.damageType != DamageType.Gas||healthBarTransform != null && isBoss && damageInfo.damageType == DamageType.Gas)
         {
+            CacularHealth(damageInfo);
             healthBarTransform.gameObject.SetActive(true);
             // Nếu đã có một Coroutine đang chờ ẩn thanh máu, hủy nó và tạo lại
             if (hideHealthBarCoroutine != null)
@@ -110,12 +106,22 @@ public class BotNetwork : GameUnit, ITakeDamage
         }
         else if(damageInfo.damageType == DamageType.Gas)
         {
-            _currentHealth -= damageInfo.damage;
+            // Nếu đã có một Coroutine đang chờ ẩn thanh máu, hủy nó và tạo lại
             if (!isBoss)
             {
+                _currentHealth = 0;
                 IsDeadExplosion = true;
                 Die();
             }
+            else
+            {
+                CacularHealth(damageInfo);
+            }
+            if (hideHealthBarCoroutine != null)
+                StopCoroutine(hideHealthBarCoroutine);
+                // Bắt đầu Coroutine để ẩn thanh máu sau 1 giây nếu không nhận thêm sát thương
+            if(!IsDeadExplosion)
+                hideHealthBarCoroutine = StartCoroutine(HideHealthBarAfterDelay());
         }
     }
     
@@ -141,8 +147,6 @@ public class BotNetwork : GameUnit, ITakeDamage
                 float reducedDamage = damageInfo.damage * damageScale;
                 damage = Mathf.CeilToInt(reducedDamage); // Làm tròn lên 
             }
-
-
         }
         if (isImmortal && botConfigSO.isCanImmortal) return;
         _currentHealth -= damage;
@@ -223,6 +227,7 @@ public class BotNetwork : GameUnit, ITakeDamage
     
     public void SetAnimAndType(string _name, int animType)
     {
+        //print("SetAnimAndType: " + _name + " - " + animType + " - " + gameObject.name);
         anim.SetInteger("AnimType", animType);
         if (currentAnimName != _name)
         {
@@ -294,11 +299,22 @@ public class BotNetwork : GameUnit, ITakeDamage
 
     public void OnDespawn()
     {
+        OnBotDead -= Die;
         //        print("Despawn BotNetwork: " + gameObject.name);
         if (isBotTutorial)
             gameObject.SetActive(false);
         else
             SimplePool.Despawn(this);
+    }
+
+    public void ExplosinArrmor()
+    {
+        if (canExplosionArmor)
+        {
+            foreach (BallisticArmor VARIABLE in arrBallisticArmor)
+                if (VARIABLE.gameObject.activeSelf)
+                    gameObject.SetActive(false);
+        }
     }
 }
 
