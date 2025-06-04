@@ -892,6 +892,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PoolType: 7
+  _audioSourceVoice: {fileID: 3709215020097705114}
+  _listSoundBotVoice:
+  - {fileID: 8300000, guid: ffe4cc86ff834d84fb1e34f62021b83b, type: 3}
+  - {fileID: 8300000, guid: a7badefd126b2354b8912942fb4c5460, type: 3}
+  - {fileID: 8300000, guid: 21bbac6950279c9418812a10467cd90c, type: 3}
+  - {fileID: 8300000, guid: 9f929d6fa7a16fe408c47c37f98351d3, type: 3}
+  - {fileID: 8300000, guid: d003c050a95f6de459e8bbd0d9db3646, type: 3}
   canExplosionArmor: 0
   arrBallisticArmor: []
   isBotActiveEqualTay: 0
@@ -941,6 +948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1247b39a065228145806f2743b56930a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dontDelay: 0
   _currentState: {fileID: 0}
   botNetwork: {fileID: 1529555371535279346}
   haveStart: 0
@@ -987,7 +995,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisBotNetwork: {fileID: 1529555371535279346}
   tutorialReload: 0
-  timerDelayDespawn: 0
 --- !u!114 &7788804967758492769
 MonoBehaviour:
   m_ObjectHideFlags: 0

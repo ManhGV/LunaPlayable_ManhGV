@@ -47,6 +47,9 @@ public class Weapon81 : WeaponBase
             //Debug.Log("Fire from right muzzle");
         }
         isLeftMuzzleNext = !isLeftMuzzleNext;
+        
+        _audioSource.clip = weaponInfo.audioClip;
+        _audioSource.Play();
 
         UICrosshairItem.Instance.Expand_Crosshair(15);
 

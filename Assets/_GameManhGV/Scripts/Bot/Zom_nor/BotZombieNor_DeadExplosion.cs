@@ -13,6 +13,7 @@ public class BotZombieNor_DeadExplosion : BaseState<BotZomNorState>
         isDoneState = false;
         int animType = thisBotNetwork.GetNearestDirection();
         
+        thisBotNetwork.PlayAudioVoice(Random.Range(0,4),1);
         thisBotNetwork.SetAnimAndType("DeadExplosion", animType);
         
         if(tutorialReload)

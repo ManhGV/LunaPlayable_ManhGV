@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class RewardNetwork : MonoBehaviour, IReward
 {
+    [Header("Audio")]
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip[] _audioClip;
+    [SerializeField] float _audioVolume;
+    [Header("Health")]
     [SerializeField] int _maxHealth = 100;
     [SerializeField] int _currentHealth;
     [SerializeField] private bool isCollected;
@@ -24,6 +29,7 @@ public class RewardNetwork : MonoBehaviour, IReward
 
     public void CalculateHealth(int damage)
     {
+        PlayCollectSound(_audioVolume);
         _currentHealth -= damage;
         if (_currentHealth <= 0)
         {
@@ -35,5 +41,11 @@ public class RewardNetwork : MonoBehaviour, IReward
     public void Collect()
     {
         isCollected = true;
+    }
+    
+    public void PlayCollectSound(float _volume)
+    {
+        _audioSource.volume = _volume;
+        _audioSource.PlayOneShot(_audioClip[UnityEngine.Random.Range(0, _audioClip.Length)]);
     }
 }

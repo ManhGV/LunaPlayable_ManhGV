@@ -74,9 +74,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countExplosion: 4
   _audioSource: {fileID: 6548316923512037663}
-  _audioClip: {fileID: 0}
+  _audioClip: {fileID: 8300000, guid: 6099cb0bd8d994d4b83b821f125cdec0, type: 3}
   _vfxExplosion: {fileID: 7830144978167865850}
-  _dame: 100
+  _dame: 500
   _centerExplosion: {fileID: 8778820145378549628}
   _radiusExplosion: 4
   _layerHit:
@@ -95,7 +95,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -354,7 +354,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 851847418638965351, guid: 6511442714417fd43aa8fd0cf67b4cbd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

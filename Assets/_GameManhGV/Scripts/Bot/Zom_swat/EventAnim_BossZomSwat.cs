@@ -4,12 +4,14 @@ using UnityEngine.Serialization;
 
 public class EventAnim_BossZomSwat : MonoBehaviour
 {
+    [SerializeField] private BotNetwork _bossZomSwat;
     [SerializeField] private ExplosionDor _explosionDoor;
     [SerializeField] private BotConfigSO _botConfig;
     
     [Header("Canvas - Active swat")]
     [SerializeField] GameObject _canvasSwat;
     
+    [SerializeField] private Transform newMaincamera;
     [Header("Snake Camera")]
     [SerializeField] private Transform _cameraSnakeCutScene;
     [SerializeField] private float shakeCamMin;
@@ -30,6 +32,8 @@ public class EventAnim_BossZomSwat : MonoBehaviour
         }
     }
     
+    public void ChangeCam()=> _cameraSnakeCutScene = newMaincamera;
+    
     public void ShakeCamera()
     {
         StartCoroutine(ShakeCamera(0.5f, 0.1f));
@@ -44,6 +48,8 @@ public class EventAnim_BossZomSwat : MonoBehaviour
         if (shakeCoroutine != null) StopCoroutine(shakeCoroutine);
         shakeCoroutine = StartCoroutine(ShakeCameraLoop(magnitude));
     }
+
+    public void PlaySoundIndex(int _index) => _bossZomSwat.PlayAudioVoice(_index,1);
 
     /// <summary>
     /// Dừng rung camera

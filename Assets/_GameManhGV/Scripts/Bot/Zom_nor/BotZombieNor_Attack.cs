@@ -39,6 +39,7 @@ public class BotZombieNor_Attack : BaseState<BotZomNorState>
     public IEnumerator IETakeDamagePlayer(float _time)
     {
         yield return new WaitForSeconds(_time);
+        thisBotNetwork.PlayAudioVoice(4,1);
         //print(thisBotNetwork.gameObject.name);
         EventManager.Invoke(EventName.OnTakeDamagePlayer, thisBotNetwork.BotConfigSO.damage);
     }

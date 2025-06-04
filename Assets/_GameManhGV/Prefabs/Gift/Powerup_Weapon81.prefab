@@ -297,7 +297,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 89, y: -14.5}
-  m_SizeDelta: {x: 178, y: 0}
+  m_SizeDelta: {x: 178, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &426859268477217902
 CanvasRenderer:
@@ -25664,7 +25664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7589838052123573298
 Transform:
   m_ObjectHideFlags: 0
@@ -25696,6 +25696,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 765c419c193bc614092542531667ad00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioSource: {fileID: 677235660128017573}
+  _audioClip:
+  - {fileID: 8300000, guid: 6ee388033b5fd184790411d5e6297ee5, type: 3}
+  - {fileID: 8300000, guid: 3a87f2f475530814d8e079da01e7a9ef, type: 3}
+  - {fileID: 8300000, guid: eef6dde0343b0ab45b3927833e0bcde1, type: 3}
+  _audioVolume: 0
   _maxHealth: 100
   _currentHealth: 0
   isCollected: 0
@@ -25720,7 +25726,6 @@ MonoBehaviour:
   myBody: {fileID: 6057863252243597769}
   ContentObj: {fileID: 2361596857363821376}
   ContentCanvasGroup: {fileID: 4194540730693658599}
-  rewardValue: 0
   rotationSpeed: 200
   initialYPosition: 1
   moveDuration: 1
@@ -25741,7 +25746,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -55774,7 +55779,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0.7}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 178, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7746626869482417834
 MonoBehaviour:

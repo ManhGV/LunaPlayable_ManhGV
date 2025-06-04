@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class BotNetwork : GameUnit, ITakeDamage
 {
+    [Header("Bot Audio")]
+    [SerializeField] AudioSource _audioSourceVoice;
+    [SerializeField] AudioClip[] _listSoundBotVoice;
+    
     [Header("Bắn rocket 1 lần ngã")]
     public bool canExplosionArmor;
     [SerializeField] BallisticArmor[] arrBallisticArmor;
@@ -265,7 +269,10 @@ public class BotNetwork : GameUnit, ITakeDamage
         Vector3 right = TF.right;
         Vector3 left = -TF.right;
         Vector3 back = -TF.forward;
-
+        // 0 = trước
+        // 1 = phải
+        // 2 = trái
+        // 3 = sau
         // Tính độ tương đồng (dot product)
         float dotForward = Vector3.Dot(toTarget, forward);
         float dotRight = Vector3.Dot(toTarget, right);
@@ -313,8 +320,15 @@ public class BotNetwork : GameUnit, ITakeDamage
         {
             foreach (BallisticArmor VARIABLE in arrBallisticArmor)
                 if (VARIABLE.gameObject.activeSelf)
-                    gameObject.SetActive(false);
+                    VARIABLE.gameObject.SetActive(false);
         }
+    }
+    
+    public void PlayAudioVoice(int _index,float _volume)
+    {
+        _audioSourceVoice.volume = _volume;
+        _audioSourceVoice.clip = _listSoundBotVoice[_index];
+        _audioSourceVoice.Play();
     }
 }
 

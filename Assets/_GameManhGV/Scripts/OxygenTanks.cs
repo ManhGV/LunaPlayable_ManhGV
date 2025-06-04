@@ -32,13 +32,14 @@ public class OxygenTanks : MonoBehaviour
         
         if(!CanExplosion)
             return;
+        
         CanExplosion = false;
         _meshRenderer.enabled = false;
         _capsuleCollider.enabled = false;
         _audioSource.PlayOneShot(_audioClip);
-        Destroy(gameObject, _lifeTimer);
         _vfxExplosion.Play();
         CheckHitExplosion();
+        Destroy(gameObject, _lifeTimer);
     }
     
     public void CheckHitExplosion()

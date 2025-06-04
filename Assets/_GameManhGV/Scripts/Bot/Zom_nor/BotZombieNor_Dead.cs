@@ -13,6 +13,8 @@ public class BotZombieNor_Dead : BaseState<BotZomNorState>
         isDoneState = false;
         thisBotNetwork.ActiveFalseDetectors();
 
+        thisBotNetwork.PlayAudioVoice(Random.Range(0,4),1);
+        
         if (animType == 0)
             StartCoroutine(IEDelayAnimAndDespawn(4f));
         else if (animType == 1)
