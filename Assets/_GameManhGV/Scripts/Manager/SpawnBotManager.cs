@@ -25,7 +25,6 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         base.Awake();
 
         canCallBossZomSwat = true;
-        
         foreach (BotConfig VARIABLE in dataBotSpawn.fightRound.botConfigs)
             AllBotsToSpawn += VARIABLE.botQuantity;
         AllBotsToSpawn += 2;
@@ -55,7 +54,11 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         RocketController.Instance.InstructRocket();
     }
 
-    public void CallBossZomSwat()=>_bossZomSwat.SetActive(true);
+    public void CallBossZomSwat()
+    {
+        _bossZomSwat.SetActive(true);
+        PlayerHP.Instance.ClearListDamage();
+    }
     
     public void SpawnBot()
     {

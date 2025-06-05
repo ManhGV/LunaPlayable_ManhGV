@@ -9,7 +9,6 @@ public class BotZombieNor_Attack : BaseState<BotZomNorState>
     private Coroutine _coroutineTakeDamagePlayer;
     public override void EnterState()
     {
-        print(gameObject.name+ " Attack");
         animType = Random.Range(0, 2);
         thisBotNetwork.SetAnimAndType("Attack",animType);
         isDoneState = false;

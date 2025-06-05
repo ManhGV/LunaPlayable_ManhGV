@@ -42,17 +42,6 @@ public class RocketController : Singleton<RocketController>
     void Update()
     {
         timer -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Fire();
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-            InstructRocket();
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SetMoveTutorial();
-        }
     }
 
     public void PlayAudioExplosion()

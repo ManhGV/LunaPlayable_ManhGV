@@ -13,10 +13,10 @@ public class Weapon26 : WeaponBase
         UIManager.Instance.GetUI<Canvas_GamePlay>().Init();
         Invoke(nameof(Init), .1f);
     }
-
-    protected override void Update()
+    
+    private void Start()
     {
-        base.Update();
+        WeaponBase.Instance = this;
     }
 
 

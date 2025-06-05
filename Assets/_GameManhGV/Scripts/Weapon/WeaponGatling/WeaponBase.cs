@@ -31,6 +31,8 @@ public class WeaponBase : Singleton<WeaponBase>
     public int CurrentBulletCount => _currentBulletCount;
     public int DefaultBulletCount => _defaultBulletCount;
     protected bool _isReloading = false; // Trạng thái đang nạp đạn
+    protected Coroutine _reloadCoroutine;
+    [SerializeField] private AudioClip _reloadFastAudio;
     protected bool isShooting = false; // Trạng thái đang bắn
     protected bool canShoot = false; // Trạng thái có thể bắn
     protected Coroutine shootingCoroutine;
@@ -69,11 +71,6 @@ public class WeaponBase : Singleton<WeaponBase>
         Invoke(nameof(Init), .1f);
     }
 
-    protected virtual void Start()
-    {
-        Instance = this;
-    }
-
     protected virtual void Init()
     {
         EventManager.Invoke(EventName.UpdateBulletCount, _currentBulletCount);
@@ -93,22 +90,19 @@ public class WeaponBase : Singleton<WeaponBase>
     {
         IsShowLunaEndGame = IsShow;
     }
-
     protected virtual void Update()
     {
 #if UNITY_EDITOR
         GizmodTuVe();
 #endif
         if (GameManager.Instance.GetGameState() != GameConstants.GameState.Playing)
+        {
+            StopGunEffect();
             return;
+        }
 
         if (!IsPointerOverUI())
             OnShooting();
-        if (false)//end game
-        {
-            isShooting = false;
-            StopGunEffect();
-        }
     }
 
     /// <summary>
@@ -366,7 +360,7 @@ public class WeaponBase : Singleton<WeaponBase>
                 oxygenTanks = hit.transform.gameObject.GetComponent<OxygenTanks>();
                 if (oxygenTanks != null)
                     oxygenTanks.Explosion();
-                typeEffect = PoolType.vfx_ConcreteImpact;
+                typeEffect = PoolType.vfx_ShootGift;
             }
 
             // Tạo hiệu ứng va chạm
@@ -387,17 +381,36 @@ public class WeaponBase : Singleton<WeaponBase>
     #region Reload
     public void OnReload()
     {
-
         if (_isReloading || _currentBulletCount == _defaultBulletCount)
             return;
+        
+        if (_reloadCoroutine != null)
+            StopCoroutine(_reloadCoroutine);
+        
+        _reloadCoroutine = StartCoroutine(Reload());
+        
         _isReloading = true;
-        StartCoroutine(Reload());
         StopGunEffect();
         UICrosshairItem.Instance.ResetCorosshair();
     }
 
+    public void OnReloadFast(int _PlusAmount)
+    {
+        if (_reloadCoroutine != null)
+            StopCoroutine(_reloadCoroutine);
+        
+        _isReloading = false;
+        _audioSourceHit.PlayOneShot(_reloadFastAudio);
+        _animation.Play("ReloadOut");
+        _currentBulletCount = weaponInfo.bulletCount + _PlusAmount;
+        UICrosshairItem.Instance.ResetCorosshair();
+        EventManager.Invoke(EventName.UpdateBulletCount, _currentBulletCount);
+    }
+
     private IEnumerator Reload()
     {
+        UIManager.Instance.GetUI<Canvas_GamePlay>().ActiveReloadFast();
+        
         StopShootingSound();
         float reloadTime = weaponInfo.reloadTime;
         EventManager.Invoke(EventName.OnReloading, reloadTime);
@@ -413,10 +426,10 @@ public class WeaponBase : Singleton<WeaponBase>
         _audioSource.PlayOneShot(weaponInfo.AudioReloadOut);
         _animation.Play("ReloadOut");
         yield return new WaitForSeconds(reloadTime / 3);
-        _currentBulletCount = weaponInfo.bulletCount;
+        _currentBulletCount = _defaultBulletCount;
 
         _isReloading = false;
-
+        GameManager.Instance.DontSlomotionTimeScale();
         EventManager.Invoke(EventName.UpdateBulletCount, _currentBulletCount);
     }
     #endregion
@@ -465,7 +478,7 @@ public class WeaponBase : Singleton<WeaponBase>
                 fireEffect.Play();
     }
 
-    protected virtual void StopGunEffect()
+    public virtual void StopGunEffect()
     {
         foreach (ParticleSystem fireEffect in _fireEffect)
             if (fireEffect != null && fireEffect.isPlaying)

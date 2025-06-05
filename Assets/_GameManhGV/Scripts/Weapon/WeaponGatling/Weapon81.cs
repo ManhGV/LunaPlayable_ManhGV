@@ -1,12 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Weapon81 : WeaponBase
 {
     [SerializeField] private Transform _muzzleTrans_2;
     private bool isLeftMuzzleNext;
-    
+
+    private void Start()
+    {
+        WeaponBase.Instance = this;
+    }
+
     protected override void AssignAnimationClips()
     {
         base.AssignAnimationClips();

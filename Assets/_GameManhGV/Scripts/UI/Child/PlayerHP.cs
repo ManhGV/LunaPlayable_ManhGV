@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHP : MonoBehaviour
+public class PlayerHP : Singleton<PlayerHP>
 {
     [SerializeField] private Image HPimage;
     [SerializeField] private Gradient HPState;
@@ -12,6 +13,13 @@ public class PlayerHP : MonoBehaviour
     [SerializeField] private float HPPoint;
     private Queue<float> damageQueue = new Queue<float>();  // Hàng đợi lưu trữ sát thương
     private bool isProcessingDamage = false;
+    
+    [Header("Healing Effect")]
+    [SerializeField] Animator healingEffect;
+    [SerializeField] int numberOfHeals = 10; // Số lần hồi phục
+    [SerializeField] int percentPerHeal = 50; //%máu hồi phục
+    [SerializeField] float totalDuration = 2.28f; //số giây hồi phục xong
+    private Coroutine healingCoroutine;
     private void OnEnable()
     {
         HPPoint = HPMax;
@@ -26,7 +34,7 @@ public class PlayerHP : MonoBehaviour
 
     private void OnTakeDamagePlayer(float Damage)
     {
-        print("TakeDamagePlayer: " + Damage);
+//        print("TakeDamagePlayer: " + Damage);
         // Đưa lượng sát thương vào hàng đợi để xử lý
         damageQueue.Enqueue(Damage);
         EffectUI.Instance.Play();
@@ -35,7 +43,9 @@ public class PlayerHP : MonoBehaviour
         if (!isProcessingDamage)
             StartCoroutine(ProcessDamageQueue());
     }
-    
+
+    public void ClearListDamage() =>damageQueue.Clear();  
+
     private IEnumerator ProcessDamageQueue()
     {
         isProcessingDamage = true;
@@ -48,7 +58,13 @@ public class PlayerHP : MonoBehaviour
             if (HPPoint <= 0) continue;
             HPPoint -= damage;
             HPPoint = Mathf.Max(HPPoint, 0);  // Đảm bảo HP không giảm dưới 0
-            EventManager.Invoke(EventName.OnPlayerDead, HPPoint <= 0);
+            if (HPPoint <= 15)
+            {
+                if(healingCoroutine== null)
+                    healingCoroutine = StartCoroutine(IEHealing(percentPerHeal,numberOfHeals, totalDuration));
+            }
+            
+            //EventManager.Invoke(EventName.OnPlayerDead, HPPoint <= 0);
             
             // Cập nhật giao diện
             HPTxt.text = HPPoint.ToString();
@@ -59,5 +75,33 @@ public class PlayerHP : MonoBehaviour
         }
 
         isProcessingDamage = false;
+    }
+
+    public IEnumerator IEHealing(float percentTotalHeal, int numberOfHeals, float totalDuration)
+    {
+        healingEffect.SetTrigger("Play");
+
+        if (numberOfHeals <= 0 || percentTotalHeal <= 0f)
+            yield break;
+
+        float intervalSeconds = totalDuration / numberOfHeals;
+        float percentPerHeal = percentTotalHeal / numberOfHeals;
+        int healAmountPerTick = Mathf.RoundToInt(HPMax * percentPerHeal / 100f);
+
+        for (int i = 0; i < numberOfHeals; i++)
+        {
+            if (HPPoint >= HPMax)
+                yield break;
+
+            HPPoint = Mathf.Min(HPPoint + healAmountPerTick, HPMax);
+            //EventManager.Invoke(EventName.OnPlayerDead, HPPoint <= 0);
+
+            HPimage.fillAmount = (float)HPPoint / HPMax;
+            HPimage.color = HPState.Evaluate(HPimage.fillAmount);
+
+            yield return new WaitForSeconds(intervalSeconds);
+        }
+
+        healingCoroutine = null;
     }
 }
