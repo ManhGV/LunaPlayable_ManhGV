@@ -11,7 +11,8 @@ public class Canvas_ReloadIntroduction : UICanvas
 
     private void OnEnable()
     {
-        bulletCountCurrent.text = WeaponBase.Instance.CurrentBulletCount.ToString();
-        bulletCountDefault.text = WeaponBase.Instance.DefaultBulletCount.ToString();
+        ReloadableWeapons reloadableWeapons = WeaponBase.Instance as ReloadableWeapons;
+        bulletCountCurrent.text = reloadableWeapons.CurrentBulletCount.ToString();
+        bulletCountDefault.text = reloadableWeapons.DefaultBulletCount.ToString();
     }
 }

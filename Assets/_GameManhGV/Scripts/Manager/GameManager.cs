@@ -13,6 +13,11 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject _mainCamera;
     [SerializeField] private GameObject _cutSceneCamera;
     
+    [Header("Snake Camera")]
+    [SerializeField] private Transform shakeCam; // Biến để tham chiếu đến MainCamera
+    [SerializeField] private float shakeCamMin;
+    [SerializeField] private float shakeCamMax;
+    
     [Header("End Game")] 
     public bool endGame;
 
@@ -21,6 +26,7 @@ public class GameManager : Singleton<GameManager>
         LunaLogStart();
     }
 
+    #region CutScene
     public void StartCutScene()
     {
         _canvasGameplay.alpha = 0;
@@ -36,7 +42,9 @@ public class GameManager : Singleton<GameManager>
         _cutSceneCamera.SetActive(false);
         gameState = GameConstants.GameState.Playing;
     }
-    
+    #endregion
+
+    #region Pause and Resume
     public void PauseGame()
     {
         Time.timeScale = 0f;
@@ -48,9 +56,9 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1f;
         gameState = GameConstants.GameState.Playing;
     }
-
     public GameConstants.GameState GetGameState() => gameState;
-
+    #endregion
+    
     public Transform GetMainCameraTransform()
     {
         if (Camera.main != null)
@@ -72,7 +80,8 @@ public class GameManager : Singleton<GameManager>
         gameState = GameConstants.GameState.EndGame;
         LunaEndGame();
     }
-    
+
+    #region Slomotion
     public void SlomotionTimeScale()
     {
         Time.timeScale = slowMotionTimeScale;
@@ -82,6 +91,9 @@ public class GameManager : Singleton<GameManager>
     {
         Time.timeScale = 1f;
     }
+    #endregion
+
+    #region Luna Unity Life Cycle
 
     public void LunaEndGame()
     {
@@ -94,5 +106,29 @@ public class GameManager : Singleton<GameManager>
         Luna.Unity.LifeCycle.GameStarted();
         Luna.Unity.Analytics.LogEvent(Luna.Unity.Analytics.EventType.TutorialComplete);
         Debug.Log($"{nameof(LunaLogStart)}");
+    }
+    
+    #endregion
+    
+    // Thêm hàm rung lắc camera
+    protected IEnumerator ShakeCamera(float duration, float magnitude)
+    {
+        Quaternion originalRot = shakeCam.localRotation;
+        float elapsed = 0.0f;
+    
+        while (elapsed < duration)
+        {
+            float x = UnityEngine.Random.Range(shakeCamMin, shakeCamMax) * magnitude;
+            float y = UnityEngine.Random.Range(shakeCamMin, shakeCamMax) * magnitude;
+    
+            shakeCam.localRotation = originalRot * Quaternion.Euler(x, y, 0);
+    
+            elapsed += Time.deltaTime;
+    
+            yield return null;
+        }
+    
+        shakeCam.localRotation = originalRot;
+        EventManager.Invoke(EventName.OnCheckShakeCam, shakeCam.localEulerAngles);
     }
 }

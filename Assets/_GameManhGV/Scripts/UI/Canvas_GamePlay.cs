@@ -183,7 +183,7 @@ public class Canvas_GamePlay : UICanvas
             GameManager.Instance.ResumeGame();
             UIManager.Instance.CloseUIDirectly<Canvas_ReloadIntroduction>();
         }
-        WeaponBase.Instance.OnReload();
+        ((ReloadableWeapons)WeaponBase.Instance).OnReload();
     }
     
     public void Btn_Rocket()
@@ -237,13 +237,13 @@ public class Canvas_GamePlay : UICanvas
         _canvasGrupReloadFast.alpha = 1;
         if(Vector3.Distance(uiElementPointer.anchoredPosition, endPos.anchoredPosition) > 272.5f)//perfect reload
         {
-            WeaponBase.Instance.OnReloadFast(80);
+            ((ReloadableWeapons)WeaponBase.Instance).OnReloadFast(80);
             _animatorReloadFast.Play("Perfect",0,0f);
             _timeToReloadFast.text = "0.0";
         }
         else
         {
-            WeaponBase.Instance.OnReloadFast(40);
+            ((ReloadableWeapons)WeaponBase.Instance).OnReloadFast(40);
             _animatorReloadFast.Play("Good",0,0f);
             _timeToReloadFast.text = "0.5";
         }

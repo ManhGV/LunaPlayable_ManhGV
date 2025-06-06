@@ -59,7 +59,7 @@ public class RocketController : Singleton<RocketController>
         {
             _fireAnim.Play("FPS_anim_W38_Fire");
             Rocket rocket = SimplePool.Spawn<Rocket>(GameConstants.PoolType.bullet_Rocket, _posSpawn.position, Quaternion.identity);
-            rocket.OnInit(WeaponBase.Instance.GizmodTuVe());
+            rocket.OnInit(WeaponBase.Instance.GizmodCaculatorPointShoot());
             currentAmount--;
             StartCoroutine(IEReload());
         }
