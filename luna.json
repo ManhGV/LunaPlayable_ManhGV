@@ -1,8 +1,8 @@
 {
     "version": "6.3.0",
     "projectId": "e802dd55c6efeaa48a72b8ea5d0f35e7",
-    "applicationID": 29331,
-    "creativeName": "",
+    "applicationID": 30065,
+    "creativeName": "TutorialZombie",
     "pgServer": "EU",
     "window": {
         "‐″": true
@@ -126,7 +126,18 @@
                 "Stubs/AppsFlyer",
                 "Stubs/IronSource",
                 "Stubs/Vungle",
-                "Stubs/MoreMountains.NiceVibrations"
+                "Stubs/MoreMountains.NiceVibrations",
+                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Blue_AmmoGlowFx10.png",
+                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Blue_AmmoGlowFx30.png",
+                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx30.png",
+                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx30.png",
+                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx10.png",
+                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx10.png",
+                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx.png",
+                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx.png",
+                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Blue_AmmoGlowFx30.png",
+                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Blue_AmmoGlowFx.png",
+                "Assets/_GameManhGV/Materials/KilledOccultBoss.ogg"
             ],
             "includes": [
                 "Assets/Resources/DOTweenSettings.asset"
@@ -200,7 +211,7 @@
                 "forceIncluded": true
             }
         ],
-        "disableRuntimeAnalysisForCode": true,
+        "disableRuntimeAnalysisForCode": false,
         "disableRuntimeAnalysisForShaders": false,
         "useShadersCache": true,
         "preventUpdatingRAListWhenRAIsDisabled": false,
@@ -548,14 +559,6 @@
             },
             {
                 "name": "System.Globalization.GlobalizationMode",
-                "excluded": true
-            },
-            {
-                "name": "System.NotImplemented",
-                "excluded": true
-            },
-            {
-                "name": "System.NotImplementedException",
                 "excluded": true
             },
             {
@@ -7679,10 +7682,6 @@
                 "excluded": true
             },
             {
-                "name": "GameConstants.BotType",
-                "excluded": true
-            },
-            {
                 "name": "GameConstants.PoolType",
                 "excluded": false
             },
@@ -7691,15 +7690,7 @@
                 "excluded": false
             },
             {
-                "name": "Canvas_ActiveReloadIntroduction",
-                "excluded": false
-            },
-            {
                 "name": "AchievementSystemRunner",
-                "excluded": true
-            },
-            {
-                "name": "OxygenTanks",
                 "excluded": true
             },
             {
@@ -7749,14 +7740,6 @@
             {
                 "name": "BotZomNorState",
                 "excluded": false
-            },
-            {
-                "name": "pc.Debugger.Components.EditorCamera",
-                "excluded": true
-            },
-            {
-                "name": "pc.Debugger.Components.EditorGUI",
-                "excluded": true
             }
         ],
         "unusedMethods": [
@@ -8186,7 +8169,7 @@
                     },
                     {
                         "name": "toString",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "parse",
@@ -11710,7 +11693,7 @@
                     },
                     {
                         "name": "Clear",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Enqueue",
@@ -14408,7 +14391,7 @@
                     },
                     {
                         "name": "PingPong",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "SmoothDamp",
@@ -15864,7 +15847,7 @@
                     },
                     {
                         "name": "parent#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "worldToLocalMatrix#get",
@@ -16056,7 +16039,7 @@
                     },
                     {
                         "name": "Translate$1",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Translate$2",
@@ -16068,7 +16051,7 @@
                     },
                     {
                         "name": "Rotate",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Rotate$1",
@@ -16092,7 +16075,7 @@
                     },
                     {
                         "name": "SetParent",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "DetachChildren",
@@ -16112,7 +16095,7 @@
                     },
                     {
                         "name": "LookAt$2",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "LookAt$3",
@@ -17970,7 +17953,7 @@
                     },
                     {
                         "name": "color#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "color#set",
@@ -18286,7 +18269,7 @@
                     },
                     {
                         "name": "fillAmount#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "fillAmount#set",
@@ -18690,7 +18673,7 @@
                     },
                     {
                         "name": "OnDidApplyAnimationProperties",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnRectTransformDimensionsChange",
@@ -20202,7 +20185,7 @@
                     },
                     {
                         "name": "Raycast$2",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Raycast$3",
@@ -20294,7 +20277,7 @@
                     },
                     {
                         "name": "OverlapSphere",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OverlapSphereNonAlloc",
@@ -20398,7 +20381,7 @@
                     },
                     {
                         "name": "RaycastInternal",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "GenerateCapsule",
@@ -21042,7 +21025,7 @@
                     },
                     {
                         "name": "Play$4",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Play$1",
@@ -21058,11 +21041,11 @@
                     },
                     {
                         "name": "Play$2",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Rebind",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "StopPlayback",
@@ -22450,7 +22433,7 @@
                     },
                     {
                         "name": "AddListener",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "RemoveListener",
@@ -23636,11 +23619,11 @@
                 "instanceMethods": [
                     {
                         "name": "renderOrderPriority#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "sortOrderPriority#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "rootRaycaster#get",
@@ -24374,7 +24357,7 @@
                 "instanceMethods": [
                     {
                         "name": "onClick#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "onClick#set",
@@ -24766,7 +24749,7 @@
                     },
                     {
                         "name": "Btn_Rocket",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "UpdateGameProcess",
@@ -24774,6 +24757,30 @@
                     },
                     {
                         "name": "PowerupEffectUI",
+                        "excluded": false
+                    },
+                    {
+                        "name": "CaculatorFillCooldown",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ActiveReloadFast",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Btn_ReloadFast",
+                        "excluded": false
+                    },
+                    {
+                        "name": "IEAnimActiveReloadFast",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OpendEndGame",
+                        "excluded": false
+                    },
+                    {
+                        "name": "IEOpenEndGame",
                         "excluded": false
                     }
                 ]
@@ -25775,23 +25782,15 @@
                 "staticMethods": [],
                 "instanceMethods": [
                     {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnPushToPool",
-                        "excluded": true
-                    },
-                    {
                         "name": "Update",
                         "excluded": false
                     },
                     {
                         "name": "OnDespawn",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnInit",
                         "excluded": false
                     }
                 ]
@@ -25818,6 +25817,42 @@
                     },
                     {
                         "name": "GetMainCameraTransform",
+                        "excluded": false
+                    },
+                    {
+                        "name": "StartCutScene",
+                        "excluded": false
+                    },
+                    {
+                        "name": "EndCutScene",
+                        "excluded": false
+                    },
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "EndGame",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SlomotionTimeScale",
+                        "excluded": false
+                    },
+                    {
+                        "name": "DontSlomotionTimeScale",
+                        "excluded": false
+                    },
+                    {
+                        "name": "LunaEndGame",
+                        "excluded": false
+                    },
+                    {
+                        "name": "LunaLogStart",
                         "excluded": false
                     }
                 ]
@@ -26192,18 +26227,42 @@
                     },
                     {
                         "name": "PlayAudioExplosion",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Fire",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "SnakeCameraRocket",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ShakeCamera",
+                        "excluded": false
+                    },
+                    {
+                        "name": "GetFillAmount",
+                        "excluded": false
+                    },
+                    {
+                        "name": "IEReload",
+                        "excluded": false
+                    },
+                    {
+                        "name": "InstructRocket",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetMoveTutorial",
+                        "excluded": true
+                    },
+                    {
+                        "name": "IEEnbleTutorial",
+                        "excluded": true
+                    },
+                    {
+                        "name": "IEMoveToPoint",
                         "excluded": true
                     }
                 ]
@@ -26251,6 +26310,18 @@
                     {
                         "name": "IEDelaySpawnGiftWeapon81",
                         "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "CallBossZomSwat",
+                        "excluded": false
+                    },
+                    {
+                        "name": "IEOnTutorialRocket",
+                        "excluded": false
                     }
                 ]
             },
@@ -26280,10 +26351,6 @@
                     },
                     {
                         "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Start",
                         "excluded": false
                     },
                     {
@@ -26352,7 +26419,7 @@
                     },
                     {
                         "name": "IsInGasLayer",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "FireFromMuzzle",
@@ -26388,6 +26455,10 @@
                     },
                     {
                         "name": "StopGunEffect",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnReloadFast",
                         "excluded": false
                     }
                 ]
@@ -26850,7 +26921,7 @@
                     },
                     {
                         "name": "SetBotMove",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "SetBotMove$1",
@@ -27099,14 +27170,6 @@
                         "excluded": false
                     },
                     {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": false
-                    },
-                    {
                         "name": "Awake",
                         "excluded": false
                     },
@@ -27164,54 +27227,18 @@
                     },
                     {
                         "name": "GetNearestDirection",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnDespawn",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "ExplosionPool",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "OnInit",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnDespawn$1",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnDespawn",
-                        "excluded": true
-                    },
-                    {
-                        "name": "IEDelayDespawn",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "ExplosionPoolZomNor",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "OnInit",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDespawn$1",
                         "excluded": false
                     },
                     {
                         "name": "OnDespawn",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
-                        "name": "IEDelayDespawn",
+                        "name": "ExplosinArrmor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "PlayAudioVoice",
                         "excluded": false
                     }
                 ]
@@ -27239,6 +27266,10 @@
                     {
                         "name": "Collect",
                         "excluded": false
+                    },
+                    {
+                        "name": "PlayCollectSound",
+                        "excluded": false
                     }
                 ]
             },
@@ -27252,7 +27283,7 @@
                     },
                     {
                         "name": "OnInit",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnEnable",
@@ -27264,23 +27295,23 @@
                     },
                     {
                         "name": "Update",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "NormalFire",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Explosion",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "CheckHitCollider",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "CheckHitExplosion",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "OnDrawGizmos",
@@ -27288,7 +27319,7 @@
                     },
                     {
                         "name": "OnDespawn",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -27473,6 +27504,10 @@
                     {
                         "name": "GetNextState",
                         "excluded": false
+                    },
+                    {
+                        "name": "IETakeDamagePlayer",
+                        "excluded": false
                     }
                 ]
             },
@@ -27516,11 +27551,11 @@
                 "instanceMethods": [
                     {
                         "name": "EnterState",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "UpdateState",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ExitState",
@@ -27528,11 +27563,15 @@
                     },
                     {
                         "name": "GetNextState",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "TutorialReload",
                         "excluded": true
+                    },
+                    {
+                        "name": "IEDelayAnimAndDespawn",
+                        "excluded": false
                     }
                 ]
             },
@@ -27627,10 +27666,6 @@
                         "excluded": false
                     },
                     {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
                         "name": "AssignAnimationClips",
                         "excluded": false
                     },
@@ -27639,11 +27674,11 @@
                         "excluded": false
                     },
                     {
-                        "name": "InstructRocket",
-                        "excluded": true
+                        "name": "InstructReload",
+                        "excluded": false
                     },
                     {
-                        "name": "InstructReload",
+                        "name": "Start",
                         "excluded": false
                     }
                 ]
@@ -27658,6 +27693,10 @@
                     },
                     {
                         "name": "Shoot",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
                         "excluded": false
                     }
                 ]
@@ -27825,6 +27864,354 @@
                         "excluded": true
                     }
                 ]
+            },
+            {
+                "className": "BallisticArmor",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ExplosionArmor",
+                        "excluded": true
+                    },
+                    {
+                        "name": "TakeDamage",
+                        "excluded": false
+                    },
+                    {
+                        "name": "CaculatorDropArmor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ActiveFalseThis",
+                        "excluded": false
+                    },
+                    {
+                        "name": "IEDropArmor",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "EventAnim_BossZomSwat",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "ExplosionDoor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ShakeCamera",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ShakeCamera$1",
+                        "excluded": false
+                    },
+                    {
+                        "name": "StartShakeCameraLoop",
+                        "excluded": false
+                    },
+                    {
+                        "name": "StopShakeCamera",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ShakeCameraLoop",
+                        "excluded": false
+                    },
+                    {
+                        "name": "TakeDamagePlayer",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ChangeCam",
+                        "excluded": false
+                    },
+                    {
+                        "name": "PlaySoundIndex",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "ExplosionDor",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ExplosionDoor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "IEDropArmor",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "EffectUI",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "inherits",
+                        "excluded": false
+                    },
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Play",
+                        "excluded": false
+                    },
+                    {
+                        "name": "PositionWithinPanel",
+                        "excluded": false
+                    },
+                    {
+                        "name": "FadeOutEffect",
+                        "excluded": false
+                    },
+                    {
+                        "name": "SetAlpha",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "CheckWithHeightManager",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "UpdateWeaponPosition",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "OxygenTanks",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Explosion",
+                        "excluded": false
+                    },
+                    {
+                        "name": "CheckHitExplosion",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnDrawGizmos",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "PlayerHP",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnEnable",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnDisable",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnTakeDamagePlayer",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ProcessDamageQueue",
+                        "excluded": false
+                    },
+                    {
+                        "name": "inherits",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ClearListDamage",
+                        "excluded": false
+                    },
+                    {
+                        "name": "IEHealing",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "GameConstants.BotType",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "ButtomSyncLink",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnDisable",
+                        "excluded": true
+                    },
+                    {
+                        "name": "OnCickButton",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ButtonCTA",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "ButtonAnimSimulator",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnPlayButtonAnim",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "FlareAnimation",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Update",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "System.NotImplemented",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "ByDesign#get",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ByDesignWithMessage",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "System.NotImplementedException",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "ctor",
+                        "excluded": false
+                    },
+                    {
+                        "name": "$ctor1",
+                        "excluded": true
+                    },
+                    {
+                        "name": "$ctor2",
+                        "excluded": true
+                    }
+                ]
+            },
+            {
+                "className": "HelperCoroutine",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "WaitSeconds",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DelaySeconds",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DelayFrames",
+                        "excluded": true
+                    },
+                    {
+                        "name": "RunOnSeconds",
+                        "excluded": false
+                    },
+                    {
+                        "name": "RunOnFrames",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DelayCall$1",
+                        "excluded": true
+                    },
+                    {
+                        "name": "DelayCall",
+                        "excluded": true
+                    },
+                    {
+                        "name": "RunCall$1",
+                        "excluded": false
+                    },
+                    {
+                        "name": "RunCall",
+                        "excluded": true
+                    }
+                ]
             }
         ],
         "stubberDataList": [],
@@ -27863,8 +28250,8 @@
                         "name": "Resources/unity_builtin_extra/Default-Particle"
                     },
                     {
-                        "maxWidth": 512,
-                        "maxHeight": 512,
+                        "maxWidth": 128,
+                        "maxHeight": 128,
                         "format": "png32",
                         "compression": "quantSize",
                         "quality": 65,
@@ -27883,14 +28270,244 @@
                         "name": "Assets/_GameManhGV/Textures/Map_Z8/T_Z08.tga"
                     },
                     {
-                        "maxWidth": 1024,
-                        "maxHeight": 1024,
+                        "maxWidth": 128,
+                        "maxHeight": 128,
                         "format": "default",
                         "compression": "none",
                         "quality": 65,
                         "script": "",
                         "ext": "",
                         "name": "Assets/_GameManhGV/Textures/Map_Z8/Lightmap-0_comp_light.exr"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/T_bot_zom_Girl.tga"
+                    },
+                    {
+                        "maxWidth": 256,
+                        "maxHeight": 256,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/T_boss_zom_Swat.tga"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/T_bot_zom_Patient.tga"
+                    },
+                    {
+                        "maxWidth": 32,
+                        "maxHeight": 32,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/entrails_low2_entrails_AlbedoTransparency.png"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/T_bot_zom_Nurse.tga"
+                    },
+                    {
+                        "maxWidth": 64,
+                        "maxHeight": 64,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/T_Oxygen_tanks.tga"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/T_boss_zom_Swat_ArmorWeapon.tga"
+                    },
+                    {
+                        "maxWidth": 64,
+                        "maxHeight": 64,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/Explosion 1.tif"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/BloodBurst03.png"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Map_Z8/T_BreakDoor.jpg"
+                    },
+                    {
+                        "maxWidth": 256,
+                        "maxHeight": 256,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Map_Z8/T_FP_W89.tga"
+                    },
+                    {
+                        "maxWidth": 256,
+                        "maxHeight": 256,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/common_35.tga"
+                    },
+                    {
+                        "maxWidth": 32,
+                        "maxHeight": 32,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Map_Z8/flash1.png"
+                    },
+                    {
+                        "maxWidth": 256,
+                        "maxHeight": 256,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/UI/Deco_tutorial.png"
+                    },
+                    {
+                        "maxWidth": 32,
+                        "maxHeight": 32,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Map_Z8/Concrete.png"
+                    },
+                    {
+                        "maxWidth": 64,
+                        "maxHeight": 64,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/WaterSplash2.PNG"
+                    },
+                    {
+                        "maxWidth": 64,
+                        "maxHeight": 64,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/UI_MainCenter.png"
+                    },
+                    {
+                        "maxWidth": 64,
+                        "maxHeight": 64,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Map_Z8/SmokeTrails.png"
+                    },
+                    {
+                        "maxWidth": 64,
+                        "maxHeight": 64,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Map_Z8/Fireball1.tif"
+                    },
+                    {
+                        "maxWidth": 256,
+                        "maxHeight": 256,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/UI/AmmoGlow/Blue_AmmoGlowFx.png"
+                    },
+                    {
+                        "maxWidth": 256,
+                        "maxHeight": 256,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/UI/AmmoGlow/Red_AmmoGlowFx.png"
+                    },
+                    {
+                        "maxWidth": 256,
+                        "maxHeight": 256,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/B.Splat.04_T.png"
+                    },
+                    {
+                        "maxWidth": 1024,
+                        "maxHeight": 1024,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/UI/UI_WinLose.png"
                     }
                 ]
             },
@@ -27904,7 +28521,338 @@
                     "script": "",
                     "ext": ""
                 },
-                "overrides": []
+                "overrides": [
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:10.000",
+                        "lengthInSeconds": 10.0,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/1_2.End_Win.ogg"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:07.391",
+                        "lengthInSeconds": 7.390999794006348,
+                        "bitrate": 32,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Background_BH1.ogg"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Zom_Swat/Mechexplositon.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/MuktikillZombie/Audio/Killmark/Monsters kill.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/MuktikillZombie/Audio/KillBoss/KilledSpecialBoss.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/MuktikillZombie/Audio/Killmark/megakill.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Zom_Crasher/CrasherSoundFinal/Tanker_Breathe.ogg"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/MuktikillZombie/Audio/KillBoss/KilledOccultBoss.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Materials/KilledOccultBoss.ogg"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/MuktikillZombie/Audio/Killmark/multikill.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/MuktikillZombie/Audio/Killmark/unstoppable.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Zom_Crasher/CrasherSoundFinal/Tanker_Attack2.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/MuktikillZombie/Audio/Killmark/Godlike.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Zom_Crasher/CrasherSoundFinal/Tanker_ripuprock.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Zom_Swat/Monster_Roar.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/S_SW_Rocket _fly.ogg"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Zom_Crasher/CrasherSoundFinal/Tanker_Rock2.wav"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:01.374",
+                        "lengthInSeconds": 1.3739999532699586,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Zombie/New Folder/_zom_dead_woman1.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:01.060",
+                        "lengthInSeconds": 1.059999942779541,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Zom_Crasher/CrasherSoundFinal/Tanker_Attack1.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:00.686",
+                        "lengthInSeconds": 0.6859999895095825,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Materials/AirDrop 1.ogg"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:00.517",
+                        "lengthInSeconds": 0.5170000195503235,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Zom_Crasher/CrasherSoundFinal/Tanker_Footstep1.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:00.000",
+                        "lengthInSeconds": 0.0,
+                        "bitrate": 128,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Good Reload.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:00.914",
+                        "lengthInSeconds": 0.9139999747276306,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/AirCraftExploding.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:00.914",
+                        "lengthInSeconds": 0.9139999747276306,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Vehicle-Hit-2.ogg"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:00.914",
+                        "lengthInSeconds": 0.9139999747276306,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Vehicle-Hit-3.ogg"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:00.914",
+                        "lengthInSeconds": 0.9139999747276306,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Vehicle-Hit-1.ogg"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.007",
+                        "endTime": "00:00.914",
+                        "lengthInSeconds": 0.906999945640564,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/MuktikillZombie/Audio/KillBoss/CollectAllItems.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:00.914",
+                        "lengthInSeconds": 0.9139999747276306,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Zombie/New Folder/_zom_hit_woman1.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:00.914",
+                        "lengthInSeconds": 0.9139999747276306,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Zombie/New Folder/_zom_hit_man2.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:00.914",
+                        "lengthInSeconds": 0.9139999747276306,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Weapon81/Reload/mg42_gun_reload_clip_in.ogg"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:00.914",
+                        "lengthInSeconds": 0.9139999747276306,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Weapon81/Reload/mg42_gun_reload_clip_out.ogg"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:00.914",
+                        "lengthInSeconds": 0.9139999747276306,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Zombie/New Folder/_zom_hit_woman2.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:00.914",
+                        "lengthInSeconds": 0.9139999747276306,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Zombie/New Folder/zom_attack.mp3"
+                    }
+                ]
             },
             "font": {
                 "default": {

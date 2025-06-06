@@ -21,7 +21,6 @@ public class WeaponBase : Singleton<WeaponBase>
     [SerializeField] private Transform shakeCam; // Biến để tham chiếu đến MainCamera
     [SerializeField] private float shakeCamMin;
     [SerializeField] private float shakeCamMax;
-    [SerializeField] private bool IsShowLunaEndGame;
 
     protected Transform _cameraTransform;
     protected Camera _camera;
@@ -71,25 +70,17 @@ public class WeaponBase : Singleton<WeaponBase>
         Invoke(nameof(Init), .1f);
     }
 
+    private void Start()
+    {
+        Instance = this;
+    }
+    
     protected virtual void Init()
     {
         EventManager.Invoke(EventName.UpdateBulletCount, _currentBulletCount);
         EventManager.Invoke(EventName.UpdateBulletCountDefault, _defaultBulletCount);
     }
-
-    protected virtual void OnEnable()
-    {
-        EventManager.AddListener<bool>(EventName.OnShowLunaEndGame, OnShowLunaEndGame);
-    }
-    protected virtual void OnDisable()
-    {
-        EventManager.RemoveListener<bool>(EventName.OnShowLunaEndGame, OnShowLunaEndGame);
-    }
-
-    protected virtual void OnShowLunaEndGame(bool IsShow)
-    {
-        IsShowLunaEndGame = IsShow;
-    }
+    
     protected virtual void Update()
     {
 #if UNITY_EDITOR
@@ -381,7 +372,7 @@ public class WeaponBase : Singleton<WeaponBase>
     #region Reload
     public void OnReload()
     {
-        if (_isReloading || _currentBulletCount == _defaultBulletCount)
+        if (_isReloading || _currentBulletCount >= _defaultBulletCount)
             return;
         
         if (_reloadCoroutine != null)
