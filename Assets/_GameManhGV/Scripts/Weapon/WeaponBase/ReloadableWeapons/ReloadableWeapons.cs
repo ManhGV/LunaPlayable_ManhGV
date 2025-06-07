@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class ReloadableWeapons : WeaponBase
 {
-    
     [Header("Shooting")]
     protected float _timeSinceLastShoot = 0f; // Thời gian từ lần bắn cuối cùng
     [SerializeField] protected int _currentBulletCount; // Số lượng đạn hiện tại trong băng
@@ -38,7 +37,7 @@ public class ReloadableWeapons : WeaponBase
 
         _timeSinceLastShoot += Time.deltaTime;
 
-        if (canShoot)
+        if (readyShoot)
             LogicPlayGun();
         else
             LogicStopGun();

@@ -58,8 +58,8 @@ public class RocketController : Singleton<RocketController>
         if (currentAmount > 0)
         {
             _fireAnim.Play("FPS_anim_W38_Fire");
-            Rocket rocket = SimplePool.Spawn<Rocket>(GameConstants.PoolType.bullet_Rocket, _posSpawn.position, Quaternion.identity);
-            rocket.OnInit(WeaponBase.Instance.GizmodCaculatorPointShoot());
+            ProjectileExplosion projectileExplosion = SimplePool.Spawn<ProjectileExplosion>(GameConstants.PoolType.bullet_Rocket, _posSpawn.position, Quaternion.identity);
+            projectileExplosion.OnInit(WeaponBase.Instance.GizmodCaculatorPointShoot());
             currentAmount--;
             StartCoroutine(IEReload());
         }

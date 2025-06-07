@@ -128,8 +128,12 @@ public class BotNetwork : GameUnit, ITakeDamage
                 hideHealthBarCoroutine = StartCoroutine(HideHealthBarAfterDelay());
         }
     }
-    
-    
+
+    public Transform GetTransform()
+    {
+        return TF;
+    }
+
     private void CheckImmortalStatus()
     {
         if (_currentHealth <= botConfigSO.health * (botConfigSO.HealthThreshold / 100f))

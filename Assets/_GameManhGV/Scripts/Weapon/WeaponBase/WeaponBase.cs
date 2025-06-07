@@ -22,7 +22,7 @@ public class WeaponBase : Singleton<WeaponBase>
     [SerializeField] LayerMask _layerTarget;
     [SerializeField] float _distanceGizMod;
     
-    protected bool canShoot;
+    protected bool readyShoot;
     
     // kiểm tra có ang ấn vào UI không
     // Bộ nhớ tạm cho kiểm tra UI - static để tái sử dụng
@@ -54,11 +54,11 @@ public class WeaponBase : Singleton<WeaponBase>
         
         if (Input.GetMouseButtonDown(0) && !IsPointerOverUI())
         {
-            canShoot = true;
+            readyShoot = true;
         }
         else if(Input.GetMouseButtonUp(0))
         {
-            canShoot = false;
+            readyShoot = false;
         }
     }
 
@@ -145,7 +145,7 @@ public class WeaponBase : Singleton<WeaponBase>
 
     public void StopGunEffect()
     {
-        canShoot = false;
+        readyShoot = false;
         
         foreach (ParticleSystem fireEffect in _fireEffect)
             if (fireEffect != null && fireEffect.isPlaying)

@@ -9,7 +9,6 @@ public class Weapon26 : ReloadableWeapons
     protected override void Awake()
     {
         base.Awake();
-        AddAnimationClips();
         UIManager.Instance.GetUI<Canvas_GamePlay>().Init();
         Invoke(nameof(OnInit), .1f);
     }

@@ -1,22 +1,22 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-public class Rocket : GameUnit
+public class ProjectileExplosion : GameUnit
 {
-    [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private ParticleSystem _fireEffect;
-    [SerializeField] private int _dame;
-    [SerializeField] private float _lifeTime;
-    [SerializeField] private float _speed;
+    [SerializeField] protected AudioSource _audioSource;
+    [SerializeField] protected ParticleSystem _fireEffect;
+    [SerializeField] protected int _dame;
+    [SerializeField] protected float _lifeTime;
+    [SerializeField] protected float _speed;
     
     [Header("Explosion")]
-    [SerializeField] private float _radiusColli;
-    [SerializeField] private float _radiusExplosion;
-    [SerializeField] private LayerMask _layerHit;
-    private Vector3 _direction;
-    private float _lifeTimer;
-    private bool _isHitCollider;
+    [SerializeField] protected float _radiusColli;
+    [SerializeField] protected float _radiusExplosion;
+    [SerializeField] protected LayerMask _layerHit;
+    protected Vector3 _direction;
+    protected float _lifeTimer;
+    protected bool _isHitCollider;
     
-    public void OnInit(Vector3 direction)
+    public virtual void OnInit(Vector3 direction)
     {
         _direction = direction;
         _direction = (_direction - transform.position).normalized;
@@ -26,18 +26,18 @@ public class Rocket : GameUnit
         transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         _audioSource?.Play();
         _fireEffect?.Play();
     }
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         _audioSource?.Stop();
         _fireEffect?.Stop();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         _lifeTimer += Time.deltaTime;
         if(_lifeTimer > _lifeTime)
@@ -54,12 +54,12 @@ public class Rocket : GameUnit
         }
 
     }
-    public void NormalFire()
+    public virtual void NormalFire()
     {
         transform.position += _direction * _speed * Time.deltaTime;
     }
     
-    public void Explosion()
+    public virtual void Explosion()
     {
         OnDespawn();
         
@@ -69,7 +69,7 @@ public class Rocket : GameUnit
         RocketController.Instance.SnakeCameraRocket();
     }
     
-    public void CheckHitCollider()
+    public virtual void CheckHitCollider()
     {
         Collider[] cols = Physics.OverlapSphere(TF.position, _radiusColli, _layerHit);
         if(cols.Length != 0 )
@@ -79,7 +79,7 @@ public class Rocket : GameUnit
             CheckHitExplosion();
         }
     }
-    public void CheckHitExplosion()
+    public virtual void CheckHitExplosion()
     {
         Collider[] cols = Physics.OverlapSphere(TF.position, _radiusExplosion, _layerHit);
         List<Transform> lstRoot = new List<Transform> ();
@@ -111,7 +111,7 @@ public class Rocket : GameUnit
         }
     }
 
-    private void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(TF.position, _radiusExplosion);
@@ -119,7 +119,7 @@ public class Rocket : GameUnit
         Gizmos.DrawWireSphere(TF.position, _radiusColli);
     }
 
-    public void OnDespawn()
+    public virtual void OnDespawn()
     {
         SimplePool.Despawn(this);
     }
