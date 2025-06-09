@@ -175,7 +175,7 @@ public class BotNetwork : GameUnit, ITakeDamage
         healthBarTransform.gameObject.SetActive(false);
         OnBotNetWorkDead?.Invoke(this);
         SpawnBotManager.Instance.RemoveBotDead(this);
-        AchievementEvaluator.Instance.OnBotKilled(4f,false);
+        AchievementEvaluator.Instance.OnBotKilled(1.8f,false);
         if(isBoss)
             GameManager.Instance.EndGame();
     }
@@ -328,9 +328,12 @@ public class BotNetwork : GameUnit, ITakeDamage
     
     public void PlayAudioVoice(int _index,float _volume)
     {
-        _audioSourceVoice.volume = _volume;
-        _audioSourceVoice.clip = _listSoundBotVoice[_index];
-        _audioSourceVoice.Play();
+        // _audioSourceVoice.volume = _volume;
+        // _audioSourceVoice.clip = _listSoundBotVoice[_index];
+        // _audioSourceVoice.Play();
+        if(_index==0)
+            _volume = 0.5f;
+        AudioManager.Instance.PlaySound(_listSoundBotVoice[_index],_volume);
     }
 }
 

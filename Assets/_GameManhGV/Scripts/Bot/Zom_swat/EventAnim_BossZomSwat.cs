@@ -29,6 +29,7 @@ public class EventAnim_BossZomSwat : MonoBehaviour
         if (_explosionDoor != null)
         {
             _explosionDoor.ExplosionDoor();
+            CutSceneCam.Instance.MoveFromAToB(1,2,.65f,70f);
         }
     }
     
@@ -49,7 +50,10 @@ public class EventAnim_BossZomSwat : MonoBehaviour
         shakeCoroutine = StartCoroutine(ShakeCameraLoop(magnitude));
     }
 
-    public void PlaySoundIndex(int _index) => _bossZomSwat.PlayAudioVoice(_index,1);
+    public void PlaySoundIndex(int _index)
+    {
+        _bossZomSwat.PlayAudioVoice(_index,1);
+    }
 
     /// <summary>
     /// Dừng rung camera

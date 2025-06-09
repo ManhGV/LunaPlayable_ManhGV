@@ -69,6 +69,7 @@ public class PlayerHP : Singleton<PlayerHP>
             // Cập nhật giao diện
             HPTxt.text = HPPoint.ToString();
             HPimage.fillAmount = HPPoint / HPMax;
+            
             HPimage.color = HPState.Evaluate(HPimage.fillAmount);
             // Tạo một khoảng nghỉ nhỏ để tránh trừ sát thương quá nhanh, điều này có thể điều chỉnh tùy ý
             yield return new WaitForSeconds(0.2f);

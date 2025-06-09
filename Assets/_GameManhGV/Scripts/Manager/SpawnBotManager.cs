@@ -43,7 +43,7 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         if (canCallBossZomSwat && _currentBot <= 1)
         {
             canCallBossZomSwat = false;
-            Invoke(nameof(CallBossZomSwat), 1f);
+            StartCoroutine(IECallBossZomSwat(1.8f));
             StartCoroutine(IEOnTutorialRocket());
         }
     }
@@ -54,10 +54,14 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         RocketController.Instance.InstructRocket();
     }
 
-    public void CallBossZomSwat()
+    public IEnumerator IECallBossZomSwat(float time)
     {
-        _bossZomSwat.SetActive(true);
+        yield return new WaitForSeconds(time);
+        GameManager.Instance.StartCutScene();
         PlayerHP.Instance.ClearListDamage();
+        CutSceneCam.Instance.MoveFromAToB(0,1,2.5f,70f);
+        yield return new WaitForSeconds(2.5f);
+        _bossZomSwat.SetActive(true);
     }
     
     public void SpawnBot()

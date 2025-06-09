@@ -286,6 +286,7 @@ public class Canvas_GamePlay : UICanvas
     {
         WeaponBase.Instance.StopGunEffect();
         _canvasGroupThis.alpha = 1f;
+        yield return new WaitForSeconds(1.8f);
         this.RunOnSeconds(1f, () => _canvasGroupThis.alpha -= Time.deltaTime);
         yield return new WaitForSeconds(.2f);
         _endGamePanel.SetActive(true);

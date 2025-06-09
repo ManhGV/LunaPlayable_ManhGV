@@ -54,6 +54,7 @@ public class ExplosionDor : MonoBehaviour
             if (Physics.Raycast(door.position, Vector3.down, 0.1f, groundLayer) && verticalVelocity < 0f)
             {
                 Debug.DrawRay(door.position, Vector3.down * 0.1f, Color.green, 1f);
+                door.transform.rotation = Quaternion.Euler(Vector3.zero);
                 isFlying = false;
             }
             else

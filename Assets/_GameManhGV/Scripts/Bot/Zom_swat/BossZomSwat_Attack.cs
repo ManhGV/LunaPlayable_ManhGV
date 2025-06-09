@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossZomSwat_Attack : BaseState<BossZomSwatState>
 {
+    [SerializeField] EventAnim_BossZomSwat eventAnim;
     [SerializeField] private DataAttackBoss dataAttackBoss;
     private float timerAttack;
     private int indexSkill;
@@ -18,6 +19,7 @@ public class BossZomSwat_Attack : BaseState<BossZomSwatState>
     private bool isStun_1;
     private bool isStun_2;
     private Coroutine _coroutineIEDelaySkill;
+    private Coroutine _coroutineIEDelayEventAnim;
 
     public override void EnterState()
     {
@@ -28,18 +30,22 @@ public class BossZomSwat_Attack : BaseState<BossZomSwatState>
 
         #region Enble Detector Skill
 
-        if (indexSkill == 1)
+        if (indexSkill == 0)
+        {
+        }
+        else if (indexSkill == 1)
         {
             foreach (Detector VARIABLE in AttakType_1)
                 VARIABLE.gameObject.SetActive(true);
-            _coroutineIEDelaySkill = StartCoroutine(IEDelaySkill());
+            
         }
         else if (indexSkill == 2)
         {
             foreach (Detector VARIABLE in AttakType_2)
                 VARIABLE.gameObject.SetActive(true);
-            _coroutineIEDelaySkill = StartCoroutine(IEDelaySkill());
         }
+        _coroutineIEDelaySkill = StartCoroutine(IEDelaySkill());
+        _coroutineIEDelaySkill = StartCoroutine(IEDelayAnimEvent());
 
         #endregion
 
@@ -49,6 +55,42 @@ public class BossZomSwat_Attack : BaseState<BossZomSwatState>
         thisBotNetwork.RotaToTarget();
     }
 
+    public IEnumerator IEDelayAnimEvent()   
+    {
+        if (indexSkill == 0)
+        {
+            yield return new WaitForSeconds(.9f);
+            thisBotNetwork.PlayAudioVoice(5, 1);
+            thisBotNetwork.PlayAudioVoice(4, 1);
+            eventAnim.ShakeCamera();
+            eventAnim.TakeDamagePlayer();
+        }
+        else if (indexSkill == 1)
+        {
+            yield return new WaitForSeconds(2.7f);//Chờ .26f
+            thisBotNetwork.PlayAudioVoice(2, 1);
+            yield return new WaitForSeconds(0.1f); //Tổng .29f
+            eventAnim.TakeDamagePlayer();
+            eventAnim.ShakeCamera();
+            yield return new WaitForSeconds(0.796f); //Tổng 1.23f
+            thisBotNetwork.PlayAudioVoice(2, 1);
+            yield return new WaitForSeconds(0.07f); //Tổng 1.25f
+            eventAnim.TakeDamagePlayer();
+            eventAnim.ShakeCamera();
+            yield return new WaitForSeconds(1.33f); //Tổng 3.05f
+            eventAnim.ShakeCamera();
+            thisBotNetwork.PlayAudioVoice(3, 1);
+        }
+        else if (indexSkill == 2)
+        {
+            yield return new WaitForSeconds(2.569f); //1.07
+            thisBotNetwork.PlayAudioVoice(5, 1);
+            yield return new WaitForSeconds(0.191f); //1.09
+            thisBotNetwork.PlayAudioVoice(8, 1);
+            eventAnim.ShakeCamera();
+            eventAnim.TakeDamagePlayer();
+        }
+    }
     public IEnumerator IEDelaySkill()
     {
         if (indexSkill == 1)
@@ -85,6 +127,8 @@ public class BossZomSwat_Attack : BaseState<BossZomSwatState>
 
     public override void ExitState()
     {
+        if(_coroutineIEDelayEventAnim != null)
+            StopCoroutine(_coroutineIEDelayEventAnim);
         if (_coroutineIEDelaySkill != null)
         {
             StopCoroutine(_coroutineIEDelaySkill);

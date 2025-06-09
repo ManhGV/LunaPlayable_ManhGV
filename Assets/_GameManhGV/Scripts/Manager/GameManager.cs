@@ -23,6 +23,7 @@ public class GameManager : Singleton<GameManager>
 
     public void StartCutScene()
     {
+        soundBG.SetActive(false);
         _canvasGameplay.alpha = 0;
         _mainCamera.SetActive(false);
         _cutSceneCamera.SetActive(true);

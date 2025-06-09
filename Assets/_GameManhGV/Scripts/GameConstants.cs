@@ -33,6 +33,7 @@ public static class GameConstants
         vfx_ShootGift = 12,
         BotZomNorNurseTranNha = 13,
         BotZomNorGirlTranNha = 14,
+        AudioChild = 15,
     }
     public enum RewardType
     {
