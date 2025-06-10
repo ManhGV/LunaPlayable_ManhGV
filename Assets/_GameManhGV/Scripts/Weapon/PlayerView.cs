@@ -72,7 +72,7 @@ public class PlayerView : MonoBehaviour
 
     public void Update()
     {
-        if(GameManager.Instance.GetGameState() == GameConstants.GameState.CutScene)
+        if(GameManager.Instance.GetGameState() != GameConstants.GameState.Playing)
             return;
         
         if (Input.GetMouseButton(0))

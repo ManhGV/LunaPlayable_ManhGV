@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private GameObject soundBG;
+    [SerializeField] private GameObject soundCombatBoss;
     [SerializeField] private GameConstants.GameState gameState;
     [SerializeField] private float slowMotionTimeScale = 0.5f;
     
@@ -65,11 +66,14 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void EndGame()
+    public void EndGame(bool _isWin)
     {
+        if(gameState == GameConstants.GameState.EndGame)
+            return;
+        UIManager.Instance.GetUI<Canvas_GamePlay>().OpendEndGame(_isWin);
+        soundCombatBoss.SetActive(false);
         soundBG.SetActive(false);
         endGame = true;
-        UIManager.Instance.GetUI<Canvas_GamePlay>().OpendEndGame();
         gameState = GameConstants.GameState.EndGame;
         LunaEndGame();
     }

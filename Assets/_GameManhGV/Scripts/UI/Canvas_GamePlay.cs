@@ -55,7 +55,8 @@ public class Canvas_GamePlay : UICanvas
     [Header("Open End Game")]
     [SerializeField] CanvasGroup _canvasGroupThis;
     [SerializeField] CanvasGroup _canvasGroupEndGame;
-    [SerializeField] GameObject _endGamePanel;
+    [SerializeField] GameObject _endGameWonPanel;
+    [SerializeField] GameObject _endGameLosePanel;
     
     private bool instructReload = false;
     private bool instructRocket = false;
@@ -117,8 +118,9 @@ public class Canvas_GamePlay : UICanvas
                 uiElementPointer.anchoredPosition = Vector2.Lerp(startPos.anchoredPosition, endPos.anchoredPosition, t);//
             }
             else
-            { 
-                _activeReloadFast.gameObject.SetActive(false);
+            {
+                _canvasGrupReloadFast.alpha = 0;
+                _canvasGrupReloadFastFake.alpha = 0;
                 _tapToReload.gameObject.SetActive(false);
                 
                 crosshair.SetActive(true);
@@ -279,21 +281,40 @@ public class Canvas_GamePlay : UICanvas
     {
         _powerupEffectUI.SetActive(true);
     }
+
+    public void OpendEndGame(bool _isWin)
+    {
+        if(_isWin)
+            StartCoroutine(IEOpenEndGameWin());
+        else
+            StartCoroutine(IEOpenEndGameLose());
+    } 
     
-    public void OpendEndGame() => StartCoroutine(IEOpenEndGame());
-    
-    public IEnumerator IEOpenEndGame()
+    public IEnumerator IEOpenEndGameWin()
     {
         WeaponBase.Instance.StopGunEffect();
         _canvasGroupThis.alpha = 1f;
         yield return new WaitForSeconds(1.8f);
         this.RunOnSeconds(1f, () => _canvasGroupThis.alpha -= Time.deltaTime);
         yield return new WaitForSeconds(.2f);
-        _endGamePanel.SetActive(true);
+        _endGameWonPanel.SetActive(true);
         _canvasGroupEndGame.alpha = 0f;
         this.RunOnSeconds(1f, () => _canvasGroupEndGame.alpha += Time.deltaTime);
         yield return new WaitForSeconds(.9f);
-        _endGamePanel.SetActive(true);
+        _endGameWonPanel.SetActive(true);
     }
     
+    public IEnumerator IEOpenEndGameLose()
+    {
+        WeaponBase.Instance.StopGunEffect();
+        _canvasGroupThis.alpha = 1f;
+        yield return new WaitForSeconds(1.8f);
+        this.RunOnSeconds(1f, () => _canvasGroupThis.alpha -= Time.deltaTime);
+        yield return new WaitForSeconds(.2f);
+        _endGameLosePanel.SetActive(true);
+        _canvasGroupEndGame.alpha = 0f;
+        this.RunOnSeconds(1f, () => _canvasGroupEndGame.alpha += Time.deltaTime);
+        yield return new WaitForSeconds(.9f);
+        _endGameLosePanel.SetActive(true);
+    }
 }

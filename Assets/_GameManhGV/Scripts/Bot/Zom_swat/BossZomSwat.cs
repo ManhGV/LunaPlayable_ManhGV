@@ -98,6 +98,14 @@ public class BossZomSwat : MonoBehaviour
         }
     }
 
+    public void ChangeState(BossZomSwatState tankState)
+    {
+        if (_currentState.StateKey.Equals(tankState) || _isTransition)
+            return;
+
+        TransitionState(tankState);
+    }
+    
     private void TransitionState(BossZomSwatState tankState)
     {
         _isTransition = true;

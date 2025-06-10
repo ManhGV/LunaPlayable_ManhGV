@@ -46,8 +46,7 @@ public class BossZomSwat_Start : BaseState<BossZomSwatState>
         {
             isSetparent = true;
             CutSceneCam.Instance.Setparent(3,50f);
-            thisBotNetwork.SetIntAnim("MoveType", 1);
-            thisBotNetwork.ChangeAnim("Move");
+            thisBotNetwork.ChangeAnim("MoveCutScene");
             return;
         }
             

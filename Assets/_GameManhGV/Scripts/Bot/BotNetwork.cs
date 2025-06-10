@@ -9,8 +9,9 @@ public class BotNetwork : GameUnit, ITakeDamage
     [Header("Bot Audio")]
     [SerializeField] AudioSource _audioSourceVoice;
     [SerializeField] AudioClip[] _listSoundBotVoice;
-    
-    [Header("Bắn rocket 1 lần ngã")]
+
+    [Header("Bắn rocket 1 lần ngã")] 
+    [SerializeField] private BossZomSwat _bossZomSwat;
     public bool canExplosionArmor;
     [SerializeField] BallisticArmor[] arrBallisticArmor;
     [Space(10)]
@@ -177,7 +178,7 @@ public class BotNetwork : GameUnit, ITakeDamage
         SpawnBotManager.Instance.RemoveBotDead(this);
         AchievementEvaluator.Instance.OnBotKilled(1.8f,false);
         if(isBoss)
-            GameManager.Instance.EndGame();
+            GameManager.Instance.EndGame(true);
     }
 
     private void SetHealthBar(float currentHealth)
@@ -321,8 +322,8 @@ public class BotNetwork : GameUnit, ITakeDamage
         if (canExplosionArmor)
         {
             foreach (BallisticArmor VARIABLE in arrBallisticArmor)
-                if (VARIABLE.gameObject.activeSelf)
-                    VARIABLE.gameObject.SetActive(false);
+                VARIABLE.ExplosionArmor();
+            _bossZomSwat.ChangeState(BossZomSwatState.Stun_2);
         }
     }
     

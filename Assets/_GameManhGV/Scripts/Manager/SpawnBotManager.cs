@@ -50,7 +50,7 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
 
     private IEnumerator IEOnTutorialRocket()
     {
-        yield return new WaitForSeconds(30f);
+        yield return new WaitForSeconds(22f);
         RocketController.Instance.InstructRocket();
     }
 
@@ -60,7 +60,7 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         GameManager.Instance.StartCutScene();
         PlayerHP.Instance.ClearListDamage();
         CutSceneCam.Instance.MoveFromAToB(0,1,2.5f,70f);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.5f);
         _bossZomSwat.SetActive(true);
     }
     

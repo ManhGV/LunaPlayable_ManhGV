@@ -8,10 +8,8 @@ public class BallisticArmor : MonoBehaviour
     [SerializeField] private Transform _bossParent;
     
     [Header("Cấu hình")]
-    public float fallSpeed = 10f;            // Tốc độ rơi
+    public float fallSpeed = 5f;            // Tốc độ rơi
     public float rotationSpeed = 10f;            // Tốc độ xoay
-    public LayerMask groundLayer;            // Layer mặt đất
-    public float raycastDistance = 100f;     // Khoảng cách tia kiểm tra mặt đất
     public float stopOffset = 0.01f;         // Khoảng cách dừng (tránh chạm quá sâu)
     
     [Header("Heal Armor")]
@@ -25,8 +23,13 @@ public class BallisticArmor : MonoBehaviour
 
     public void ExplosionArmor()
     {
+        fallSpeed = 3.5f; 
         foreach (Transform VARIABLE in armorParts)
+        {
             StartCoroutine(IEDropArmor(VARIABLE));
+        }
+        armorParts.Clear();
+        _armorCollider.enabled = false;
     }
 
     public void TakeDamage(int damage)

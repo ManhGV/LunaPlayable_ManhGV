@@ -2,7 +2,7 @@
     "version": "6.3.0",
     "projectId": "e802dd55c6efeaa48a72b8ea5d0f35e7",
     "applicationID": 30065,
-    "creativeName": "TutorialZombie",
+    "creativeName": "TutorialZombie2",
     "pgServer": "EU",
     "window": {
         "‐″": true
@@ -88,7 +88,6 @@
         "assets": {
             "export": [],
             "excludes": [
-                "Assets/Tool/",
                 "Assets/Import/",
                 "Assets/HierarchyDecorator/",
                 "**/Editor/",
@@ -127,16 +126,6 @@
                 "Stubs/IronSource",
                 "Stubs/Vungle",
                 "Stubs/MoreMountains.NiceVibrations",
-                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Blue_AmmoGlowFx10.png",
-                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Blue_AmmoGlowFx30.png",
-                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx30.png",
-                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx30.png",
-                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx10.png",
-                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx10.png",
-                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx.png",
-                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx.png",
-                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Blue_AmmoGlowFx30.png",
-                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Blue_AmmoGlowFx.png",
                 "Assets/_GameManhGV/Materials/KilledOccultBoss.ogg"
             ],
             "includes": [
@@ -14595,7 +14584,7 @@
                     },
                     {
                         "name": "height#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "height#set",
@@ -16459,7 +16448,7 @@
                     },
                     {
                         "name": "hdr#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "hdr#set",
@@ -16475,7 +16464,7 @@
                     },
                     {
                         "name": "clearFlags#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "clearFlags#set",
@@ -16487,11 +16476,11 @@
                     },
                     {
                         "name": "fieldOfView#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "fov#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "fov#set",
@@ -16571,7 +16560,7 @@
                     },
                     {
                         "name": "orthographic#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "orthographic#set",
@@ -16579,7 +16568,7 @@
                     },
                     {
                         "name": "cullingMask#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "cullingMask#set",
@@ -16595,7 +16584,7 @@
                     },
                     {
                         "name": "targetTexture#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "targetTexture#set",
@@ -16607,7 +16596,7 @@
                     },
                     {
                         "name": "depth#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "depth#set",
@@ -16631,7 +16620,7 @@
                     },
                     {
                         "name": "rect#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "rect#set",
@@ -16651,7 +16640,7 @@
                     },
                     {
                         "name": "targetDisplay#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "targetDisplay#set",
@@ -16909,7 +16898,7 @@
                     },
                     {
                         "name": "sharedMaterial#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "sharedMaterial#set",
@@ -18229,7 +18218,7 @@
                     },
                     {
                         "name": "type#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "type#set",
@@ -18237,7 +18226,7 @@
                     },
                     {
                         "name": "fillMethod#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "fillMethod#set",
@@ -18277,7 +18266,7 @@
                     },
                     {
                         "name": "preserveAspect#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "preserveAspect#set",
@@ -19811,7 +19800,7 @@
                     },
                     {
                         "name": "renderMode#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "renderMode#set",
@@ -19819,7 +19808,7 @@
                     },
                     {
                         "name": "sortMode#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "sortMode#set",
@@ -19827,7 +19816,7 @@
                     },
                     {
                         "name": "lengthScale#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "lengthScale#set",
@@ -19835,7 +19824,7 @@
                     },
                     {
                         "name": "velocityScale#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "velocityScale#set",
@@ -19843,7 +19832,7 @@
                     },
                     {
                         "name": "cameraVelocityScale#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "cameraVelocityScale#set",
@@ -19851,7 +19840,7 @@
                     },
                     {
                         "name": "normalDirection#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "normalDirection#set",
@@ -19859,7 +19848,7 @@
                     },
                     {
                         "name": "sortingFudge#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "sortingFudge#set",
@@ -19867,7 +19856,7 @@
                     },
                     {
                         "name": "minParticleSize#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "minParticleSize#set",
@@ -19875,7 +19864,7 @@
                     },
                     {
                         "name": "maxParticleSize#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "maxParticleSize#set",
@@ -19883,7 +19872,7 @@
                     },
                     {
                         "name": "pivot#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "pivot#set",
@@ -19891,7 +19880,7 @@
                     },
                     {
                         "name": "trailMaterial#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "trailMaterial#set",
@@ -22481,7 +22470,7 @@
                 "instanceMethods": [
                     {
                         "name": "name#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "name#set",
@@ -22489,7 +22478,7 @@
                     },
                     {
                         "name": "length#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "ctor",
@@ -22573,7 +22562,7 @@
                     },
                     {
                         "name": "name#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "pixelsPerUnit#get",
@@ -22703,7 +22692,7 @@
                     },
                     {
                         "name": "clips#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "clips#set",
@@ -22919,63 +22908,63 @@
                 "instanceMethods": [
                     {
                         "name": "main#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "emission#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "colorBySpeed#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "colorOverLifetime#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "rotationBySpeed#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "rotationOverLifetime#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "shape#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "sizeBySpeed#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "sizeOverLifetime#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "textureSheetAnimation#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "velocityOverLifetime#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "noise#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "inheritVelocity#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "forceOverLifetime#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "limitVelocityOverLifetime#get",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "enableEmission#get",
@@ -24526,20 +24515,6 @@
                 ]
             },
             {
-                "className": "ParameterManagers",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnActiveInGameGUI",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
                 "className": "PlayerView",
                 "staticMethods": [],
                 "instanceMethods": [
@@ -24780,7 +24755,11 @@
                         "excluded": false
                     },
                     {
-                        "name": "IEOpenEndGame",
+                        "name": "IEOpenEndGameWin",
+                        "excluded": false
+                    },
+                    {
+                        "name": "IEOpenEndGameLose",
                         "excluded": false
                     }
                 ]
@@ -26316,11 +26295,11 @@
                         "excluded": false
                     },
                     {
-                        "name": "CallBossZomSwat",
+                        "name": "IEOnTutorialRocket",
                         "excluded": false
                     },
                     {
-                        "name": "IEOnTutorialRocket",
+                        "name": "IECallBossZomSwat",
                         "excluded": false
                     }
                 ]
@@ -26355,18 +26334,6 @@
                     },
                     {
                         "name": "Init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnShowLunaEndGame",
                         "excluded": false
                     },
                     {
@@ -26459,6 +26426,10 @@
                     },
                     {
                         "name": "OnReloadFast",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
                         "excluded": false
                     }
                 ]
@@ -26757,6 +26728,10 @@
                     },
                     {
                         "name": "TransitionState",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ChangeState",
                         "excluded": false
                     }
                 ]
@@ -27350,6 +27325,10 @@
                     {
                         "name": "Stun",
                         "excluded": false
+                    },
+                    {
+                        "name": "IEDelayAnimEvent",
+                        "excluded": false
                     }
                 ]
             },
@@ -27437,6 +27416,10 @@
                     },
                     {
                         "name": "GetNextState",
+                        "excluded": false
+                    },
+                    {
+                        "name": "init",
                         "excluded": false
                     }
                 ]
@@ -27650,6 +27633,10 @@
                     {
                         "name": "GetNextState",
                         "excluded": false
+                    },
+                    {
+                        "name": "CallOnTakeDamage",
+                        "excluded": false
                     }
                 ]
             },
@@ -27676,10 +27663,6 @@
                     {
                         "name": "InstructReload",
                         "excluded": false
-                    },
-                    {
-                        "name": "Start",
-                        "excluded": false
                     }
                 ]
             },
@@ -27693,10 +27676,6 @@
                     },
                     {
                         "name": "Shoot",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Start",
                         "excluded": false
                     }
                 ]
@@ -27875,7 +27854,7 @@
                     },
                     {
                         "name": "ExplosionArmor",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "TakeDamage",
@@ -28064,10 +28043,6 @@
                     {
                         "name": "ClearListDamage",
                         "excluded": false
-                    },
-                    {
-                        "name": "IEHealing",
-                        "excluded": false
                     }
                 ]
             },
@@ -28212,6 +28187,60 @@
                         "excluded": true
                     }
                 ]
+            },
+            {
+                "className": "AudioManager",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "inherits",
+                        "excluded": false
+                    },
+                    {
+                        "name": "PlaySound",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "CutSceneCam",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "inherits",
+                        "excluded": false
+                    },
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Setparent",
+                        "excluded": false
+                    },
+                    {
+                        "name": "MoveFromAToB",
+                        "excluded": false
+                    },
+                    {
+                        "name": "IEMoveFromAToB",
+                        "excluded": false
+                    }
+                ]
+            },
+            {
+                "className": "AudioChild",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "OnInit",
+                        "excluded": false
+                    },
+                    {
+                        "name": "OnDespawn",
+                        "excluded": false
+                    }
+                ]
             }
         ],
         "stubberDataList": [],
@@ -28340,8 +28369,8 @@
                         "name": "Assets/_GameManhGV/Textures/T_Oxygen_tanks.tga"
                     },
                     {
-                        "maxWidth": 128,
-                        "maxHeight": 128,
+                        "maxWidth": 256,
+                        "maxHeight": 256,
                         "format": "png32",
                         "compression": "quantSize",
                         "quality": 65,
@@ -28410,8 +28439,8 @@
                         "name": "Assets/_GameManhGV/Textures/Map_Z8/flash1.png"
                     },
                     {
-                        "maxWidth": 256,
-                        "maxHeight": 256,
+                        "maxWidth": 512,
+                        "maxHeight": 512,
                         "format": "png32",
                         "compression": "quantSize",
                         "quality": 65,
@@ -28490,8 +28519,8 @@
                         "name": "Assets/_GameManhGV/Textures/UI/AmmoGlow/Red_AmmoGlowFx.png"
                     },
                     {
-                        "maxWidth": 256,
-                        "maxHeight": 256,
+                        "maxWidth": 128,
+                        "maxHeight": 128,
                         "format": "png32",
                         "compression": "quantSize",
                         "quality": 65,
@@ -28508,6 +28537,106 @@
                         "script": "",
                         "ext": "",
                         "name": "Assets/_GameManhGV/Textures/UI/UI_WinLose.png"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/bloodliquid1.png"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Map_Z8/T_FP_bullet.tga"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/EnergyMuzzle.png"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/BloodCloud.png"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/bloodhitsheet.png"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/BloodSheet.png"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/bloodtear.png"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Map_Z8/firemuzzleflash3.png"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Map_Z8/smoke2.png"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Map_Z8/muzzle_eff.tga"
                     }
                 ]
             },
@@ -28851,6 +28980,36 @@
                         "script": "",
                         "ext": "",
                         "name": "Assets/_GameManhGV/Sound/Zombie/New Folder/zom_attack.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:46.551",
+                        "endTime": "01:10.861",
+                        "lengthInSeconds": 24.310001373291017,
+                        "bitrate": 32,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Background_BH.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "01:10.861",
+                        "lengthInSeconds": 70.86100006103516,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/1_3.End_Loss.ogg"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:00.000",
+                        "lengthInSeconds": 0.0,
+                        "bitrate": 128,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Sound/Zom_Crasher/CrasherSoundFinal/Tanker_Pain2.mp3"
                     }
                 ]
             },

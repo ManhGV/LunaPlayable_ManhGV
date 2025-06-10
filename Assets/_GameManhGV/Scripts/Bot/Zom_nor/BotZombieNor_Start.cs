@@ -6,6 +6,11 @@ public class BotZombieNor_Start : BaseState<BotZomNorState>
     [SerializeField] bool dontUseTimer;
     float timer;
 
+    public void CallOnTakeDamage(int obj)
+    {
+        OnTakeDamage(obj);
+    }
+    
     private void OnTakeDamage(int obj)
     {
         isDoneState = true;
