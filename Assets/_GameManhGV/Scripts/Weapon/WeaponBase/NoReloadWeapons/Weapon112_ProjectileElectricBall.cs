@@ -49,16 +49,10 @@ public class Weapon112_ProjectileElectricBall : ProjectileExplosionBase
                 lstRoot.Add(col.gameObject.transform.root);
             }
         }
-        print(lstRoot.Count);
         foreach(var elem in lstRoot)
         {
             ITakeDamage iTakeDamage = elem.gameObject.GetComponentInParent<ITakeDamage>();
-            if (iTakeDamage!=null&&_damageDictionary.ContainsKey(iTakeDamage.GetTransform().gameObject))
-            {
-                print("Cos key");
-                continue;
-            }
-            if (iTakeDamage != null)
+            if (iTakeDamage != null && !_damageDictionary.ContainsKey(iTakeDamage.GetTransform().gameObject))
             {
                 var damageInfo = new DamageInfo()
                 {
