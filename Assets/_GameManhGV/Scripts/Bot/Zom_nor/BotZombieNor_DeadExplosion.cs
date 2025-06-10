@@ -7,7 +7,7 @@ using UnityEngine;
 // 3 = sau
 public class BotZombieNor_DeadExplosion : BaseState<BotZomNorState>
 {
-    [SerializeField] private bool tutorialReload;
+    [SerializeField] private bool canSpawnBot = false;
     public override void EnterState()
     {
         isDoneState = false;
@@ -16,8 +16,8 @@ public class BotZombieNor_DeadExplosion : BaseState<BotZomNorState>
         thisBotNetwork.PlayAudioVoice(Random.Range(0,4),1);
         thisBotNetwork.SetAnimAndType("DeadExplosion", animType);
         
-        if(tutorialReload)
-            Invoke(nameof(TutorialReload),.5f);
+        if(canSpawnBot)
+            SpawnBot();
 
         StartCoroutine(IEDelayAnimAndDespawn(3f));
         thisBotNetwork.ActiveFalseDetectors();
@@ -42,12 +42,8 @@ public class BotZombieNor_DeadExplosion : BaseState<BotZomNorState>
         return StateKey;
     }
     
-    public void TutorialReload()
+    public void SpawnBot()
     {
-        SpawnBotManager spawnBot = SpawnBotManager.Instance;
-        spawnBot.SpawnBot();
-        spawnBot.ActiveGiftWeapon81(5f);
-        Weapon26 weapon26 = (Weapon26)WeaponBase.Instance;
-        weapon26.InstructReload();
+        SpawnBotManager.Instance.SpawnBot();
     }
 }

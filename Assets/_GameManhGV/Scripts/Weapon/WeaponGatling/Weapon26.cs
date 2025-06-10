@@ -70,6 +70,7 @@ public class Weapon26 : WeaponBase
             EventManager.Invoke(EventName.UpdateBulletCount, _currentBulletCount);
             instructReload = true;
             EventManager.Invoke(EventName.InstructReload, true);
+            SpawnBotManager.Instance.ActiveGiftWeapon81(1.5f);
         }
     }
 }

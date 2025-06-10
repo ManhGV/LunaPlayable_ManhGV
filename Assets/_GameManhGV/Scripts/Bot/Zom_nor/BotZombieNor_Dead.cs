@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BotZombieNor_Dead : BaseState<BotZomNorState>
 {
-    [SerializeField] private bool tutorialReload = false;
+    [SerializeField] private bool canSpawnBot = false;
     [SerializeField] private Transform _posCenter;
     int animType;
     public override void EnterState()
@@ -20,8 +20,8 @@ public class BotZombieNor_Dead : BaseState<BotZomNorState>
         else if (animType == 1)
             StartCoroutine(IEDelayAnimAndDespawn(5f));
 
-        if (tutorialReload)
-            Invoke(nameof(TutorialReload), .5f);
+        if (canSpawnBot)
+            SpawnBot();
     }
 
     public override void UpdateState()
@@ -49,12 +49,8 @@ public class BotZombieNor_Dead : BaseState<BotZomNorState>
         return StateKey;
     }
 
-    public void TutorialReload()
+    public void SpawnBot()
     {
-        SpawnBotManager spawnBot = SpawnBotManager.Instance;
-        spawnBot.SpawnBot();
-        spawnBot.ActiveGiftWeapon81(5f);
-        Weapon26 weapon26 = (Weapon26)WeaponBase.Instance;
-        weapon26.InstructReload();
+        SpawnBotManager.Instance.SpawnBot();
     }
 }

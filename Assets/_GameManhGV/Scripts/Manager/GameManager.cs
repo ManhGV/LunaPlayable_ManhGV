@@ -16,7 +16,10 @@ public class GameManager : Singleton<GameManager>
     
     [Header("End Game")] 
     public bool endGame;
-
+    
+    [Header("Swat Move Audio Zomcam")]
+    private Coroutine _soundBotMoveCoroutine;
+    [SerializeField] private AudioClip _swatmoveclip;
     private void Start()
     {
         LunaLogStart();
@@ -24,6 +27,7 @@ public class GameManager : Singleton<GameManager>
 
     public void StartCutScene()
     {
+        StartCoroutine(IESoundSwatMove(4));
         soundBG.SetActive(false);
         _canvasGameplay.alpha = 0;
         _mainCamera.SetActive(false);
@@ -100,4 +104,18 @@ public class GameManager : Singleton<GameManager>
         Luna.Unity.Analytics.LogEvent(Luna.Unity.Analytics.EventType.TutorialComplete);
         Debug.Log($"{nameof(LunaLogStart)}");
     }
+
+    private IEnumerator IESoundSwatMove(float _countPlay)
+    {
+            AudioManager audioManager = AudioManager.Instance;
+        for (int i = 0; i < _countPlay; i++)
+        {
+            audioManager.PlaySound(_swatmoveclip,1);
+            if( i%2 == 0)
+                yield return new WaitForSeconds(.65f);
+            else
+                yield return new WaitForSeconds(.4f);
+        }
+    }
+    
 }
