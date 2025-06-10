@@ -93,7 +93,7 @@ public class ProjectileExplosion : GameUnit
         foreach(var elem in lstRoot)
         {
                 // damageType = elem.CompareTag("WeakPoint") ? DamageType.Weekness : DamageType.Normal;
-            BotNetwork botnet = elem.gameObject.GetComponentInParent<BotNetwork>();
+            ITakeDamage botnet = elem.gameObject.GetComponentInParent<ITakeDamage>();
             if (botnet != null)
             {
                 var damageInfo = new DamageInfo()
@@ -103,9 +103,9 @@ public class ProjectileExplosion : GameUnit
                     name = elem.gameObject.name,
                 };
                 botnet.TakeDamage(damageInfo);
-                if (botnet.isBoss)
+                if (botnet is BossZomSwatNetword boss)
                 {
-                    botnet.ExplosinArrmor();
+                    boss.ExplosinArrmor();
                 }
             }
         }

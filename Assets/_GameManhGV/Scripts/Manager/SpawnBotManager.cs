@@ -7,7 +7,7 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
 {
     [SerializeField] private PathManager _pathManager;
     [SerializeField] private ConfigGame dataBotSpawn;
-    [SerializeField] private List<BotNetwork> botInScene = new List<BotNetwork>();
+    [SerializeField] private List<ZombieBase> botInScene = new List<ZombieBase>();
 
     public int KillBot => AllBotsToSpawn - _currentBot;
     public int _currentBot;
@@ -84,18 +84,18 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
                 wayPoint = _pathManager.GetWayPoint(GameConstants.BotType.None);
             else
                 wayPoint = _pathManager.GetWayPoint(GameConstants.BotType.poinZomLeoTreo);
-            BotNetwork botNetwork = SimplePool.Spawn<BotNetwork>(poolType, wayPoint.WayPoints[0].position, Quaternion.Euler(0, 180, 0));
-            botNetwork.Init(wayPoint);
-            botInScene.Add(botNetwork);
+            ZombieBase botNetworks = SimplePool.Spawn<ZombieBase>(poolType, wayPoint.WayPoints[0].position, Quaternion.Euler(0, 180, 0));
+            botNetworks.OnInit(wayPoint);
+            botInScene.Add(botNetworks);
 
             yield return new WaitForSeconds(_botConfig.botDelaySpawn);
         }
     }
 
-    public void RemoveBotDead(BotNetwork _botNetwork)
+    public void RemoveBotDead(ZombieBase botNetworks)
     {
         _currentBot--;
-        botInScene.Remove(_botNetwork);
+        botInScene.Remove(botNetworks);
         float progress = (float) KillBot / (float)AllBotsToSpawn;
         EventManager.Invoke(EventName.UpdateGameProcess, progress);
     }

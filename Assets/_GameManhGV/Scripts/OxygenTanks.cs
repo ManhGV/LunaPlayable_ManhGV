@@ -56,11 +56,12 @@ public class OxygenTanks : MonoBehaviour
         
         foreach(var elem in lstRoot)
         {
-            BotNetwork botnet = elem.gameObject.GetComponentInParent<BotNetwork>();
+            ZombieBase zombieBase = elem.gameObject.GetComponentInParent<ZombieBase>();
             
-            if(botnet != null)
+            if(zombieBase != null)
             {
-                botnet._posDamageGas = transform.position;
+                if(zombieBase is BotNetwork botnet)
+                    botnet._posDamageGas = transform.position;
                 
                 var damageInfo = new DamageInfo()
                 {
@@ -68,7 +69,7 @@ public class OxygenTanks : MonoBehaviour
                     damage = _dame,
                     name = elem.gameObject.name,
                 };
-                botnet.TakeDamage(damageInfo);
+                zombieBase.TakeDamage(damageInfo);
             }
         }
     }

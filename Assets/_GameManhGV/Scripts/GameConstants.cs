@@ -12,9 +12,9 @@ public static class GameConstants
         BotZomNorNurse = PoolType.BotZomNorNurse,
         BotZomNorPatient = PoolType.BotZomNorPatient,
         BotZomNorGirl = PoolType.BotZomNorGirl,
-        BossZomSwat = PoolType.Boss_Zom_Swat,
         BotZomNorNurseTranNha = PoolType.BotZomNorNurseTranNha,
         BotZomNorGirlTranNha = PoolType.BotZomNorGirlTranNha,
+        BossZomSwat = PoolType.Boss_Zom_Swat,
     }
     public enum PoolType
     {
