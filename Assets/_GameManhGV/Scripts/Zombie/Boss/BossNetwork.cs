@@ -14,8 +14,10 @@ public class BossNetwork : ZombieBase
 
     public override void TakeDamage(DamageInfo damageInfo)
     {
-        base.TakeDamage(damageInfo);
+        if(isDead || isImmortal)
+            return;
         
+        OnTakeDamage?.Invoke(damageInfo.damage);
         if(healthBarTransform != null)
         {
             CacularHealth(damageInfo);

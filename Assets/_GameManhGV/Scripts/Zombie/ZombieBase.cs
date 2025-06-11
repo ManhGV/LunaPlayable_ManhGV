@@ -19,7 +19,7 @@ public class ZombieBase : GameUnit, ITakeDamage
     [SerializeField] protected Transform healthBarTransform;
     [SerializeField] private Image healthBarUI;
     [SerializeField] protected int _currentHealth;
-    [SerializeField] private bool isImmortal;
+    [SerializeField] protected bool isImmortal;
     [SerializeField] protected bool isDead;
     
     [Header("Bot Audio")]
@@ -43,8 +43,6 @@ public class ZombieBase : GameUnit, ITakeDamage
 
     #region Actions
     public Action<int> OnTakeDamage { get; set; }
-    public Action<float> OnHealthChanged { get; set; }
-    public Action OnBotDead { get; set; }
     #endregion
 
     protected Coroutine hideHealthBarCoroutine; // Tham chiếu tới Coroutine
@@ -56,7 +54,6 @@ public class ZombieBase : GameUnit, ITakeDamage
         _currentHealth = botConfigSO.health;
         isImmortal = false;
         isDead = false;
-        OnBotDead += BotDead;
     }
     public virtual void OnInit(WayPoint _wayPoint)
     {
@@ -65,12 +62,13 @@ public class ZombieBase : GameUnit, ITakeDamage
         _currentHealth = botConfigSO.health;
         isImmortal = false;
         isDead = false;
-        OnBotDead += BotDead;
     }
     public void OnDespawn()
     {
-        OnBotDead -= BotDead;
-        SimplePool.Despawn(this);
+        if(PoolType!=GameConstants.PoolType.None)
+            SimplePool.Despawn(this);
+        else
+            gameObject.SetActive(false);
     }
     #endregion
 
@@ -88,6 +86,10 @@ public class ZombieBase : GameUnit, ITakeDamage
         
         if (healthBarTransform != null)
              healthBarTransform.gameObject.SetActive(false);
+        
+        
+        if (isBotActiveEqualTay)
+            OnInit();
     }
 
     private void Start()
@@ -102,10 +104,8 @@ public class ZombieBase : GameUnit, ITakeDamage
 
     #region OnTakeDamage
     public virtual void TakeDamage(DamageInfo damageInfo)
-    {   
-        if(isDead) 
-            return;
-        OnTakeDamage?.Invoke(damageInfo.damage);
+    {
+        
     }
     public void CacularHealth(DamageInfo damageInfo)
     {
@@ -143,6 +143,7 @@ public class ZombieBase : GameUnit, ITakeDamage
         _currentHealth = 0;
         if (healthBarTransform != null) 
             healthBarTransform.gameObject.SetActive(false);
+        SpawnBotManager.Instance.RemoveBotDead(this);
     }
     #endregion
     
@@ -185,8 +186,9 @@ public class ZombieBase : GameUnit, ITakeDamage
     /// <param name="_index">index list clip</param>
     /// <param name="_volume">âm lượng</param>
     /// <param name="_audioSourceEqualThis">True: gọi StopAudioThis để dừng, False: không dừng được</param>
-    public void PlayAudioVoice(int _index,float _volume,bool _audioSourceEqualThis)
+    public virtual void PlayAudioVoice(int _index,float _volume,bool _audioSourceEqualThis)
     {
+        print(_index);
         if (_audioSourceEqualThis)
         {
             _audioSourceVoice.clip = _listSoundBotVoice[_index];

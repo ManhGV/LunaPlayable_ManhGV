@@ -4,7 +4,8 @@ using UnityEngine.Serialization;
 
 public class HumanMoveBase : MonoBehaviour
 {
-    [FormerlySerializedAs("botBase")] [SerializeField] protected ZombieBase zombieBase;
+    [FormerlySerializedAs("botBase")] 
+    [SerializeField] protected ZombieBase zombieBase;
     [SerializeField] protected BotConfigSO BotConfigSO;
     public bool isHaveParent;
     public Transform myTrans;
@@ -20,24 +21,10 @@ public class HumanMoveBase : MonoBehaviour
     {
         myTrans = transform;
     }
-    protected virtual void OnEnable()
-    {
-        zombieBase.OnBotDead += OnBotDead;
-    }
-    
-    protected virtual void OnDisable()
-    {
-        zombieBase.OnBotDead -= OnBotDead;
-    }
 
     private void Update()
     {
         CheckParent();
-    }
-    
-    private void OnBotDead()
-    {
-        
     }
     
     public void SetBotMove(Transform point)

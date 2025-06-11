@@ -1741,7 +1741,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3506818973937570468}
-  - component: {fileID: 7001514149094491212}
   - component: {fileID: 550549486645108917}
   - component: {fileID: 4628920850684448981}
   - component: {fileID: 7266848410333865107}
@@ -1750,6 +1749,7 @@ GameObject:
   - component: {fileID: 7819152010853539594}
   - component: {fileID: 7227574364578379212}
   - component: {fileID: 3005443289460288524}
+  - component: {fileID: 8914634379494005747}
   m_Layer: 7
   m_Name: bot_zom_Patient_LODFix
   m_TagString: Untagged
@@ -1775,47 +1775,6 @@ Transform:
   - {fileID: 762034247724998272}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7001514149094491212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9106237108472200971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27653567ccca7de43b822a352ba44a46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PoolType: 5
-  _audioSourceVoice: {fileID: 3005443289460288524}
-  _listSoundBotVoice:
-  - {fileID: 8300000, guid: ffe4cc86ff834d84fb1e34f62021b83b, type: 3}
-  - {fileID: 8300000, guid: a7badefd126b2354b8912942fb4c5460, type: 3}
-  - {fileID: 8300000, guid: 21bbac6950279c9418812a10467cd90c, type: 3}
-  - {fileID: 8300000, guid: 9f929d6fa7a16fe408c47c37f98351d3, type: 3}
-  - {fileID: 8300000, guid: d003c050a95f6de459e8bbd0d9db3646, type: 3}
-  canExplosionArmor: 0
-  arrBallisticArmor: []
-  isBotActiveEqualTay: 0
-  isBotTutorial: 0
-  isBoss: 0
-  _audioSource: {fileID: 3005443289460288524}
-  botConfigSO: {fileID: 11400000, guid: 8bce0cb18d4df554ab3aa0d45a481e6c, type: 2}
-  healthBarUI: {fileID: 8770514977068069094}
-  healthBarTransform: {fileID: 762034247724998272}
-  _currentHealth: 0
-  isImmortal: 0
-  isDead: 0
-  IsDeadExplosion: 0
-  _posDamageGas: {x: 0, y: 0, z: 0}
-  wayPoint:
-    WayPoints: []
-    AttackWayPoints: []
-  currentAnimName: 
-  anim: {fileID: 1650696707149517145}
-  detectors: []
-  mainCameraTranform: {fileID: 0}
 --- !u!114 &550549486645108917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1828,7 +1787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7bebb47de79bc4b82f75868fcfe63a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  botNet: {fileID: 7001514149094491212}
+  zombieBase: {fileID: 8914634379494005747}
   BotConfigSO: {fileID: 11400000, guid: 8bce0cb18d4df554ab3aa0d45a481e6c, type: 2}
   isHaveParent: 0
   myTrans: {fileID: 3506818973937570468}
@@ -1846,7 +1805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dontDelay: 0
   _currentState: {fileID: 0}
-  botNetwork: {fileID: 7001514149094491212}
+  botNetworks: {fileID: 8914634379494005747}
   haveStart: 0
   _startState: {fileID: 0}
 --- !u!114 &7266848410333865107
@@ -1861,7 +1820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a14cd266c57514785ada4468b8219e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetwork: {fileID: 7001514149094491212}
+  thisBotNetworks: {fileID: 8914634379494005747}
 --- !u!114 &3331140747970977638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1874,7 +1833,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6185ac594fda7d04fb03541c04981c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetwork: {fileID: 7001514149094491212}
+  thisBotNetworks: {fileID: 8914634379494005747}
+  Detectors: {fileID: 0}
   tutorialReload: 0
   _posCenter: {fileID: 7338109509545739298}
 --- !u!114 &6887975504091401511
@@ -1889,7 +1849,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b9921a5111f1f40bb6e8b88f842073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetwork: {fileID: 7001514149094491212}
+  thisBotNetworks: {fileID: 8914634379494005747}
+  Detector: {fileID: 0}
   tutorialReload: 0
 --- !u!114 &7819152010853539594
 MonoBehaviour:
@@ -1903,7 +1864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b048603da815454f8146a06c8c76c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetwork: {fileID: 7001514149094491212}
+  thisBotNetworks: {fileID: 8914634379494005747}
 --- !u!114 &7227574364578379212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1916,7 +1877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ebc34f6fd33afc4f97536c70933939e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetwork: {fileID: 7001514149094491212}
+  thisBotNetworks: {fileID: 8914634379494005747}
   humanMoveBase: {fileID: 550549486645108917}
   moveType_2: 0
 --- !u!82 &3005443289460288524
@@ -2015,3 +1976,40 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8914634379494005747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9106237108472200971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da4d9d481d97c6547b352a4ad5b2100c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PoolType: 5
+  botType: 5
+  botConfigSO: {fileID: 11400000, guid: 8bce0cb18d4df554ab3aa0d45a481e6c, type: 2}
+  isBotActiveEqualTay: 0
+  isBoss: 0
+  mainCameraTranform: {fileID: 0}
+  healthBarTransform: {fileID: 762034247724998272}
+  healthBarUI: {fileID: 8770514977068069094}
+  _currentHealth: 0
+  isImmortal: 0
+  isDead: 0
+  _audioSourceVoice: {fileID: 3005443289460288524}
+  _listSoundBotVoice:
+  - {fileID: 8300000, guid: a7badefd126b2354b8912942fb4c5460, type: 3}
+  - {fileID: 8300000, guid: 21bbac6950279c9418812a10467cd90c, type: 3}
+  - {fileID: 8300000, guid: 9f929d6fa7a16fe408c47c37f98351d3, type: 3}
+  - {fileID: 8300000, guid: ffe4cc86ff834d84fb1e34f62021b83b, type: 3}
+  - {fileID: 8300000, guid: d003c050a95f6de459e8bbd0d9db3646, type: 3}
+  wayPoint:
+    WayPoints: []
+    AttackWayPoints: []
+  currentAnimName: 
+  anim: {fileID: 1650696707149517145}
+  IsDeadExplosion: 0
+  _posDamageGas: {x: 0, y: 0, z: 0}

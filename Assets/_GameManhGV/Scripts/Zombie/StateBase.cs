@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class StateBase<EState,TBot> : MonoBehaviour where EState : Enum where TBot : ZombieBase
 {
     protected bool isDoneState;
-    protected TBot thisBotNetworks;
+    [SerializeField] protected TBot thisBotNetworks;
 
 #if UNITY_EDITOR
     private void OnValidate()

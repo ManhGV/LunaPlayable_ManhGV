@@ -13,17 +13,14 @@ public class BotNetwork : ZombieBase
         base.OnInit(_wayPoint);
         IsDeadExplosion = false;
     }
-    
-    protected override void Awake()
-    {
-        base.Awake();
-        if(isBotActiveEqualTay)
-            OnInit();
-    }
 
     public override void TakeDamage(DamageInfo damageInfo)
     {
-        base.TakeDamage(damageInfo);   
+        if(IsDeadExplosion || isDead || isImmortal)
+            return;
+        
+        OnTakeDamage?.Invoke(damageInfo.damage);
+        
         if(healthBarTransform != null && damageInfo.damageType != DamageType.Gas)//||healthBarTransform != null && isBoss && damageInfo.damageType == DamageType.Gas)
         {
             CacularHealth(damageInfo);
@@ -38,7 +35,7 @@ public class BotNetwork : ZombieBase
         {
             _currentHealth = 0;
             IsDeadExplosion = true;
-            BotDead();
+            CacularHealth(damageInfo);
         }
     }
 
@@ -95,6 +92,5 @@ public class BotNetwork : ZombieBase
         base.BotDead();
         //SpawnBotManager.Instance.RemoveBotDead(this);
         AchievementEvaluator.Instance.OnBotKilled(1.8f,false);
-        GameManager.Instance.EndGame(true);
     }
 }
