@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using static GameConstants;
 using UnityEngine;
 
-public class BotZombieNor_Move : StateBase<BotZomNorState, BotNetwork>
+public class BotZombieNor_Move : StateBase<ZomAllState, BotNetwork>
 {
     [SerializeField] private HumanMoveBase humanMoveBase;
     [SerializeField] private bool moveType_2;
@@ -29,7 +28,6 @@ public class BotZombieNor_Move : StateBase<BotZomNorState, BotNetwork>
         
         path = thisBotNetworks.GetWayPoint;
         thisBotNetworks.SetAnimAndType("Move",typeMove);
-        isDoneState = false;
     }
 
     public void Init()
@@ -43,7 +41,7 @@ public class BotZombieNor_Move : StateBase<BotZomNorState, BotNetwork>
         {
             if (!humanMoveBase.isHaveParent && moveIndex < path.WayPoints.Count)
             {
-                humanMoveBase.SetBotMove(path.WayPoints[moveIndex],speedTypeIndex);
+                humanMoveBase.SetBotMove(path.WayPoints[moveIndex].position,speedTypeIndex);
                 float distance = Vector3.Distance(humanMoveBase.myTrans.position, path.WayPoints[moveIndex].position);
                 if (distance < 0.1)
                 {
@@ -52,7 +50,7 @@ public class BotZombieNor_Move : StateBase<BotZomNorState, BotNetwork>
             }
             if (moveIndex == path.WayPoints.Count)
             {
-                isDoneState = true;
+                thisStateController.ChangeState(ZomAllState.Attack);
             }
         }
     }
@@ -60,28 +58,5 @@ public class BotZombieNor_Move : StateBase<BotZomNorState, BotNetwork>
     public override void ExitState()
     {
         
-    }
-
-    public override BotZomNorState GetNextState()
-    {
-        if (thisBotNetworks.IsDeadExplosion)
-            return BotZomNorState.DeadExplosion;
-        else
-        {
-            if (thisBotNetworks.IsDead)
-            {
-                return BotZomNorState.Dead;
-            }
-            else
-            {
-                if (isDoneState)
-                {
-                    return BotZomNorState.Attack;
-                }
-                else {
-                    return StateKey;
-                }
-            }
-        }
     }
 }

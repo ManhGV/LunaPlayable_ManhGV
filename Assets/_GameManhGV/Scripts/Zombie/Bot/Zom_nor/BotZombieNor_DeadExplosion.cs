@@ -1,17 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
+using static GameConstants;
 using UnityEngine;
 // 0 = trước
 // 1 = phải
 // 2 = trái
 // 3 = sau
-public class BotZombieNor_DeadExplosion : StateBase<BotZomNorState, BotNetwork>
+public class BotZombieNor_DeadExplosion : StateBase<ZomAllState, BotNetwork>
 {
     [SerializeField] private GameObject Detector;
     [SerializeField] private bool tutorialReload;
     public override void EnterState()
     {
-        isDoneState = false;
         int animType = thisBotNetworks.GetNearestDirection();
         
         thisBotNetworks.PlayAudioVoice(Random.Range(0,4),1, true);
@@ -38,10 +37,6 @@ public class BotZombieNor_DeadExplosion : StateBase<BotZomNorState, BotNetwork>
     {
         yield return new WaitForSeconds(_timerDelay);
         thisBotNetworks.OnDespawn();
-    }
-    public override BotZomNorState GetNextState()
-    {
-        return StateKey;
     }
     
     public void TutorialReload()

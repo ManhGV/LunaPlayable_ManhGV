@@ -42,11 +42,11 @@ public class HumanMoveBase : MonoBehaviour
     /// </summary>
     /// <param name="point">Điểm cần đi tới</param>
     /// <param name="speed">Tốc độ</param>
-    public void SetBotMove(Transform point, float speed)
+    public void SetBotMove(Vector3 point, float speed)
     {
         if (!zombieBase.IsDead)
         {
-            Vector3 direction = point.position - myTrans.position;
+            Vector3 direction = point - myTrans.position;
             direction.y = 0f; // Loại bỏ quay theo trục Y
             if (direction != Vector3.zero) // Tránh lỗi khi hai điểm trùng nhau
             {
@@ -54,7 +54,7 @@ public class HumanMoveBase : MonoBehaviour
                 myTrans.rotation = Quaternion.Slerp(myTrans.rotation, targetRotation, 10 * Time.deltaTime);
             }
 
-            myTrans.position = Vector3.MoveTowards(myTrans.position, point.position, speed * Time.deltaTime);
+            myTrans.position = Vector3.MoveTowards(myTrans.position, point, speed * Time.deltaTime);
         }
     }
 

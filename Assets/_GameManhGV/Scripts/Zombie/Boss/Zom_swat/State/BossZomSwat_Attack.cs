@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static GameConstants;
 
-public class BossZomSwat_Attack : StateBase<BossZomSwatState, BossZomSwatNetword>
+public class BossZomSwat_Attack : StateBase<ZomAllState, BossZomSwatNetword>
 {
     [SerializeField] EventAnim_BossZomSwat eventAnim;
     [SerializeField] private DataAttackBoss dataAttackBoss;
@@ -26,7 +26,6 @@ public class BossZomSwat_Attack : StateBase<BossZomSwatState, BossZomSwatNetword
         indexSkill = Random.Range(0, dataAttackBoss._dataSkill.Length);
         isStun_1 = false;
         isStun_2 = false;
-        isDoneState = false;
 
         #region Enble Detector Skill
 
@@ -117,12 +116,21 @@ public class BossZomSwat_Attack : StateBase<BossZomSwatState, BossZomSwatNetword
 
     public override void UpdateState()
     {
-        if (isDoneState)
-            return;
-
         timerAttack -= Time.deltaTime;
         if (timerAttack <= 0)
-            isDoneState = true;
+        {
+            if (Random.Range(0, 11) % 2 == 0)
+                thisStateController.ChangeState(ZomAllState.Idle);
+            else
+                thisStateController.ChangeState(ZomAllState.Move);
+        }
+        else
+        {
+            if (isStun_1)
+                thisStateController.ChangeState(ZomAllState.Stun_1);
+            else if (isStun_2)
+                thisStateController.ChangeState(ZomAllState.Stun_2);
+        }
     }
 
     public override void ExitState()
@@ -138,33 +146,6 @@ public class BossZomSwat_Attack : StateBase<BossZomSwatState, BossZomSwatNetword
             else if (indexSkill == 2)
                 foreach (Detector VARIABLE in AttakType_2)
                     VARIABLE.gameObject.SetActive(false);
-        }
-    }
-
-    public override BossZomSwatState GetNextState()
-    {
-        if (thisBotNetworks.IsDead)
-        {
-            return BossZomSwatState.Dead;
-        }
-        else
-        {
-            if (isStun_1)
-                return BossZomSwatState.Stun_1;
-            else if (isStun_2)
-                return BossZomSwatState.Stun_2;
-            else
-            {
-                if (isDoneState)
-                {
-                    if (Random.Range(0, 11) % 2 == 0)
-                        return BossZomSwatState.Idle;
-                    else
-                        return BossZomSwatState.Move;
-                }
-                else
-                    return StateKey;
-            }
         }
     }
 

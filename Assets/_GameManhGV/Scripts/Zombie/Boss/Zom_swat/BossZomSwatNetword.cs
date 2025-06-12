@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using static GameConstants;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BossZomSwatNetword : BossNetwork
 {
+    [FormerlySerializedAs("_bossZomSwat")]
     [Header("Bắn rocket 1 lần ngã")] 
-    [SerializeField] private BossZomSwat _bossZomSwat;
+    [SerializeField] private BossZomSwat_State bossZomSwatState;
     [SerializeField] BallisticArmor[] arrBallisticArmor;
     public bool canExplosionArmor;
     
@@ -15,7 +16,7 @@ public class BossZomSwatNetword : BossNetwork
         {
             foreach (BallisticArmor VARIABLE in arrBallisticArmor)
                 VARIABLE.ExplosionArmor();
-            _bossZomSwat.ChangeState(BossZomSwatState.Stun_2);
+            bossZomSwatState.ChangeState(ZomAllState.Stun_2);
         }
     }
 }

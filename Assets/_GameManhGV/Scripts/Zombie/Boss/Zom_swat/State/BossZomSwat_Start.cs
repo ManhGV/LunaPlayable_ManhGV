@@ -1,6 +1,7 @@
 using UnityEngine;
+using static GameConstants;
 
-public class BossZomSwat_Start : StateBase<BossZomSwatState,BossZomSwatNetword>
+public class BossZomSwat_Start : StateBase<ZomAllState,BossZomSwatNetword>
 {
     [SerializeField] HumanMoveBase humanMoveBase;
     [SerializeField] private Transform _pointMoveEnd;
@@ -11,26 +12,23 @@ public class BossZomSwat_Start : StateBase<BossZomSwatState,BossZomSwatNetword>
     bool isDoneMove = false;
     public override void EnterState()
     {
-        isDoneState = false;
+        
     }
 
     public override void UpdateState()
     {
-        if(isDoneState)
-            return;
-        
         if (isDoneMove)
         {
             timeEndState -= Time.deltaTime;
             if(timeEndState <= 0)
-                isDoneState = true;
+                thisStateController.ChangeState(ZomAllState.Move);
             return;
         }    
         
         if (isSetparent)
         {
             //TODO:Move cam
-            humanMoveBase.SetBotMove(_pointMoveEnd,.9f);
+            humanMoveBase.SetBotMove(_pointMoveEnd.position,.9f);
             float distance = Vector3.Distance(humanMoveBase.myTrans.position, _pointMoveEnd.position);
             if (distance < 0.1f)
             {
@@ -58,20 +56,5 @@ public class BossZomSwat_Start : StateBase<BossZomSwatState,BossZomSwatNetword>
         thisBotNetworks.SetIntAnim("MoveType", 0);
         thisBotNetworks.TF.position = _pointInitMove.position;
         GameManager.Instance.EndCutScene();
-    }
-
-    public override BossZomSwatState GetNextState()
-    {
-        if (thisBotNetworks.IsDead)
-        {
-            return BossZomSwatState.Dead;
-        }
-        else
-        {
-            if (isDoneState)
-                return BossZomSwatState.Move;
-            else
-                return StateKey;
-        }
     }
 }

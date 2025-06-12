@@ -43,6 +43,7 @@ public class ZombieBase : GameUnit, ITakeDamage
 
     #region Actions
     public Action<int> OnTakeDamage { get; set; }
+    public Action<bool> ZombieDead { get; set; }
     #endregion
 
     protected Coroutine hideHealthBarCoroutine; // Tham chiếu tới Coroutine
@@ -114,7 +115,6 @@ public class ZombieBase : GameUnit, ITakeDamage
         
         if (_currentHealth <= 0)
         {
-            isDead = true;
             BotDead();
         }
     }
@@ -139,6 +139,7 @@ public class ZombieBase : GameUnit, ITakeDamage
     
     public virtual void BotDead()
     {
+        ZombieDead?.Invoke(true);
         isDead = true;
         _currentHealth = 0;
         if (healthBarTransform != null) 
@@ -164,6 +165,20 @@ public class ZombieBase : GameUnit, ITakeDamage
             currentAnimName = _name;
             anim.SetTrigger(currentAnimName);
         }
+    }
+    
+    /// <summary>
+    /// Play bằng tên animation 
+    /// </summary>
+    /// <param name="_name">Tên anim trong animator</param>
+    public void PlayAnim(string _name)
+    {
+        if (anim == null)
+        {
+            Debug.LogError("Null anim");
+            return;
+        }
+        anim.Play(_name);
     }
     
     public void SetAnimAndType(string _name, int animType)

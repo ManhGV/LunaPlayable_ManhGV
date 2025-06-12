@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using static GameConstants;
 using UnityEngine;
 
-public class BossZomSwat_Move : StateBase<BossZomSwatState,BossZomSwatNetword>
+public class BossZomSwat_Move : StateBase<ZomAllState,BossZomSwatNetword>
 {
     [SerializeField] private HumanMoveBase humanMoveBase;
     private WayPoint path;
@@ -14,7 +13,6 @@ public class BossZomSwat_Move : StateBase<BossZomSwatState,BossZomSwatNetword>
         thisBotNetworks.ChangeAnim("Move");
         path = thisBotNetworks.GetWayPoint;
         moveIndex = 0;
-        isDoneState = false;
 
         if (moveDoneToAttack && path.AttackWayPoints.Count > 1)
         {
@@ -29,20 +27,17 @@ public class BossZomSwat_Move : StateBase<BossZomSwatState,BossZomSwatNetword>
 
     public override void UpdateState()
     {
-        if (isDoneState)
-            return;
-        
         if (path != null)
         {
             if (moveDoneToAttack)
             {
                 if (!humanMoveBase.isHaveParent)
                 {
-                    humanMoveBase.SetBotMove(path.AttackWayPoints[moveIndex],.9f);
+                    humanMoveBase.SetBotMove(path.AttackWayPoints[moveIndex].position,.9f);
                     float distance = Vector3.Distance(humanMoveBase.myTrans.position, path.AttackWayPoints[moveIndex].position);
                     if (distance < 0.1f)
                     {
-                        isDoneState = true;
+                        thisStateController.ChangeState(ZomAllState.Attack);
                     }
                 }
             }
@@ -62,7 +57,7 @@ public class BossZomSwat_Move : StateBase<BossZomSwatState,BossZomSwatNetword>
                 {
                     thisBotNetworks.SetIntAnim("MoveType", 1);
                     moveDoneToAttack = true;
-                    isDoneState = true;
+                    thisStateController.ChangeState(ZomAllState.Attack);
                 }
             }
         }
@@ -70,24 +65,5 @@ public class BossZomSwat_Move : StateBase<BossZomSwatState,BossZomSwatNetword>
 
     public override void ExitState()
     {
-    }
-
-    public override BossZomSwatState GetNextState()
-    {
-        if (thisBotNetworks.IsDead)
-        {
-            return BossZomSwatState.Dead;
-        }
-        else
-        {
-            if (isDoneState)
-            {
-                return BossZomSwatState.Attack;
-            }
-            else
-            {
-                return StateKey;
-            }
-        }
     }
 }

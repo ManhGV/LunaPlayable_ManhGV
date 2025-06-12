@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class BotNetwork : ZombieBase
@@ -7,6 +6,8 @@ public class BotNetwork : ZombieBase
     [Header("Dead Explosion")]
     public bool IsDeadExplosion;
     public Vector3 _posDamageGas;
+    
+    public Action<bool> ZombieDeadExplosion { get; set; }
 
     public override void OnInit(WayPoint _wayPoint)
     {
@@ -33,6 +34,7 @@ public class BotNetwork : ZombieBase
         }
         else if(damageInfo.damageType == DamageType.Gas)
         {
+            ZombieDeadExplosion?.Invoke(true);
             _currentHealth = 0;
             IsDeadExplosion = true;
             CacularHealth(damageInfo);

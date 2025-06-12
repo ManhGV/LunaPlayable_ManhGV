@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using static GameConstants;
 
-public class BotZombieNor_Dead : StateBase<BotZomNorState, BotNetwork>
+public class BotZombieNor_Dead : StateBase<ZomAllState, BotNetwork>
 {
     [SerializeField] private GameObject Detectors;
     [SerializeField] private bool tutorialReload = false;
@@ -11,7 +12,6 @@ public class BotZombieNor_Dead : StateBase<BotZomNorState, BotNetwork>
     {
         animType = Random.Range(0, 2);
         thisBotNetworks.SetAnimAndType("Dead", animType);
-        isDoneState = false;
         if(Detectors != null)
             Detectors.SetActive(false);
 
@@ -44,11 +44,6 @@ public class BotZombieNor_Dead : StateBase<BotZomNorState, BotNetwork>
     public override void ExitState()
     {
 
-    }
-
-    public override BotZomNorState GetNextState()
-    {
-        return StateKey;
     }
 
     public void TutorialReload()

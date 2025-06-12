@@ -1,8 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
-public class BotZombieNor_Attack : StateBase<BotZomNorState, BotNetwork>
+using static GameConstants;
+public class BotZombieNor_Attack : StateBase<ZomAllState, BotNetwork>
 {
     private int animType;
     private float timerAttack;
@@ -11,7 +11,6 @@ public class BotZombieNor_Attack : StateBase<BotZomNorState, BotNetwork>
     {
         animType = Random.Range(0, 2);
         thisBotNetworks.SetAnimAndType("Attack",animType);
-        isDoneState = false;
         if (animType == 0)
         {
             timerAttack = 1.53f;
@@ -27,12 +26,9 @@ public class BotZombieNor_Attack : StateBase<BotZomNorState, BotNetwork>
     
     public override void UpdateState()
     {
-        if (isDoneState)
-            return;
-
         timerAttack -= Time.deltaTime;
         if (timerAttack <= 0)
-            isDoneState = true;
+            thisStateController.ChangeState(ZomAllState.Idle);
     }
 
     public IEnumerator IETakeDamagePlayer(float _time)
@@ -47,25 +43,5 @@ public class BotZombieNor_Attack : StateBase<BotZomNorState, BotNetwork>
     {
         if(_coroutineTakeDamagePlayer != null)
             StopCoroutine(_coroutineTakeDamagePlayer);
-    }
-
-    public override BotZomNorState GetNextState()
-    {
-        if (thisBotNetworks.IsDeadExplosion)
-            return BotZomNorState.DeadExplosion;
-        else
-        {
-            if (thisBotNetworks.IsDead)
-            {
-                return BotZomNorState.Dead;
-            }
-            else
-            {
-                if(isDoneState)
-                    return BotZomNorState.Idle;
-                else
-                    return StateKey;
-            }
-        }
     }
 }

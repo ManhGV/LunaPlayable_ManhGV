@@ -15,6 +15,7 @@ public static class GameConstants
         BotZomNorNurseTranNha = PoolType.BotZomNorNurseTranNha,
         BotZomNorGirlTranNha = PoolType.BotZomNorGirlTranNha,
         BossZomSwat = PoolType.Boss_Zom_Swat,
+        BossZomRevenant = PoolType.BossZom_Revenant,
     }
     public enum PoolType
     {
@@ -37,7 +38,22 @@ public static class GameConstants
         vfx_explosionWeapon112 = 16,
         vfx_electricLine = 17,
         Projectile_Weapon112 = 18,
+        BossZom_Revenant = 19,
     }
+    
+    public enum ZomAllState
+    {
+        Start,
+        Idle,
+        Move,
+        Jump,
+        Attack,
+        Stun_1,
+        Stun_2,
+        Dead,
+        DeadExplosion,
+    }
+    
     public enum RewardType
     {
         None,
