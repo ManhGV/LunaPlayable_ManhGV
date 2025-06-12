@@ -1308,9 +1308,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1247b39a065228145806f2743b56930a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dontDelay: 0
+  canDead: 1
   _currentState: {fileID: 0}
   botNetworks: {fileID: 2528773321456827616}
+  _dontDelay: 0
   haveStart: 0
   _startState: {fileID: 0}
 --- !u!114 &8893831130879371026
@@ -1326,6 +1327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisBotNetworks: {fileID: 2528773321456827616}
+  thisStateController: {fileID: 2560074243112890656}
 --- !u!114 &6544445450049660925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1339,6 +1341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisBotNetworks: {fileID: 2528773321456827616}
+  thisStateController: {fileID: 2560074243112890656}
   humanMoveBase: {fileID: 5217481168455160654}
   moveType_2: 0
 --- !u!114 &7799191251980761405
@@ -1354,6 +1357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisBotNetworks: {fileID: 2528773321456827616}
+  thisStateController: {fileID: 2560074243112890656}
 --- !u!114 &7199575499419896330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1367,6 +1371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisBotNetworks: {fileID: 2528773321456827616}
+  thisStateController: {fileID: 2560074243112890656}
   Detectors: {fileID: 0}
   tutorialReload: 0
   _posCenter: {fileID: 4786870101428671889}
@@ -1383,6 +1388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisBotNetworks: {fileID: 2528773321456827616}
+  thisStateController: {fileID: 2560074243112890656}
   Detector: {fileID: 0}
   tutorialReload: 0
 --- !u!114 &2528773321456827616
@@ -1419,7 +1425,8 @@ MonoBehaviour:
     WayPoints: []
     AttackWayPoints: []
   currentAnimName: 
-  anim: {fileID: 8742386872671515448}
+  currentAnimType: 0
+  animator: {fileID: 8742386872671515448}
   IsDeadExplosion: 0
   _posDamageGas: {x: 0, y: 0, z: 0}
 --- !u!1 &6384945440275088633

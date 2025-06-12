@@ -61,14 +61,6 @@ public class BossZomRevenant_StateController : StateControllerBase<BossZomRevena
         _currentState.EnterState();
     }
 
-    protected override void Update()
-    {
-        base.Update();
-        if(Input.GetKeyDown(KeyCode.Space))
-            StunThis();
-        //print(_currentState.StateKey);
-    }
-
     public void StunThis()
     {
         ChangeState(ZomAllState.Stun_1);

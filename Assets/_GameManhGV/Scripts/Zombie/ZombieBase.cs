@@ -32,7 +32,8 @@ public class ZombieBase : GameUnit, ITakeDamage
 
     [Header("Change Anim")]
     [SerializeField] private string currentAnimName;
-    [FormerlySerializedAs("anim")] [SerializeField] protected Animator animator;
+    [SerializeField] private int currentAnimType;
+    [SerializeField] protected Animator animator;
 
     #region Get - Set
     public BotConfigSO BotConfigSO => botConfigSO;
@@ -159,7 +160,7 @@ public class ZombieBase : GameUnit, ITakeDamage
             Debug.LogError("Null anim");
             return;
         }
-        
+        //print("- "+_name+" |Old" + currentAnimName);
         if (currentAnimName != _name)
         {
             animator.ResetTrigger(_name);
@@ -168,28 +169,20 @@ public class ZombieBase : GameUnit, ITakeDamage
         }
     }
     
-    /// <summary>
-    /// Play bằng tên animation 
-    /// </summary>
-    /// <param name="_name">Tên anim trong animator</param>
-    public void PlayAnim(string _name)
+    public void ChangeAnimAndType(string _name, int animType)
     {
+        //print("- " + _name + " |Old" + currentAnimName);
         if (animator == null)
         {
             Debug.LogError("Null anim");
             return;
         }
-        animator.Play(_name);
-    }
-    
-    public void SetAnimAndType(string _name, int animType)
-    {
-        //print("SetAnimAndType: " + _name + " - " + animType + " - " + gameObject.name);
         animator.SetInteger("AnimType", animType);
-        if (currentAnimName != _name)
+        if (currentAnimName != _name||currentAnimType!= animType)
         {
             animator.ResetTrigger(_name);
             currentAnimName = _name;
+            currentAnimType = animType;
             animator.SetTrigger(currentAnimName);
         }
     }
@@ -220,11 +213,11 @@ public class ZombieBase : GameUnit, ITakeDamage
     
     public Transform GetTransform() => TF;
 
-    public float DistanceToPlayermain() => Vector3.Distance(LocalPlayer.Instance.GetLocalPlayer(), TF.position);
+    public float DistanceToPlayermain() => Vector3.Distance(LocalPlayer.Instance.GetPosLocalPlayer(), TF.position);
     
     public void RotaToPlayerMain()
     {
-        Vector3 direction = LocalPlayer.Instance.GetLocalPlayer() - TF.position;
+        Vector3 direction = LocalPlayer.Instance.GetPosLocalPlayer() - TF.position;
         Quaternion rotation = Quaternion.LookRotation(direction);
         
         Vector3 euler = rotation.eulerAngles;

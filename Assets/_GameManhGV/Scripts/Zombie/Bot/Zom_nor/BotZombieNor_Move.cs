@@ -27,7 +27,7 @@ public class BotZombieNor_Move : StateBase<ZomAllState, BotNetwork>
             speedTypeIndex = 3f;
         
         path = thisBotNetworks.GetWayPoint;
-        thisBotNetworks.SetAnimAndType("Move",typeMove);
+        thisBotNetworks.ChangeAnimAndType("Move",typeMove);
     }
 
     public void Init()

@@ -6,7 +6,7 @@ public class BossZomRevenant_Idle : StateBase<ZomAllState,BossZomRevenant_Networ
     private float timeCoolDown;
     public override void EnterState()
     {
-        thisBotNetworks.PlayAnim("Idle");
+        thisBotNetworks.ChangeAnim("Idle");
         timeCoolDown = thisBotNetworks.BotConfigSO.coolDownAttack;
     }
 

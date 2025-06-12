@@ -37,7 +37,7 @@ public class PlayerHP : Singleton<PlayerHP>
         // Đưa lượng sát thương vào hàng đợi để xử lý
         damageQueue.Enqueue(Damage);
         EffectUI.Instance.Play();
-
+        print("Take");
         // Nếu chưa có Coroutine xử lý sát thương, bắt đầu một Coroutine mới
         if (!isProcessingDamage)
             StartCoroutine(ProcessDamageQueue());

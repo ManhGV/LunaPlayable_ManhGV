@@ -9,7 +9,7 @@ public class BossZomRevenant_Move : StateBase<ZomAllState, BossZomRevenant_Netwo
 
     public override void EnterState()
     {
-        thisBotNetworks.PlayAnim("Move");
+        thisBotNetworks.ChangeAnim("Move");
         _pointRandomMove = thisBotNetworks.GetRandomPointBehindZombie(radiusMoveRandom);
     }
 

@@ -6,7 +6,7 @@ public class BossZomRevenant_Stun : StateBase<ZomAllState,BossZomRevenant_Networ
     private float timeStun;
     public override void EnterState()
     {
-        thisBotNetworks.PlayAnim("Stun");
+        thisBotNetworks.ChangeAnim("Stun");
         timeStun = Random.Range(1f, 3.5f);
         //TODO:Sang stun
     }

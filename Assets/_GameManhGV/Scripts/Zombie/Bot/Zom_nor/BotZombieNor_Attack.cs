@@ -10,7 +10,7 @@ public class BotZombieNor_Attack : StateBase<ZomAllState, BotNetwork>
     public override void EnterState()
     {
         animType = Random.Range(0, 2);
-        thisBotNetworks.SetAnimAndType("Attack",animType);
+        thisBotNetworks.ChangeAnimAndType("Attack",animType);
         if (animType == 0)
         {
             timerAttack = 1.53f;

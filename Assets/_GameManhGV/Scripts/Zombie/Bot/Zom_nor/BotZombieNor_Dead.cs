@@ -11,7 +11,7 @@ public class BotZombieNor_Dead : StateBase<ZomAllState, BotNetwork>
     public override void EnterState()
     {
         animType = Random.Range(0, 2);
-        thisBotNetworks.SetAnimAndType("Dead", animType);
+        thisBotNetworks.ChangeAnimAndType("Dead", animType);
         if(Detectors != null)
             Detectors.SetActive(false);
 

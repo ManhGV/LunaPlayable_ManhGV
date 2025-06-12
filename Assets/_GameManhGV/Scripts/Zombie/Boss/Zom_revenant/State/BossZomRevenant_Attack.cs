@@ -1,15 +1,14 @@
 using System.Collections;
-using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Android;
 using static GameConstants;
 
 public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Netword>
 {
-    private int AttackType;
+    [SerializeField] private ParticleSystem _fireBallFake;
     bool CanChangeState;
     Coroutine _attackCoroutine;
     private float posYthis;
+    private int attackType;
     public override void EnterState()
     {
         posYthis = transform.position.y;
@@ -18,38 +17,50 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
         if (thisBotNetworks.DistanceToPlayermain() <= 9.74)
         {
             //TODO: Skill trocj 2 cánh
-            AttackType = 1;
-            _attackCoroutine = StartCoroutine(IEAttackType_1(Random.Range(1, 5)));
+            attackType = 01;
+            _attackCoroutine = StartCoroutine(IEAttackType_01(Random.Range(3, 5)));
         }
         else if (posYthis > 0)
         {
             //TODO:ném lửa
-            AttackType = 2;
             _attackCoroutine = StartCoroutine(IEAttackType_2());
         }
         else
         {
             //TODO: đấm đất
-            AttackType = 3;
             _attackCoroutine = StartCoroutine(IEAttackType_3());
             // timer = 3.1f;
         }
     }
-
     public override void UpdateState()
     {
+        //print(timer);
+        //if (CanChangeState)
         if (CanChangeState)
         {
-            // int random = Random.Range(0, 3);
-            // if (random == 0)
-            //     thisStateController.ChangeState(ZomAllState.Idle);
-            // else if (random == 1 && posYthis <= 0)
-            // else
-            //     thisStateController.ChangeState(ZomAllState.Jump);
-                thisStateController.ChangeState(ZomAllState.Move);
+            int random;
+            if (attackType == 01)
+            {
+                random = Random.Range(0, 2);
+                if (random == 0)
+                    thisStateController.ChangeState(ZomAllState.Move);
+                else
+                    thisStateController.ChangeState(ZomAllState.Jump);
+            }
+            else
+            {
+                random = Random.Range(0, 3);
+
+                if (random == 0)
+                    thisStateController.ChangeState(ZomAllState.Idle);
+                else if (random == 1 && posYthis <= 0)
+                    thisStateController.ChangeState(ZomAllState.Move);
+                else
+                    thisStateController.ChangeState(ZomAllState.Jump);
+            }
         }
-        
-        if(Input.GetKeyDown(KeyCode.Space))
+
+        if (Input.GetKeyDown(KeyCode.Space))
             thisStateController.ChangeState(ZomAllState.Stun_1);
         //TODO: DoneState thì => random move, idle, jump
     }
@@ -62,20 +73,21 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
 
     /// <param name="_countAttack">Số lần vẩy cánh</param>
     /// <returns></returns>
-    IEnumerator IEAttackType_1(int _countAttack)
+    IEnumerator IEAttackType_01(int _countAttack)
     {
         for (int i = 0; i < _countAttack; i++)
         {
             if (i % 2 == 0)
             {
-                thisBotNetworks.PlayAnim("AtkTentacle_L");
-                yield return new WaitForSeconds(2.65f); //2.26 là thực anim
+
+                thisBotNetworks.ChangeAnimAndType("Attack", 0);
+                yield return new WaitForSeconds(2.45f); //2.26 là thực anim
                 //TODO:Attack player
             }
             else
             {
-                thisBotNetworks.PlayAnim("AtkTentacle_R");
-                yield return new WaitForSeconds(2.65f);
+                thisBotNetworks.ChangeAnimAndType("Attack", 1);
+                yield return new WaitForSeconds(2.45f);
                 //TODO:Attack player
             }
         }
@@ -86,9 +98,14 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
 
     IEnumerator IEAttackType_2()
     {
-        thisBotNetworks.PlayAnim("AtkFire");
-        yield return new WaitForSeconds(.95f);
-        print("create fire");
+        thisBotNetworks.ChangeAnimAndType("Attack", 2);
+        yield return new WaitForSeconds(.25f);
+        _fireBallFake.Play();
+        yield return new WaitForSeconds(.5f);
+        _fireBallFake.Stop();
+        yield return new WaitForSeconds(.2f);
+        BulletFireZom bulletFireZom = SimplePool.Spawn<BulletFireZom>(PoolType.BulletFireZom, _fireBallFake.transform.position, Quaternion.identity);
+        bulletFireZom.OnInit(LocalPlayer.Instance.GetPosLocalPlayer());
         yield return new WaitForSeconds(1.19f);
         _attackCoroutine = null;
         CanChangeState = true;
@@ -96,28 +113,28 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
 
     IEnumerator IEAttackType_3()
     {
-        thisBotNetworks.PlayAnim("AtkGround");
+        thisBotNetworks.ChangeAnimAndType("Attack", 3);
         Vector3 posSelf = transform.position;
         Vector3 posLocalPlayer = LocalPlayer.Instance._localPlayer.position;
         posLocalPlayer.y = 0;
         Vector3 direction = (posLocalPlayer - posSelf).normalized;
         float spacing = Vector3.Distance(posSelf, posLocalPlayer) / 3; // Khoảng cách giữa các điểm
-        yield return new WaitForSeconds(.54f);
-        
+        yield return new WaitForSeconds(1.19f);
+
         for (int i = 1; i < 4; i++)
         {
             Vector3 spawnPos = posSelf + direction * (spacing * i);
-            yield return new WaitForSeconds(.5f);
             Effect effect = SimplePool.Spawn<Effect>(PoolType.vfx_ExplosionGround, spawnPos, Quaternion.identity);
             effect.OnInit();
-            if(i==3)
-            {}
-                //TODO:Attack player
+            yield return new WaitForSeconds(.5f);
+            if (i == 3)
+            { }
+            //TODO:Attack player
         }
-        
+
         yield return new WaitForSeconds(1.12f);
         _attackCoroutine = null;
         CanChangeState = true;
     }
-    
+
 }

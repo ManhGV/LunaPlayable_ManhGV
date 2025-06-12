@@ -907,9 +907,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1247b39a065228145806f2743b56930a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dontDelay: 0
+  canDead: 1
   _currentState: {fileID: 0}
   botNetworks: {fileID: 4674364868904890661}
+  _dontDelay: 0
   haveStart: 0
   _startState: {fileID: 0}
 --- !u!114 &6585938814629927647
@@ -925,6 +926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisBotNetworks: {fileID: 4674364868904890661}
+  thisStateController: {fileID: 3307414429982777540}
 --- !u!114 &5881448849480105142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,6 +940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisBotNetworks: {fileID: 4674364868904890661}
+  thisStateController: {fileID: 3307414429982777540}
   Detectors: {fileID: 0}
   tutorialReload: 0
   _posCenter: {fileID: 7296790261487705463}
@@ -954,6 +957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisBotNetworks: {fileID: 4674364868904890661}
+  thisStateController: {fileID: 3307414429982777540}
   Detector: {fileID: 0}
   tutorialReload: 0
 --- !u!114 &7788804967758492769
@@ -969,6 +973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisBotNetworks: {fileID: 4674364868904890661}
+  thisStateController: {fileID: 3307414429982777540}
 --- !u!114 &912415406568724126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,6 +987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisBotNetworks: {fileID: 4674364868904890661}
+  thisStateController: {fileID: 3307414429982777540}
   humanMoveBase: {fileID: 6068733779811124015}
   moveType_2: 0
 --- !u!82 &3709215020097705114
@@ -1093,6 +1099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisBotNetworks: {fileID: 4674364868904890661}
+  thisStateController: {fileID: 3307414429982777540}
   typeStart: 1
   dontUseTimer: 0
 --- !u!114 &4674364868904890661
@@ -1129,7 +1136,8 @@ MonoBehaviour:
     WayPoints: []
     AttackWayPoints: []
   currentAnimName: 
-  anim: {fileID: 236444839463811587}
+  currentAnimType: 0
+  animator: {fileID: 236444839463811587}
   IsDeadExplosion: 0
   _posDamageGas: {x: 0, y: 0, z: 0}
 --- !u!1 &4429211846307874453

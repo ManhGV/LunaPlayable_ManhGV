@@ -31,8 +31,25 @@ public static class GameConstants
         ElectricLine = PoolType.vfx_electricLine,
         vfx_ExplosionGround = PoolType.vfx_ExplosionGround,
     }
+
+    public enum ProjecctileZombie
+    {
+        BulletFireZom = PoolType.BulletFireZom,
+    }
+
+    public enum ProjecttilePlayer
+    {
+        Projectile_Bullet_Norman = PoolType.Projectile_Bullet_Norman,
+        Projectile_Bullet_BBQ = PoolType.Projectile_Bullet_BBQ,
+        bullet_Rocket = PoolType.bullet_Rocket,
+    }
+
+    public enum LinhTinh
+    {
+        AudioChild = PoolType.AudioChild,
+    }
 #endif
-    
+
     public enum PoolType
     {
         None = 0,

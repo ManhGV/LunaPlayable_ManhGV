@@ -20,7 +20,7 @@ public class BotZombieNor_Start : StateBase<ZomAllState, BotNetwork>
     public override void EnterState()
     {
         thisBotNetworks.OnTakeDamage += OnTakeDamage;
-        thisBotNetworks.SetAnimAndType("Start", typeStart);
+        thisBotNetworks.ChangeAnimAndType("Start", typeStart);
         if (typeStart == 1)
         {
             dontUseTimer = false;

@@ -9,7 +9,7 @@ public class BossZomSwat_Idle : StateBase<ZomAllState,BossZomSwatNetword>
     public override void EnterState()
     {
         animType = Random.Range(0, 2);
-        thisBotNetworks.SetAnimAndType("Idle",animType);
+        thisBotNetworks.ChangeAnimAndType("Idle",animType);
         timereload = thisBotNetworks.BotConfigSO.coolDownAttack;
     }
 
