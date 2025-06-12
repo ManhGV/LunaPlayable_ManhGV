@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class CaculatorTimeAnim : MonoBehaviour
 {
+    [Header("Caculator Distance")] 
+    [SerializeField] private Transform point1;
+    [SerializeField] private Transform point2;
+    
+    [Header("Anim")]
     [SerializeField] private Animator animator;
     float time = 0f;
     private void OnValidate()
@@ -10,6 +15,7 @@ public class CaculatorTimeAnim : MonoBehaviour
     }
     void Update()
     {
+        print("distance: " + Vector3.Distance(point1.position, point2.position));
         time += Time.deltaTime;
     }
 

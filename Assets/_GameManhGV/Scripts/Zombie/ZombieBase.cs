@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ZombieBase : GameUnit, ITakeDamage
@@ -31,7 +32,7 @@ public class ZombieBase : GameUnit, ITakeDamage
 
     [Header("Change Anim")]
     [SerializeField] private string currentAnimName;
-    [SerializeField] private Animator anim;
+    [FormerlySerializedAs("anim")] [SerializeField] protected Animator animator;
 
     #region Get - Set
     public BotConfigSO BotConfigSO => botConfigSO;
@@ -149,11 +150,11 @@ public class ZombieBase : GameUnit, ITakeDamage
     #endregion
     
     #region Set Anim
-    public void SetFloatAnim(string _name, float value) => anim.SetFloat(_name, value);
-    public void SetIntAnim(string _name, int value) => anim.SetInteger(_name, value);
+    public void SetFloatAnim(string _name, float value) => animator.SetFloat(_name, value);
+    public void SetIntAnim(string _name, int value) => animator.SetInteger(_name, value);
     public void ChangeAnim(string _name)
     {
-        if (anim == null)
+        if (animator == null)
         {
             Debug.LogError("Null anim");
             return;
@@ -161,9 +162,9 @@ public class ZombieBase : GameUnit, ITakeDamage
         
         if (currentAnimName != _name)
         {
-            anim.ResetTrigger(_name);
+            animator.ResetTrigger(_name);
             currentAnimName = _name;
-            anim.SetTrigger(currentAnimName);
+            animator.SetTrigger(currentAnimName);
         }
     }
     
@@ -173,23 +174,23 @@ public class ZombieBase : GameUnit, ITakeDamage
     /// <param name="_name">Tên anim trong animator</param>
     public void PlayAnim(string _name)
     {
-        if (anim == null)
+        if (animator == null)
         {
             Debug.LogError("Null anim");
             return;
         }
-        anim.Play(_name);
+        animator.Play(_name);
     }
     
     public void SetAnimAndType(string _name, int animType)
     {
         //print("SetAnimAndType: " + _name + " - " + animType + " - " + gameObject.name);
-        anim.SetInteger("AnimType", animType);
+        animator.SetInteger("AnimType", animType);
         if (currentAnimName != _name)
         {
-            anim.ResetTrigger(_name);
+            animator.ResetTrigger(_name);
             currentAnimName = _name;
-            anim.SetTrigger(currentAnimName);
+            animator.SetTrigger(currentAnimName);
         }
     }
     #endregion
@@ -218,8 +219,10 @@ public class ZombieBase : GameUnit, ITakeDamage
     #endregion    
     
     public Transform GetTransform() => TF;
-                  
-    public void RotaToTarget()
+
+    public float DistanceToPlayermain() => Vector3.Distance(LocalPlayer.Instance.GetLocalPlayer(), TF.position);
+    
+    public void RotaToPlayerMain()
     {
         Vector3 direction = LocalPlayer.Instance.GetLocalPlayer() - TF.position;
         Quaternion rotation = Quaternion.LookRotation(direction);

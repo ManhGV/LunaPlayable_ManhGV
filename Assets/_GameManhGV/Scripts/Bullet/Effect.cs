@@ -4,6 +4,14 @@ using UnityEngine;
 [Serializable]
 public class Effect : GameUnit
 {
+#if UNITY_EDITOR
+    [SerializeField] private GameConstants.EffectType effectType;
+    private void OnValidate()
+    {
+        PoolType = (GameConstants.PoolType)effectType;
+    }
+#endif
+    
     [SerializeField] private double _lifeTime;
     private float _timer;
 

@@ -27,13 +27,13 @@ public class HumanMoveBase : MonoBehaviour
         CheckParent();
     }
     
-    public void SetBotMove(Transform point)
+    public void SetBotMove(Vector3 _point)
     {
         if (!zombieBase.IsDead)
         {
-            var targetRotation = Quaternion.LookRotation(point.position - myTrans.position);
+            var targetRotation = Quaternion.LookRotation(_point - myTrans.position);
             myTrans.rotation = Quaternion.Slerp(myTrans.rotation, targetRotation, 10 * Time.deltaTime);
-            myTrans.position = Vector3.MoveTowards(myTrans.position, point.position, BotConfigSO.moveSpeed * Time.deltaTime);
+            myTrans.position = Vector3.MoveTowards(myTrans.position, _point, BotConfigSO.moveSpeed * Time.deltaTime);
         }
     }
     

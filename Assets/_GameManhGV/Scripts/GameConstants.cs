@@ -17,6 +17,22 @@ public static class GameConstants
         BossZomSwat = PoolType.Boss_Zom_Swat,
         BossZomRevenant = PoolType.BossZom_Revenant,
     }
+
+#if UNITY_EDITOR
+    public enum EffectType
+    {
+        None = 0,
+        BloodEffectZom = PoolType.vfx_BloodEffectZom,
+        ConcreteImpact = PoolType.vfx_ConcreteImpact,
+        ExplosionRocket = PoolType.vfx_ExplosionRocket,
+        ExplosionZombieNor = PoolType.vfx_ExplosionZombieNor,
+        ShootGift = PoolType.vfx_ShootGift,
+        ExplosionWeapon112 = PoolType.vfx_explosionWeapon112,
+        ElectricLine = PoolType.vfx_electricLine,
+        vfx_ExplosionGround = PoolType.vfx_ExplosionGround,
+    }
+#endif
+    
     public enum PoolType
     {
         None = 0,
@@ -39,6 +55,8 @@ public static class GameConstants
         vfx_electricLine = 17,
         Projectile_Weapon112 = 18,
         BossZom_Revenant = 19,
+        vfx_ExplosionGround = 20,
+        BulletFireZom=21,
     }
     
     public enum ZomAllState

@@ -21,7 +21,7 @@ public class BotZombieNor_Attack : StateBase<ZomAllState, BotNetwork>
             timerAttack = .54f;
             _coroutineTakeDamagePlayer = StartCoroutine(IETakeDamagePlayer( 0.35f));
         }
-        thisBotNetworks.RotaToTarget();
+        thisBotNetworks.RotaToPlayerMain();
     }
     
     public override void UpdateState()

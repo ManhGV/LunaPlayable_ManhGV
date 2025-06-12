@@ -45,7 +45,7 @@ public class BossZomSwat_Move : StateBase<ZomAllState,BossZomSwatNetword>
             {
                 if (!humanMoveBase.isHaveParent && moveIndex < path.WayPoints.Count)
                 {
-                    humanMoveBase.SetBotMove(path.WayPoints[moveIndex]);
+                    humanMoveBase.SetBotMove(path.WayPoints[moveIndex].position);
                     float distance = Vector3.Distance(humanMoveBase.myTrans.position, path.WayPoints[moveIndex].position);
                     if (distance < 0.1)
                     {

@@ -58,4 +58,20 @@ public class WayPoint
 {
     public List<Transform> WayPoints = new List<Transform>();
     public List<Transform> AttackWayPoints = new List<Transform>();
+    
+    public Transform GetRandomWayPoint()
+    {
+        if (WayPoints.Count == 0)
+            throw new Exception("No waypoints available.");
+        
+        return WayPoints[UnityEngine.Random.Range(0, WayPoints.Count)];
+    }
+    
+    public Transform GetRandomAttackWayPoints()
+    {
+        if (AttackWayPoints.Count == 0)
+            throw new Exception("No AttackWayPoints available.");
+        
+        return AttackWayPoints[UnityEngine.Random.Range(0, AttackWayPoints.Count)];
+    }
 }

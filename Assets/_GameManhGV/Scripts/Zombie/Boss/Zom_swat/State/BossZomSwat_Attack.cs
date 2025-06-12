@@ -51,7 +51,7 @@ public class BossZomSwat_Attack : StateBase<ZomAllState, BossZomSwatNetword>
         thisBotNetworks.SetIntAnim("AttackType", indexSkill);
         thisBotNetworks.ChangeAnim("Attack");
         timerAttack = dataAttackBoss._dataSkill[indexSkill].timeAttack;
-        thisBotNetworks.RotaToTarget();
+        thisBotNetworks.RotaToPlayerMain();
     }
 
     public IEnumerator IEDelayAnimEvent()   
