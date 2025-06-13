@@ -18,6 +18,7 @@ public static class GameConstants
         BossZomRevenant = PoolType.BossZom_Revenant,
         BossZomChainSaw = PoolType.BossZomChainSaw,
         BossZomCrasher = PoolType.BossZomCrasher,
+        BossZomThrower = PoolType.BossZomThrower,
     }
 
 #if UNITY_EDITOR
@@ -37,6 +38,7 @@ public static class GameConstants
     public enum ProjecctileZombie
     {
         BulletFireZom = PoolType.BulletFireZom,
+        BulletRockZombie = PoolType.BulletRockZombie,
     }
 
     public enum ProjecttilePlayer
@@ -78,6 +80,8 @@ public static class GameConstants
         BulletFireZom=21,
         BossZomChainSaw = 22,
         BossZomCrasher = 23,
+        BossZomThrower = 24,
+        BulletRockZombie = 25,
     }
     
     public enum ZomAllState

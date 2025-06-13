@@ -104,8 +104,8 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
         yield return new WaitForSeconds(.5f);
         _fireBallFake.Stop();
         yield return new WaitForSeconds(.2f);
-        BulletFireZom bulletFireZom = SimplePool.Spawn<BulletFireZom>(PoolType.BulletFireZom, _fireBallFake.transform.position, Quaternion.identity);
-        bulletFireZom.OnInit(LocalPlayer.Instance.GetPosLocalPlayer());
+        BulletFireZombie bulletZomBase = SimplePool.Spawn<BulletFireZombie>(PoolType.BulletFireZom, _fireBallFake.transform.position, Quaternion.identity);
+        bulletZomBase.OnInit(LocalPlayer.Instance.GetPosLocalPlayer());
         yield return new WaitForSeconds(1.19f);
         _attackCoroutine = null;
         CanChangeState = true;
