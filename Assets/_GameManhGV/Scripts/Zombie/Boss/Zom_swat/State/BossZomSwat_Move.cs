@@ -8,6 +8,11 @@ public class BossZomSwat_Move : StateBase<ZomAllState,BossZomSwatNetword>
     private int moveIndex;
     private bool moveDoneToAttack;
 
+    public void OnInitState()
+    {
+        thisBotNetworks.ChangeAnimAndType("Move", 0);
+    }
+    
     public override void EnterState()
     {
         thisBotNetworks.ChangeAnim("Move");
@@ -33,7 +38,7 @@ public class BossZomSwat_Move : StateBase<ZomAllState,BossZomSwatNetword>
             {
                 if (!humanMoveBase.isHaveParent)
                 {
-                    humanMoveBase.SetBotMove(path.AttackWayPoints[moveIndex].position,.9f);
+                    humanMoveBase.SetBotMove(path.AttackWayPoints[moveIndex].position,1.5f);
                     float distance = Vector3.Distance(humanMoveBase.myTrans.position, path.AttackWayPoints[moveIndex].position);
                     if (distance < 0.1f)
                     {
@@ -45,7 +50,7 @@ public class BossZomSwat_Move : StateBase<ZomAllState,BossZomSwatNetword>
             {
                 if (!humanMoveBase.isHaveParent && moveIndex < path.WayPoints.Count)
                 {
-                    humanMoveBase.SetBotMove(path.WayPoints[moveIndex].position);
+                    humanMoveBase.SetBotMove(path.WayPoints[moveIndex].position,3.3f);
                     float distance = Vector3.Distance(humanMoveBase.myTrans.position, path.WayPoints[moveIndex].position);
                     if (distance < 0.1)
                     {
@@ -55,9 +60,9 @@ public class BossZomSwat_Move : StateBase<ZomAllState,BossZomSwatNetword>
 
                 if (moveIndex == path.WayPoints.Count)
                 {
-                    thisBotNetworks.SetIntAnim("MoveType", 1);
-                    moveDoneToAttack = true;
+                    thisBotNetworks.SetIntAnim("Move", 1);
                     thisStateController.ChangeState(ZomAllState.Attack);
+                    moveDoneToAttack = true;
                 }
             }
         }
@@ -65,5 +70,6 @@ public class BossZomSwat_Move : StateBase<ZomAllState,BossZomSwatNetword>
 
     public override void ExitState()
     {
+        
     }
 }

@@ -16,6 +16,8 @@ public static class GameConstants
         BotZomNorGirlTranNha = PoolType.BotZomNorGirlTranNha,
         BossZomSwat = PoolType.Boss_Zom_Swat,
         BossZomRevenant = PoolType.BossZom_Revenant,
+        BossZomChainSaw = PoolType.BossZomChainSaw,
+        BossZomCrasher = PoolType.BossZomCrasher,
     }
 
 #if UNITY_EDITOR
@@ -74,6 +76,8 @@ public static class GameConstants
         BossZom_Revenant = 19,
         vfx_ExplosionGround = 20,
         BulletFireZom=21,
+        BossZomChainSaw = 22,
+        BossZomCrasher = 23,
     }
     
     public enum ZomAllState
