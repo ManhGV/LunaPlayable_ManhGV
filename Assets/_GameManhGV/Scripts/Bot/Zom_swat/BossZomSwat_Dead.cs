@@ -5,6 +5,8 @@ using UnityEngine;
 public class BossZomSwat_Dead : BaseState<BossZomSwatState>
 {
     [SerializeField] private GameObject[] body;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip audioClip;
     [SerializeField] ParticleSystem particle_Dead;
     public override void EnterState()
     {
@@ -12,7 +14,7 @@ public class BossZomSwat_Dead : BaseState<BossZomSwatState>
         foreach (GameObject _body in body)
             _body.SetActive(false);
         isDoneState = false;
-        thisBotNetwork.PlayAudioVoice(11,1);
+        audioSource.PlayOneShot(audioClip);
         thisBotNetwork.ActiveFalseDetectors();
     }
 

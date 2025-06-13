@@ -50,7 +50,7 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
 
     private IEnumerator IEOnTutorialRocket()
     {
-        yield return new WaitForSeconds(22f);
+        yield return new WaitForSeconds(26f);
         RocketController.Instance.InstructRocket();
     }
 

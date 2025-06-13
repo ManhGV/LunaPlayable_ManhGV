@@ -332,8 +332,6 @@ public class BotNetwork : GameUnit, ITakeDamage
         // _audioSourceVoice.volume = _volume;
         // _audioSourceVoice.clip = _listSoundBotVoice[_index];
         // _audioSourceVoice.Play();
-        if(_index==0)
-            _volume = 0.5f;
         AudioManager.Instance.PlaySound(_listSoundBotVoice[_index],_volume);
     }
 }

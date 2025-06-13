@@ -35,7 +35,7 @@ public class BossZomSwat_Start : BaseState<BossZomSwatState>
             if (distance < 0.1f)
             {
                 isDoneMove = true;
-                CutSceneCam.Instance.Setparent(4,70f);
+                CutSceneCam.Instance.Setparent(4,50f);
                 thisBotNetwork.ChangeAnim("RageCutScene");
             }
             
