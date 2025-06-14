@@ -39,6 +39,7 @@ public static class GameConstants
     {
         BulletFireZom = PoolType.BulletFireZom,
         BulletRockZombie = PoolType.BulletRockZombie,
+        GroundCrashZom = PoolType.GroundCrashZom,
     }
 
     public enum ProjecttilePlayer
@@ -82,6 +83,7 @@ public static class GameConstants
         BossZomCrasher = 23,
         BossZomThrower = 24,
         BulletRockZombie = 25,
+        GroundCrashZom = 26,
     }
     
     public enum ZomAllState
