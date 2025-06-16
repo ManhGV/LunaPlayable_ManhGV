@@ -45,7 +45,7 @@ public class BossZomThrower_Attack : StateBase<ZomAllState, BossZomThrower_Netwo
             thisBotNetworks.ChangeAnimAndType("Attack", 0);
             yield return new WaitForSeconds(2f);
             BulletParabolZombie bulletParabolZombie = SimplePool.Spawn<BulletParabolZombie>(PoolType.BulletRockZombie, postSpawn.position, Quaternion.identity);
-            bulletParabolZombie.SetupSpawn(postSpawn);
+            bulletParabolZombie.SetupSpawn(postSpawn,1f);
             yield return new WaitForSeconds(.8f);
             vfxRock.Play();
             yield return new WaitForSeconds(2.2f);

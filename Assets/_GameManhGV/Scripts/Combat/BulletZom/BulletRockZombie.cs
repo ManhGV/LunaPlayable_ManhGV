@@ -20,10 +20,10 @@ public class BulletRockZombie : BulletParabolZombie
         important = false;
     }
 
-    public override void SetupSpawn(Transform _parent)
+    public override void SetupSpawn(Transform _parent,float _scale)
     {
+        base.SetupSpawn(_parent, _scale);
         important = true;
-        base.SetupSpawn(_parent);
         foreach (Transform VARIABLE in rockChildExplosion)
         {
             VARIABLE.localPosition = Vector3.zero;

@@ -19,6 +19,7 @@ public static class GameConstants
         BossZomChainSaw = PoolType.BossZomChainSaw,
         BossZomCrasher = PoolType.BossZomCrasher,
         BossZomThrower = PoolType.BossZomThrower,
+        BossZomHulk = PoolType.BossZomHulk,
     }
 
 #if UNITY_EDITOR
@@ -84,6 +85,7 @@ public static class GameConstants
         BossZomThrower = 24,
         BulletRockZombie = 25,
         GroundCrashZom = 26,
+        BossZomHulk = 27,
     }
     
     public enum ZomAllState
@@ -92,6 +94,8 @@ public static class GameConstants
         Idle,
         Move,
         Jump,
+        JumpPunch,
+        Scream,
         Attack,
         Stun_1,
         Stun_2,

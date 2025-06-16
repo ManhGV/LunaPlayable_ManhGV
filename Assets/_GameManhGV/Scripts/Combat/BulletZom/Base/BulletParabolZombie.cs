@@ -13,18 +13,21 @@ public class BulletParabolZombie : BulletZomBase
     float timeMove = 1f;
     Coroutine _flyCoroutine;
 
-    public virtual void SetupSpawn(Transform _parent)
+    public virtual void SetupSpawn(Transform _parent, float _scale)
     {
+        TF.parent = _parent;
+        TF.rotation = Quaternion.Euler(Vector3.zero);
+        TF.localScale = Vector3.one * _scale;
         colliderThis.enabled = true;
         molotovRota.gameObject.SetActive(true);
         _healthFill.fillAmount = 1;
         molotovRota.transform.rotation = Quaternion.Euler(Vector3.zero);
-        TF.parent = _parent;
     }
     
     public override void OnInit(Vector3 _posPlayer)
     {
         base.OnInit(_posPlayer);
+        TF.parent = null;
         detector.gameObject.SetActive(true);
         molotovRota.enabled = true;
         timeMove = speedMoveForDistance * Vector3.Distance(TF.position, posPlayer);
@@ -88,6 +91,12 @@ public class BulletParabolZombie : BulletZomBase
         detector.gameObject.SetActive(false);
         if(_flyCoroutine != null)
             StopCoroutine(_flyCoroutine);
+    }
+
+    public override void OnDespawn()
+    {
+        TF.localScale = Vector3.one;
+        base.OnDespawn();
     }
 
 #if UNITY_EDITOR
