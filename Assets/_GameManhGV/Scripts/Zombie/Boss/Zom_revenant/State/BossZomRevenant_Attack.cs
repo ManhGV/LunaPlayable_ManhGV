@@ -126,7 +126,7 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
             Vector3 spawnPos = posSelf + direction * (spacing * i);
             Effect effect = SimplePool.Spawn<Effect>(PoolType.vfx_ExplosionGround, spawnPos, Quaternion.identity);
             effect.OnInit();
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.34f);
             if (i == 3)
             { }
             //TODO:Attack player

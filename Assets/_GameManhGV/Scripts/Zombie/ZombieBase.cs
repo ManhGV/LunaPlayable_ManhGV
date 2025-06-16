@@ -99,7 +99,7 @@ public class ZombieBase : GameUnit, ITakeDamage
     {
         _audioManager = AudioManager.Instance;
     }
-    private void Update()
+    protected virtual void Update()
     {
         NUtiliti.AlignCamera(healthBarTransform, mainCameraTranform);
     }
@@ -155,36 +155,37 @@ public class ZombieBase : GameUnit, ITakeDamage
     public void SetIntAnim(string _name, int value) => animator.SetInteger(_name, value);
     public void ChangeAnim(string _name)
     {
+#if UNITY_EDITOR
         if (animator == null)
         {
             Debug.LogError("Null anim");
             return;
         }
-        //print("- "+_name+" |Old" + currentAnimName);
-        if (currentAnimName != _name)
-        {
-            animator.ResetTrigger(_name);
-            currentAnimName = _name;
-            animator.SetTrigger(currentAnimName);
-        }
+        // if (currentAnimName == _name)
+        //     print("- "+_name+" |Old" + currentAnimName);
+#endif
+        animator.ResetTrigger(_name);
+        currentAnimName = _name;
+        animator.SetTrigger(currentAnimName);
     }
     
     public void ChangeAnimAndType(string _name, int animType)
     {
-        //print("- " + _name + " |Old" + currentAnimName);
+#if UNITY_EDITOR
         if (animator == null)
         {
             Debug.LogError("Null anim");
             return;
         }
+        // if (currentAnimName == _name || currentAnimType == animType)
+        //     Debug.LogWarning("Bạn đang lăp lại một anim: " + _name + " | Old: " + currentAnimName + " | Type: " + animType);
+        // print("- " + _name + " |Old" + currentAnimName);
+#endif
         animator.SetInteger("AnimType", animType);
-        if (currentAnimName != _name||currentAnimType!= animType)
-        {
-            animator.ResetTrigger(_name);
-            currentAnimName = _name;
-            currentAnimType = animType;
-            animator.SetTrigger(currentAnimName);
-        }
+        animator.ResetTrigger(_name);
+        currentAnimName = _name; 
+        currentAnimType = animType; 
+        animator.SetTrigger(currentAnimName);
     }
     #endregion
     

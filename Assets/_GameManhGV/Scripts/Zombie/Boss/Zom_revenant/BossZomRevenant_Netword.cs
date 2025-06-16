@@ -15,6 +15,15 @@ public class BossZomRevenant_Netword : BossNetwork
     [Header("Check Chạm tường ngừng đi")] 
     [SerializeField] private LayerMask _layerCantMove;
 
+
+    public override void TakeDamage(DamageInfo damageInfo)
+    {
+        if (isJumping && (_currentHealth - damageInfo.damage) <= 0)
+            isImmortal = true;
+        
+        base.TakeDamage(damageInfo);
+    }
+
     public bool CheckForardChamVaoGround()
     {
         Vector3 origin = transform.position + Vector3.up * 1.5f;
@@ -33,17 +42,20 @@ public class BossZomRevenant_Netword : BossNetwork
         return false;
     }
 
-    public void JumpToTarget(Vector3 targetPos)
+    public bool JumpToTarget(Vector3 targetPos)
     {
-        // Bắt đầu coroutine nhảy
         isJumping = true;
         if(Vector3.Distance(TF.position, targetPos) < 0.5f)
         {
             Debug.LogWarning("Quá gần không thể nhảy");
             isJumping = false; // Nếu vị trí đích quá gần, không cần nhảy
-            return;
+            return false;
         }
-        StartCoroutine(JumpCoroutine(targetPos));
+        else
+        {
+            StartCoroutine(JumpCoroutine(targetPos));
+            return true;
+        }
     }
     
     private IEnumerator JumpCoroutine(Vector3 endJumpPos)
@@ -104,6 +116,7 @@ public class BossZomRevenant_Netword : BossNetwork
 
         yield return new WaitForSeconds(1.85f);
         isJumping = false;
+        isImmortal = false;
     }
 
     private IEnumerator RotateToDirection(Vector3 direction)
