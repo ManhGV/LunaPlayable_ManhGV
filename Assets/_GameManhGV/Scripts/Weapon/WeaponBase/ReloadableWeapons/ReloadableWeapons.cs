@@ -155,18 +155,20 @@ public class ReloadableWeapons : WeaponBase
                 if (takeDamageController != null) takeDamageController.TakeDamage(damageInfo);
                 typeEffect = GameConstants.PoolType.vfx_BloodEffectZom;
                 // Debug.Log(damageType.ToString() + " " + weaponInfo.damage + " " + hit.collider.name);
+                print("Bot");
             }
             else if (IsInLayerIndex(hit.collider.gameObject,1))
             {
-                Detector detector = hit.transform.gameObject.GetComponent<Detector>();
-                if (detector != null)
-                    detector.SetHealthImage(damageInfo.damage);
-
-                BallisticArmor ballisticArmor = hit.transform.gameObject.GetComponent<BallisticArmor>();
-                if (ballisticArmor != null)
-                    ballisticArmor.TakeDamage(damageInfo.damage);
-                
-                damageInfo.damage /= 3;
+                print("Detected");
+                // Detector detector = hit.transform.gameObject.GetComponent<Detector>();
+                // if (detector != null)
+                //     detector.SetHealthImage(damageInfo.damage);
+                //
+                // BallisticArmor ballisticArmor = hit.transform.gameObject.GetComponent<BallisticArmor>();
+                // if (ballisticArmor != null)
+                //     ballisticArmor.TakeDamage(damageInfo.damage);
+                //
+                // damageInfo.damage /= 3;
                 var takeDamageController = hit.transform.gameObject.GetComponent<ITakeDamage>();
                 if (takeDamageController == null)
                 {

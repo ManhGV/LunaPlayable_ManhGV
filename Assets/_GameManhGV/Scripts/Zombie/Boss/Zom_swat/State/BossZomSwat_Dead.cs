@@ -10,7 +10,7 @@ public class BossZomSwat_Dead : StateBase<ZomAllState,BossZomSwatNetword>
         particle_Dead.Play();
         foreach (GameObject _body in body)
             _body.SetActive(false);
-        thisBotNetworks.ActiveFalseDetectors();
+        thisBotNetworks.SetActiveDetectors(true,0);
     }
 
     public override void UpdateState()

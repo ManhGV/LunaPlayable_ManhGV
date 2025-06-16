@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(BossZomOgre_Idle),typeof(BossZomOgre_Move), typeof(BossZomOgre_Attack))]
 [RequireComponent(typeof(BossZomOgre_Stun),typeof(BossZomOgre_Dead), typeof(BossZomOgre_Scream))]
 
-public class BossZomOgre_StateController : StateControllerBase<BossNetwork>
+public class BossZomOgre_StateController : StateControllerBase<BossZomOgre_Network>
 {
     private BossZomOgre_Idle _idleState;
     private BossZomOgre_Move _moveState;
@@ -46,5 +46,11 @@ public class BossZomOgre_StateController : StateControllerBase<BossNetwork>
         base.OnEnable();
         _currentState = stateController[ZomAllState.Move];
         _currentState.EnterState();
+    }
+
+    protected override void OnEventDetectorDead(int obj)
+    {
+        base.OnEventDetectorDead(obj);
+        ChangeState(ZomAllState.Stun_1);
     }
 }

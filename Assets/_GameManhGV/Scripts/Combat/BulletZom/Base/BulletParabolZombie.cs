@@ -15,7 +15,8 @@ public class BulletParabolZombie : BulletZomBase
     public virtual void SetupSpawn(Transform _parent, float _scale)
     {
         TF.parent = _parent;
-        TF.rotation = Quaternion.Euler(Vector3.zero);
+        TF.localPosition = Vector3.zero;
+        TF.localRotation = Quaternion.Euler(Vector3.zero);
         TF.localScale = Vector3.one * _scale;
         colliderThis.enabled = true;
         _healthFill.fillAmount = 1f;

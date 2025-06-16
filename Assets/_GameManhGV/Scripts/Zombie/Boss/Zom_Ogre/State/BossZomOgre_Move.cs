@@ -1,7 +1,7 @@
 using static GameConstants;
 using UnityEngine;
 
-public class BossZomOgre_Move : StateBase<ZomAllState,BossNetwork>
+public class BossZomOgre_Move : StateBase<ZomAllState,BossZomOgre_Network>
 {
     [SerializeField] private HumanMoveBase humanMoveBase;
     private WayPoint path;
@@ -10,8 +10,14 @@ public class BossZomOgre_Move : StateBase<ZomAllState,BossNetwork>
     
     public override void EnterState()
     {
+        
         thisBotNetworks.ChangeAnim("Move");
         path = thisBotNetworks.GetWayPoint;
+        if (path.AttackWayPoints.Count <= 1)
+        {
+            Debug.LogError("Null WayPoint AttackWayPoints");
+            return;
+        }
         int _random;
         do
         {

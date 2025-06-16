@@ -1,7 +1,7 @@
 using static GameConstants;
 using UnityEngine;
 
-public class BossZomOgre_Idle : StateBase<ZomAllState,BossNetwork>
+public class BossZomOgre_Idle : StateBase<ZomAllState,BossZomOgre_Network>
 {
     private float timer;
     public override void EnterState()

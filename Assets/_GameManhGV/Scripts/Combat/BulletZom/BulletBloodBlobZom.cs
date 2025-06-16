@@ -25,6 +25,6 @@ public class BulletBloodBlobZom : BulletParabolZombie
         base.OnDead();
         _body.SetActive(false);
         vfxExplosion.Play();   
-        Invoke(nameof(Destroy), .65f);
+        Invoke(nameof(OnDespawn), .65f);
     }
 }

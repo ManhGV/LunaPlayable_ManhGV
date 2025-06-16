@@ -14,15 +14,25 @@ public class StateControllerBase<TBotNet> : MonoBehaviour where TBotNet : Zombie
     protected virtual  void OnEnable()
     {
         canDead = true;
+        if(botNetworks is BossNetwork bossNetwork)
+            bossNetwork.ActionEventDetectorDead += OnEventDetectorDead;
+            
         botNetworks.OnTakeDamage += OnTakeDame;
         botNetworks.ZombieDead += ZombieDead;
         ResetState();
+    }
+
+    protected virtual void OnEventDetectorDead(int obj)
+    {
+        
     }
 
     protected virtual void OnDisable()
     {
         botNetworks.OnTakeDamage -= OnTakeDame;
         botNetworks.ZombieDead -= ZombieDead;
+        if(botNetworks is BossNetwork bossNetwork)
+            bossNetwork.ActionEventDetectorDead -= OnEventDetectorDead;
     }
     
     protected virtual void Update()
@@ -62,7 +72,7 @@ public class StateControllerBase<TBotNet> : MonoBehaviour where TBotNet : Zombie
     #region State Controller
     public void ChangeState(ZomAllState newAllState)
     {
-        if (_currentState.StateKey.Equals(newAllState) || _isTransition)
+        if (_currentState==null || _currentState.StateKey.Equals(newAllState) || _isTransition)
             return;
 
         TransitionState(newAllState);

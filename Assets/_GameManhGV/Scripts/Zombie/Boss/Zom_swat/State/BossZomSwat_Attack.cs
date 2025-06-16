@@ -11,10 +11,10 @@ public class BossZomSwat_Attack : StateBase<ZomAllState, BossZomSwatNetword>
 
     //Stun
     [Tooltip("Attack Rage")] [SerializeField]
-    private Detector[] AttakType_1;
+    private DetectorBase[] AttakType_1;
 
     [Tooltip("Attack Swing")] [SerializeField]
-    private Detector[] AttakType_2;
+    private DetectorBase[] AttakType_2;
 
     private bool isStun_1;
     private bool isStun_2;
@@ -34,13 +34,13 @@ public class BossZomSwat_Attack : StateBase<ZomAllState, BossZomSwatNetword>
         }
         else if (indexSkill == 1)
         {
-            foreach (Detector VARIABLE in AttakType_1)
+            foreach (DetectorBase VARIABLE in AttakType_1)
                 VARIABLE.gameObject.SetActive(true);
             
         }
         else if (indexSkill == 2)
         {
-            foreach (Detector VARIABLE in AttakType_2)
+            foreach (DetectorBase VARIABLE in AttakType_2)
                 VARIABLE.gameObject.SetActive(true);
         }
         _coroutineIEDelaySkill = StartCoroutine(IEDelaySkill());
@@ -99,7 +99,7 @@ public class BossZomSwat_Attack : StateBase<ZomAllState, BossZomSwatNetword>
             thisBotNetworks.SetFloatAnim("Rage_AnimSpeedScale", .2f);
             yield return new WaitForSeconds(2.3f);
             thisBotNetworks.SetFloatAnim("Rage_AnimSpeedScale", 1f);
-            foreach (Detector VARIABLE in AttakType_1)
+            foreach (DetectorBase VARIABLE in AttakType_1)
                 VARIABLE.gameObject.SetActive(false);
         }
         else if (indexSkill == 2)
@@ -109,7 +109,7 @@ public class BossZomSwat_Attack : StateBase<ZomAllState, BossZomSwatNetword>
             thisBotNetworks.SetFloatAnim("Swing_AnimSpeedScale", .2f);
             yield return new WaitForSeconds(1.95f);
             thisBotNetworks.SetFloatAnim("Swing_AnimSpeedScale", 1f);
-            foreach (Detector VARIABLE in AttakType_2)
+            foreach (DetectorBase VARIABLE in AttakType_2)
                 VARIABLE.gameObject.SetActive(false);
         }
     }
@@ -141,10 +141,10 @@ public class BossZomSwat_Attack : StateBase<ZomAllState, BossZomSwatNetword>
         {
             StopCoroutine(_coroutineIEDelaySkill);
             if (indexSkill == 1)
-                foreach (Detector VARIABLE in AttakType_1)
+                foreach (DetectorBase VARIABLE in AttakType_1)
                     VARIABLE.gameObject.SetActive(false);
             else if (indexSkill == 2)
-                foreach (Detector VARIABLE in AttakType_2)
+                foreach (DetectorBase VARIABLE in AttakType_2)
                     VARIABLE.gameObject.SetActive(false);
         }
     }
