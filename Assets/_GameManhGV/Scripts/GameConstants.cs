@@ -20,6 +20,7 @@ public static class GameConstants
         BossZomCrasher = PoolType.BossZomCrasher,
         BossZomThrower = PoolType.BossZomThrower,
         BossZomHulk = PoolType.BossZomHulk,
+        bossZomOgre = PoolType.BossZomOgre,
     }
 
 #if UNITY_EDITOR
@@ -41,6 +42,7 @@ public static class GameConstants
         BulletFireZom = PoolType.BulletFireZom,
         BulletRockZombie = PoolType.BulletRockZombie,
         GroundCrashZom = PoolType.GroundCrashZom,
+        BulletBloodBlobZom = PoolType.BulletBloodBlobZom,
     }
 
     public enum ProjecttilePlayer
@@ -86,6 +88,8 @@ public static class GameConstants
         BulletRockZombie = 25,
         GroundCrashZom = 26,
         BossZomHulk = 27,
+        BossZomOgre = 28,
+        BulletBloodBlobZom = 29,
     }
     
     public enum ZomAllState
@@ -95,8 +99,8 @@ public static class GameConstants
         Move,
         Jump,
         JumpPunch,
-        Scream,
         Attack,
+        Scream,
         Stun_1,
         Stun_2,
         Dead,

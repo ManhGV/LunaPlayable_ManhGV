@@ -6,7 +6,6 @@ using UnityEngine;
 public class BulletParabolZombie : BulletZomBase
 {
     [Header("Referent")]
-    [SerializeField] protected MolotovRota molotovRota;
     [SerializeField] Transform detector;
     [SerializeField] float speedMoveForDistance = .2f;
     [SerializeField] float height = 3f;
@@ -19,9 +18,7 @@ public class BulletParabolZombie : BulletZomBase
         TF.rotation = Quaternion.Euler(Vector3.zero);
         TF.localScale = Vector3.one * _scale;
         colliderThis.enabled = true;
-        molotovRota.gameObject.SetActive(true);
-        _healthFill.fillAmount = 1;
-        molotovRota.transform.rotation = Quaternion.Euler(Vector3.zero);
+        _healthFill.fillAmount = 1f;
     }
     
     public override void OnInit(Vector3 _posPlayer)
@@ -29,7 +26,6 @@ public class BulletParabolZombie : BulletZomBase
         base.OnInit(_posPlayer);
         TF.parent = null;
         detector.gameObject.SetActive(true);
-        molotovRota.enabled = true;
         timeMove = speedMoveForDistance * Vector3.Distance(TF.position, posPlayer);
         _flyCoroutine = StartCoroutine(IEFlyInArc(TF.position, posPlayer, timeMove, height));
     }
@@ -38,7 +34,7 @@ public class BulletParabolZombie : BulletZomBase
     {
         if (_isDead)
             return;
-        
+        detector.LookAt(GameManager.Instance.GetMainCameraTransform());
         if(Vector3.Distance(TF.position, posPlayer) <2f)
             OnTakeDamagePlayer();
     }
@@ -86,8 +82,6 @@ public class BulletParabolZombie : BulletZomBase
     {
         base.OnDead();
         colliderThis.enabled = false;
-        molotovRota.enabled = false;
-        molotovRota.gameObject.SetActive(false);
         detector.gameObject.SetActive(false);
         if(_flyCoroutine != null)
             StopCoroutine(_flyCoroutine);
