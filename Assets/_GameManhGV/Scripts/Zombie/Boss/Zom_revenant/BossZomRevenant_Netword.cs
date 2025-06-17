@@ -151,4 +151,10 @@ public class BossZomRevenant_Netword : BossNetwork
         // Trả về vị trí mới
         return TF.position + offset;
     }
+
+    public override void SetActiveDetectors(bool _active, int _skillType)
+    {
+        base.SetActiveDetectors(_active, _skillType);
+        detectors[_skillType].SetActive(_active);
+    }
 }

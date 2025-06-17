@@ -14,11 +14,12 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
         posYthis = transform.position.y;
         CanChangeState = false;
         thisBotNetworks.RotaToPlayerMain();
+        
         if (thisBotNetworks.DistanceToPlayermain() <= 9.74)
         {
-            //TODO: Skill trocj 2 cánh
             attackType = 01;
             _attackCoroutine = StartCoroutine(IEAttackType_01(Random.Range(3, 5)));
+            //TODO: Skill trocj 2 cánh
         }
         else if (posYthis > 0)
         {
@@ -35,7 +36,6 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
     public override void UpdateState()
     {
         //print(timer);
-        //if (CanChangeState)
         if (CanChangeState)
         {
             int random;
@@ -68,8 +68,13 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
     public override void ExitState()
     {
         if (_attackCoroutine != null)
+        {
             StopCoroutine(_attackCoroutine);
+            thisBotNetworks.SetFloatAnim("SpeedAtkAnim", 1);
+            thisBotNetworks.SetActiveAllDetectors(false);
+        }
     }
+
 
     /// <param name="_countAttack">Số lần vẩy cánh</param>
     /// <returns></returns>
@@ -81,13 +86,27 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
             {
 
                 thisBotNetworks.ChangeAnimAndType("Attack", 0);
-                yield return new WaitForSeconds(2.45f); //2.26 là thực anim
+                yield return new WaitForSeconds(.25f);
+                thisBotNetworks.SetFloatAnim("SpeedAtkAnim", .3f);
+                thisBotNetworks.SetActiveDetectors(true,0);
+                yield return new WaitForSeconds(1.3f);
+                thisBotNetworks.SetActiveDetectors(false,0);
+                thisBotNetworks.SetFloatAnim("SpeedAtkAnim", 1);
+
+                yield return new WaitForSeconds(2.2f); //2.26 là thực anim
                 //TODO:Attack player
             }
             else
             {
                 thisBotNetworks.ChangeAnimAndType("Attack", 1);
-                yield return new WaitForSeconds(2.45f);
+                yield return new WaitForSeconds(.25f);
+                thisBotNetworks.SetFloatAnim("SpeedAtkAnim", .3f);
+                thisBotNetworks.SetActiveDetectors(true,1);
+                yield return new WaitForSeconds(1.3f);
+                thisBotNetworks.SetActiveDetectors(false,1);
+                thisBotNetworks.SetFloatAnim("SpeedAtkAnim", 1);
+
+                yield return new WaitForSeconds(2.2f);
                 //TODO:Attack player
             }
         }
@@ -119,7 +138,14 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
         posLocalPlayer.y = 0;
         Vector3 direction = (posLocalPlayer - posSelf).normalized;
         float spacing = Vector3.Distance(posSelf, posLocalPlayer) / 3; // Khoảng cách giữa các điểm
-        yield return new WaitForSeconds(1.19f);
+
+        yield return new WaitForSeconds(.4f);
+        thisBotNetworks.SetFloatAnim("SpeedAtkAnim", .28f);
+        thisBotNetworks.SetActiveDetectors(true, 2);
+        yield return new WaitForSeconds(1.78f);
+        thisBotNetworks.SetActiveDetectors(false, 2);
+        thisBotNetworks.SetFloatAnim("SpeedAtkAnim", 1);
+        yield return new WaitForSeconds(.3f);
 
         for (int i = 1; i < 4; i++)
         {
@@ -132,7 +158,7 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
             //TODO:Attack player
         }
 
-        yield return new WaitForSeconds(1.12f);
+        yield return new WaitForSeconds(1f);
         _attackCoroutine = null;
         CanChangeState = true;
     }

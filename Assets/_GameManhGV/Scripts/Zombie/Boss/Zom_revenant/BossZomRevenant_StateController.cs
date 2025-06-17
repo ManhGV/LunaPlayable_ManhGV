@@ -61,8 +61,9 @@ public class BossZomRevenant_StateController : StateControllerBase<BossZomRevena
         _currentState.EnterState();
     }
 
-    public void StunThis()
+    protected override void OnEventDetectorDead(int obj)
     {
+        base.OnEventDetectorDead(obj);
         ChangeState(ZomAllState.Stun_1);
     }
 }
