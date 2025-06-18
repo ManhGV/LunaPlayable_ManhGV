@@ -8,6 +8,7 @@ public class BulletRockZombie : BulletParabolZombie
 {
     
     [SerializeField] protected MolotovRota molotovRota;
+    [SerializeField] private GameObject _bodyRock;
     [Header("Explosion rock Settings")]
     [SerializeField] private Transform[] rockChildExplosion;
     [SerializeField] LayerMask _groundLayer;
@@ -26,8 +27,8 @@ public class BulletRockZombie : BulletParabolZombie
     public override void SetupSpawn(Transform _parent,float _scale)
     {
         base.SetupSpawn(_parent, _scale);
-        molotovRota.gameObject.SetActive(true);
-        molotovRota.transform.rotation = Quaternion.Euler(Vector3.zero);
+        _bodyRock.SetActive(true);
+        molotovRota.transform.localRotation = Quaternion.Euler(Vector3.zero);
         important = true;
         foreach (Transform VARIABLE in rockChildExplosion)
         {
@@ -41,7 +42,7 @@ public class BulletRockZombie : BulletParabolZombie
     {
         base.OnDead();
         molotovRota.enabled = false;
-        molotovRota.gameObject.SetActive(false);
+        _bodyRock.SetActive(false);
         foreach (Transform VARIABLE in rockChildExplosion)
             StartCoroutine(IEExplodeAndFall(VARIABLE));
         Invoke(nameof(OnDespawn),3f);

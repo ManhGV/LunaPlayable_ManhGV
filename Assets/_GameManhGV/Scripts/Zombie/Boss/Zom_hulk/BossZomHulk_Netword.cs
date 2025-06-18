@@ -81,6 +81,7 @@ public class BossZomHulk_Netword : BossNetwork
         ChangeAnimAndType("Jump",1);
 
         Vector3 lastFramePos = startJumpPos;
+        bool canChangeEnd = true;
         while (currentTime < jumpDuration)
         {
             float t = currentTime / jumpDuration;
@@ -101,8 +102,9 @@ public class BossZomHulk_Netword : BossNetwork
 
             lastFramePos = TF.position;
             currentTime += Time.deltaTime;
-            if (currentTime >= timeActiveAnimator) //34%
+            if (currentTime >= timeActiveAnimator && canChangeEnd) //34%
             {
+                canChangeEnd = false;
                 ChangeAnimAndType("Jump",2);
             }
             yield return null;
@@ -138,6 +140,7 @@ public class BossZomHulk_Netword : BossNetwork
         ChangeAnimAndType("JumpPunch",1);
 
         Vector3 lastFramePos = startJumpPos;
+        bool canChangeEnd = true;
         while (currentTime < jumpDuration)
         {
             float t = currentTime / jumpDuration;
@@ -158,8 +161,9 @@ public class BossZomHulk_Netword : BossNetwork
 
             lastFramePos = TF.position;
             currentTime += Time.deltaTime;
-            if (currentTime >= timeActiveAnimator)
+            if (currentTime >= timeActiveAnimator&& canChangeEnd)
             {
+                canChangeEnd = false;
                 ChangeAnimAndType("JumpPunch",2);
             }
             yield return null;

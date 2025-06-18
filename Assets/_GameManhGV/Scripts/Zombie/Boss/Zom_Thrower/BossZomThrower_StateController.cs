@@ -51,4 +51,10 @@ public class BossZomThrower_StateController : StateControllerBase<BossZomThrower
         _currentState = stateController[ZomAllState.Move];
         _currentState.EnterState();
     }
+
+    protected override void OnEventDetectorDead(int obj)
+    {
+        base.OnEventDetectorDead(obj);
+        ChangeState(ZomAllState.Stun_1);
+    }
 }

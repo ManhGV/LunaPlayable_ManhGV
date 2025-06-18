@@ -12,7 +12,7 @@ public class BossZomThrower_Attack : StateBase<ZomAllState, BossZomThrower_Netwo
     {
         _doneAttack = false;
         thisBotNetworks.RotaToPlayerMain();
-        StartCoroutine(IEAttack(Random.Range(0,2)));
+        StartCoroutine(IEAttack(1)); //Random.Range(0,2)));
     }
 
     public override void UpdateState()
@@ -32,19 +32,25 @@ public class BossZomThrower_Attack : StateBase<ZomAllState, BossZomThrower_Netwo
         }
     }
 
+    private BulletParabolZombie bulletParabolZombie;
+    private CraskGroundRockZom craskGroundRockZom;
     public override void ExitState()
     {
-        if(_attackCoroutine != null)
+        if (_attackCoroutine != null)
+        {
             StopCoroutine(_attackCoroutine);
+            bulletParabolZombie.OnDespawn();
+            craskGroundRockZom.OnDespawn();
+        }
     }
-
+    
     IEnumerator IEAttack(int _animType)
     {
         if (_animType == 0)
         {
             thisBotNetworks.ChangeAnimAndType("Attack", 0);
             yield return new WaitForSeconds(2f);
-            BulletParabolZombie bulletParabolZombie = SimplePool.Spawn<BulletParabolZombie>(PoolType.BulletRockZombie, postSpawn.position, Quaternion.identity);
+            bulletParabolZombie = SimplePool.Spawn<BulletParabolZombie>(PoolType.BulletRockZombie, postSpawn.position, Quaternion.identity);
             bulletParabolZombie.SetupSpawn(postSpawn,1f);
             yield return new WaitForSeconds(.8f);
             vfxRock.Play();
@@ -56,16 +62,21 @@ public class BossZomThrower_Attack : StateBase<ZomAllState, BossZomThrower_Netwo
         else if (_animType == 1)
         {
             thisBotNetworks.ChangeAnimAndType("Attack", 1);
-            CraskGroundRockZom craskGroundRockZom = SimplePool.Spawn<CraskGroundRockZom>(PoolType.GroundCrashZom, postSpawn.position, Quaternion.identity);
-            yield return new WaitForSeconds(1.2f);
+            yield return new WaitForSeconds(0.6f);
+            thisBotNetworks.SetActiveAllDetectors(true);
+            thisBotNetworks.SetFloatAnim("animAttackSpeed", 0.2f);
+            yield return new WaitForSeconds(1.5f);
+            thisBotNetworks.SetFloatAnim("animAttackSpeed", 1);
+            thisBotNetworks.SetActiveAllDetectors(false);
+            
+            yield return new WaitForSeconds(0.7f);
+            craskGroundRockZom = SimplePool.Spawn<CraskGroundRockZom>(PoolType.GroundCrashZom, postSpawn.position, Quaternion.identity);
             craskGroundRockZom.OnInit(transform.position,LocalPlayer.Instance.GetPosLocalPlayer());
-            yield return new WaitForSeconds(.4f);
         }
         else
-        {
             thisStateController.ChangeState(ZomAllState.Idle);
-        }
 
+        _attackCoroutine = null;
         _doneAttack = true;
     }
 }

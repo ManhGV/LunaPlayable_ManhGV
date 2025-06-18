@@ -48,6 +48,7 @@ public class BossZomThrower_Netword : BossNetwork
         ChangeAnimAndType("Jump",1);
 
         Vector3 lastFramePos = startJumpPos;
+        bool canChangeEnd = true;
         while (currentTime < jumpDuration)
         {
             float t = currentTime / jumpDuration;
@@ -68,8 +69,9 @@ public class BossZomThrower_Netword : BossNetwork
 
             lastFramePos = TF.position;
             currentTime += Time.deltaTime;
-            if (currentTime >= timeActiveAnimator) //34%
+            if (currentTime >= timeActiveAnimator && canChangeEnd) //34%
             {
+                canChangeEnd = false;
                 ChangeAnimAndType("Jump",2);
             }
             yield return null;

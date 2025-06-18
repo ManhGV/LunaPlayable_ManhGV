@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6082681597281059316}
-  - component: {fileID: 5807772691419750047}
   - component: {fileID: 7520721947389615551}
-  m_Layer: 11
+  - component: {fileID: 3821950409779962163}
+  - component: {fileID: 2542587539746773246}
+  m_Layer: 10
   m_Name: BulletRockZom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +37,48 @@ Transform:
   - {fileID: 7344385104095449072}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5807772691419750047
+--- !u!114 &7520721947389615551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649428417180579973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb362597e88259468d672686e4f8dd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PoolType: 25
+  projecctileTyle: 25
+  important: 0
+  _dame: 20
+  colliderThis: {fileID: 3821950409779962163}
+  maxHealth: 200
+  currentHealth: 0
+  _healthFill: {fileID: 946651118691718921}
+  detector: {fileID: 2698795693653828115}
+  speedMoveForDistance: 0.2
+  height: 3
+  molotovRota: {fileID: 2542587539746773246}
+  _bodyRock: {fileID: 7377716097314698163}
+  rockChildExplosion:
+  - {fileID: 3004528626880284695}
+  - {fileID: 3039063951032152099}
+  - {fileID: 968365514538941394}
+  - {fileID: 7537711740910683312}
+  - {fileID: 3853321537485992104}
+  - {fileID: 6944192403565642063}
+  - {fileID: 3569947620202400016}
+  - {fileID: 6393770263474249135}
+  - {fileID: 1369441276136888195}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  explosionRadius: 5
+  timeMocehorizontal: 0.5
+  fallSpeed: 5
+--- !u!65 &3821950409779962163
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,46 +99,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.7150519, y: 0.5170471, z: 1.4266086}
   m_Center: {x: 0, y: 0, z: 0.04625535}
---- !u!114 &7520721947389615551
+--- !u!114 &2542587539746773246
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649428417180579973}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cb362597e88259468d672686e4f8dd6, type: 3}
+  m_Script: {fileID: 11500000, guid: 45554f1e5dfd1ee44b4345c115fae2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PoolType: 25
-  projecctileTyle: 25
-  important: 0
-  _dame: 20
-  colliderThis: {fileID: 5807772691419750047}
-  maxHealth: 200
-  currentHealth: 0
-  _healthFill: {fileID: 946651118691718921}
-  detector: {fileID: 2698795693653828115}
-  speedMoveForDistance: 0.2
-  height: 3
-  molotovRota: {fileID: 7913014146138566687}
-  rockChildExplosion:
-  - {fileID: 3004528626880284695}
-  - {fileID: 3039063951032152099}
-  - {fileID: 968365514538941394}
-  - {fileID: 7537711740910683312}
-  - {fileID: 3853321537485992104}
-  - {fileID: 6944192403565642063}
-  - {fileID: 3569947620202400016}
-  - {fileID: 6393770263474249135}
-  - {fileID: 1369441276136888195}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  explosionRadius: 5
-  timeMocehorizontal: 0.5
-  fallSpeed: 5
+  rotaDir: {x: 0, y: 0, z: 0}
 --- !u!1 &948717897342189226
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +123,7 @@ GameObject:
   - component: {fileID: 3004528626880284695}
   - component: {fileID: 5471233712882633323}
   - component: {fileID: 5430912409008419523}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Break_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +206,7 @@ GameObject:
   - component: {fileID: 6393770263474249135}
   - component: {fileID: 9179624970829763955}
   - component: {fileID: 8378408043516843387}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Break_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +289,7 @@ GameObject:
   - component: {fileID: 7537711740910683312}
   - component: {fileID: 806108495220719171}
   - component: {fileID: 9115408043786257526}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Break_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +372,7 @@ GameObject:
   - component: {fileID: 1369441276136888195}
   - component: {fileID: 2569957590752290582}
   - component: {fileID: 2223838698106874964}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Break_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +453,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7344385104095449072}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rock_Break
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -480,7 +495,7 @@ GameObject:
   - component: {fileID: 968365514538941394}
   - component: {fileID: 8853764466093666836}
   - component: {fileID: 7609103934791064380}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Break_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +578,7 @@ GameObject:
   - component: {fileID: 6944192403565642063}
   - component: {fileID: 3530407390693964921}
   - component: {fileID: 3972347727489505252}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Break_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +661,7 @@ GameObject:
   - component: {fileID: 3569947620202400016}
   - component: {fileID: 1380061106126190796}
   - component: {fileID: 8618469053831485147}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Break_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -729,7 +744,7 @@ GameObject:
   - component: {fileID: 3853321537485992104}
   - component: {fileID: 5276169224025457391}
   - component: {fileID: 909690162179263722}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Break_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -812,7 +827,7 @@ GameObject:
   - component: {fileID: 3039063951032152099}
   - component: {fileID: 6098275730811781448}
   - component: {fileID: 6406880635578145448}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Break_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -896,17 +911,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: DetectorZom (Weakpoint)
       objectReference: {fileID: 0}
+    - target: {fileID: 865089612574957974, guid: 7ac89f5dcef53714292e4cb0f2bc774a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4894842687688718720, guid: 7ac89f5dcef53714292e4cb0f2bc774a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.8
+      value: 2.6
       objectReference: {fileID: 0}
     - target: {fileID: 4894842687688718720, guid: 7ac89f5dcef53714292e4cb0f2bc774a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.8
+      value: 2.6
       objectReference: {fileID: 0}
     - target: {fileID: 4894842687688718720, guid: 7ac89f5dcef53714292e4cb0f2bc774a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.8
+      value: 2.6
       objectReference: {fileID: 0}
     - target: {fileID: 4894842687688718720, guid: 7ac89f5dcef53714292e4cb0f2bc774a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -918,7 +937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4894842687688718720, guid: 7ac89f5dcef53714292e4cb0f2bc774a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.2399998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4894842687688718720, guid: 7ac89f5dcef53714292e4cb0f2bc774a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -947,6 +966,10 @@ PrefabInstance:
     - target: {fileID: 4894842687688718720, guid: 7ac89f5dcef53714292e4cb0f2bc774a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4894842687688718720, guid: 7ac89f5dcef53714292e4cb0f2bc774a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1037,32 +1060,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 448d0fcb7f37ee14893c7447c8843d7e, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 448d0fcb7f37ee14893c7447c8843d7e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7913014146138566687}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 448d0fcb7f37ee14893c7447c8843d7e, type: 3}
 --- !u!1 &7377716097314698163 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 448d0fcb7f37ee14893c7447c8843d7e, type: 3}
   m_PrefabInstance: {fileID: 7684126548794969826}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7913014146138566687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7377716097314698163}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45554f1e5dfd1ee44b4345c115fae2ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotaDir: {x: 0, y: 0, z: 0}
 --- !u!4 &7865881030437103881 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 448d0fcb7f37ee14893c7447c8843d7e, type: 3}

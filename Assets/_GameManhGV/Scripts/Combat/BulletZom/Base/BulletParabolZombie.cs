@@ -35,7 +35,8 @@ public class BulletParabolZombie : BulletZomBase
     {
         if (_isDead)
             return;
-        detector.LookAt(GameManager.Instance.GetMainCameraTransform());
+        
+        detector.LookAt(posPlayer);
         if(Vector3.Distance(TF.position, posPlayer) <2f)
             OnTakeDamagePlayer();
     }
