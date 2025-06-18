@@ -10,15 +10,15 @@ public class DetectorBase : MonoBehaviour,ITakeDamage
     [SerializeField] private Transform cameraTransform;
     
     [Header("Phóng to sau đó thu nhỏ Derector")]
-    [SerializeField] private float _originalScaleDefault = 1f;
     [SerializeField] private float _scaleSpeed = 60f;  
     [SerializeField] private float _scaleMultiplier = 10f;
-    [FormerlySerializedAs("_detectorUI")] [SerializeField] private Transform _detectorLookPlayer;
+    [SerializeField] private Transform TF_UI;
     private Coroutine _currentCoroutine;
 
     [Header("Health")] 
     [SerializeField] private int _maxHealth = 100;
     [SerializeField] private int _currentHealth;
+    private Transform TF;
     public Image healthImage;
     bool _deadDetector;
 
@@ -33,19 +33,19 @@ public class DetectorBase : MonoBehaviour,ITakeDamage
         healthImage.fillAmount = 1f;
         _deadDetector = false;
         _currentHealth = _maxHealth;
-        _detectorLookPlayer.localScale =Vector3.one * _originalScaleDefault;
         Play();
     }
 
     private void Awake()
     {
         cameraTransform = GameManager.Instance.GetMainCameraTransform();
+        TF = this.transform;
     }
 
     private void LateUpdate()
     {
         if (cameraTransform != null)
-            _detectorLookPlayer.LookAt(cameraTransform);
+            TF_UI.LookAt(cameraTransform);
     }
     
     public void Play()
@@ -58,16 +58,16 @@ public class DetectorBase : MonoBehaviour,ITakeDamage
 
     private IEnumerator AnimateScale()
     {
-        Vector3 targetScale = Vector3.one * _originalScaleDefault;
+        Vector3 targetScale = Vector3.one;
         Vector3 startScale = targetScale * _scaleMultiplier;
 
         // Gán giá trị phóng to ngay lập tức
-        _detectorLookPlayer.localScale = startScale;
+        TF.localScale = startScale;
 
         while (true)
         {
-            if (Vector3.Distance(_detectorLookPlayer.localScale, targetScale) > 0.001f)
-                _detectorLookPlayer.localScale = Vector3.MoveTowards(_detectorLookPlayer.localScale, targetScale, _scaleSpeed * Time.deltaTime);
+            if (Vector3.Distance(TF.localScale, targetScale) > 0.001f)
+                TF.localScale = Vector3.MoveTowards(TF.localScale, targetScale, _scaleSpeed * Time.deltaTime);
             else
                 break;
             yield return null;

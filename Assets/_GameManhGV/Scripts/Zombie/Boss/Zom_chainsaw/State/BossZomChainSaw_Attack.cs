@@ -17,31 +17,65 @@ public class BossZomChainSaw_Attack : StateBase<GameConstants.ZomAllState,BossNe
     private IEnumerator IEAttack(int _attackType)
     {
         thisBotNetworks.RotaToPlayerMain();
-        float waitTakeDamage;
-        float waitEndState;
+        thisBotNetworks.ChangeAnimAndType("Attack", _attackType);
         if (_attackType == 0)
         {
-            waitTakeDamage = 1.1f;
-            waitEndState = 1.12f;
+            yield return new WaitForSeconds(.5f);
+            thisBotNetworks.SetActiveDetectors(true,0);
+            thisBotNetworks.SetFloatAnim("AttackSpeedAnim", .25f);
+            yield return new WaitForSeconds(1.6f);
+            thisBotNetworks.SetFloatAnim("AttackSpeedAnim", 1f);
+            thisBotNetworks.SetActiveDetectors(false,0);
+            yield return new WaitForSeconds(.75f);
+            EventManager.Invoke(EventName.OnTakeDamagePlayer, thisBotNetworks.BotConfigSO.damage);
+            yield return new WaitForSeconds(.65f);
+            attackDone = true;
         }else if (_attackType ==1)
         {
-            waitTakeDamage = 1.28f;
-            waitEndState = 1.79f;
+            yield return new WaitForSeconds(1.1f);
+            thisBotNetworks.SetActiveDetectors(true,1);
+            thisBotNetworks.SetFloatAnim("AttackSpeedAnim", .3f);
+            yield return new WaitForSeconds(1.5f);
+            thisBotNetworks.SetFloatAnim("AttackSpeedAnim", 1f);
+            thisBotNetworks.SetActiveDetectors(false,1);
+            yield return new WaitForSeconds(.65f);
+            EventManager.Invoke(EventName.OnTakeDamagePlayer, thisBotNetworks.BotConfigSO.damage);
+            yield return new WaitForSeconds(.75f);
+            attackDone = true;
+            // waitStart = 1.1f;
+            // speedAnim1 = .3f;
+            // slomotion = .5f;
+            // waitTakeDamage = .65f;
+            // waitEndState = 1.4f;// tay 
         }else if (_attackType == 2)
         {
-            waitTakeDamage = 2.08f;
-            waitEndState = 2.21f;
+            yield return new WaitForSeconds(.45f);
+            thisBotNetworks.SetActiveDetectors(true,0);
+            thisBotNetworks.SetFloatAnim("AttackSpeedAnim", .3f);
+            yield return new WaitForSeconds(1.5f);
+            thisBotNetworks.SetFloatAnim("AttackSpeedAnim", 1f);
+            thisBotNetworks.SetActiveDetectors(false,0);
+            yield return new WaitForSeconds(.6f);
+            EventManager.Invoke(EventName.OnTakeDamagePlayer, thisBotNetworks.BotConfigSO.damage);
+            yield return new WaitForSeconds(3.1f);
+            attackDone = true;
+            // waitStart = .45f;
+            // speedAnim1 = .3f;
+            // slomotion = .5f;
+            // waitTakeDamage = .6f;
+            // waitEndState = 3.7f; // đầu
         }
         else
         {
-            waitTakeDamage = 3.28f;
-            waitEndState = 5.76f;
+            print("Không có AttackType này");
+            yield return new WaitForSeconds(3.28f);
+            EventManager.Invoke(EventName.OnTakeDamagePlayer, thisBotNetworks.BotConfigSO.damage);
+            yield return new WaitForSeconds(5.6f);
+            // waitTakeDamage = 3.28f;
+            // waitEndState = 5.76f;
+            attackDone = true;
         }
-        thisBotNetworks.ChangeAnimAndType("Attack", _attackType);
-        yield return new WaitForSeconds(waitTakeDamage);
-        EventManager.Invoke(EventName.OnTakeDamagePlayer, thisBotNetworks.BotConfigSO.damage);
-        yield return new WaitForSeconds(waitEndState);
-        attackDone = true;
+       
     }
     
     public override void UpdateState()
@@ -57,7 +91,11 @@ public class BossZomChainSaw_Attack : StateBase<GameConstants.ZomAllState,BossNe
 
     public override void ExitState()
     {
-        if(_attackCoutine!=null)
+        if (_attackCoutine != null)
+        {
             StopCoroutine(_attackCoutine);
+            thisBotNetworks.SetFloatAnim("AttackSpeedAnim", 1f);
+            thisBotNetworks.SetActiveAllDetectors(false);
+        }
     }
 }

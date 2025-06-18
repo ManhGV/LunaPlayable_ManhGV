@@ -25,7 +25,7 @@ public class BossZomChainSaw_Move : StateBase<ZomAllState,BossNetwork>
         }else
             thisBotNetworks.ChangeAnimAndType("Move", 0);
     }
-
+    
     public override void UpdateState()
     {
         if (path != null)
@@ -34,7 +34,7 @@ public class BossZomChainSaw_Move : StateBase<ZomAllState,BossNetwork>
             {
                 if (!humanMoveBase.isHaveParent)
                 {
-                    humanMoveBase.SetBotMove(path.AttackWayPoints[moveIndex].position,.9f);
+                    humanMoveBase.SetBotMove(path.AttackWayPoints[moveIndex].position,1.4f);
                     float distance = Vector3.Distance(humanMoveBase.myTrans.position, path.AttackWayPoints[moveIndex].position);
                     if (distance < 0.1f)
                     {
