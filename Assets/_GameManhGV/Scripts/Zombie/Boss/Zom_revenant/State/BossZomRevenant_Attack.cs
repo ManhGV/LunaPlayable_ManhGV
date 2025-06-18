@@ -154,7 +154,7 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
             effect.OnInit();
             yield return new WaitForSeconds(.34f);
             if (i == 3)
-            { }
+                EventManager.Invoke(EventName.OnTakeDamagePlayer,thisBotNetworks.BotConfigSO.damage);
             //TODO:Attack player
         }
 

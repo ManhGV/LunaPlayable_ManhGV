@@ -8,6 +8,7 @@ public class BossZomCrasher_Idle : StateBase<ZomAllState, BossZomCrasher_Network
     
     public override void EnterState()
     {
+        thisBotNetworks.PlayAudioVoiceLoop(0, 1);
         timerReload = thisBotNetworks.BotConfigSO.coolDownAttack;
         thisBotNetworks.ChangeAnim("Idle");
     }
@@ -21,6 +22,6 @@ public class BossZomCrasher_Idle : StateBase<ZomAllState, BossZomCrasher_Network
     
     public override void ExitState()
     {
-        
+        thisBotNetworks.StopAudioThis();
     }
 }

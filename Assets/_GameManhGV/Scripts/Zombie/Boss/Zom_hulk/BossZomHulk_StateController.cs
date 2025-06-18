@@ -57,10 +57,4 @@ public class BossZomHulk_StateController : StateControllerBase<BossZomHulk_Netwo
         _currentState = stateController[ZomAllState.Move];
         _currentState.EnterState();
     }
-
-    protected override void Update()
-    {
-        base.Update();
-        print( _currentState.StateKey);
-    }
 }

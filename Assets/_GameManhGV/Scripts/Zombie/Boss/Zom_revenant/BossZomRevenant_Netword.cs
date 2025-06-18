@@ -77,7 +77,7 @@ public class BossZomRevenant_Netword : BossNetwork
         //animator.CrossFade(jumpAnimHash, 0, 0, 0);
         animator.Play("Jump");
         yield return new WaitForSeconds(1.2f); // Thời gian delay trước khi bắt đầu di chuyển
-
+        PlayAudioVoice(0,1,false);
         animator.enabled = false;
 
         Vector3 lastFramePos = startJumpPos;
@@ -113,7 +113,7 @@ public class BossZomRevenant_Netword : BossNetwork
 
         if (vfxDust != null)
             vfxDust.Play();
-
+        PlayAudioVoice(1, 1, false);
         yield return new WaitForSeconds(1.85f);
         isJumping = false;
         isImmortal = false;

@@ -10,6 +10,7 @@ public class BossZomCrasher_Stun : StateBase<ZomAllState, BossZomCrasher_Network
     {
         timerStun = .4f;
         thisBotNetworks.ChangeAnimAndType("Stun", stunType);
+        thisBotNetworks.PlayAudioVoice(5,1,false);
     }
 
     public override void UpdateState()

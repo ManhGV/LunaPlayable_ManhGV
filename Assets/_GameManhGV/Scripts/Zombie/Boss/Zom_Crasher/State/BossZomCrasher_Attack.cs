@@ -11,7 +11,7 @@ public class BossZomCrasher_Attack : StateBase<ZomAllState, BossZomCrasher_Netwo
     {
         _doneAttack = false;
         thisBotNetworks.RotaToPlayerMain();
-        _attackCoroutine = StartCoroutine(IEAttack(Random.Range(0,2)));
+        _attackCoroutine = StartCoroutine(IEAttack(1)); //Random.Range(0,2)));
     }
 
     public override void UpdateState()
@@ -30,6 +30,7 @@ public class BossZomCrasher_Attack : StateBase<ZomAllState, BossZomCrasher_Netwo
         if (_attackCoroutine != null)
         {
             StopCoroutine(_attackCoroutine);
+            thisBotNetworks.SetFloatAnim("animSpeedAttack", 1f);
             thisBotNetworks.SetActiveAllDetectors(false);
         }
     }
@@ -45,7 +46,9 @@ public class BossZomCrasher_Attack : StateBase<ZomAllState, BossZomCrasher_Netwo
             yield return new WaitForSeconds(1.66f);
             thisBotNetworks.SetFloatAnim("animSpeedAttack", 1);
             thisBotNetworks.SetActiveDetectors(false, 0);
+            thisBotNetworks.PlayAudioVoice(1,1,false);
             yield return new WaitForSeconds(0.7f);
+            thisBotNetworks.PlayAudioVoice(2,1,false);
             EventManager.Invoke(EventName.OnTakeDamagePlayer,thisBotNetworks.BotConfigSO.damage);
             yield return new WaitForSeconds(1f);
             // yield return new WaitForSeconds(1.14f);
@@ -55,10 +58,13 @@ public class BossZomCrasher_Attack : StateBase<ZomAllState, BossZomCrasher_Netwo
             yield return new WaitForSeconds(1.1f);
             thisBotNetworks.SetActiveDetectors(true, 1);
             thisBotNetworks.SetFloatAnim("animSpeedAttack", .27f);
-            yield return new WaitForSeconds(1.75f);
+            yield return new WaitForSeconds(1.55f);
+            thisBotNetworks.PlayAudioVoice(3,1,false);
+            yield return new WaitForSeconds(.2f);
             thisBotNetworks.SetFloatAnim("animSpeedAttack", 1);
             thisBotNetworks.SetActiveDetectors(false, 1);
             yield return new WaitForSeconds(0.3f);
+            thisBotNetworks.PlayAudioVoice(4,1,false);
             EventManager.Invoke(EventName.OnTakeDamagePlayer,thisBotNetworks.BotConfigSO.damage);
             yield return new WaitForSeconds(2f);
             // yield return new WaitForSeconds(2.69f);

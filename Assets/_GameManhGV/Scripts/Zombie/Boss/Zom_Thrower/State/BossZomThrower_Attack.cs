@@ -12,11 +12,13 @@ public class BossZomThrower_Attack : StateBase<ZomAllState, BossZomThrower_Netwo
     {
         _doneAttack = false;
         thisBotNetworks.RotaToPlayerMain();
-        StartCoroutine(IEAttack(1)); //Random.Range(0,2)));
+        StartCoroutine(IEAttack(Random.Range(0,2)));
+        t = 0;
     }
 
     public override void UpdateState()
     {
+        t-= Time.deltaTime;
         if (_doneAttack)
         {
             if (Random.Range(0, 10) <= 7)
@@ -41,20 +43,28 @@ public class BossZomThrower_Attack : StateBase<ZomAllState, BossZomThrower_Netwo
             StopCoroutine(_attackCoroutine);
             bulletParabolZombie.OnDespawn();
             craskGroundRockZom.OnDespawn();
+            thisBotNetworks.SetFloatAnim("animAttackSpeed", 1);
         }
     }
-    
+
+    public float t;
     IEnumerator IEAttack(int _animType)
     {
         if (_animType == 0)
         {
             thisBotNetworks.ChangeAnimAndType("Attack", 0);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1.2f);
+            thisBotNetworks.PlayAudioVoice(2,1,false);
+            yield return new WaitForSeconds(.6f);
+            thisBotNetworks.PlayAudioVoice(2,1,false);
+            yield return new WaitForSeconds(.2f);
             bulletParabolZombie = SimplePool.Spawn<BulletParabolZombie>(PoolType.BulletRockZombie, postSpawn.position, Quaternion.identity);
             bulletParabolZombie.SetupSpawn(postSpawn,1f);
             yield return new WaitForSeconds(.8f);
             vfxRock.Play();
-            yield return new WaitForSeconds(2.2f);
+            yield return new WaitForSeconds(1.7f);
+            thisBotNetworks.PlayAudioVoice(3,1,false);
+            yield return new WaitForSeconds(.5f);
             bulletParabolZombie.TF.parent = null;
             bulletParabolZombie.OnInit(LocalPlayer.Instance.GetPosLocalPlayer());
             yield return new WaitForSeconds(2.2f);

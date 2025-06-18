@@ -25,17 +25,15 @@ public class RocketController : Singleton<RocketController>
     [Header("ExplosionAudio")] 
     public AudioSource _audioSource;
     public AudioClip explosionAudio;
-
-    [Header("Tutorial")] 
-    public bool instructRoket = false;
     
     [Header("Cooldown")]
     [SerializeField] private float cooldownTime = 2.5f; // Thời gian chờ giữa các lần bắn
     [HideInInspector] public float timer;
+    
     protected override void Awake()
     {
         base.Awake();
-        _body.SetActive(false);
+        SetMoveBody();
         _fireAnim.Play("FPS_anim_W38_Idle");
     }
 
@@ -105,41 +103,15 @@ public class RocketController : Singleton<RocketController>
         EventManager.Invoke(EventName.OnCheckShakeCam, shakeCam.localEulerAngles);
     }
 
-    public void InstructRocket()
+    public void SetMoveBody()
     {
-        //print("Hướng dẫn rocket");
-        if (!instructRoket)
-        {
-            instructRoket = true;
-            EventManager.Invoke(EventName.InstructRocket, true);
-        }
-    }
-
-    public void SetMoveTutorial()
-    {
-        transform.localPosition = new Vector3(0, 0, -1);
+        TF.localPosition = new Vector3(0, 0, -1);
         if (Screen.width < Screen.height)
             StartCoroutine(IEMoveToPoint());
         else
             StartCoroutine(IEMoveToPoint());
-        
-        StartCoroutine(IEEnbleTutorial());
     }
-
-    public IEnumerator IEEnbleTutorial()
-    {
-        bool _break = true;
-        while (_break)
-        {
-            if (Vector3.Distance(Vector3.zero, TF.position) < .1f)
-            {
-                InstructRocket();
-                _break = false;
-            }
-
-            yield return null;
-        }
-    }
+    
     public IEnumerator IEMoveToPoint()
     {
         _body.SetActive(true);
@@ -149,6 +121,5 @@ public class RocketController : Singleton<RocketController>
             yield return null;
         }
         TF.localPosition = Vector3.zero;
-        InstructRocket();
     }
 }

@@ -3,9 +3,6 @@ using static GameConstants;
 
 public class Weapon26 : ReloadableWeapons
 {
-    [Header("Tutorial")]
-    public bool instructReload = false;
-
     protected override void Awake()
     {
         base.Awake();
@@ -50,25 +47,10 @@ public class Weapon26 : ReloadableWeapons
                 if (!weaponInfo.infiniteBullet)
                 {
                     _currentBulletCount--;
-                    if (!instructReload && _currentBulletCount <= 3)
-                        InstructReload();
-
                     EventManager.Invoke(EventName.UpdateBulletCount, _currentBulletCount);
                 }
                 PlayGunEffect(); // Kích hoạt hiệu ứng nổ súng
             }
-        }
-    }
-
-    public void InstructReload()
-    {
-        //nếu chưa hướng dẫn reload thì hướng dẫn reload
-        if (!instructReload)
-        {
-            _currentBulletCount = 3;
-            EventManager.Invoke(EventName.UpdateBulletCount, _currentBulletCount);
-            instructReload = true;
-            EventManager.Invoke(EventName.InstructReload, true);
         }
     }
 }

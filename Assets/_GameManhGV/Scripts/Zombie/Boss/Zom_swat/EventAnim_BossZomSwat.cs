@@ -29,7 +29,7 @@ public class EventAnim_BossZomSwat : MonoBehaviour
         if (_explosionDoor != null)
         {
             _explosionDoor.ExplosionDoor();
-            CutSceneCam.Instance.MoveFromAToB(1,2,.65f,70f);
+            //CutSceneCam.Instance.MoveFromAToB(1,2,.65f,70f);
         }
     }
     

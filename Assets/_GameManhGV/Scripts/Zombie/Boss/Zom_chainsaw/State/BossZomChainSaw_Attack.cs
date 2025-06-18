@@ -18,6 +18,7 @@ public class BossZomChainSaw_Attack : StateBase<GameConstants.ZomAllState,BossZo
     {
         thisBotNetworks.RotaToPlayerMain();
         thisBotNetworks.ChangeAnimAndType("Attack", _attackType);
+        thisBotNetworks.PlayAudioVoice(2,1,true);
         if (_attackType == 0)
         {
             yield return new WaitForSeconds(.5f);
@@ -96,6 +97,7 @@ public class BossZomChainSaw_Attack : StateBase<GameConstants.ZomAllState,BossZo
             StopCoroutine(_attackCoutine);
             thisBotNetworks.SetFloatAnim("AttackSpeedAnim", 1f);
             thisBotNetworks.SetActiveAllDetectors(false);
+            thisBotNetworks.StopAudioThis();
         }
     }
 }

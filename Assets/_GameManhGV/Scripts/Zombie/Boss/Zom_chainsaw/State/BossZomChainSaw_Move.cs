@@ -11,7 +11,6 @@ public class BossZomChainSaw_Move : StateBase<ZomAllState,BossZomChainSaw_NetWor
     public override void EnterState()
     {
         path = thisBotNetworks.GetWayPoint;
-        moveIndex = 0;
 
         if (moveDoneToAttack && path.AttackWayPoints.Count > 1)
         {

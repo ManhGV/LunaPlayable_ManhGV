@@ -32,6 +32,6 @@ public class BossZomHulk_Jump : StateBase<ZomAllState,BossZomHulk_Netword>
 
     public override void ExitState()
     {
-        
+        thisBotNetworks.PlayAudioVoice(2, 1, false);
     }
 }

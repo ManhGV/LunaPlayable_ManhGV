@@ -3,6 +3,7 @@ using UnityEngine;
 public class BulletFireZombie : BulletZomBase
 {
     [Header("Referent")]
+    [SerializeField] AudioClip[] audioClip;
     [SerializeField] protected float _speed;
     Vector3 dir;
 
@@ -10,6 +11,7 @@ public class BulletFireZombie : BulletZomBase
     {
         base.OnInit(_posPlayer);
         dir = (_posPlayer - TF.position).normalized;
+        AudioManager.Instance.PlaySound(audioClip[0],1);
     }
 
     private void Update()
@@ -34,4 +36,11 @@ public class BulletFireZombie : BulletZomBase
         base.OnTakeDamagePlayer();
         OnDespawn();
     }
+
+    public override void OnDespawn()
+    {
+        AudioManager.Instance.PlaySound(audioClip[1],1);
+        base.OnDespawn();
+    }
+
 }

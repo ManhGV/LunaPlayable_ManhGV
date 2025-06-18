@@ -8,6 +8,7 @@ public class BossZomOgre_Scream : StateBase<ZomAllState,BossZomOgre_Network>
     {
         timer = 2.7f;
         thisBotNetworks.ChangeAnim("Scream");
+        Invoke(nameof(playaudio),.15f);
     }
 
     public override void UpdateState()
@@ -28,4 +29,7 @@ public class BossZomOgre_Scream : StateBase<ZomAllState,BossZomOgre_Network>
     {
         
     }
+    
+    public void playaudio()=>
+        thisBotNetworks.PlayAudioVoice(0,1,false);
 }

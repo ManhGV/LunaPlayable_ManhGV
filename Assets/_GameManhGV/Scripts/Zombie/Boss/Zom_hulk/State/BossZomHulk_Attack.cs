@@ -29,7 +29,10 @@ public class BossZomHulk_Attack : StateBase<ZomAllState,BossZomHulk_Netword>
         yield return new WaitForSeconds(1.26f);
         BulletRockZombie bulletRockZombie = SimplePool.Spawn<BulletRockZombie>(PoolType.BulletRockZombie, _posSpawmRock.position, Quaternion.identity);
         bulletRockZombie.SetupSpawn(_posSpawmRock,1.45f);
-        yield return new WaitForSeconds(3.24f);
+        thisBotNetworks.PlayAudioVoice(3, 1, false);
+        yield return new WaitForSeconds(2.74f);
+        thisBotNetworks.PlayAudioVoice(4, 1, false);
+        yield return new WaitForSeconds(.5f);
         bulletRockZombie.OnInit(LocalPlayer.Instance.GetPosLocalPlayer());
         yield return new WaitForSeconds(1.05f);
         

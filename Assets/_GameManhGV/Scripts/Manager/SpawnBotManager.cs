@@ -44,14 +44,7 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         {
             canCallBossZomSwat = false;
             StartCoroutine(IECallBossZomSwat(1.8f));
-            StartCoroutine(IEOnTutorialRocket());
         }
-    }
-
-    private IEnumerator IEOnTutorialRocket()
-    {
-        yield return new WaitForSeconds(22f);
-        RocketController.Instance.InstructRocket();
     }
 
     public IEnumerator IECallBossZomSwat(float time)
@@ -59,7 +52,7 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         yield return new WaitForSeconds(time);
         GameManager.Instance.StartCutScene();
         PlayerHP.Instance.ClearListDamage();
-        CutSceneCam.Instance.MoveFromAToB(0,1,2.5f,70f);
+        //CutSceneCam.Instance.MoveFromAToB(0,1,2.5f,70f);
         yield return new WaitForSeconds(1.5f);
         _bossZomSwat.SetActive(true);
     }

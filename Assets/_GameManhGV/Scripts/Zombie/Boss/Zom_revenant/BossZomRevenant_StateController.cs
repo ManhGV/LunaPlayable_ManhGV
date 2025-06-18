@@ -8,6 +8,7 @@ public class BossZomRevenant_StateController : StateControllerBase<BossZomRevena
     BossZomRevenant_Move _moveState;
     BossZomRevenant_Attack _attackState;
     BossZomRevenant_Stun _stunState;
+    BossZomRevenant_Scream _screamState;
     BossZomRevenant_Jump _jumpState;
     BossZomRevenant_Dead _deadState;
     
@@ -30,6 +31,9 @@ public class BossZomRevenant_StateController : StateControllerBase<BossZomRevena
         _stunState = GetComponent<BossZomRevenant_Stun>();
         _stunState.Initialize(ZomAllState.Stun_1);
         
+        _screamState = GetComponent<BossZomRevenant_Scream>();
+        _screamState.Initialize(ZomAllState.Scream);
+        
         _jumpState = GetComponent<BossZomRevenant_Jump>();
         _jumpState.Initialize(ZomAllState.Jump);
         
@@ -43,6 +47,7 @@ public class BossZomRevenant_StateController : StateControllerBase<BossZomRevena
         stateController.Add(ZomAllState.Idle, _idle);
         stateController.Add(ZomAllState.Move, _moveState);
         stateController.Add(ZomAllState.Stun_1, _stunState);
+        stateController.Add(ZomAllState.Scream, _screamState);
         stateController.Add(ZomAllState.Jump, _jumpState);
         stateController.Add(ZomAllState.Attack, _attackState);
         stateController.Add(ZomAllState.Dead, _deadState);

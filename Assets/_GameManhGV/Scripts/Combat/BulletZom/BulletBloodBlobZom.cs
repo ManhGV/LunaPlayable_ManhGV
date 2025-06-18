@@ -6,6 +6,8 @@ public class BulletBloodBlobZom : BulletParabolZombie
 {
     [SerializeField] private GameObject _body;
     [SerializeField] private ParticleSystem vfxExplosion;
+    [Header("Audio")]
+    [SerializeField] private AudioClip audioClipExplosion;
     
     public override void SetupSpawn(Transform _parent, float _scale)
     {
@@ -23,6 +25,7 @@ public class BulletBloodBlobZom : BulletParabolZombie
     public override void OnDead()
     {
         base.OnDead();
+        AudioManager.Instance.PlaySound(audioClipExplosion,1f);
         _body.SetActive(false);
         vfxExplosion.Play();   
         Invoke(nameof(OnDespawn), .65f);

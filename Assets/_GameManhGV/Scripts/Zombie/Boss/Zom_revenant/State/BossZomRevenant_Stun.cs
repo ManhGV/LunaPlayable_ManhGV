@@ -16,12 +16,7 @@ public class BossZomRevenant_Stun : StateBase<ZomAllState,BossZomRevenant_Networ
         //TODO:Hết stun thì done state => random jump,attack
         timeStun -= Time.deltaTime;
         if (timeStun <= 0)
-        {
-            if (Random.Range(0, 50) % 2 == 0) 
-                thisStateController.ChangeState(ZomAllState.Jump);
-            else
-                thisStateController.ChangeState(ZomAllState.Attack);
-        }
+            thisStateController.ChangeState(ZomAllState.Scream);
     }
 
     public override void ExitState()

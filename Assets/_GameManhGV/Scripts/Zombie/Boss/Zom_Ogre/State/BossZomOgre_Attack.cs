@@ -74,7 +74,7 @@ public class BossZomOgre_Attack : StateBase<ZomAllState,BossZomOgre_Network>
                 effect.OnInit();
                 yield return new WaitForSeconds(.4f);
                 if (i == 3)
-                { }
+                    EventManager.Invoke(EventName.OnTakeDamagePlayer,thisBotNetworks.BotConfigSO.damage);
                 //TODO:Attack player
             }
         }

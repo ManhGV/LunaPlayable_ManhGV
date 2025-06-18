@@ -164,6 +164,7 @@ public class BossZomHulk_Netword : BossNetwork
             if (currentTime >= timeActiveAnimator&& canChangeEnd)
             {
                 canChangeEnd = false;
+                PlayAudioVoice(1, 1, false);
                 ChangeAnimAndType("JumpPunch",2);
             }
             yield return null;

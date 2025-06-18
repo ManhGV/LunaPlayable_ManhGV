@@ -33,7 +33,7 @@ public class BossZomSwat_Start : StateBase<ZomAllState,BossZomSwatNetword>
             if (distance < 0.1f)
             {
                 isDoneMove = true;
-                CutSceneCam.Instance.Setparent(4,70f);
+                //CutSceneCam.Instance.Setparent(4,70f);
                 thisBotNetworks.ChangeAnim("RageCutScene");
             }
             
@@ -43,7 +43,7 @@ public class BossZomSwat_Start : StateBase<ZomAllState,BossZomSwatNetword>
         if (!isSetparent && timeChangeCam <= 0)
         {
             isSetparent = true;
-            CutSceneCam.Instance.Setparent(3,50f);
+            //CutSceneCam.Instance.Setparent(3,50f);
             thisBotNetworks.ChangeAnim("MoveCutScene");
             return;
         }

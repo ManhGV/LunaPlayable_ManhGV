@@ -13,8 +13,8 @@ public class BossZomThrower_Move : StateBase<ZomAllState, BossZomThrower_Netword
     public override void EnterState()
     {
         thisBotNetworks.ChangeAnim("Move");
+        thisBotNetworks.PlayAudioVoiceLoop(1,1);
         path = thisBotNetworks.GetWayPoint;
-        moveIndex = 0;
         if (moveDoneToAttack && path.AttackWayPoints.Count > 1)
         {
             int newIndex;
@@ -55,12 +55,16 @@ public class BossZomThrower_Move : StateBase<ZomAllState, BossZomThrower_Netword
                 }
 
                 if (moveIndex == path.WayPoints.Count)
+                {
                     moveDoneToAttack = true;
+                    thisStateController.ChangeState(ZomAllState.Attack);
+                }
             }
         }
     }
 
     public override void ExitState()
     {
+        thisBotNetworks.StopAudioThis();
     }
 }

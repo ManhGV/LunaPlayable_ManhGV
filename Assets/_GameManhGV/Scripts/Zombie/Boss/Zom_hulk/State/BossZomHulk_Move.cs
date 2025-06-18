@@ -7,33 +7,56 @@ public class BossZomHulk_Move : StateBase<ZomAllState, BossZomHulk_Netword>
     private WayPoint path;
     private int moveIndex;
     private int _animType;
+    private bool moveDoneToAttack = false;
     
     public override void EnterState()
     {
         thisBotNetworks.ChangeAnim("Move");
         path = thisBotNetworks.GetWayPoint;
-        int _random;
-        do
+        if (moveDoneToAttack && path.AttackWayPoints.Count > 1)
         {
-            _random = Random.Range(0, path.AttackWayPoints.Count);
-        } while (_random == moveIndex);
-        moveIndex = _random;
+            int newIndex;
+            do
+            {
+                newIndex = Random.Range(0, path.AttackWayPoints.Count);
+            } while (newIndex == moveIndex);
+            moveIndex = newIndex;
+        }
     }
 
     public override void UpdateState()
     {
         if (path != null)
         {
-            if (!humanMoveBase.isHaveParent)
+            if(moveDoneToAttack)
             {
-                humanMoveBase.SetBotMove(path.AttackWayPoints[moveIndex].position, 2.9f);
-                float distance = Vector3.Distance(humanMoveBase.myTrans.position, path.AttackWayPoints[moveIndex].position);
-                if (distance < 0.1f)
+                if (!humanMoveBase.isHaveParent)
                 {
-                    if(Random.Range(0,10) < 5)
-                        thisStateController.ChangeState(ZomAllState.Attack);
-                    else
-                        thisStateController.ChangeState(ZomAllState.JumpPunch);
+                    humanMoveBase.SetBotMove(path.AttackWayPoints[moveIndex].position, 2.9f);
+                    float distance = Vector3.Distance(humanMoveBase.myTrans.position, path.AttackWayPoints[moveIndex].position);
+                    if (distance < 0.1f)
+                    {
+                        if(Random.Range(0,10) < 5)
+                            thisStateController.ChangeState(ZomAllState.Attack);
+                        else
+                            thisStateController.ChangeState(ZomAllState.JumpPunch);
+                    }
+                }
+            }
+            else
+            {
+                if (!humanMoveBase.isHaveParent && moveIndex < path.WayPoints.Count)
+                {
+                    humanMoveBase.SetBotMove(path.WayPoints[moveIndex].position,2.9f);
+                    float distance = Vector3.Distance(humanMoveBase.myTrans.position, path.WayPoints[moveIndex].position);
+                    if (distance < 0.1)
+                        moveIndex++;
+                }
+
+                if (moveIndex >= path.WayPoints.Count)
+                {
+                    moveDoneToAttack = true;
+                    thisStateController.ChangeState(ZomAllState.Attack);
                 }
             }
         }

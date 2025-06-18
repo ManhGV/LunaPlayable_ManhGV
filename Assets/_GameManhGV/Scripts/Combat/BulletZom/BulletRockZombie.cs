@@ -16,6 +16,9 @@ public class BulletRockZombie : BulletParabolZombie
     [SerializeField] private float timeMocehorizontal = 0.3f;
     [SerializeField] private float fallSpeed = 3f;
     Transform originTransform;
+    
+    [Header("Audio")]
+    [SerializeField] AudioClip _audioDead;
 
     public override void OnInit(Vector3 _posPlayer)
     {
@@ -41,6 +44,7 @@ public class BulletRockZombie : BulletParabolZombie
     public override void OnDead()
     {
         base.OnDead();
+        AudioManager.Instance.PlaySound(_audioDead, 1);
         molotovRota.enabled = false;
         _bodyRock.SetActive(false);
         foreach (Transform VARIABLE in rockChildExplosion)

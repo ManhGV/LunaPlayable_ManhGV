@@ -7,13 +7,12 @@ public class BossZomCrasher_Move : StateBase<ZomAllState, BossZomCrasher_Network
 {
     [SerializeField] private HumanMoveBase humanMoveBase;
     private WayPoint path;
-    private int moveIndex;
+    private int moveIndex = 0;
     private bool moveDoneToAttack;
 
     public override void EnterState()
     {
         path = thisBotNetworks.GetWayPoint;
-        moveIndex = 0;
         thisBotNetworks.ChangeAnim("Move");
         if (moveDoneToAttack && path.AttackWayPoints.Count > 1)
         {
@@ -49,12 +48,10 @@ public class BossZomCrasher_Move : StateBase<ZomAllState, BossZomCrasher_Network
                     humanMoveBase.SetBotMove(path.WayPoints[moveIndex].position,1.55f);
                     float distance = Vector3.Distance(humanMoveBase.myTrans.position, path.WayPoints[moveIndex].position);
                     if (distance < 0.1)
-                    {
                         moveIndex++;
-                    }
                 }
 
-                if (moveIndex == path.WayPoints.Count)
+                if (moveIndex >= path.WayPoints.Count)
                 {
                     moveDoneToAttack = true;
                     thisStateController.ChangeState(ZomAllState.Attack);

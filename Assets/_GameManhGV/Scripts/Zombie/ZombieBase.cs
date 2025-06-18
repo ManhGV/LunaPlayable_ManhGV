@@ -198,7 +198,6 @@ public class ZombieBase : GameUnit, ITakeDamage
     /// <param name="_audioSourceEqualThis">True: gọi StopAudioThis để dừng, False: không dừng được</param>
     public virtual void PlayAudioVoice(int _index,float _volume,bool _audioSourceEqualThis)
     {
-        print(_index);
         if (_audioSourceEqualThis)
         {
             _audioSourceVoice.clip = _listSoundBotVoice[_index];
@@ -209,7 +208,18 @@ public class ZombieBase : GameUnit, ITakeDamage
            _audioManager.PlaySound(_listSoundBotVoice[_index],_volume);
     }
 
-    public void StopAudioThis() => _audioSourceVoice.Stop();
+    public void PlayAudioVoiceLoop(int _index, float _volume)
+    {
+        _audioSourceVoice.clip = _listSoundBotVoice[_index];
+        _audioSourceVoice.volume = _volume;
+        _audioSourceVoice.Play();
+    }
+
+    public void StopAudioThis()
+    {
+        _audioSourceVoice.loop = false;
+        _audioSourceVoice.Stop();
+    }
     #endregion    
     
     public Transform GetTransform() => TF;

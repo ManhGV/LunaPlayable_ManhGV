@@ -8,6 +8,7 @@ public class BossZomChainSaw_Stun : StateBase<ZomAllState, BossZomChainSaw_NetWo
     {
         timerEndState = 1.6f;
         thisBotNetworks.ChangeAnimAndType("OnHit", 0);
+        thisBotNetworks.PlayAudioVoice(3,.5f,false);
     }
 
     public override void UpdateState()

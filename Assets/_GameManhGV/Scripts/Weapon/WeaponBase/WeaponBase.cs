@@ -31,11 +31,12 @@ public class WeaponBase : Singleton<WeaponBase>
 
     #region BaseUnity
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         AddAnimationClips();
     }
-    
+
     protected virtual void Start()
     {
         Instance = this;

@@ -29,6 +29,6 @@ public class BossZomThrower_Jump : StateBase<ZomAllState, BossZomThrower_Netword
 
     public override void ExitState()
     {
-        
+        thisBotNetworks.PlayAudioVoice(0,1,false);
     }
 }

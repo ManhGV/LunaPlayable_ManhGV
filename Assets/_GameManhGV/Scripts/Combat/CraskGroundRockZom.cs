@@ -13,7 +13,7 @@ public class CraskGroundRockZom : GameUnit
         PoolType = (GameConstants.PoolType)_projecctileZombie;
     }
 #endif
-    
+    [SerializeField] private AudioClip _crashSound;
     [SerializeField] private Transform[] _rockChildMove;
     [SerializeField] private float _speedMove = 1.0f;
     [SerializeField] private float _timeDelay = 0.5f;
@@ -56,6 +56,7 @@ public class CraskGroundRockZom : GameUnit
     {
         Vector3 targetPos =_rockChild.localPosition;
         targetPos.y = 0;
+        AudioManager.Instance.PlaySound(_crashSound, 1f);
         while (Vector3.Distance(_rockChild.localPosition, targetPos) > 0.01f)
         {
             _rockChild.localPosition = Vector3.MoveTowards(_rockChild.localPosition, targetPos, _speedMove * Time.deltaTime);
