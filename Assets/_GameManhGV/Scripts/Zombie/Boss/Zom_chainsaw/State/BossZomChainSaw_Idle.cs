@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class BossZomChainSaw_Idle : StateBase<GameConstants.ZomAllState,BossNetwork>
+public class BossZomChainSaw_Idle : StateBase<GameConstants.ZomAllState,BossZomChainSaw_NetWork>
 {
     [SerializeField] private AudioClip[] listSounDead;
     [SerializeField] private float timerReload;

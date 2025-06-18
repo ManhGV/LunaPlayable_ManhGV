@@ -2,7 +2,7 @@ using static GameConstants;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossZomChainSaw_StateController : StateControllerBase<BossNetwork>
+public class BossZomChainSaw_StateController : StateControllerBase<BossZomChainSaw_NetWork>
 {
     BossZomChainSaw_Idle _idleState;
     BossZomChainSaw_Attack _attackState;

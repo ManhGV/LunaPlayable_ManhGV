@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static GameConstants;
 
-public class BossZomCrasher_Move : StateBase<ZomAllState, BossNetwork>
+public class BossZomCrasher_Move : StateBase<ZomAllState, BossZomCrasher_Network>
 {
     [SerializeField] private HumanMoveBase humanMoveBase;
     private WayPoint path;

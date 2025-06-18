@@ -1,7 +1,7 @@
 using static GameConstants;
 using UnityEngine;
 
-public class BossZomChainSaw_Move : StateBase<ZomAllState,BossNetwork>
+public class BossZomChainSaw_Move : StateBase<ZomAllState,BossZomChainSaw_NetWork>
 {
     [SerializeField] private HumanMoveBase humanMoveBase;
     private WayPoint path;

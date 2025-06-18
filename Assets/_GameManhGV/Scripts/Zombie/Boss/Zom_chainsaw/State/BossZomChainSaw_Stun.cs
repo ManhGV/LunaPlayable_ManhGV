@@ -1,7 +1,7 @@
 using static GameConstants;
 using UnityEngine;
 
-public class BossZomChainSaw_Stun : StateBase<ZomAllState, BossNetwork>
+public class BossZomChainSaw_Stun : StateBase<ZomAllState, BossZomChainSaw_NetWork>
 {
     private float timerEndState;
     public override void EnterState()
@@ -21,7 +21,7 @@ public class BossZomChainSaw_Stun : StateBase<ZomAllState, BossNetwork>
                 thisStateController.ChangeState(ZomAllState.Scream);
         }
     }
-
+    
     public override void ExitState()
     {
         

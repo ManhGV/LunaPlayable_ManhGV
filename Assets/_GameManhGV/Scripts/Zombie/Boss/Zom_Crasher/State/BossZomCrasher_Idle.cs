@@ -1,7 +1,7 @@
 using UnityEngine;
 using static GameConstants;
 
-public class BossZomCrasher_Idle : StateBase<ZomAllState, BossNetwork>
+public class BossZomCrasher_Idle : StateBase<ZomAllState, BossZomCrasher_Network>
 {
     [SerializeField] private AudioClip[] listSounDead;
     [SerializeField] private float timerReload;

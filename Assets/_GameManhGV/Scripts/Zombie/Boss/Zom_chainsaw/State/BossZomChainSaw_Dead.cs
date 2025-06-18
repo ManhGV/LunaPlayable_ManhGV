@@ -2,7 +2,7 @@ using System.Collections;
 using static GameConstants;
 using UnityEngine;
 
-public class BossZomChainSaw_Dead : StateBase<ZomAllState, BossNetwork>
+public class BossZomChainSaw_Dead : StateBase<ZomAllState, BossZomChainSaw_NetWork>
 {
     [SerializeField] private ParticleSystem vfx_explorionHed;
     public GameObject _body;

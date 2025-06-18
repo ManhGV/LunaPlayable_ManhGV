@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static GameConstants;
 
-public class BossZomCrasher_Dead : StateBase<ZomAllState, BossNetwork>
+public class BossZomCrasher_Dead : StateBase<ZomAllState, BossZomCrasher_Network>
 {
     public override void EnterState()
     {

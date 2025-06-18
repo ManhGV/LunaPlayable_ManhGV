@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BossZomChainSaw_Attack : StateBase<GameConstants.ZomAllState,BossNetwork>
+public class BossZomChainSaw_Attack : StateBase<GameConstants.ZomAllState,BossZomChainSaw_NetWork>
 {
     private bool canAttack;
     private Coroutine _attackCoutine;

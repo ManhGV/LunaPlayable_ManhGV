@@ -13,6 +13,10 @@ public class StateControllerBase<TBotNet> : MonoBehaviour where TBotNet : Zombie
 
     protected virtual  void OnEnable()
     {
+#if UNITY_EDITOR
+        if(botNetworks==null)
+            Debug.LogError("Bot Network trong  stateController Null kìa" + gameObject.name);
+#endif
         canDead = true;
         if(botNetworks is BossNetwork bossNetwork)
             bossNetwork.ActionEventDetectorDead += OnEventDetectorDead;
