@@ -9,6 +9,10 @@ public class ZombieBase : GameUnit, ITakeDamage
 {
 #if UNITY_EDITOR
     [SerializeField] private GameConstants.BotType botType;
+    private void OnValidate()
+    {
+        PoolType = (GameConstants.PoolType)botType;
+    }
 #endif
     [Header("Data Bot")]
     [SerializeField] private BotConfigSO botConfigSO;
@@ -76,11 +80,6 @@ public class ZombieBase : GameUnit, ITakeDamage
     #endregion
 
     #region Base Unity
-
-    private void OnValidate()
-    {
-        PoolType = (GameConstants.PoolType)botType;
-    }
 
     protected virtual void Awake()
     {
