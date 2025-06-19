@@ -111,6 +111,7 @@ public static class GameConstants
     {
         None,
         ChangeWeapon81,
+        ChangeWeapon112,
     }
     public enum GameState
     {

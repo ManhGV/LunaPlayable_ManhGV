@@ -38,8 +38,8 @@ public class BossNetwork : ZombieBase
         foreach (GameObject VARIABLE in detectors)
             VARIABLE.SetActive(false);
         //SpawnBotManager.Instance.RemoveBotDead(this);
-        AchievementEvaluator.Instance.OnBotKilled(1.8f,false);
-        GameManager.Instance.EndGame(true);
+        //AchievementEvaluator.Instance.OnBotKilled(1.8f,false);
+        //GameManager.Instance.EndGame(true);
     }
     
     public virtual void SetActiveDetectors(bool _active,int _skillType)

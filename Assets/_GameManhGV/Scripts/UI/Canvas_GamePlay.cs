@@ -58,9 +58,6 @@ public class Canvas_GamePlay : UICanvas
     [SerializeField] GameObject _endGameWonPanel;
     [SerializeField] GameObject _endGameLosePanel;
     
-    private bool instructReload = false;
-    private bool instructRocket = false;
-    private bool instructReloadTapTap = false;
     public void Init()
     {
         EventManager.AddListener<float>(EventName.UpdateGameProcess, UpdateGameProcess);
@@ -95,9 +92,6 @@ public class Canvas_GamePlay : UICanvas
         WeaponCircleReloading.SetActive(true);
         AmmoQuantity.SetActive(false);
         crosshair.SetActive(false);
-
-        if (!instructReloadTapTap)
-            instructReloadTapTapGameObject.SetActive(true);
         
         uiElementPointer.anchoredPosition = startPos.anchoredPosition;//
         float elapsed = 0;//
@@ -132,12 +126,7 @@ public class Canvas_GamePlay : UICanvas
             }
             yield return null;
         }
-
-        if (!instructReloadTapTap)
-        {
-            instructReloadTapTap = true;
-            instructReloadTapTapGameObject.SetActive(false);
-        }
+        
         uiElementPointer.anchoredPosition = endPos.anchoredPosition;
         _reloadCoroutine = null;
     }
@@ -179,12 +168,6 @@ public class Canvas_GamePlay : UICanvas
     
     public void Btn_Reload()
     {
-        if (!instructReload)
-        {
-            instructReload = true;
-            GameManager.Instance.ResumeGame();
-            UIManager.Instance.CloseUIDirectly<Canvas_ReloadIntroduction>();
-        }
         ((ReloadableWeapons)WeaponBase.Instance).OnReload();
     }
     
@@ -192,31 +175,19 @@ public class Canvas_GamePlay : UICanvas
     {
         if(caculateFillCoroutine != null)
             return;
-        
-        if (!instructRocket)
-        {
-            instructRocket = true;
-            GameManager.Instance.ResumeGame();
-            UIManager.Instance.CloseUIDirectly<Canvas_BazookaIntroduction>();
-        }
         RocketController.Instance.Fire();
         caculateFillCoroutine = StartCoroutine(CaculatorFillCooldown());
     }
 
     public void ActiveReloadFast()
     {
-        GameManager.Instance.SlomotionTimeScale();
+        //GameManager.Instance.SlomotionTimeScale();
         //_activeReloadFast.gameObject.SetActive(true);
         _tapToReload.gameObject.SetActive(true);
     }
     
     public void Btn_ReloadFast()
     {
-        if (!instructReloadTapTap)
-        {
-            instructReloadTapTap = true;
-            instructReloadTapTapGameObject.SetActive(false);
-        }
         GameManager.Instance.DontSlomotionTimeScale();
         
         StartCoroutine(IEAnimActiveReloadFast());

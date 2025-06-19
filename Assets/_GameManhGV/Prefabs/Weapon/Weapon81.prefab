@@ -453,7 +453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343959546942248957}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.001, y: -1.416, z: 1.515}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -474,39 +474,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponInfo: {fileID: 11400000, guid: 6f63d5dd342c03b4ca48c7f0ce02d59a, type: 2}
-  botLayerMask:
-    serializedVersion: 2
+  LayerMasks:
+  - serializedVersion: 2
     m_Bits: 128
-  armorBossLayerMask:
-    serializedVersion: 2
-    m_Bits: 2048
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  rewardLayerMask:
-    serializedVersion: 2
+  - serializedVersion: 2
+    m_Bits: 1024
+  - serializedVersion: 2
     m_Bits: 256
-  gasLayerMask:
-    serializedVersion: 2
+  - serializedVersion: 2
+    m_Bits: 64
+  - serializedVersion: 2
     m_Bits: 512
-  shakeCam: {fileID: 0}
-  shakeCamMin: 0
-  shakeCamMax: 0
-  _reloadFastAudio: {fileID: 8300000, guid: 1ce01ae881f5daf429295b2d17c0fa8d, type: 3}
-  boxLayer:
-    serializedVersion: 2
-    m_Bits: 4032
-  distance: 150
-  _animation: {fileID: 6759839312163913683}
-  _bulletType: 2
   _fireEffect:
   - {fileID: 2258345349486469565}
   - {fileID: 7709631781298876331}
   - {fileID: 7437878666872020212}
   - {fileID: 8905908174160229075}
   _audioSource: {fileID: 8920262929198082235}
-  _audioSourceHit: {fileID: 8920262929198082235}
-  _isShowCard: 0
+  _cameraTransform: {fileID: 0}
+  _layerTarget:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _distanceGizMod: 200
+  _currentBulletCount: 0
+  _reloadFastAudio: {fileID: 8300000, guid: 1ce01ae881f5daf429295b2d17c0fa8d, type: 3}
+  _animation: {fileID: 6759839312163913683}
+  _bulletType: 2
   _muzzleTrans_1: {fileID: 8339623316165550449}
   _muzzleTrans_2: {fileID: 4025463893054474067}
 --- !u!82 &8920262929198082235
