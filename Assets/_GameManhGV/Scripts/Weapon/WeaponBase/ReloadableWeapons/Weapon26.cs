@@ -135,7 +135,7 @@ public class Weapon26 : ReloadableWeapons
                 EventManager.Invoke(EventName.OnCheckBotTakeDamage, false);
             }
             // Tạo hiệu ứng va chạm
-            SimplePool.Spawn<Effect>(typeEffect, hit.point, Quaternion.identity).OnInit();
+            SimplePool.Spawn<EffectVfx>(typeEffect, hit.point, Quaternion.identity).OnInit();
         }
     }
 }

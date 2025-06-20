@@ -13,7 +13,7 @@ public class Weapon112_ProjectileElectricBall : ProjectileExplosionBase
     [SerializeField] float _size;
 
     Dictionary<GameObject, bool> _damageDictionary = new Dictionary<GameObject, bool>();
-    private List<Effect> _effectElectricLines = new List<Effect>();
+    private List<EffectLine> _effectElectricLines = new List<EffectLine>();
 
     public override void OnInit(Vector3 _direction, int _percentSize)
     {
@@ -70,7 +70,7 @@ public class Weapon112_ProjectileElectricBall : ProjectileExplosionBase
     {
         base.OnDespawn();
         colsLeng = 0;
-        foreach (Effect effect in _effectElectricLines)
+        foreach (EffectLine effect in _effectElectricLines)
         {
             effect.OnDespawn();
         }
@@ -80,8 +80,8 @@ public class Weapon112_ProjectileElectricBall : ProjectileExplosionBase
 
     public void CreateElectricLine(Transform _pointTarget)
     {
-        Effect effectElectric = SimplePool.Spawn<Effect>(GameConstants.PoolType.vfx_electricLine, TF.position, Quaternion.identity);
-        effectElectric.OnInit(TF, _pointTarget);
-        _effectElectricLines.Add(effectElectric);
+        EffectLine effectVfxElectric = SimplePool.Spawn<EffectLine>(GameConstants.PoolType.vfx_electricLine, TF.position, Quaternion.identity);
+        effectVfxElectric.OnInit(TF, _pointTarget);
+        _effectElectricLines.Add(effectVfxElectric);
     }
 }

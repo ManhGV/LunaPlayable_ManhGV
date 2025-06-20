@@ -82,7 +82,7 @@ public class ProjectileExplosionBase : GameUnit
         OnDespawn();
         
         //RocketController.Instance.PlayAudioExplosion();
-        Effect explosionPool = SimplePool.Spawn<Effect>(_poolTypeExplosion, TF.position, Quaternion.Euler(-90,0,0));
+        EffectVfx explosionPool = SimplePool.Spawn<EffectVfx>(_poolTypeExplosion, TF.position, Quaternion.Euler(-90,0,0));
         explosionPool.OnInit(_percentSize);
         //RocketController.Instance.SnakeCameraRocket();
     }

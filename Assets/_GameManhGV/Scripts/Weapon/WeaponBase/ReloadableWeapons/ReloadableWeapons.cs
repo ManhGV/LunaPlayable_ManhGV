@@ -199,7 +199,7 @@ public class ReloadableWeapons : WeaponBase
             }
 
             // Tạo hiệu ứng va chạm
-            SimplePool.Spawn<Effect>(typeEffect, hit.point, Quaternion.identity).OnInit();
+            SimplePool.Spawn<EffectVfx>(typeEffect, hit.point, Quaternion.identity).OnInit();
         }
         EventManager.Invoke(EventName.OnCheckBotTakeDamage, CheckRayCast);
     }

@@ -28,7 +28,7 @@ public class BotZombieNor_Dead : StateBase<ZomAllState, BotNetwork>
         yield return new WaitForSeconds(_timerDelay);
         if (animType == 1)
         {
-            Effect explosionPoolZomNor = SimplePool.Spawn<Effect>(GameConstants.PoolType.vfx_ExplosionZombieNor, _posCenter.position, Quaternion.identity);
+            EffectVfx explosionPoolZomNor = SimplePool.Spawn<EffectVfx>(GameConstants.PoolType.vfx_ExplosionZombieNor, _posCenter.position, Quaternion.identity);
             explosionPoolZomNor.OnInit();
         }
         thisBotNetworks.OnDespawn();

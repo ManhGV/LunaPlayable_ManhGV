@@ -55,15 +55,15 @@ public class BossZomThrower_Attack : StateBase<ZomAllState, BossZomThrower_Netwo
             yield return new WaitForSeconds(.6f);
             thisBotNetworks.PlayAudioVoice(2,1,false);
             yield return new WaitForSeconds(.2f);
-            //bulletParabolZombie = SimplePool.Spawn<BulletParabolZombie>(PoolType.BulletRockZombie, postSpawn.position, Quaternion.identity);
-            //bulletParabolZombie.SetupSpawn(postSpawn,1f);
+            bulletParabolZombie = SimplePool.Spawn<BulletParabolZombie>(PoolType.BulletRockZombie, postSpawn.position, Quaternion.identity);
+            bulletParabolZombie.SetupSpawn(postSpawn,1f);
             yield return new WaitForSeconds(.8f);
             vfxRock.Play();
             yield return new WaitForSeconds(1.7f);
             thisBotNetworks.PlayAudioVoice(3,1,false);
             yield return new WaitForSeconds(.5f);
-            //bulletParabolZombie.TF.parent = null;
-            //bulletParabolZombie.OnInit(LocalPlayer.Instance.GetPosLocalPlayer());
+            bulletParabolZombie.TF.parent = null;
+            bulletParabolZombie.OnInit(LocalPlayer.Instance.GetPosLocalPlayer());
             yield return new WaitForSeconds(2.2f);
         }
         else if (_animType == 1)
@@ -77,8 +77,8 @@ public class BossZomThrower_Attack : StateBase<ZomAllState, BossZomThrower_Netwo
             thisBotNetworks.SetActiveAllDetectors(false);
             
             yield return new WaitForSeconds(0.7f);
-            //craskGroundRockZom = SimplePool.Spawn<CraskGroundRockZom>(PoolType.GroundCrashZom, postSpawn.position, Quaternion.identity);
-            //craskGroundRockZom.OnInit(transform.position,LocalPlayer.Instance.GetPosLocalPlayer());
+            craskGroundRockZom = SimplePool.Spawn<CraskGroundRockZom>(PoolType.GroundCrashZom, postSpawn.position, Quaternion.identity);
+            craskGroundRockZom.OnInit(transform.position,LocalPlayer.Instance.GetPosLocalPlayer());
         }
         else
             thisStateController.ChangeState(ZomAllState.Idle);
