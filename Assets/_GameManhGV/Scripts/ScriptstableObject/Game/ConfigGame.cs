@@ -20,7 +20,7 @@ public class BotConfig
 {
     [Header("Thông tin Bot")]
     [Tooltip("Chọn loại Bot")]
-    public BotType botType;
+    public PoolType botType;
 
     [Tooltip("Số lượng bot sinh ra")]
     public int botQuantity;

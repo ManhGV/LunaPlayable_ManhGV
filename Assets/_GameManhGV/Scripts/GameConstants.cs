@@ -5,6 +5,7 @@ using UnityEngine;
 
 public static class GameConstants
 {
+#if UNITY_EDITOR
     public enum BotType
     {
         None = 0,
@@ -23,7 +24,6 @@ public static class GameConstants
         bossZomOgre = PoolType.BossZomOgre,
     }
 
-#if UNITY_EDITOR
     public enum EffectType
     {
         None = 0,
@@ -35,6 +35,7 @@ public static class GameConstants
         ExplosionWeapon112 = PoolType.vfx_explosionWeapon112,
         ElectricLine = PoolType.vfx_electricLine,
         vfx_ExplosionGround = PoolType.vfx_ExplosionGround,
+        Wood = PoolType.vfx_Wood,
     }
 
     public enum ProjecctileZombie
@@ -90,6 +91,7 @@ public static class GameConstants
         BossZomHulk = 27,
         BossZomOgre = 28,
         BulletBloodBlobZom = 29,
+        vfx_Wood = 30,
     }
     
     public enum ZomAllState

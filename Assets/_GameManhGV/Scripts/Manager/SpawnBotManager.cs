@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SpawnBotManager : Singleton<SpawnBotManager>
 {
@@ -16,45 +17,42 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
     [Header("Gift")]
     [SerializeField] GameObject giftWeapon81;
     
-    [Header("BossZomSwat")]
-    [SerializeField] GameObject _bossZomSwat;
-    [SerializeField] bool canCallBossZomSwat;
+    [Header("BossZom")]
+    [SerializeField] GameObject _boss;
+    [SerializeField] bool canCallBoss;
     
     protected override void Awake()
     {
         base.Awake();
 
-        canCallBossZomSwat = true;
+        canCallBoss = true;
         foreach (BotConfig VARIABLE in dataBotSpawn.fightRound.botConfigs)
             AllBotsToSpawn += VARIABLE.botQuantity;
-        AllBotsToSpawn += 2;
         _currentBot = AllBotsToSpawn;
-        
     }
 
     private void Start()
     {
         float progress = (float) KillBot / (float)AllBotsToSpawn;
         EventManager.Invoke(EventName.UpdateGameProcess, progress);
+        SpawnBot();
     }
 
     private void Update()
     {
-        if (canCallBossZomSwat && _currentBot <= 1)
-        {
-            canCallBossZomSwat = false;
-            StartCoroutine(IECallBossZomSwat(1.8f));
-        }
+        // if (canCallBoss && _currentBot <= 1)
+        // {
+        //     canCallBoss = false;
+        //     StartCoroutine(IECallBossZom(1.8f));
+        // }
     }
 
-    public IEnumerator IECallBossZomSwat(float time)
+    public IEnumerator IECallBossZom(float time)
     {
         yield return new WaitForSeconds(time);
-        GameManager.Instance.StartCutScene();
         PlayerHP.Instance.ClearListDamage();
-        //CutSceneCam.Instance.MoveFromAToB(0,1,2.5f,70f);
         yield return new WaitForSeconds(1.5f);
-        _bossZomSwat.SetActive(true);
+        _boss.SetActive(true);
     }
     
     public void SpawnBot()
@@ -73,10 +71,7 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         {
             
             poolType = (GameConstants.PoolType)_botConfig.botType;
-            if ((int)poolType < 12)
-                wayPoint = _pathManager.GetWayPoint(GameConstants.BotType.None);
-            else
-                wayPoint = _pathManager.GetWayPoint(GameConstants.BotType.poinZomLeoTreo);
+            wayPoint = _pathManager.GetWayPoint(GameConstants.PoolType.None);
             ZombieBase botNetworks = SimplePool.Spawn<ZombieBase>(poolType, wayPoint.WayPoints[0].position, Quaternion.Euler(0, 180, 0));
             botNetworks.OnInit(wayPoint);
             botInScene.Add(botNetworks);

@@ -10,7 +10,6 @@ public class Canvas_GamePlay : UICanvas
     [SerializeField] private Text _processText;
     
     [Header("Buttons Reload")]
-    [SerializeField] GameObject btnReload;
     [SerializeField] private GameObject AmmoQuantity;
     [SerializeField] Text bulletCountDefault;
     [SerializeField] Text bulletCountCurrent;
@@ -30,7 +29,6 @@ public class Canvas_GamePlay : UICanvas
     [SerializeField] private GameObject crosshair;
     
     [Header("Buttons Rocket")]
-    [SerializeField] GameObject btnRocket;
     [SerializeField] GameObject getMoreRocket;
     [SerializeField] Image rocketFill;
     [SerializeField] Text rocketCooldown;
@@ -41,8 +39,6 @@ public class Canvas_GamePlay : UICanvas
     [SerializeField] private GameObject _powerupEffectUI;
 
     [Header("Active Reload")] 
-    [SerializeField] private GameObject instructReloadTapTapGameObject;
-    [SerializeField] Canvas _activeReloadFast;
     [SerializeField] CanvasGroup _canvasGrupReloadFast;
     [SerializeField] CanvasGroup _canvasGrupReloadFastFake;
     [SerializeField] private Animator _animatorReloadFast;
@@ -64,9 +60,6 @@ public class Canvas_GamePlay : UICanvas
         EventManager.AddListener<int>(EventName.UpdateBulletCount, UpdateBulletCount);
         EventManager.AddListener<int>(EventName.UpdateBulletCountDefault, UpdateBulletCountDefault);
         EventManager.AddListener<float>(EventName.OnReloading, OnReloading);
-        
-        EventManager.AddListener<bool>(EventName.InstructReload, InstructReload);
-        EventManager.AddListener<bool>(EventName.InstructRocket, InstructRocket );
     }
 
     private void UpdateGameProcess(float arg0)
@@ -140,31 +133,6 @@ public class Canvas_GamePlay : UICanvas
     {
         bulletCountDefault.text = _bulletCount.ToString();
     }
-
-    public override void Setup()
-    {
-        btnReload.gameObject.SetActive(false);
-        btnRocket.gameObject.SetActive(false);
-        base.Setup();
-    }
-    
-    #region Instruct
-
-    void InstructReload(bool _isActiveReloadBtn)
-    {
-        btnReload.gameObject.SetActive(true);
-        GameManager.Instance.PauseGame();
-        UIManager.Instance.OpenUI<Canvas_ReloadIntroduction>();
-    }
-
-    private void InstructRocket(bool arg0)
-    {
-        btnRocket.SetActive(true);
-        GameManager.Instance.PauseGame();
-        UIManager.Instance.OpenUI<Canvas_BazookaIntroduction>();
-    }
-
-    #endregion
     
     public void Btn_Reload()
     {
@@ -204,6 +172,7 @@ public class Canvas_GamePlay : UICanvas
         iconWeapon.gameObject.SetActive(true);
         WeaponCircleReloading.SetActive(false);
     }
+    
     private IEnumerator IEAnimActiveReloadFast()
     {
         _canvasGrupReloadFastFake.alpha = 0;

@@ -103,8 +103,8 @@ public class BossZomRevenant_Netword : BossNetwork
             currentTime += Time.deltaTime;
             if (currentTime >= timeActiveAnimator && !animator.enabled) //34%
             {
-                animator.Play("Jump", 0, 1.12f / 3.27f); // chạy từ 1.28f jump \ 3.27f là tổng thời gian của anim jump
                 animator.enabled = true; // Bật lại animator nếu thời gian nhảy ngắn
+                animator.Play("Jump", 0, 1.12f / 3.27f); // chạy từ 1.28f jump \ 3.27f là tổng thời gian của anim jump
             }
             yield return null;
         }
@@ -156,5 +156,11 @@ public class BossZomRevenant_Netword : BossNetwork
     {
         base.SetActiveDetectors(_active, _skillType);
         detectors[_skillType].SetActive(_active);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        print(animator.enabled);
     }
 }

@@ -140,6 +140,7 @@ public class ZombieBase : GameUnit, ITakeDamage
     
     public virtual void BotDead()
     {
+        wayPoint.isUse = false;
         ZombieDead?.Invoke(true);
         isDead = true;
         _currentHealth = 0;

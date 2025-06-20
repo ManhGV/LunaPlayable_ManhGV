@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class OxygenTanks : MonoBehaviour
+public class OxygenTanks : MonoBehaviour, ITakeDamage
 {
-    [SerializeField] public int countExplosion = 4;
+    [SerializeField] public int maxHealth = 100;
     
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _audioClip;
@@ -17,30 +18,10 @@ public class OxygenTanks : MonoBehaviour
     private Vector3 _direction;
     private float _lifeTimer = 5f;
     private bool CanExplosion = true;
-
-    [Header("DisableIfExplosion")] 
-    [SerializeField] private MeshRenderer _meshRenderer;
-    [SerializeField] private CapsuleCollider _capsuleCollider;
     
-    public void Explosion()
-    {
-        if (countExplosion > 0)
-        {
-            countExplosion--;
-            return;
-        }
-        
-        if(!CanExplosion)
-            return;
-        
-        CanExplosion = false;
-        _meshRenderer.enabled = false;
-        _capsuleCollider.enabled = false;
-        _audioSource.PlayOneShot(_audioClip);
-        _vfxExplosion.Play();
-        CheckHitExplosion();
-        Destroy(gameObject, _lifeTimer);
-    }
+    [Header("DisableIfExplosion")] 
+    [SerializeField] private MeshRenderer _meshRendererGas;
+    [SerializeField] private CapsuleCollider _capsuleColliderThis;
     
     public void CheckHitExplosion()
     {
@@ -80,4 +61,24 @@ public class OxygenTanks : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(_centerExplosion.position, _radiusExplosion);
     }
+
+    public void TakeDamage(DamageInfo damageInfo)
+    {
+        maxHealth -= damageInfo.damage;
+        if (maxHealth <= 0)
+        {
+            if(!CanExplosion)
+                return;
+            
+            CanExplosion = false;
+            _meshRendererGas.enabled = false;
+            _capsuleColliderThis.enabled = false;
+            _audioSource.PlayOneShot(_audioClip);
+            _vfxExplosion.Play();
+            CheckHitExplosion();
+            Destroy(gameObject, _lifeTimer);
+        }
+    }
+
+    public Transform GetTransform() => transform;
 }

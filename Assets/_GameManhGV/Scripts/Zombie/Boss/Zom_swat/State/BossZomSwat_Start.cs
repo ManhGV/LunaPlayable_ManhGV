@@ -55,6 +55,6 @@ public class BossZomSwat_Start : StateBase<ZomAllState,BossZomSwatNetword>
     {
         thisBotNetworks.SetIntAnim("MoveType", 0);
         thisBotNetworks.TF.position = _pointInitMove.position;
-        GameManager.Instance.EndCutScene();
+        //GameManager.Instance.EndCutScene();
     }
 }

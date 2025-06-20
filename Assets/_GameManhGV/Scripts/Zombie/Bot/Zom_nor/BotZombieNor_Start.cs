@@ -7,19 +7,15 @@ public class BotZombieNor_Start : StateBase<ZomAllState, BotNetwork>
     [SerializeField] bool dontUseTimer;
     float timer;
 
-    public void CallOnTakeDamage(int obj)
-    {
-        OnTakeDamage(obj);
-    }
-    
-    private void OnTakeDamage(int obj)
+    public void CallOnTakeDamage()
     {
         thisStateController.ChangeState(ZomAllState.Move);
+        if (typeStart == 2)
+            thisBotNetworks.PlayAudioVoiceLoop(5,1);
     }
 
     public override void EnterState()
     {
-        thisBotNetworks.OnTakeDamage += OnTakeDamage;
         thisBotNetworks.ChangeAnimAndType("Start", typeStart);
         if (typeStart == 1)
         {
@@ -42,6 +38,6 @@ public class BotZombieNor_Start : StateBase<ZomAllState, BotNetwork>
 
     public override void ExitState()
     {
-        thisBotNetworks.OnTakeDamage -= OnTakeDamage;
+        thisBotNetworks.StopAudioThis();
     }
 }

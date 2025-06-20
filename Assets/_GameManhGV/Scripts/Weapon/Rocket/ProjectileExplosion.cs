@@ -18,12 +18,10 @@ public class ProjectileExplosion : GameUnit
     
     public virtual void OnInit(Vector3 direction)
     {
-        _direction = direction;
-        _direction = (_direction - transform.position).normalized;
-        transform.LookAt(_direction);
+        _direction = (direction - TF.position).normalized;
+        TF.LookAt(direction);
         _isHitCollider = false;
         _lifeTimer = 0;
-        transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
     protected virtual void OnEnable()
@@ -86,24 +84,26 @@ public class ProjectileExplosion : GameUnit
         foreach (Collider col in cols)
         {
             if (!lstRoot.Contains(col.gameObject.transform.root))
-            {
                 lstRoot.Add(col.gameObject.transform.root);
-            }
         }
         foreach(var elem in lstRoot)
         {
                 // damageType = elem.CompareTag("WeakPoint") ? DamageType.Weekness : DamageType.Normal;
-            ITakeDamage botnet = elem.gameObject.GetComponentInParent<ITakeDamage>();
-            if (botnet != null)
+            ITakeDamage iTakeDamage = elem.gameObject.GetComponentInParent<ITakeDamage>();
+            if(iTakeDamage == null)
+                iTakeDamage = elem.gameObject.GetComponent<ITakeDamage>();
+            
+            if (iTakeDamage != null)
             {
+                print(iTakeDamage.GetTransform().gameObject.name);
                 var damageInfo = new DamageInfo()
                 {
                     damageType = DamageType.Gas,
                     damage = _dame,
                     name = elem.gameObject.name,
                 };
-                botnet.TakeDamage(damageInfo);
-                if (botnet is BossZomSwatNetword boss)
+                iTakeDamage.TakeDamage(damageInfo);
+                if (iTakeDamage is BossZomSwatNetword boss)
                 {
                     boss.ExplosinArrmor();
                 }

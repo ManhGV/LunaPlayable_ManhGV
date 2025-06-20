@@ -23,26 +23,26 @@ public class BossZomRevenant_StateController : StateControllerBase<BossZomRevena
         //_startState.Initialize(BossZomState.Start);
         
         _idle = GetComponent<BossZomRevenant_Idle>();
-        _idle.Initialize(ZomAllState.Idle);
-
+        _idle.Initialize(ZomAllState.Idle, botNetworks, this);
+        
         _moveState = GetComponent<BossZomRevenant_Move>();
-        _moveState.Initialize(ZomAllState.Move);
-
+        _moveState.Initialize(ZomAllState.Move, botNetworks, this);
+        
         _stunState = GetComponent<BossZomRevenant_Stun>();
-        _stunState.Initialize(ZomAllState.Stun_1);
+        _stunState.Initialize(ZomAllState.Stun_1, botNetworks, this);
         
         _screamState = GetComponent<BossZomRevenant_Scream>();
-        _screamState.Initialize(ZomAllState.Scream);
+        _screamState.Initialize(ZomAllState.Scream, botNetworks, this);
         
         _jumpState = GetComponent<BossZomRevenant_Jump>();
-        _jumpState.Initialize(ZomAllState.Jump);
+        _jumpState.Initialize(ZomAllState.Jump, botNetworks, this);
         
         _attackState = GetComponent<BossZomRevenant_Attack>();
-        _attackState.Initialize(ZomAllState.Attack);
-
+        _attackState.Initialize(ZomAllState.Attack, botNetworks, this);
+        
         _deadState = GetComponent<BossZomRevenant_Dead>();
-        _deadState.Initialize(ZomAllState.Dead);
-
+        _deadState.Initialize(ZomAllState.Dead, botNetworks, this);
+        
         //stateController.Add(BossZomState.Start, _startState);
         stateController.Add(ZomAllState.Idle, _idle);
         stateController.Add(ZomAllState.Move, _moveState);
@@ -62,7 +62,7 @@ public class BossZomRevenant_StateController : StateControllerBase<BossZomRevena
     protected override void OnEnable()
     {
         base.OnEnable();
-        _currentState = stateController[ZomAllState.Idle];
+        _currentState = stateController[ZomAllState.Jump];
         _currentState.EnterState();
     }
 

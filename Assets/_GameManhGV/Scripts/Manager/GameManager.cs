@@ -12,7 +12,6 @@ public class GameManager : Singleton<GameManager>
     [Header("CutScene")]
     [SerializeField] CanvasGroup _canvasGameplay;
     [SerializeField] private GameObject _mainCamera;
-    [SerializeField] private GameObject _cutSceneCamera;
     
     [Header("Snake Camera")]
     [SerializeField] private Transform shakeCam; // Biến để tham chiếu đến MainCamera
@@ -26,25 +25,6 @@ public class GameManager : Singleton<GameManager>
     {
         LunaLogStart();
     }
-
-    #region CutScene
-    public void StartCutScene()
-    {
-        soundBG.SetActive(false);
-        _canvasGameplay.alpha = 0;
-        _mainCamera.SetActive(false);
-        _cutSceneCamera.SetActive(true);
-        gameState = GameConstants.GameState.CutScene;
-    }
-    
-    public void EndCutScene()
-    {
-        _canvasGameplay.alpha = 1;
-        _mainCamera.SetActive(true);
-        _cutSceneCamera.SetActive(false);
-        gameState = GameConstants.GameState.Playing;
-    }
-    #endregion
 
     #region Pause and Resume
     public void PauseGame()

@@ -175,22 +175,69 @@ public class PathmanagerEditorVer2 : EditorWindow
         }
     }
 
+    // private void RandomPoint()
+    // {
+    //     wayPoint.WayPoints.Clear();
+    //     countOnePointZomMove = 0;
+    //     for (int i = 0; i < listPoint.Count; i++)
+    //         if (listPoint[i].CanRandom)
+    //             countOnePointZomMove++;
+    //     
+    //     
+    //     for (int j = 0; j < countPointRandom; j++)
+    //         for (int i = 0; i < listPoint.Count; i++)
+    //             if (listPoint[i].CanRandom)
+    //                 wayPoint.WayPoints.Add(listPoint[i].transforms[UnityEngine.Random.Range(0, listPoint[i].transforms.Count)]);
+    //             else
+    //                 continue;
+    // }
+    
     private void RandomPoint()
     {
         wayPoint.WayPoints.Clear();
         countOnePointZomMove = 0;
-        for (int i = 0; i < listPoint.Count; i++)
-            if (listPoint[i].CanRandom)
+
+        // Mapping từng ListPoin => pool riêng của transform còn lại
+        Dictionary<ListPoin, List<Transform>> listPools = new Dictionary<ListPoin, List<Transform>>();
+        Dictionary<ListPoin, List<Transform>> originalPools = new Dictionary<ListPoin, List<Transform>>();
+
+        // Chuẩn bị pool ban đầu cho từng list có thể random
+        foreach (var listPoin in listPoint)
+        {
+            if (listPoin.CanRandom && listPoin.transforms != null && listPoin.transforms.Count > 0)
+            {
                 countOnePointZomMove++;
+                List<Transform> pool = new List<Transform>(listPoin.transforms);
+                listPools[listPoin] = pool;
+                originalPools[listPoin] = new List<Transform>(listPoin.transforms);
+            }
+        }
 
+        // Bắt đầu random theo số lần countPointRandom
+        for (int round = 0; round < countPointRandom; round++)
+        {
+            foreach (var kvp in listPools)
+            {
+                var listPoin = kvp.Key;
+                var pool = kvp.Value;
 
-        for (int j = 0; j < countPointRandom; j++)
-            for (int i = 0; i < listPoint.Count; i++)
-                if (listPoint[i].CanRandom)
-                    wayPoint.WayPoints.Add(listPoint[i].transforms[UnityEngine.Random.Range(0, listPoint[i].transforms.Count)]);
-                else
-                    continue;
+                // Nếu pool trống thì reset từ bản gốc
+                if (pool.Count == 0)
+                {
+                    pool.AddRange(originalPools[listPoin]);
+                }
+
+                if (pool.Count == 0) continue; // bỏ qua nếu vẫn không có gì
+
+                int randIndex = UnityEngine.Random.Range(0, pool.Count);
+                Transform selected = pool[randIndex];
+                wayPoint.WayPoints.Add(selected);
+                pool.RemoveAt(randIndex);
+            }
+        }
     }
+
+
 
     private void AddTranform(object[] objs, int _indexList)
     {

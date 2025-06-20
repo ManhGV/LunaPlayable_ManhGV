@@ -8,7 +8,7 @@ public class WeaponBase : Singleton<WeaponBase>
     [Header("Data Weapon")]
     [SerializeField] public WeaponInfo weaponInfo;
 
-    [Header("Layer Target")] 
+    [Header("Layer Target")] [Tooltip("0: Bot, 1:Weakpoint, 2:Reward, 3:Ground, 4:Gas")]
     [SerializeField] protected LayerMask[] LayerMasks;
     
     [Header("Effect")]

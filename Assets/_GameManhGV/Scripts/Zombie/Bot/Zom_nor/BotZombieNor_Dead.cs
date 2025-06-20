@@ -4,15 +4,12 @@ using static GameConstants;
 
 public class BotZombieNor_Dead : StateBase<ZomAllState, BotNetwork>
 {
-    [SerializeField] private GameObject Detectors;
     [SerializeField] private Transform _posCenter;
     int animType;
     public override void EnterState()
     {
         animType = Random.Range(0, 2);
         thisBotNetworks.ChangeAnimAndType("Dead", animType);
-        if(Detectors != null)
-            Detectors.SetActive(false);
 
         thisBotNetworks.PlayAudioVoice(Random.Range(0,4),1,false);
         

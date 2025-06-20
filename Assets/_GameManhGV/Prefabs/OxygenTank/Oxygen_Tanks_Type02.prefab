@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9d8a5238b49914c8e8ca080523b0de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countExplosion: 4
+  maxHealth: 100
   _audioSource: {fileID: 609764654497881036}
   _audioClip: {fileID: 8300000, guid: 6099cb0bd8d994d4b83b821f125cdec0, type: 3}
   _vfxExplosion: {fileID: 3241156522295357363}
@@ -82,8 +82,8 @@ MonoBehaviour:
   _layerHit:
     serializedVersion: 2
     m_Bits: 128
-  _meshRenderer: {fileID: 1157937792528735124}
-  _capsuleCollider: {fileID: 4450009382962510107}
+  _meshRendererGas: {fileID: 1157937792528735124}
+  _capsuleColliderThis: {fileID: 4450009382962510107}
 --- !u!82 &609764654497881036
 AudioSource:
   m_ObjectHideFlags: 0

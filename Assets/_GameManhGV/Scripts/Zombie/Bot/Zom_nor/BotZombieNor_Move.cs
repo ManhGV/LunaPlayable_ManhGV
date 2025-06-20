@@ -4,7 +4,6 @@ using UnityEngine;
 public class BotZombieNor_Move : StateBase<ZomAllState, BotNetwork>
 {
     [SerializeField] private HumanMoveBase humanMoveBase;
-    [SerializeField] private bool moveType_2;
     private WayPoint path;
     private int moveIndex = 0;
     private int typeMove;
@@ -12,18 +11,28 @@ public class BotZombieNor_Move : StateBase<ZomAllState, BotNetwork>
     
     public override void EnterState()
     {
-        if(moveType_2)
-            typeMove = 2;
+        if (Random.Range(0, 10) < 7)
+        {
+            if (Random.Range(0, 2) == 0)
+                typeMove = 0;
+            else
+                typeMove = 3;
+        }
         else
-            typeMove = Random.Range(0, 4);
+        {
+            if (Random.Range(0, 2) == 0)
+                typeMove = 1;
+            else
+                typeMove = 2;
+        }
         
-        if (typeMove == 0)
+        if (typeMove == 0) 
             speedTypeIndex = .9f;
-        else if (typeMove == 1)
+        else if (typeMove == 1) 
             speedTypeIndex = .87f;
-        else if (typeMove == 2)
+        else if (typeMove == 2) 
             speedTypeIndex = .28f;
-        else
+        else 
             speedTypeIndex = 3f;
         
         path = thisBotNetworks.GetWayPoint;
@@ -48,11 +57,14 @@ public class BotZombieNor_Move : StateBase<ZomAllState, BotNetwork>
                     moveIndex++;
                 }
             }
-            if (moveIndex == path.WayPoints.Count)
+            //Debug.Log(moveIndex+ " - " + path.WayPoints.Count + " - " + path.WayPoints[moveIndex-1].position);
+            if (moveIndex >= path.WayPoints.Count)
             {
+                Debug.Log(path.WayPoints[moveIndex-1].position + " - Move Done ");
                 thisStateController.ChangeState(ZomAllState.Attack);
             }
         }
+            
     }
 
     public override void ExitState()

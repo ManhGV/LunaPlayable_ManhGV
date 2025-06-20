@@ -7,27 +7,36 @@ public class PathManager : Singleton<PathManager>
 {
     public List<WayPointlist> Listwaypoint = new List<WayPointlist>();
 
-    public WayPoint GetWayPoint(BotType poolType)
+    public WayPoint GetWayPoint(PoolType poolType)
     {
         var wayPointList = Listwaypoint.Find(list => list.botType == poolType);
         if (wayPointList != null)
         {
             var paths = wayPointList._wayPointlist;
-            if (paths.Count == 0)
-                throw new Exception("No available paths for bot type: " + poolType);
+            var availablePaths = paths.FindAll(x => x.isUse == false);
+            int index;
+            if (availablePaths.Count <= 0)
+            {
+                index = wayPointList.GetIndexPath();
+                // throw new Exception("No available paths for bot type: " + poolType);
+            }
+            else
+            {
+                index = UnityEngine.Random.Range(0, availablePaths.Count);
+                availablePaths[index].isUse = true;
+            }
             
-            // int index = wayPointList.GetIndexPath();
-            return paths[UnityEngine.Random.Range(0, paths.Count)];
+            return availablePaths[index];
         }
-
-        throw new Exception("No paths found for bot type: " + poolType);
+        Debug.LogError("Null WayPointList");
+        return null;
     }
 }
 
 [Serializable]
 public class WayPointlist
 {
-    public BotType botType;
+    public PoolType botType;
     private int indexPath;
     public List<WayPoint> _wayPointlist = new List<WayPoint>();
     public int GetIndexPath()
@@ -56,6 +65,7 @@ public class LimitWayPoint
 [Serializable]
 public class WayPoint
 {
+    public bool isUse;
     public List<Transform> WayPoints = new List<Transform>();
     public List<Transform> AttackWayPoints = new List<Transform>();
     

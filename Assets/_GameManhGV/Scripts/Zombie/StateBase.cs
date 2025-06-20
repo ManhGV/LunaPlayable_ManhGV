@@ -3,22 +3,17 @@ using UnityEngine;
 
 public abstract class StateBase<EState,TBot> : MonoBehaviour where EState : Enum where TBot : ZombieBase
 {
-    [SerializeField] protected TBot thisBotNetworks;
-    [SerializeField] protected StateControllerBase<TBot> thisStateController;
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        thisBotNetworks = GetComponent<TBot>();
-        thisStateController = GetComponent<StateControllerBase<TBot>>();
-    }
-#endif
+    protected TBot thisBotNetworks {get; private set;}
+    protected StateControllerBase<TBot> thisStateController { get; private set; }
     
     public EState StateKey { get; private set; }
     public abstract void EnterState();
     public abstract void UpdateState();
     public abstract void ExitState();
-    public void Initialize(EState state)
+    public void Initialize(EState state, TBot _botNet, StateControllerBase<TBot> _stateControllerBase)
     {
-        this.StateKey = state;
+        StateKey = state;
+        thisBotNetworks = _botNet;
+        thisStateController = _stateControllerBase;
     }
 }

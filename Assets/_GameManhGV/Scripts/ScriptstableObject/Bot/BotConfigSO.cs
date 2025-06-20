@@ -7,10 +7,8 @@ using static GameConstants;
 [CreateAssetMenu(fileName = "BotConfigSO", menuName = "ScriptableObjects/BotConfig")]
 public class BotConfigSO : ScriptableObject
 {
-    public BotType botType;
     public string BotName;
     public int health;
-    public float HealthThreshold; // ngưỡng máu để kích hoạt bất tử, scale damage
     public float WeaknessHealth;
     public bool isCanImmortal;
     public float damage;
@@ -23,7 +21,6 @@ public class BotConfigSO : ScriptableObject
     [SerializeField]public CarryAttributes[] carryAttributes;
 
     public float GetDamageScale(DamageType DamageType) =>  damageScales.Find(e  => e.DamageType == DamageType)?.ScaleValue ?? 1;
-
 }
 
 [Serializable]

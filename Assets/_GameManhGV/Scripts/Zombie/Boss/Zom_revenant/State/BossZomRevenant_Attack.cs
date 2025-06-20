@@ -21,16 +21,16 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
             _attackCoroutine = StartCoroutine(IEAttackType_01(Random.Range(3, 5)));
             //TODO: Skill trocj 2 cánh
         }
-        else if (posYthis > 0)
-        {
-            //TODO:ném lửa
-            _attackCoroutine = StartCoroutine(IEAttackType_2());
-        }
-        else
+        else if (posYthis <.5f)
         {
             //TODO: đấm đất
             _attackCoroutine = StartCoroutine(IEAttackType_3());
             // timer = 3.1f;
+        }
+        else
+        {
+            //TODO:ném lửa
+            _attackCoroutine = StartCoroutine(IEAttackType_2());
         }
     }
     public override void UpdateState()
@@ -42,7 +42,7 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
             if (attackType == 01)
             {
                 random = Random.Range(0, 2);
-                if (random == 0)
+                if (random == 0 && posYthis <= .5f)
                     thisStateController.ChangeState(ZomAllState.Move);
                 else
                     thisStateController.ChangeState(ZomAllState.Jump);
@@ -53,16 +53,12 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
 
                 if (random == 0)
                     thisStateController.ChangeState(ZomAllState.Idle);
-                else if (random == 1 && posYthis <= 0)
+                else if (random == 1 && posYthis <= .5f)
                     thisStateController.ChangeState(ZomAllState.Move);
                 else
                     thisStateController.ChangeState(ZomAllState.Jump);
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            thisStateController.ChangeState(ZomAllState.Stun_1);
-        //TODO: DoneState thì => random move, idle, jump
     }
 
     public override void ExitState()

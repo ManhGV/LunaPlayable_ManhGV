@@ -7,7 +7,6 @@ using UnityEngine;
 // 3 = sau
 public class BotZombieNor_DeadExplosion : StateBase<ZomAllState, BotNetwork>
 {
-    [SerializeField] private GameObject Detector;
     public override void EnterState()
     {
         int animType = thisBotNetworks.GetNearestDirection();
@@ -16,8 +15,6 @@ public class BotZombieNor_DeadExplosion : StateBase<ZomAllState, BotNetwork>
         thisBotNetworks.ChangeAnimAndType("DeadExplosion", animType);
 
         StartCoroutine(IEDelayAnimAndDespawn(3f));
-        if(Detector != null)
-            Detector.SetActive(false);
     }
 
     public override void UpdateState()

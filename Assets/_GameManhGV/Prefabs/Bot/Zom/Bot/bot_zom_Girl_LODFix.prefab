@@ -852,7 +852,6 @@ GameObject:
   - component: {fileID: 7788804967758492769}
   - component: {fileID: 912415406568724126}
   - component: {fileID: 3709215020097705114}
-  - component: {fileID: 671000841935871117}
   - component: {fileID: 4674364868904890661}
   m_Layer: 7
   m_Name: bot_zom_Girl_LODFix
@@ -942,7 +941,6 @@ MonoBehaviour:
   thisBotNetworks: {fileID: 4674364868904890661}
   thisStateController: {fileID: 3307414429982777540}
   Detectors: {fileID: 0}
-  tutorialReload: 0
   _posCenter: {fileID: 7296790261487705463}
 --- !u!114 &5320617182654477668
 MonoBehaviour:
@@ -959,7 +957,6 @@ MonoBehaviour:
   thisBotNetworks: {fileID: 4674364868904890661}
   thisStateController: {fileID: 3307414429982777540}
   Detector: {fileID: 0}
-  tutorialReload: 0
 --- !u!114 &7788804967758492769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,22 +1083,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &671000841935871117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4427864759136394561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d77014d0fa0aa34fa458d5669d19744, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisBotNetworks: {fileID: 4674364868904890661}
-  thisStateController: {fileID: 3307414429982777540}
-  typeStart: 1
-  dontUseTimer: 0
 --- !u!114 &4674364868904890661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1133,6 +1114,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ffe4cc86ff834d84fb1e34f62021b83b, type: 3}
   - {fileID: 8300000, guid: d003c050a95f6de459e8bbd0d9db3646, type: 3}
   wayPoint:
+    isUse: 0
     WayPoints: []
     AttackWayPoints: []
   currentAnimName: 

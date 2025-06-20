@@ -100,33 +100,13 @@ public class EventManager : MonoBehaviour
 
 public enum EventName
 {
-    OnShowLunaEndGame,
-    OnCheckTurnPlay, // sự kiện show EndCard
     UpdateBulletCount,// đếm số lượng đạn và in ra ở UI
     UpdateBulletCountDefault,
-    OnCountBotLanding,//đếm số lượng bot landing
-    OnBotKillCount,//đếm số lượng bot Chết
     OnCheckBotTakeDamage,//CheckBot có dính Damage hay không 
     OnCheckShakeCam,
-    OnClearReward,
-    OnUpgradeFireRate,
     OnChangeFireRate,
     OnChangeWeapon,
     OnTakeDamagePlayer,
     OnReloading,
-    OnPlayerDead,
-    OnTimeOut,
-    OnTakeDameWeakPoint,
-    OnGameWon,
-    OnGameLost,
-    // Thêm các sự kiện khác ở đây
-    OnSwithToggleRocket,
-    UpdateRocketForwardCount,
-    UpdateRocketFollowCount,
-    OnCameraFollowRocket,
-    OnCameraShake,
-    OnPlayerTakeDameRocket,
-    InstructReload,
-    InstructRocket,
     UpdateGameProcess,
 }

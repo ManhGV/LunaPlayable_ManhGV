@@ -20,22 +20,22 @@ public class BossZomThrower_StateController : StateControllerBase<BossZomThrower
     private void OnInit()
     {   
         _idleState = GetComponent<BossZomThrower_Idle>();
-        _idleState.Initialize(ZomAllState.Idle);
+        _idleState.Initialize(ZomAllState.Idle, botNetworks, this);
         
         _moveState = GetComponent<BossZomThrower_Move>();
-        _moveState.Initialize(ZomAllState.Move);
+        _moveState.Initialize(ZomAllState.Move, botNetworks, this);
         
         _jumpState = GetComponent<BossZomThrower_Jump>();
-        _jumpState.Initialize(ZomAllState.Jump);
+        _jumpState.Initialize(ZomAllState.Jump, botNetworks, this);
         
         _attackState = GetComponent<BossZomThrower_Attack>();
-        _attackState.Initialize(ZomAllState.Attack);
+        _attackState.Initialize(ZomAllState.Attack, botNetworks, this);
         
         _stunState = GetComponent<BossZomThrower_Stun>();
-        _stunState.Initialize(ZomAllState.Stun_1);
+        _stunState.Initialize(ZomAllState.Stun_1, botNetworks, this);
         
         _deadState = GetComponent<BossZomThrower_Dead>();
-        _deadState.Initialize(ZomAllState.Dead);
+        _deadState.Initialize(ZomAllState.Dead, botNetworks, this);
         
         stateController.Add(ZomAllState.Idle, _idleState);
         stateController.Add(ZomAllState.Move, _moveState);

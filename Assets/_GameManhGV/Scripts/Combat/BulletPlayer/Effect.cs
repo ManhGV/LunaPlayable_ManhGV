@@ -15,7 +15,7 @@ public class Effect : GameUnit
     [SerializeField] private double _lifeTime;
     private float _timer;
 
-    [SerializeField] public ParticleSystem[] particles;
+    [SerializeField] private ParticleSystem[] particles;
     
     [Header("Audio")]
     [SerializeField] private AudioSource _audioSource;
@@ -39,7 +39,11 @@ public class Effect : GameUnit
         
         _timer = 0;
         foreach (var item in particles)
+        {
+            if(!item.gameObject.activeSelf)
+                item.gameObject.SetActive(true);    
             item.Play();
+        }
                 
         Update();
     }

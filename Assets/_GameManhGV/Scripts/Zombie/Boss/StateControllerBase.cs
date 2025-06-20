@@ -43,13 +43,13 @@ public class StateControllerBase<TBotNet> : MonoBehaviour where TBotNet : Zombie
     {
         if (_currentState == null)
         {
-            print("Null current state");
+//            print("Null current state");
             return;
         }
         
         if (_isTransition)
         {
-            print("Đang đổi trạng thái");
+  //          print("Đang đổi trạng thái");
             return;
         }
         _currentState.UpdateState();
@@ -76,7 +76,8 @@ public class StateControllerBase<TBotNet> : MonoBehaviour where TBotNet : Zombie
     #region State Controller
     public void ChangeState(ZomAllState newAllState)
     {
-        if (_currentState==null || _currentState.StateKey.Equals(newAllState) || _isTransition)
+//        print("Đổi trạng thái sang: " + newAllState);
+        if (_currentState ==null || _currentState.StateKey.Equals(newAllState) || _isTransition)
             return;
 
         TransitionState(newAllState);

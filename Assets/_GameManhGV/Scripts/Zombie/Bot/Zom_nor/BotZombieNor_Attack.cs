@@ -11,6 +11,7 @@ public class BotZombieNor_Attack : StateBase<ZomAllState, BotNetwork>
     {
         animType = Random.Range(0, 2);
         thisBotNetworks.ChangeAnimAndType("Attack",animType);
+        thisBotNetworks.RotaToPlayerMain();
         if (animType == 0)
         {
             timerAttack = 1.53f;
@@ -21,7 +22,6 @@ public class BotZombieNor_Attack : StateBase<ZomAllState, BotNetwork>
             timerAttack = .54f;
             _coroutineTakeDamagePlayer = StartCoroutine(IETakeDamagePlayer( 0.35f));
         }
-        thisBotNetworks.RotaToPlayerMain();
     }
     
     public override void UpdateState()
