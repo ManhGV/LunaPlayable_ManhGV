@@ -20,7 +20,7 @@ public class BotNetwork : ZombieBase
         if(IsDeadExplosion || isDead || isImmortal)
             return;
         
-        OnTakeDamage?.Invoke(damageInfo.damage);
+        OnTakeDamage?.Invoke(damageInfo);
         
         if(healthBarTransform != null && damageInfo.damageType != DamageType.Gas)//||healthBarTransform != null && isBoss && damageInfo.damageType == DamageType.Gas)
         {

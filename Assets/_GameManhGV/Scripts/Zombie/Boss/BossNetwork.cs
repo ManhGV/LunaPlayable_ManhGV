@@ -19,7 +19,7 @@ public class BossNetwork : ZombieBase
         if(isDead || isImmortal)
             return;
         
-        OnTakeDamage?.Invoke(damageInfo.damage);
+        OnTakeDamage?.Invoke(damageInfo);
         if(healthBarTransform != null)
         {
             CacularHealth(damageInfo);
@@ -37,9 +37,9 @@ public class BossNetwork : ZombieBase
         base.BotDead();
         foreach (GameObject VARIABLE in detectors)
             VARIABLE.SetActive(false);
-        //SpawnBotManager.Instance.RemoveBotDead(this);
-        //AchievementEvaluator.Instance.OnBotKilled(1.8f,false);
-        //GameManager.Instance.EndGame(true);
+        SpawnBotManager.Instance.RemoveBotDead(this);
+        AchievementEvaluator.Instance.OnBotKilled(1.8f,false);
+        GameManager.Instance.EndGame(true);
     }
     
     public virtual void SetActiveDetectors(bool _active,int _skillType)

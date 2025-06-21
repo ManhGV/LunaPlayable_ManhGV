@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 public class Weapon112_ProjectileElectricBall : ProjectileExplosionBase
@@ -84,7 +83,7 @@ public class Weapon112_ProjectileElectricBall : ProjectileExplosionBase
 
                     var damageInfo = new DamageInfo()
                     {
-                        damageType = DamageType.Normal,
+                        damageType = DamageType.Gas,
                         damage = _damageElectricLine,
                         name = col.gameObject.name,
                     };

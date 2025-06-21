@@ -18,7 +18,7 @@ public class EffectLine : EffectBase
         this.posEnd = posEnd_centerZom;
         OnInit();
         Update();
-        if (posEnd_centerZom.childCount <= 1)
+        if (posEnd_centerZom.gameObject.layer==7 && posEnd_centerZom.childCount <= 1)
         {
             effectElectricHit = SimplePool.Spawn<EffectElectricHit>(GameConstants.PoolType.vfx_ElectricHit, TF.position, Quaternion.identity);
             effectElectricHit.OnInit(posEnd_centerZom.localScale.x,posEnd_centerZom);
@@ -47,7 +47,6 @@ public class EffectLine : EffectBase
 
     public override void OnDespawn()
     {
-        print("Despawn EffectLine");
         if(effectElectricHit != null)
             effectElectricHit.StartCaculatorTimeDespawn();
         

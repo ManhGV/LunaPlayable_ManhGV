@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
@@ -18,8 +19,13 @@ public class BulletZomBase : GameUnit, ITakeDamage
     [SerializeField] private int currentHealth;
     [SerializeField] protected Image _healthFill;
     protected bool _isDead;
-
+    protected Vector3 _posCamera;
     protected Vector3 posPlayer;
+
+    private void Awake()
+    {
+        _posCamera = GameManager.Instance.GetMainCameraTransform().position;
+    }
 
     public virtual void OnInit(Vector3 _posPlayer)
     {

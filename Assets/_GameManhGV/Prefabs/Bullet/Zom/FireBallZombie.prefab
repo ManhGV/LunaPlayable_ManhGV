@@ -76,6 +76,7 @@ MonoBehaviour:
   maxHealth: 200
   currentHealth: 0
   _healthFill: {fileID: 3075470352871473269}
+  detector: {fileID: 214309878610130287}
   audioClip:
   - {fileID: 8300000, guid: 22084fb0a6f83334c93a0526e347756f, type: 3}
   - {fileID: 8300000, guid: 93721cea9a2cfb54b8c6902a2a871094, type: 3}
@@ -157,6 +158,10 @@ PrefabInstance:
     - target: {fileID: 865089612574957974, guid: 7ac89f5dcef53714292e4cb0f2bc774a, type: 3}
       propertyPath: m_Name
       value: DetectorZom (Weakpoint)
+      objectReference: {fileID: 0}
+    - target: {fileID: 865089612574957974, guid: 7ac89f5dcef53714292e4cb0f2bc774a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4894842687688718720, guid: 7ac89f5dcef53714292e4cb0f2bc774a, type: 3}
       propertyPath: m_LocalPosition.x

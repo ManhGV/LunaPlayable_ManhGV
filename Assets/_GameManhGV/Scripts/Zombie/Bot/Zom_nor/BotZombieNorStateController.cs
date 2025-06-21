@@ -90,10 +90,10 @@ public class BotZombieNorStateController : StateControllerBase<BotNetwork>
         _currentState.EnterState();
     }
 
-    protected override void OnTakeDame(int damage)
+    protected override void OnTakeDame(DamageInfo damageInfo)
     {
-        base.OnTakeDame(damage);
-        if(!haveStart)
+        base.OnTakeDame(damageInfo);
+        if(!haveStart || damageInfo.damageType == DamageType.Gas)
             return;
         if(_startState.StateKey == ZomAllState.Start)
             _startState.CallOnTakeDamage();

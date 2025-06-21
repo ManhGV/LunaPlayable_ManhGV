@@ -21,6 +21,7 @@ public class BotConfig
     [Header("Thông tin Bot")]
     [Tooltip("Chọn loại Bot")]
     public PoolType botType;
+    public PoinSpawnbot PoinSpawnbot;
 
     [Tooltip("Số lượng bot sinh ra")]
     public int botQuantity;

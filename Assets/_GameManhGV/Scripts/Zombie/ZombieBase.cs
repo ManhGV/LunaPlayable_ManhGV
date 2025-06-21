@@ -49,7 +49,7 @@ public class ZombieBase : GameUnit, ITakeDamage
     #endregion
 
     #region Actions
-    public Action<int> OnTakeDamage { get; set; }
+    public Action<DamageInfo> OnTakeDamage { get; set; }
     public Action<bool> ZombieDead { get; set; }
     #endregion
 
@@ -73,7 +73,7 @@ public class ZombieBase : GameUnit, ITakeDamage
     }
     public void OnDespawn()
     {
-        if(PoolType!=GameConstants.PoolType.None)
+        if(PoolType != GameConstants.PoolType.None && !isBotActiveEqualTay)
             SimplePool.Despawn(this);
         else
             gameObject.SetActive(false);
@@ -163,7 +163,7 @@ public class ZombieBase : GameUnit, ITakeDamage
             return;
         }
         // if (currentAnimName == _name)
-        //     print("- "+_name+" |Old" + currentAnimName);
+             //print("ChangeAnim "+_name+" |Old" + currentAnimName);
 #endif
         animator.ResetTrigger(_name);
         currentAnimName = _name;
@@ -180,7 +180,7 @@ public class ZombieBase : GameUnit, ITakeDamage
         }
         // if (currentAnimName == _name || currentAnimType == animType)
         //     Debug.LogWarning("Bạn đang lăp lại một anim: " + _name + " | Old: " + currentAnimName + " | Type: " + animType);
-        // print("- " + _name + " |Old" + currentAnimName);
+         //print("ChangeAnimAndType " + _name + " |Old" + currentAnimName);
 #endif
         animator.SetInteger("AnimType", animType);
         animator.ResetTrigger(_name);

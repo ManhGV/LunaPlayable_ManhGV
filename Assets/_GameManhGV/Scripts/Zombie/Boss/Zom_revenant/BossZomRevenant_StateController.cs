@@ -53,12 +53,6 @@ public class BossZomRevenant_StateController : StateControllerBase<BossZomRevena
         stateController.Add(ZomAllState.Dead, _deadState);
     }
 
-    protected override void OnTakeDame(int damage)
-    {
-        base.OnTakeDame(damage);
-        print("-[BossZomRevenant] - " + damage+" HP.");
-    }
-
     protected override void OnEnable()
     {
         base.OnEnable();

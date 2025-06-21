@@ -24,10 +24,9 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
     protected override void Awake()
     {
         base.Awake();
-
-        canCallBoss = true;
         foreach (BotConfig VARIABLE in dataBotSpawn.fightRound.botConfigs)
             AllBotsToSpawn += VARIABLE.botQuantity;
+        AllBotsToSpawn += 6;
         _currentBot = AllBotsToSpawn;
     }
 
@@ -35,16 +34,15 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
     {
         float progress = (float) KillBot / (float)AllBotsToSpawn;
         EventManager.Invoke(EventName.UpdateGameProcess, progress);
-        SpawnBot();
     }
 
     private void Update()
     {
-        // if (canCallBoss && _currentBot <= 1)
-        // {
-        //     canCallBoss = false;
-        //     StartCoroutine(IECallBossZom(1.8f));
-        // }
+        if (canCallBoss && _currentBot <= 1)
+        {
+            canCallBoss = false;
+            StartCoroutine(IECallBossZom(1.8f));
+        }
     }
 
     public IEnumerator IECallBossZom(float time)
@@ -70,8 +68,8 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         for (int i = 0; i < _botConfig.botQuantity; i++)
         {
             
-            poolType = (GameConstants.PoolType)_botConfig.botType;
-            wayPoint = _pathManager.GetWayPoint(GameConstants.PoolType.None);
+            poolType = _botConfig.botType;
+            wayPoint = _pathManager.GetWayPoint(_botConfig.PoinSpawnbot);
             ZombieBase botNetworks = SimplePool.Spawn<ZombieBase>(poolType, wayPoint.WayPoints[0].position, Quaternion.Euler(0, 180, 0));
             botNetworks.OnInit(wayPoint);
             botInScene.Add(botNetworks);

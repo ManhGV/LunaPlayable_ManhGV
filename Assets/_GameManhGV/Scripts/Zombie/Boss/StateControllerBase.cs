@@ -60,7 +60,7 @@ public class StateControllerBase<TBotNet> : MonoBehaviour where TBotNet : Zombie
         
     }
     
-    protected virtual  void OnTakeDame(int damage)
+    protected virtual  void OnTakeDame(DamageInfo damageInfo)
     {
         
     }
@@ -76,7 +76,7 @@ public class StateControllerBase<TBotNet> : MonoBehaviour where TBotNet : Zombie
     #region State Controller
     public void ChangeState(ZomAllState newAllState)
     {
-//        print("Đổi trạng thái sang: " + newAllState);
+        print("Đổi trạng thái sang: " + newAllState);
         if (_currentState ==null || _currentState.StateKey.Equals(newAllState) || _isTransition)
             return;
 

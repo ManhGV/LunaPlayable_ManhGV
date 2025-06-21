@@ -5,6 +5,14 @@ using UnityEngine;
 
 public static class GameConstants
 {
+    public enum PoinSpawnbot
+    {
+        All = 0,
+        point_0 =     1,
+        point_1 =     2,
+        point_2 =     3,
+    }
+    
 #if UNITY_EDITOR
     public enum BotType
     {

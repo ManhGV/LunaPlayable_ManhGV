@@ -3,6 +3,7 @@ using UnityEngine;
 public class BulletFireZombie : BulletZomBase
 {
     [Header("Referent")]
+    [SerializeField] Transform detector;
     [SerializeField] AudioClip[] audioClip;
     [SerializeField] protected float _speed;
     Vector3 dir;
@@ -19,7 +20,7 @@ public class BulletFireZombie : BulletZomBase
         if (_isDead)
             return;
         TF.position += dir * _speed * Time.deltaTime;
-
+        detector.LookAt(_posCamera);
         if (Vector3.Distance(posPlayer, TF.position) < .5f)
             OnTakeDamagePlayer();
     }

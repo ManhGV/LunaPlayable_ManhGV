@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using static GameConstants;
+using Random = UnityEngine.Random;
+
 
 public class PathManager : Singleton<PathManager>
 {
     public List<WayPointlist> Listwaypoint = new List<WayPointlist>();
 
-    public WayPoint GetWayPoint(PoolType poolType)
+    public WayPoint GetWayPoint(PoinSpawnbot point)
     {
-        var wayPointList = Listwaypoint.Find(list => list.botType == poolType);
+        WayPointlist wayPointList = null;
+        if (point == PoinSpawnbot.All)
+            wayPointList = Listwaypoint[Random.Range(0, Listwaypoint.Count)];
+        else
+            wayPointList = Listwaypoint.Find(list => list.point == point);
+
         if (wayPointList != null)
         {
             var paths = wayPointList._wayPointlist;
@@ -36,7 +43,7 @@ public class PathManager : Singleton<PathManager>
 [Serializable]
 public class WayPointlist
 {
-    public PoolType botType;
+    public PoinSpawnbot point;
     private int indexPath;
     public List<WayPoint> _wayPointlist = new List<WayPoint>();
     public int GetIndexPath()
