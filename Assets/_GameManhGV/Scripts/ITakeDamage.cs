@@ -5,7 +5,9 @@ using UnityEngine;
 public interface ITakeDamage
 {
     void TakeDamage(DamageInfo damageInfo);
-    Transform GetTransform();
+    Transform GetTransformThis();
+    
+    Transform GetTransformCenter();
 }
 public interface IReward
 {

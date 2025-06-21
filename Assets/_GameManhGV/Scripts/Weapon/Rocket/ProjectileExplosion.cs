@@ -95,7 +95,7 @@ public class ProjectileExplosion : GameUnit
             
             if (iTakeDamage != null)
             {
-                print(iTakeDamage.GetTransform().gameObject.name);
+                print(iTakeDamage.GetTransformThis().gameObject.name);
                 var damageInfo = new DamageInfo()
                 {
                     damageType = DamageType.Gas,

@@ -559,6 +559,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 880366652976895981}
+  - {fileID: 1506047989620661543}
   m_Father: {fileID: 1598400345353684175}
   m_LocalEulerAnglesHint: {x: -5.6869264, y: 0, z: -0}
 --- !u!65 &8417262451960089239
@@ -1327,8 +1328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b048603da815454f8146a06c8c76c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetworks: {fileID: 6777993140205523557}
-  thisStateController: {fileID: 2560074243112890656}
 --- !u!114 &6544445450049660925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1341,10 +1340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ebc34f6fd33afc4f97536c70933939e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetworks: {fileID: 6777993140205523557}
-  thisStateController: {fileID: 2560074243112890656}
   humanMoveBase: {fileID: 5217481168455160654}
-  moveType_2: 0
 --- !u!114 &7799191251980761405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1357,8 +1353,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a14cd266c57514785ada4468b8219e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetworks: {fileID: 6777993140205523557}
-  thisStateController: {fileID: 2560074243112890656}
 --- !u!114 &7199575499419896330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1371,9 +1365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6185ac594fda7d04fb03541c04981c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetworks: {fileID: 6777993140205523557}
-  thisStateController: {fileID: 2560074243112890656}
-  Detectors: {fileID: 0}
   _posCenter: {fileID: 4786870101428671889}
 --- !u!114 &2228595405124378887
 MonoBehaviour:
@@ -1387,9 +1378,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b9921a5111f1f40bb6e8b88f842073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetworks: {fileID: 6777993140205523557}
-  thisStateController: {fileID: 2560074243112890656}
-  Detector: {fileID: 0}
 --- !u!114 &2856213709975288480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,8 +1390,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d77014d0fa0aa34fa458d5669d19744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetworks: {fileID: 6777993140205523557}
-  thisStateController: {fileID: 2560074243112890656}
   typeStart: 2
   dontUseTimer: 1
 --- !u!114 &6777993140205523557
@@ -1421,6 +1407,7 @@ MonoBehaviour:
   PoolType: 13
   botType: 13
   botConfigSO: {fileID: 11400000, guid: 8bce0cb18d4df554ab3aa0d45a481e6c, type: 2}
+  _centerBotZom: {fileID: 1506047989620661543}
   isBotActiveEqualTay: 0
   isBoss: 0
   mainCameraTranform: {fileID: 0}
@@ -1510,6 +1497,37 @@ Transform:
   - {fileID: 8748644913377798282}
   m_Father: {fileID: 8562719461579204527}
   m_LocalEulerAnglesHint: {x: 30.841215, y: 0, z: 0}
+--- !u!1 &6602533072430821232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1506047989620661543}
+  m_Layer: 7
+  m_Name: center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1506047989620661543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6602533072430821232}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6345235234252007265}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &6862674067297313301
 GameObject:
   m_ObjectHideFlags: 0

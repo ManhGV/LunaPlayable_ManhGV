@@ -826,6 +826,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6577921602589602436}
+  - {fileID: 7548434277667250505}
   m_Father: {fileID: 8319200078432391629}
   m_LocalEulerAnglesHint: {x: -5.686902, y: 0, z: 0}
 --- !u!65 &5886664256224963068
@@ -1043,6 +1044,37 @@ Transform:
   - {fileID: 218969646196653349}
   m_Father: {fileID: 7889098480102824724}
   m_LocalEulerAnglesHint: {x: 37.330257, y: 0, z: 0}
+--- !u!1 &5690643890525983892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7548434277667250505}
+  m_Layer: 7
+  m_Name: center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7548434277667250505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5690643890525983892}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4014697442812161551}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &5723912963575508983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,8 +1853,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a14cd266c57514785ada4468b8219e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetworks: {fileID: 8914634379494005747}
-  thisStateController: {fileID: 4628920850684448981}
 --- !u!114 &3331140747970977638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1835,10 +1865,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6185ac594fda7d04fb03541c04981c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetworks: {fileID: 8914634379494005747}
-  thisStateController: {fileID: 4628920850684448981}
-  Detectors: {fileID: 0}
-  tutorialReload: 0
   _posCenter: {fileID: 7338109509545739298}
 --- !u!114 &6887975504091401511
 MonoBehaviour:
@@ -1852,10 +1878,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b9921a5111f1f40bb6e8b88f842073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetworks: {fileID: 8914634379494005747}
-  thisStateController: {fileID: 4628920850684448981}
-  Detector: {fileID: 0}
-  tutorialReload: 0
 --- !u!114 &7819152010853539594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1868,8 +1890,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b048603da815454f8146a06c8c76c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetworks: {fileID: 8914634379494005747}
-  thisStateController: {fileID: 4628920850684448981}
 --- !u!114 &7227574364578379212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1882,10 +1902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ebc34f6fd33afc4f97536c70933939e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisBotNetworks: {fileID: 8914634379494005747}
-  thisStateController: {fileID: 4628920850684448981}
   humanMoveBase: {fileID: 550549486645108917}
-  moveType_2: 0
 --- !u!82 &3005443289460288524
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1997,6 +2014,7 @@ MonoBehaviour:
   PoolType: 5
   botType: 5
   botConfigSO: {fileID: 11400000, guid: 8bce0cb18d4df554ab3aa0d45a481e6c, type: 2}
+  _centerBotZom: {fileID: 7548434277667250505}
   isBotActiveEqualTay: 0
   isBoss: 0
   mainCameraTranform: {fileID: 0}
@@ -2013,6 +2031,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ffe4cc86ff834d84fb1e34f62021b83b, type: 3}
   - {fileID: 8300000, guid: d003c050a95f6de459e8bbd0d9db3646, type: 3}
   wayPoint:
+    isUse: 0
     WayPoints: []
     AttackWayPoints: []
   currentAnimName: 
