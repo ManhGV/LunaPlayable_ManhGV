@@ -146,8 +146,8 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
         for (int i = 1; i < 4; i++)
         {
             Vector3 spawnPos = posSelf + direction * (spacing * i);
-            Effect effect = SimplePool.Spawn<Effect>(PoolType.vfx_ExplosionGround, spawnPos, Quaternion.identity);
-            effect.OnInit();
+            EffectVfx effectVfx = SimplePool.Spawn<EffectVfx>(PoolType.vfx_ExplosionGround, spawnPos, Quaternion.identity);
+            effectVfx.OnInit();
             yield return new WaitForSeconds(.34f);
             if (i == 3)
                 EventManager.Invoke(EventName.OnTakeDamagePlayer,thisBotNetworks.BotConfigSO.damage);

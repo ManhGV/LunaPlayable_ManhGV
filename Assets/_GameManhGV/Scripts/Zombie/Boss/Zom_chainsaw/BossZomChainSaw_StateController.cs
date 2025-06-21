@@ -23,30 +23,30 @@ public class BossZomChainSaw_StateController : StateControllerBase<BossZomChainS
 
     private void Init()
     {
-        // _idleState = GetComponent<BossZomChainSaw_Idle>();
-        // _idleState.Initialize(ZomAllState.Idle);
-        //
-        // _moveState = GetComponent<BossZomChainSaw_Move>();
-        // _moveState.Initialize(ZomAllState.Move);
-        //
-        // _attackState = GetComponent<BossZomChainSaw_Attack>();
-        // _attackState.Initialize(ZomAllState.Attack);
-        //
-        // _stunState = GetComponent<BossZomChainSaw_Stun>();
-        // _stunState.Initialize(ZomAllState.Stun_1);
-        //
-        // _deadState = GetComponent<BossZomChainSaw_Dead>();
-        // _deadState.Initialize(ZomAllState.Dead);
-        //
-        // _screamState = GetComponent<BossZomChainSaw_Scream>();
-        // _screamState.Initialize(ZomAllState.Scream);
-        //
-        // stateController.Add(ZomAllState.Idle, _idleState);
-        // stateController.Add(ZomAllState.Move, _moveState);
-        // stateController.Add(ZomAllState.Attack, _attackState);
-        // stateController.Add(ZomAllState.Scream,_screamState);
-        // stateController.Add(ZomAllState.Stun_1, _stunState);
-        // stateController.Add(ZomAllState.Dead, _deadState);
+        _idleState = GetComponent<BossZomChainSaw_Idle>();
+        _idleState.Initialize(ZomAllState.Idle, botNetworks,this);
+        
+        _moveState = GetComponent<BossZomChainSaw_Move>();
+        _moveState.Initialize(ZomAllState.Move, botNetworks,this);
+        
+        _attackState = GetComponent<BossZomChainSaw_Attack>();
+        _attackState.Initialize(ZomAllState.Attack, botNetworks,this);
+        
+        _stunState = GetComponent<BossZomChainSaw_Stun>();
+        _stunState.Initialize(ZomAllState.Stun_1, botNetworks,this);
+        
+        _deadState = GetComponent<BossZomChainSaw_Dead>();
+        _deadState.Initialize(ZomAllState.Dead, botNetworks,this);
+        
+        _screamState = GetComponent<BossZomChainSaw_Scream>();
+        _screamState.Initialize(ZomAllState.Scream, botNetworks,this);
+        
+        stateController.Add(ZomAllState.Idle, _idleState);
+        stateController.Add(ZomAllState.Move, _moveState);
+        stateController.Add(ZomAllState.Attack, _attackState);
+        stateController.Add(ZomAllState.Scream,_screamState);
+        stateController.Add(ZomAllState.Stun_1, _stunState);
+        stateController.Add(ZomAllState.Dead, _deadState);
     }
 
     protected override void OnEnable()

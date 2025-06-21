@@ -16,6 +16,7 @@ public class ZombieBase : GameUnit, ITakeDamage
 #endif
     [Header("Data Bot")]
     [SerializeField] private BotConfigSO botConfigSO;
+    [SerializeField] private Transform _centerBotZom;
     [SerializeField] protected bool isBotActiveEqualTay;
     public bool isBoss;
     
@@ -222,7 +223,8 @@ public class ZombieBase : GameUnit, ITakeDamage
     }
     #endregion    
     
-    public Transform GetTransform() => TF;
+    public Transform GetTransformThis() => TF;
+    public Transform GetTransformCenter() => _centerBotZom;
 
     public float DistanceToPlayermain() => Vector3.Distance(LocalPlayer.Instance.GetPosLocalPlayer(), TF.position);
     

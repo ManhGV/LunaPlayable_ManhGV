@@ -59,5 +59,6 @@ public class BulletZomBase : GameUnit, ITakeDamage
         _healthFill.fillAmount = (float)currentHealth / (float)maxHealth;
     }
 
-    public Transform GetTransform() => TF;
+    public Transform GetTransformThis() => TF;
+    public Transform GetTransformCenter() => TF;
 }

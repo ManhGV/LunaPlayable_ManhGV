@@ -36,6 +36,7 @@ public static class GameConstants
         ElectricLine = PoolType.vfx_electricLine,
         vfx_ExplosionGround = PoolType.vfx_ExplosionGround,
         Wood = PoolType.vfx_Wood,
+        ElectricHit = PoolType.vfx_ElectricHit,
     }
 
     public enum ProjecctileZombie
@@ -92,6 +93,7 @@ public static class GameConstants
         BossZomOgre = 28,
         BulletBloodBlobZom = 29,
         vfx_Wood = 30,
+        vfx_ElectricHit = 31,
     }
     
     public enum ZomAllState

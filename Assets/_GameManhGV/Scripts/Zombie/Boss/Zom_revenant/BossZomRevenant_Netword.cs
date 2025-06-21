@@ -157,10 +157,4 @@ public class BossZomRevenant_Netword : BossNetwork
         base.SetActiveDetectors(_active, _skillType);
         detectors[_skillType].SetActive(_active);
     }
-
-    protected override void Update()
-    {
-        base.Update();
-        print(animator.enabled);
-    }
 }

@@ -90,7 +90,8 @@ public class DetectorBase : MonoBehaviour,ITakeDamage
         healthImage.fillAmount = (float)_currentHealth / (float)_maxHealth;
     }
 
-    public Transform GetTransform() => this.transform;
+    public Transform GetTransformThis() => this.transform;
+    public Transform GetTransformCenter() => this.transform;
 
     public virtual void OnDead()
     {

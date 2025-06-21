@@ -19,8 +19,9 @@ public class OxygenTanks : MonoBehaviour, ITakeDamage
     private float _lifeTimer = 5f;
     private bool CanExplosion = true;
     
+    [FormerlySerializedAs("_meshRendererGas")]
     [Header("DisableIfExplosion")] 
-    [SerializeField] private MeshRenderer _meshRendererGas;
+    [SerializeField] private GameObject _body;
     [SerializeField] private CapsuleCollider _capsuleColliderThis;
     
     public void CheckHitExplosion()
@@ -71,7 +72,7 @@ public class OxygenTanks : MonoBehaviour, ITakeDamage
                 return;
             
             CanExplosion = false;
-            _meshRendererGas.enabled = false;
+            _body.SetActive(false);
             _capsuleColliderThis.enabled = false;
             _audioSource.PlayOneShot(_audioClip);
             _vfxExplosion.Play();
@@ -80,5 +81,6 @@ public class OxygenTanks : MonoBehaviour, ITakeDamage
         }
     }
 
-    public Transform GetTransform() => transform;
+    public Transform GetTransformThis() => transform;
+    public Transform GetTransformCenter() => _centerExplosion;
 }

@@ -24,6 +24,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         LunaLogStart();
+        Time.timeScale = slowMotionTimeScale;
     }
 
     #region Pause and Resume
