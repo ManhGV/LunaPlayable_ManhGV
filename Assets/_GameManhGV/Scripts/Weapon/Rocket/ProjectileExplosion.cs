@@ -103,10 +103,10 @@ public class ProjectileExplosion : GameUnit
                     name = elem.gameObject.name,
                 };
                 iTakeDamage.TakeDamage(damageInfo);
-                if (iTakeDamage is BossZomSwatNetword boss)
-                {
-                    boss.ExplosinArrmor();
-                }
+                // if (iTakeDamage is BossZomSwatNetword boss)
+                // {
+                //     boss.ExplosinArrmor();
+                // }
             }
         }
     }

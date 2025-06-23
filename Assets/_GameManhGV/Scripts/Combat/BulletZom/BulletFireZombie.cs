@@ -27,6 +27,7 @@ public class BulletFireZombie : BulletZomBase
 
     public override void TakeDamage(DamageInfo damageInfo)
     {
+        print(damageInfo.damage+ " " + damageInfo.damageType);
         base.TakeDamage(damageInfo);
         if(_isDead)
             OnDespawn();

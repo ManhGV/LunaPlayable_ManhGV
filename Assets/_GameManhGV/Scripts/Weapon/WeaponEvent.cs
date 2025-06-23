@@ -23,11 +23,11 @@ public class WeaponEvent : Singleton<WeaponEvent>
         // }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C))    
-            OnChangeMachineGun(true);
-    }
+    // private void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.C))    
+    //         OnChangeMachineGun(true);
+    // }
 
     private void OnEnable()
     {
@@ -53,6 +53,7 @@ public class WeaponEvent : Singleton<WeaponEvent>
         if (IsChange)
         {
             StartCoroutine(OnChangeWeapon());
+            UIManager.Instance.GetUI<Canvas_GamePlay>().PickUpWeapon112();
         }
         else
         {

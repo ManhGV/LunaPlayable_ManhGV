@@ -54,6 +54,10 @@ public class Canvas_GamePlay : UICanvas
     [SerializeField] GameObject _endGameWonPanel;
     [SerializeField] GameObject _endGameLosePanel;
     
+    [Header("PickUp Weapon112")]
+    [SerializeField] GameObject[] gameObjectsToDisable;
+    [SerializeField] GameObject[] gameObjectsToEnable;
+    
     public void Init()
     {
         EventManager.AddListener<float>(EventName.UpdateGameProcess, UpdateGameProcess);
@@ -220,6 +224,15 @@ public class Canvas_GamePlay : UICanvas
     public void PowerupEffectUI()
     {
         _powerupEffectUI.SetActive(true);
+    }
+    
+    public void PickUpWeapon112()
+    {
+        foreach (GameObject go in gameObjectsToDisable)
+            go.SetActive(false);
+        
+        foreach (GameObject go in gameObjectsToEnable)
+            go.SetActive(true);
     }
 
     public void OpendEndGame(bool _isWin)

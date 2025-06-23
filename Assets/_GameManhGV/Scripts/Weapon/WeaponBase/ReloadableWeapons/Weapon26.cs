@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System.ComponentModel;
+using UnityEngine;
 using static GameConstants;
 
 public class Weapon26 : ReloadableWeapons
 {
+    bool canCallAllBotAttack = true;
     protected override void Awake()
     {
         base.Awake();
@@ -126,6 +128,7 @@ public class Weapon26 : ReloadableWeapons
                 if (takeDamageController1 != null) 
                     takeDamageController1.TakeDamage(damageInfo);
                 EventManager.Invoke(EventName.OnCheckBotTakeDamage, true);
+                typeEffect = GameConstants.PoolType.vfx_ShootGift;
             }else if (IsInLayerIndex(hit.collider.gameObject, 5))//chạm vào word
             {
                 typeEffect = GameConstants.PoolType.vfx_Wood;
@@ -137,5 +140,10 @@ public class Weapon26 : ReloadableWeapons
             // Tạo hiệu ứng va chạm
             SimplePool.Spawn<EffectVfx>(typeEffect, hit.point, Quaternion.identity).OnInit();
         }
+        
+        if(!canCallAllBotAttack)
+            return;
+        SpawnBotManager.Instance.CallAllBotAttack();
+        canCallAllBotAttack = false;
     }
 }

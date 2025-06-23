@@ -76,7 +76,7 @@ public class DetectorBase : MonoBehaviour,ITakeDamage
     }
 
     public void TakeDamage(DamageInfo damageInfo)
-    {   
+    {  
         if(_deadDetector)
             return;
         _currentHealth -= damageInfo.damage;

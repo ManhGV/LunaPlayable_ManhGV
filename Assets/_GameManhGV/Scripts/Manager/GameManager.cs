@@ -67,6 +67,12 @@ public class GameManager : Singleton<GameManager>
         LunaEndGame();
     }
 
+    public void ActiveSoundCombat()
+    {
+        soundCombatBoss.SetActive(true);
+        soundBG.SetActive(false);
+    }
+
     #region Slomotion
     public void SlomotionTimeScale()
     {

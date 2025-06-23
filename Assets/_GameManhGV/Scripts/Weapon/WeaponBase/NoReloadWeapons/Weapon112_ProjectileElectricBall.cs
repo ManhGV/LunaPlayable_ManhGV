@@ -18,7 +18,7 @@ public class Weapon112_ProjectileElectricBall : ProjectileExplosionBase
     {
         base.OnInit(_direction, _percentSize);
         _electricBallTransformChid.localScale =Vector3.one*(_maxSize* _percentSize / 100f);
-        _damage = (int)(_maxDamage * _percentSize / 100f);
+        _damageExplosion = (int)(_maxDamage * _percentSize / 100f);
         _electricBallEffectChid.Play();
         _damageDictionary.Clear();
         _effectElectricLines.Clear();
@@ -84,7 +84,7 @@ public class Weapon112_ProjectileElectricBall : ProjectileExplosionBase
                     var damageInfo = new DamageInfo()
                     {
                         damageType = DamageType.Gas,
-                        damage = _damageElectricLine,
+                        damage = _damageExplosion,
                         name = col.gameObject.name,
                     };
 

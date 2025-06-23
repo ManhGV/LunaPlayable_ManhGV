@@ -32,6 +32,7 @@ public class BulletZomBase : GameUnit, ITakeDamage
         currentHealth = maxHealth;
         _isDead = false;
         posPlayer = _posPlayer;
+        _healthFill.fillAmount = 1f;
     }
 
     protected virtual void OnTakeDamagePlayer()

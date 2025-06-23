@@ -9,6 +9,7 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
     [SerializeField] private PathManager _pathManager;
     [SerializeField] private ConfigGame dataBotSpawn;
     [SerializeField] private List<ZombieBase> botInScene = new List<ZombieBase>();
+    [SerializeField] private List<BotZombieNor_Start> botHaveStart = new List<BotZombieNor_Start>();
 
     public int KillBot => AllBotsToSpawn - _currentBot;
     public int _currentBot;
@@ -36,25 +37,33 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         EventManager.Invoke(EventName.UpdateGameProcess, progress);
     }
 
-    private void Update()
-    {
-        if (canCallBoss && _currentBot <= 1)
-        {
-            canCallBoss = false;
-            StartCoroutine(IECallBossZom(1.8f));
-        }
-    }
+    // private void Update()
+    // {
+    //     if (canCallBoss && _currentBot <= 1)
+    //     {
+    //         canCallBoss = false;
+    //     }
+    // }
 
     public IEnumerator IECallBossZom(float time)
     {
         yield return new WaitForSeconds(time);
         PlayerHP.Instance.ClearListDamage();
         yield return new WaitForSeconds(1.5f);
+        GameManager.Instance.ActiveSoundCombat();
         _boss.SetActive(true);
+    }
+
+    public void CallAllBotAttack()
+    {
+        foreach (BotZombieNor_Start VARIABLE in botHaveStart)
+            VARIABLE.CallOnTakeDamage();
     }
     
     public void SpawnBot()
     {
+        StartCoroutine(IECallBossZom(20f));
+        StartCoroutine(IEDelaySpawnGiftWeapon81(6.5f));
         foreach(BotConfig botConfig in dataBotSpawn.fightRound.botConfigs)
             StartCoroutine(IEOnSpawnBot(botConfig));
     }
@@ -86,11 +95,6 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         EventManager.Invoke(EventName.UpdateGameProcess, progress);
     }
     
-    public void ActiveGiftWeapon81(float _timer)
-    {
-        StartCoroutine(IEDelaySpawnGiftWeapon81(_timer));
-    }
-
     private IEnumerator IEDelaySpawnGiftWeapon81(float _timer)
     {
         yield return new WaitForSeconds(_timer);

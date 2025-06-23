@@ -41,6 +41,9 @@ public class StateControllerBase<TBotNet> : MonoBehaviour where TBotNet : Zombie
     
     protected virtual void Update()
     {
+        if(GameManager.Instance.GetGameState()!= GameState.Playing)
+            return;
+        
         if (_currentState == null)
         {
 //            print("Null current state");
@@ -76,7 +79,7 @@ public class StateControllerBase<TBotNet> : MonoBehaviour where TBotNet : Zombie
     #region State Controller
     public void ChangeState(ZomAllState newAllState)
     {
-        print("Đổi trạng thái sang: " + newAllState);
+//        print("Đổi trạng thái sang: " + newAllState);
         if (_currentState ==null || _currentState.StateKey.Equals(newAllState) || _isTransition)
             return;
 

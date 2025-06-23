@@ -8,7 +8,7 @@ public class ProjectileExplosionBase : GameUnit
     [SerializeField] protected AudioSource _audioSource; //âm thanh move
     [SerializeField] protected ParticleSystem _moveEffect;
     [SerializeField] protected GameConstants.PoolType _poolTypeExplosion; // Loại Pool của Projectile
-    [SerializeField] protected int _damage;
+    [SerializeField] protected int _damageExplosion;
     [SerializeField] protected float _lifeTime;
     [SerializeField] protected float _speed;
     
@@ -117,7 +117,7 @@ public class ProjectileExplosionBase : GameUnit
                 var damageInfo = new DamageInfo()
                 {
                     damageType = DamageType.Gas,
-                    damage = _damage,
+                    damage = _damageExplosion,
                     name = elem.gameObject.name,
                 };
                 iTakeDamage.TakeDamage(damageInfo);
