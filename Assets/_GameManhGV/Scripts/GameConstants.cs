@@ -22,6 +22,7 @@ public static class GameConstants
         BossZomThrower = PoolType.BossZomThrower,
         BossZomHulk = PoolType.BossZomHulk,
         bossZomOgre = PoolType.BossZomOgre,
+        bot_zom_Builder_Mix = PoolType.bot_zom_Builder_Mix,
     }
 
     public enum EffectType
@@ -94,6 +95,7 @@ public static class GameConstants
         BulletBloodBlobZom = 29,
         vfx_Wood = 30,
         vfx_ElectricHit = 31,
+        bot_zom_Builder_Mix = 32,
     }
     
     public enum ZomAllState
