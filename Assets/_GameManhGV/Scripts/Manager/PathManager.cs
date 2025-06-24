@@ -21,19 +21,17 @@ public class PathManager : Singleton<PathManager>
         {
             var paths = wayPointList._wayPointlist;
             var availablePaths = paths.FindAll(x => x.isUse == false);
-            int index;
             if (availablePaths.Count <= 0)
             {
-                index = wayPointList.GetIndexPath();
                 // throw new Exception("No available paths for bot type: " + poolType);
+                return paths[wayPointList.GetIndexRandomPath()];
             }
             else
             {
-                index = UnityEngine.Random.Range(0, availablePaths.Count);
+                int index = UnityEngine.Random.Range(0, availablePaths.Count);
                 availablePaths[index].isUse = true;
+                return availablePaths[index];
             }
-            
-            return availablePaths[index];
         }
         Debug.LogError("Null WayPointList");
         return null;
@@ -44,16 +42,10 @@ public class PathManager : Singleton<PathManager>
 public class WayPointlist
 {
     public PoinSpawnbot point;
-    private int indexPath;
     public List<WayPoint> _wayPointlist = new List<WayPoint>();
-    public int GetIndexPath()
+    public int GetIndexRandomPath()
     {
-        indexPath++;
-        
-        if (indexPath >= _wayPointlist.Count)
-            indexPath = 0;
-        
-        return indexPath;
+        return Random.Range(0, _wayPointlist.Count);
     }
 }
 

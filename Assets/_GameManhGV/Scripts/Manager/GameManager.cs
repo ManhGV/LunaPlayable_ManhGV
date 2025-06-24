@@ -59,6 +59,7 @@ public class GameManager : Singleton<GameManager>
     {
         if(gameState == GameConstants.GameState.EndGame)
             return;
+        SpawnBotManager.Instance.DespawnAllBot(2f);
         UIManager.Instance.GetUI<Canvas_GamePlay>().OpendEndGame(_isWin);
         soundCombatBoss.SetActive(false);
         soundBG.SetActive(false);

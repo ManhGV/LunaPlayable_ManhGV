@@ -12,12 +12,13 @@ Shader "Horus/Mobile/Particles"
         _Boost ("Boost", Range(1, 10)) = 2
         _Pull("Pull", Range(-10, 10)) = 0
         _Clip("Clip", Range(0,1)) = 0.01
-        [Enum(UnityEngine.Rendering.CullMode)]_Cull ("Cull", Range(0, 1)) = 0
+        [Enum(UnityEngine.Rendering.CullMode)] _Cull("Cull", Float) = 0
         [Toggle]_ZWrite ("ZWrite", Range(0, 1)) = 0
         [Toggle]_EnableFog ("Fog", Range(0,1)) = 0
-        [Enum(UnityEngine.Rendering.CompareFunction)]_ZTest ("ZTest", Range(0, 8)) = 4
-        [Enum(UnityEngine.Rendering.BlendMode)] _SrcFactor ("Source Factor", float) = 5
-        [Enum(UnityEngine.Rendering.BlendMode)] _DstFactor ("Destination Factor", float) = 10
+    [Enum(UnityEngine.Rendering.CompareFunction)] _ZTest("ZTest", Float) = 4
+    [Enum(UnityEngine.Rendering.BlendMode)] _SrcFactor("Source Factor", Float) = 5
+    [Enum(UnityEngine.Rendering.BlendMode)] _DstFactor("Destination Factor", Float) = 10
+
         [Space(50)]_Line("----------------------------------------------------------------------------------------------", float) = 0
         [Header(Bloom)][Toggle]_Bloom ("Bloom", Range(0,1)) = 0
         [HDR]_BloomColor("Bloom Color", Color) = (1, 1, 1, 1)

@@ -100,4 +100,12 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         yield return new WaitForSeconds(_timer);
         giftWeapon81.SetActive(true);
     }
+    public void DespawnAllBot(float _timer)=>StartCoroutine(IEDespawnAllBot(_timer));
+    
+    private IEnumerator IEDespawnAllBot(float _timer)
+    {
+        yield return new WaitForSeconds(_timer);
+        for (int i = 0; i < botInScene.Count; i++)
+            botInScene[i].OnDespawn();
+    }
 }

@@ -27,9 +27,9 @@ public class BossZomRevenant_Jump : StateBase<ZomAllState,BossZomRevenant_Networ
     {
         if (!thisBotNetworks.IsJumping())
         {
-            if(thisBotNetworks.TF.position.y<=.5f)
-                thisStateController.ChangeState(ZomAllState.Move);
-            else
+            // if(thisBotNetworks.TF.position.y<=.5f)
+            //     thisStateController.ChangeState(ZomAllState.Move);
+            // else
                 thisStateController.ChangeState(ZomAllState.Attack);
         }
     }
