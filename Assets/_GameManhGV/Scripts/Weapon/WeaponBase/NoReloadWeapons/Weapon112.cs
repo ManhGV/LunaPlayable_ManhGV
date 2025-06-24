@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.VFX;
 
 public class Weapon112 : NoReloadWeapons
@@ -92,6 +93,7 @@ public class Weapon112 : NoReloadWeapons
         );
         FireFromMuzzle(_muzzleTrans_1, forward);
     }
+    [Tooltip("Mượn tạm snakeCam")]public RocketController rocketController;
     
     protected override void FireFromMuzzle(Transform muzzle, Vector3 forward)
     {
@@ -101,6 +103,7 @@ public class Weapon112 : NoReloadWeapons
         Vector3 posGizmod = GizmodCaculatorPointShoot();
         weapon112ProjectileElectricBall.OnInit((posGizmod - muzzle.position).normalized,_precentBallScale);
         _crossHair.ScaleDown();
+        rocketController.SnakeCameraRocket();
     }
 
     #region Animations

@@ -11,13 +11,20 @@ public class EffectBase : GameUnit
         PoolType = (GameConstants.PoolType)effectType;
     }
 #endif
-    [Header("Audio")]
+    [Header("Audio")] [SerializeField] private bool playEqualManager = false;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _audioClip;
     public virtual void OnInit()
     {
-        if (_audioSource != null)
-            _audioSource.PlayOneShot(_audioClip);
+        if (playEqualManager)
+        {
+            AudioManager.Instance.PlaySound(_audioClip,.5f);
+        }
+        else
+        {
+            if (_audioSource != null)
+                _audioSource.PlayOneShot(_audioClip);
+        }
         // Override this method in derived classes to implement specific initialization logic
     }
     

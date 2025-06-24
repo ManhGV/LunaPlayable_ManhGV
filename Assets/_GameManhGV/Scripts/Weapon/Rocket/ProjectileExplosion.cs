@@ -60,7 +60,6 @@ public class ProjectileExplosion : GameUnit
     public virtual void Explosion()
     {
         OnDespawn();
-        
         RocketController.Instance.PlayAudioExplosion();
         EffectVfx explosionPool = SimplePool.Spawn<EffectVfx>(GameConstants.PoolType.vfx_ExplosionRocket, TF.position, Quaternion.identity);
         explosionPool.OnInit();

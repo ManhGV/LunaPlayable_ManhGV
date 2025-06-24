@@ -15,15 +15,6 @@ public class BossZomRevenant_Netword : BossNetwork
     [Header("Check Chạm tường ngừng đi")] 
     [SerializeField] private LayerMask _layerCantMove;
 
-
-    public override void TakeDamage(DamageInfo damageInfo)
-    {
-        if (isJumping && (_currentHealth - damageInfo.damage) <= 0)
-            isImmortal = true;
-        
-        base.TakeDamage(damageInfo);
-    }
-
     public bool CheckForardChamVaoGround()
     {
         Vector3 origin = transform.position + Vector3.up * 1.5f;

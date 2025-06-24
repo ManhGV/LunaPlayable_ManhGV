@@ -2,7 +2,7 @@
     "version": "6.3.0",
     "projectId": "e802dd55c6efeaa48a72b8ea5d0f35e7",
     "applicationID": 30065,
-    "creativeName": "-WWZ04_S2-Zombie",
+    "creativeName": "WWZ04_S3_04",
     "pgServer": "EU",
     "window": {
         "‐″": true
@@ -151,7 +151,7 @@
             ]
         },
         "scenes": [
-            "Assets/_GameManhGV/Scenes/scene_WWZ04/scene_WWZ04-section2.unity"
+            "Assets/_GameManhGV/Scenes/scene_WWZ04/scene_WWZ04-section3_Build.unity"
         ],
         "disabledScenes": [
             "Assets/_GameManhGV/Scenes/Demo 1.unity",
@@ -159,6 +159,7 @@
             "Assets/_GameManhGV/Scenes/Develop.unity",
             "Assets/_GameManhGV/Scenes/Develop_Zom.unity",
             "Assets/_GameManhGV/Scenes/scene_WWZ04/scene_WWZ04-section1.unity",
+            "Assets/_GameManhGV/Scenes/scene_WWZ04/scene_WWZ04-section2.unity",
             "Assets/_GameManhGV/Scenes/scene_WWZ04/scene_WWZ04-section3.unity",
             "Assets/_GameManhGV/Scenes/scene_WWZ08-section1/scene_wwz08-section1.unity",
             "Assets/_GameManhGV/_GameMap_WWZ04/Map/Map WWZombie4/Scene/scene_WWZ04-section1_Base.unity",
@@ -26572,6 +26573,14 @@
                     {
                         "name": "CallAllBotAttack",
                         "excluded": false
+                    },
+                    {
+                        "name": "DespawnAllBot",
+                        "excluded": false
+                    },
+                    {
+                        "name": "IEDespawnAllBot",
+                        "excluded": false
                     }
                 ]
             },
@@ -26827,10 +26836,6 @@
                 "instanceMethods": [
                     {
                         "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "TakeDamage",
                         "excluded": false
                     },
                     {
@@ -27880,8 +27885,8 @@
                         "excluded": false
                     },
                     {
-                        "name": "GetIndexPath",
-                        "excluded": true
+                        "name": "GetIndexRandomPath",
+                        "excluded": false
                     }
                 ]
             },
@@ -29260,6 +29265,10 @@
                     {
                         "name": "OnDespawn",
                         "excluded": false
+                    },
+                    {
+                        "name": "init",
+                        "excluded": false
                     }
                 ]
             },
@@ -29273,10 +29282,6 @@
                     },
                     {
                         "name": "OnInit$1",
-                        "excluded": false
-                    },
-                    {
-                        "name": "StartCaculatorTimeDespawn",
                         "excluded": false
                     },
                     {
@@ -30078,6 +30083,36 @@
                         "script": "",
                         "ext": "",
                         "name": "Assets/_GameManhGV/Textures/Map_Z8/T_FP_W26.tga"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "default",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/_GameMap_WWZ04/Map/Map WWZombie3/Texture/T_Sky_To_wood_night_Z03.png"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "default",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Scenes/scene_WWZ04/scene_WWZ04-section3_Build/Lightmap-0_comp_light.exr"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "default",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Scenes/scene_WWZ04/scene_WWZ04-section3_Build/Lightmap-1_comp_light.exr"
                     }
                 ]
             },
@@ -30125,8 +30160,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "00:03.261",
-                        "lengthInSeconds": 3.260999917984009,
+                        "endTime": "00:02.514",
+                        "lengthInSeconds": 2.5139999389648439,
                         "bitrate": 64,
                         "script": "",
                         "ext": "",
@@ -30134,10 +30169,10 @@
                     },
                     {
                         "channels": 1,
-                        "startTime": "00:00.000",
-                        "endTime": "00:03.261",
-                        "lengthInSeconds": 3.260999917984009,
-                        "bitrate": 64,
+                        "startTime": "00:00.007",
+                        "endTime": "00:01.367",
+                        "lengthInSeconds": 1.3600000143051148,
+                        "bitrate": 32,
                         "script": "",
                         "ext": "",
                         "name": "Assets/_GameManhGV/MuktikillZombie/Audio/KillBoss/KilledSpecialBoss.mp3"
@@ -30145,8 +30180,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "00:03.261",
-                        "lengthInSeconds": 3.260999917984009,
+                        "endTime": "00:02.432",
+                        "lengthInSeconds": 2.431999921798706,
                         "bitrate": 64,
                         "script": "",
                         "ext": "",
@@ -30167,7 +30202,7 @@
                         "startTime": "00:00.000",
                         "endTime": "00:03.261",
                         "lengthInSeconds": 3.260999917984009,
-                        "bitrate": 64,
+                        "bitrate": 32,
                         "script": "",
                         "ext": "",
                         "name": "Assets/_GameManhGV/MuktikillZombie/Audio/KillBoss/KilledOccultBoss.mp3"
@@ -30424,9 +30459,9 @@
                     },
                     {
                         "channels": 1,
-                        "startTime": "00:47.068",
+                        "startTime": "00:46.034",
                         "endTime": "01:07.757",
-                        "lengthInSeconds": 20.689002990722658,
+                        "lengthInSeconds": 21.723003387451173,
                         "bitrate": 32,
                         "script": "",
                         "ext": "",
@@ -30465,8 +30500,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "00:09.970",
-                        "lengthInSeconds": 9.970000267028809,
+                        "endTime": "00:10.014",
+                        "lengthInSeconds": 10.013999938964844,
                         "bitrate": 32,
                         "script": "",
                         "ext": "",
@@ -30474,9 +30509,9 @@
                     },
                     {
                         "channels": 1,
-                        "startTime": "00:00.000",
-                        "endTime": "00:09.970",
-                        "lengthInSeconds": 9.970000267028809,
+                        "startTime": "00:00.501",
+                        "endTime": "00:07.939",
+                        "lengthInSeconds": 7.438000202178955,
                         "bitrate": 32,
                         "script": "",
                         "ext": "",
@@ -30485,8 +30520,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "00:03.261",
-                        "lengthInSeconds": 3.260999917984009,
+                        "endTime": "00:01.388",
+                        "lengthInSeconds": 1.3880000114440919,
                         "bitrate": 64,
                         "script": "",
                         "ext": "",
@@ -30504,10 +30539,10 @@
                     },
                     {
                         "channels": 1,
-                        "startTime": "00:00.000",
-                        "endTime": "00:10.000",
-                        "lengthInSeconds": 10.0,
-                        "bitrate": 32,
+                        "startTime": "00:01.408",
+                        "endTime": "00:06.337",
+                        "lengthInSeconds": 4.928999900817871,
+                        "bitrate": 16,
                         "script": "",
                         "ext": "",
                         "name": "Assets/_GameManhGV/Sound/Zombie/Nor/zom_eat.mp3"
@@ -30515,8 +30550,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "01:10.861",
-                        "lengthInSeconds": 70.86100006103516,
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
                         "bitrate": 64,
                         "script": "",
                         "ext": "",
@@ -30525,8 +30560,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "01:10.861",
-                        "lengthInSeconds": 70.86100006103516,
+                        "endTime": "00:01.000",
+                        "lengthInSeconds": 1.0,
                         "bitrate": 64,
                         "script": "",
                         "ext": "",
@@ -30535,8 +30570,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "01:10.861",
-                        "lengthInSeconds": 70.86100006103516,
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
                         "bitrate": 64,
                         "script": "",
                         "ext": "",
@@ -30575,8 +30610,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "00:03.261",
-                        "lengthInSeconds": 3.260999917984009,
+                        "endTime": "00:01.000",
+                        "lengthInSeconds": 1.0,
                         "bitrate": 64,
                         "script": "",
                         "ext": "",
@@ -30645,8 +30680,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "00:00.000",
-                        "lengthInSeconds": 0.0,
+                        "endTime": "00:03.261",
+                        "lengthInSeconds": 3.260999917984009,
                         "bitrate": 128,
                         "script": "",
                         "ext": "",

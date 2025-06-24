@@ -103,6 +103,17 @@ public class GameManager : Singleton<GameManager>
     
     #endregion
     
+    public void SnakeCamera(float duration, float magnitude)
+    {
+        if (shakeCam == null)
+        {
+            Debug.LogError("Shake camera transform is not assigned!");
+            return;
+        }
+        
+        StartCoroutine(ShakeCamera(duration, magnitude));
+    }
+    
     // Thêm hàm rung lắc camera
     protected IEnumerator ShakeCamera(float duration, float magnitude)
     {

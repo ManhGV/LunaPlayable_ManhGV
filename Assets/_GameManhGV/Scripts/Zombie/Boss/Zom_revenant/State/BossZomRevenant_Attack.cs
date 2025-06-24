@@ -70,8 +70,9 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
             thisBotNetworks.SetActiveAllDetectors(false);
         }
     }
-
-
+    
+    [Tooltip("Mượn tạm ShaceCam")] [SerializeField] RocketController _rocketController;
+    
     /// <param name="_countAttack">Số lần vẩy cánh</param>
     /// <returns></returns>
     IEnumerator IEAttackType_01(int _countAttack)
@@ -88,8 +89,9 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
                 yield return new WaitForSeconds(1.3f);
                 thisBotNetworks.SetActiveDetectors(false,0);
                 thisBotNetworks.SetFloatAnim("SpeedAtkAnim", 1);
-
-                yield return new WaitForSeconds(2.2f); //2.26 là thực anim
+                yield return new WaitForSeconds(.3f);
+                EventManager.Invoke(EventName.OnTakeDamagePlayer,thisBotNetworks.BotConfigSO.damage);
+                yield return new WaitForSeconds(1.9f); //2.26 là thực anim
                 //TODO:Attack player
             }
             else
@@ -101,8 +103,9 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
                 yield return new WaitForSeconds(1.3f);
                 thisBotNetworks.SetActiveDetectors(false,1);
                 thisBotNetworks.SetFloatAnim("SpeedAtkAnim", 1);
-
-                yield return new WaitForSeconds(2.2f);
+                yield return new WaitForSeconds(.3f);
+                EventManager.Invoke(EventName.OnTakeDamagePlayer,thisBotNetworks.BotConfigSO.damage);
+                yield return new WaitForSeconds(1.9f); //2.26 là thực anim
                 //TODO:Attack player
             }
         }
@@ -148,6 +151,7 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
             Vector3 spawnPos = posSelf + direction * (spacing * i);
             EffectVfx effectVfx = SimplePool.Spawn<EffectVfx>(PoolType.vfx_ExplosionGround, spawnPos, Quaternion.identity);
             effectVfx.OnInit();
+            _rocketController.SnakeCameraRocket();
             yield return new WaitForSeconds(.34f);
             if (i == 3)
                 EventManager.Invoke(EventName.OnTakeDamagePlayer,thisBotNetworks.BotConfigSO.damage);
