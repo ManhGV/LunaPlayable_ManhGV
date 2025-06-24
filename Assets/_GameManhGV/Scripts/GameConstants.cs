@@ -23,6 +23,8 @@ public static class GameConstants
         BossZomHulk = PoolType.BossZomHulk,
         bossZomOgre = PoolType.BossZomOgre,
         bot_zom_Builder_Mix = PoolType.bot_zom_Builder_Mix,
+        bot_zom_Woman = PoolType.bot_zom_Woman,
+        bot_zom_Hight_Mix = PoolType.bot_zom_Hight_Mix,
     }
 
     public enum EffectType
@@ -96,6 +98,8 @@ public static class GameConstants
         vfx_Wood = 30,
         vfx_ElectricHit = 31,
         bot_zom_Builder_Mix = 32,
+        bot_zom_Woman = 33,
+        bot_zom_Hight_Mix = 34,
     }
     
     public enum ZomAllState
