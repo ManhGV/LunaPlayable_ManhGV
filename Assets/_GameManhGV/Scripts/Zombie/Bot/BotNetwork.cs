@@ -95,4 +95,6 @@ public class BotNetwork : ZombieBase
         //SpawnBotManager.Instance.RemoveBotDead(this);
         AchievementEvaluator.Instance.OnBotKilled(1.8f,false);
     }
+
+    public Vector3 GetWayPointEndMove() => wayPoint.WayPoints[wayPoint.WayPoints.Count - 1].position;
 }

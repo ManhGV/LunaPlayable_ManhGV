@@ -2,41 +2,44 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using static GameConstants;
+
+[System.Serializable]
+public class AttackSkill
+{
+    public int audioIndex;
+    public float timeTakeDamagePlayer;
+    [Tooltip("thời gian này bằng thời gian chờ takeDamage cộng thời gian này")] public float timeEndAttack;
+}
+    
 public class BotZombieNor_Attack : StateBase<ZomAllState, BotNetwork>
 {
+    [SerializeField] private AttackSkill[] attackSkills;
     private int animType;
-    private float timerAttack;
     private Coroutine _coroutineTakeDamagePlayer;
     public override void EnterState()
     {
-        animType = Random.Range(0, 2);
+        if (attackSkills.Length > 1)
+            animType = Random.Range(0, attackSkills.Length);
+        else
+            animType = 0;
+            
         thisBotNetworks.ChangeAnimAndType("Attack",animType);
         thisBotNetworks.RotaToPlayerMain();
-        if (animType == 0)
-        {
-            timerAttack = 1.53f;
-            _coroutineTakeDamagePlayer = StartCoroutine(IETakeDamagePlayer(0.55f));
-        }
-        else
-        {
-            timerAttack = .54f;
-            _coroutineTakeDamagePlayer = StartCoroutine(IETakeDamagePlayer( 0.35f));
-        }
+        _coroutineTakeDamagePlayer = StartCoroutine(IETakeDamagePlayer(attackSkills[animType]));
     }
     
     public override void UpdateState()
     {
-        timerAttack -= Time.deltaTime;
-        if (timerAttack <= 0)
-            thisStateController.ChangeState(ZomAllState.Idle);
+        
     }
 
-    public IEnumerator IETakeDamagePlayer(float _time)
+    public IEnumerator IETakeDamagePlayer(AttackSkill _attackSkill)
     {
-        yield return new WaitForSeconds(_time);
-        thisBotNetworks.PlayAudioVoice(4,1,false);
-        //print(thisBotNetwork.gameObject.name);
+        yield return new WaitForSeconds(_attackSkill.timeTakeDamagePlayer);
+        thisBotNetworks.PlayAudioVoice(_attackSkill.audioIndex,1,false);
         EventManager.Invoke(EventName.OnTakeDamagePlayer, thisBotNetworks.BotConfigSO.damage);
+        yield return new WaitForSeconds(_attackSkill.timeEndAttack);
+        thisStateController.ChangeState(ZomAllState.Idle);
     }
 
     public override void ExitState()

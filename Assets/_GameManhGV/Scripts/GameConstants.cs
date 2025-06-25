@@ -25,6 +25,10 @@ public static class GameConstants
         bot_zom_Builder_Mix = PoolType.bot_zom_Builder_Mix,
         bot_zom_Woman = PoolType.bot_zom_Woman,
         bot_zom_Hight_Mix = PoolType.bot_zom_Hight_Mix,
+        bot_zom_suicider = PoolType.bot_zom_suicider,
+        bot_zom_spider_suicide = PoolType.bot_zom_spider_suicide,
+        bot_zom_bomber = PoolType.bot_zom_bomber,
+        bot_zom_dog_suicide = PoolType.bot_zom_dog_suicide,
     }
 
     public enum EffectType
@@ -100,6 +104,10 @@ public static class GameConstants
         bot_zom_Builder_Mix = 32,
         bot_zom_Woman = 33,
         bot_zom_Hight_Mix = 34,
+        bot_zom_suicider = 35,
+        bot_zom_spider_suicide = 36,
+        bot_zom_bomber = 37,
+        bot_zom_dog_suicide = 38,
     }
     
     public enum ZomAllState

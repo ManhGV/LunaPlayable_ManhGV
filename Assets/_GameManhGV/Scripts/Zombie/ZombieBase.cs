@@ -33,7 +33,7 @@ public class ZombieBase : GameUnit, ITakeDamage
     [SerializeField] AudioClip[] _listSoundBotVoice;
     
     [Header("Point To Move")]
-    [SerializeField] private WayPoint wayPoint;
+    [SerializeField] protected WayPoint wayPoint;
 
     [Header("Change Anim")]
     [SerializeField] private string currentAnimName;
@@ -76,7 +76,7 @@ public class ZombieBase : GameUnit, ITakeDamage
         if(PoolType!=GameConstants.PoolType.None)
             SimplePool.Despawn(this);
         else
-            gameObject.SetActive(false);
+            Destroy(this.gameObject);
     }
     #endregion
 
