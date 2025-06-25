@@ -27,6 +27,8 @@ public class Weapon112 : NoReloadWeapons
     Vector3 _bodyRecoil;
     bool canShoot = false;
     int _precentBallScale = 0; // Tỉ lệ % scale của quả cầu điện
+    
+    [SerializeField] CrossHairRotate _crossHair;
     protected override void Awake()
     {
         base.Awake();
@@ -44,6 +46,7 @@ public class Weapon112 : NoReloadWeapons
         base.LogicPlayGun();
         UpdateElectricBallScale();
         OnOpenPincers();
+        _crossHair.ScaleUp();
         _precentBallScale = (int)(GetOverallOpenRatio() * 100f);
         vfxElectricball.SetActive(true);
         if (_precentBallScale > 18)
@@ -97,7 +100,8 @@ public class Weapon112 : NoReloadWeapons
         Weapon112_ProjectileElectricBall weapon112ProjectileElectricBall = SimplePool.Spawn<Weapon112_ProjectileElectricBall>(_bulletType, muzzle.position, muzzle.rotation);
         Vector3 posGizmod = GizmodCaculatorPointShoot();
         weapon112ProjectileElectricBall.OnInit((posGizmod - muzzle.position).normalized,_precentBallScale);
-
+        _crossHair.ScaleDown();
+        print("SnakeCam");
     }
 
     #region Animations

@@ -8,6 +8,8 @@ public class OxygenTanks : MonoBehaviour, ITakeDamage
     
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _audioClip;
+    
+    [SerializeField] private GameObject _explosionGameObject;
     [SerializeField] private ParticleSystem _vfxExplosion;
     [SerializeField] private int _dame;
     
@@ -70,7 +72,9 @@ public class OxygenTanks : MonoBehaviour, ITakeDamage
         {
             if(!CanExplosion)
                 return;
-            
+
+            if (_explosionGameObject != null)
+                _explosionGameObject.SetActive(true);
             CanExplosion = false;
             _body.SetActive(false);
             _capsuleColliderThis.enabled = false;

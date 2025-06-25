@@ -125,6 +125,7 @@ public class Weapon26 : ReloadableWeapons
                     takeDamageController1 = hit.transform.root.gameObject.GetComponent<ITakeDamage>();
                 if (takeDamageController1 != null) 
                     takeDamageController1.TakeDamage(damageInfo);
+                typeEffect = GameConstants.PoolType.vfx_ShootGift;
                 EventManager.Invoke(EventName.OnCheckBotTakeDamage, true);
             }else if (IsInLayerIndex(hit.collider.gameObject, 5))//chạm vào word
             {

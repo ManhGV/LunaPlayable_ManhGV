@@ -47,10 +47,6 @@ public class EffectLine : EffectBase
 
     public override void OnDespawn()
     {
-        print("Despawn EffectLine");
-        if(effectElectricHit != null)
-            effectElectricHit.StartCaculatorTimeDespawn();
-        
         effectElectricHit = null;
         base.OnDespawn();
     }
