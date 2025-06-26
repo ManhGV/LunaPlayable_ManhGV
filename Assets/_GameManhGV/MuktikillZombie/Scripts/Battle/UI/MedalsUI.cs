@@ -26,8 +26,6 @@ public class MedalsUI : MonoBehaviour
     [SerializeField] protected Animator animReward;
     [SerializeField] protected GameObject _planeStrikePrefab;
     GameObject _planeStrikeObject;
-    
-    [SerializeField] private  AudioSource _audioSource;
 
     /// <summary>
     /// Display for UI
@@ -58,7 +56,7 @@ public class MedalsUI : MonoBehaviour
         _medalImage.sprite = _medalSprites[medalId];
         _medalImage.enabled = true;
         _animator.Play(AnimatorHashLib.Main);
-        _audioSource.PlayOneShot(_medalAudioClips[medalId]);
+        AudioManager.Instance.PlaySound(_medalAudioClips[medalId],1);
 
         foreach (var fx in _medalFx)
             fx.enabled = _hasBorderEffect[medalId];

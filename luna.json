@@ -2,7 +2,7 @@
     "version": "6.3.0",
     "projectId": "e802dd55c6efeaa48a72b8ea5d0f35e7",
     "applicationID": 30065,
-    "creativeName": "WWZ04_S3_04",
+    "creativeName": "WWZ04_S3-v5",
     "pgServer": "EU",
     "window": {
         "‐″": true
@@ -144,7 +144,23 @@
                 "Assets/_GameManhGV/Fonts/Lacquer-Regular_cutscene.ttf",
                 "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx30.png",
                 "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx10.png",
-                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx.png"
+                "Assets/_GameManhGV/Textures/UI/AmmoGlow/Green_AmmoGlowFx.png",
+                "Assets/_GameManhGV/_GameMap_WWZ04/Map/Map WWZombie7/Texture/T_Road_1_Z07.png",
+                "Assets/_GameManhGV/Textures/Stone1_Normal.png",
+                "Assets/_GameManhGV/_GameMap_WWZ04/Textures/Character/T_Bot_Soldado_100.tga",
+                "Assets/_GameManhGV/_GameMap_WWZ04/Textures/Character/T_Bot_Soldado 1.tga",
+                "Assets/_GameManhGV/_GameMap_WWZ04/Textures/Turret/FP/T_Turret_BH06.tga",
+                "Assets/_GameManhGV/_GameMap_WWZ04/Map/Map WWZombie7/Texture/T_Road_2_Z07.png",
+                "Assets/_GameManhGV/Textures/Stone1_MS.png",
+                "Assets/_GameManhGV/Textures/dissolve-guide.png",
+                "Assets/_GameManhGV/_GameMap_WWZ04/Map/Shared/Textures/Turret Break Texture.tga",
+                "Assets/_GameManhGV/Textures/Map_Z8/lensflare.png",
+                "Assets/_GameManhGV/Textures/Map_Z8/firemuzzleflash1.png",
+                "Assets/_GameManhGV/Textures/Spark3.png",
+                "Assets/_GameManhGV/_GameMap_WWZ04/Models/Props/Vent/T_Vent_Sewer.tga",
+                "Assets/_GameManhGV/Textures/Map_Z8/firemuzzleflash2.png",
+                "Assets/_GameManhGV/Models/TZHospital.fbx",
+                "Assets/_GameManhGV/_GameMap_WWZ04/Map/Map WWZombie3/Texture/T_Sky_To_wood_night_Z03.png"
             ],
             "includes": [
                 "Assets/Resources/DOTweenSettings.asset"
@@ -26104,7 +26120,7 @@
                     },
                     {
                         "name": "ResetKillData",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -26122,7 +26138,7 @@
                     },
                     {
                         "name": "StopAllAudio",
-                        "excluded": true
+                        "excluded": false
                     }
                 ]
             },
@@ -26337,6 +26353,10 @@
                     {
                         "name": "ActiveSoundCombat",
                         "excluded": false
+                    },
+                    {
+                        "name": "SnakeCamera",
+                        "excluded": true
                     }
                 ]
             },
@@ -27978,7 +27998,7 @@
                     },
                     {
                         "name": "Btn_Reload",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "Btn_Rocket",
@@ -28339,6 +28359,14 @@
                     {
                         "name": "IsFullyClosed",
                         "excluded": true
+                    },
+                    {
+                        "name": "RecoilAnimation",
+                        "excluded": false
+                    },
+                    {
+                        "name": "RecoilAnimation_DontShoot",
+                        "excluded": false
                     }
                 ]
             },
@@ -29377,6 +29405,32 @@
                         "excluded": false
                     }
                 ]
+            },
+            {
+                "className": "ScreenImpactEffect",
+                "staticMethods": [],
+                "instanceMethods": [
+                    {
+                        "name": "init",
+                        "excluded": false
+                    },
+                    {
+                        "name": "Start",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ShowScreenImpact",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ShowImpact",
+                        "excluded": false
+                    },
+                    {
+                        "name": "ImpactEffect",
+                        "excluded": false
+                    }
+                ]
             }
         ],
         "stubberDataList": [],
@@ -29785,8 +29839,8 @@
                         "name": "Assets/_GameManhGV/_GameMap_WWZ04/Map/Map WWZombie4/Scene/scene_WWZ04-section2/Lightmap-0_comp_light.exr"
                     },
                     {
-                        "maxWidth": 512,
-                        "maxHeight": 512,
+                        "maxWidth": 128,
+                        "maxHeight": 128,
                         "format": "default",
                         "compression": "quantSize",
                         "quality": 65,
@@ -29865,9 +29919,9 @@
                         "name": "Assets/_GameManhGV/Textures/glow 2.png"
                     },
                     {
-                        "maxWidth": 128,
-                        "maxHeight": 128,
-                        "format": "png32",
+                        "maxWidth": 512,
+                        "maxHeight": 512,
+                        "format": "jpeg",
                         "compression": "quantSize",
                         "quality": 65,
                         "script": "",
@@ -29895,8 +29949,8 @@
                         "name": "Assets/_GameManhGV/Textures/Map_Z8/T_Assets.png"
                     },
                     {
-                        "maxWidth": 256,
-                        "maxHeight": 256,
+                        "maxWidth": 128,
+                        "maxHeight": 128,
                         "format": "jpeg",
                         "compression": "quantSize",
                         "quality": 65,
@@ -29915,8 +29969,8 @@
                         "name": "Assets/_GameManhGV/_GameMap_WWZ04/Map/Map WWZombie4/Texture/T_Terrain/T_Ground_Z04.png"
                     },
                     {
-                        "maxWidth": 256,
-                        "maxHeight": 256,
+                        "maxWidth": 126,
+                        "maxHeight": 126,
                         "format": "png32",
                         "compression": "quantSize",
                         "quality": 65,
@@ -29925,8 +29979,8 @@
                         "name": "Assets/_GameManhGV/_GameMap_WWZ04/Map/Map WWZombie4/Texture/T_Trans_Z04.tga"
                     },
                     {
-                        "maxWidth": 128,
-                        "maxHeight": 128,
+                        "maxWidth": 32,
+                        "maxHeight": 32,
                         "format": "png32",
                         "compression": "quantSize",
                         "quality": 65,
@@ -29965,8 +30019,8 @@
                         "name": "Assets/_GameManhGV/Textures/Stone1_Albedo.png"
                     },
                     {
-                        "maxWidth": 256,
-                        "maxHeight": 256,
+                        "maxWidth": 64,
+                        "maxHeight": 64,
                         "format": "png32",
                         "compression": "quantSize",
                         "quality": 65,
@@ -30027,7 +30081,7 @@
                     {
                         "maxWidth": 1024,
                         "maxHeight": 1024,
-                        "format": "webp",
+                        "format": "png32",
                         "compression": "quantSize",
                         "quality": 65,
                         "script": "",
@@ -30065,8 +30119,8 @@
                         "name": "Assets/_GameManhGV/Textures/Map_Z8/EnergyMuzzle.png"
                     },
                     {
-                        "maxWidth": 256,
-                        "maxHeight": 256,
+                        "maxWidth": 512,
+                        "maxHeight": 512,
                         "format": "png32",
                         "compression": "quantSize",
                         "quality": 65,
@@ -30075,8 +30129,8 @@
                         "name": "Assets/_GameManhGV/Textures/T_FP_W112.tga"
                     },
                     {
-                        "maxWidth": 256,
-                        "maxHeight": 256,
+                        "maxWidth": 400,
+                        "maxHeight": 400,
                         "format": "png32",
                         "compression": "quantSize",
                         "quality": 65,
@@ -30085,8 +30139,8 @@
                         "name": "Assets/_GameManhGV/Textures/Map_Z8/T_FP_W26.tga"
                     },
                     {
-                        "maxWidth": 128,
-                        "maxHeight": 128,
+                        "maxWidth": 1,
+                        "maxHeight": 1,
                         "format": "default",
                         "compression": "quantSize",
                         "quality": 65,
@@ -30113,6 +30167,96 @@
                         "script": "",
                         "ext": "",
                         "name": "Assets/_GameManhGV/Scenes/scene_WWZ04/scene_WWZ04-section3_Build/Lightmap-1_comp_light.exr"
+                    },
+                    {
+                        "maxWidth": 512,
+                        "maxHeight": 512,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/UI/Weapon114.png"
+                    },
+                    {
+                        "maxWidth": 256,
+                        "maxHeight": 256,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/_GameMap_WWZ04/Map/Map WWZombie4/Texture/T_Assets_Z04.png"
+                    },
+                    {
+                        "maxWidth": 16,
+                        "maxHeight": 16,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/_GameMap_WWZ04/Map/Map WWZombie7/Texture/T_Mask_Z07.tga"
+                    },
+                    {
+                        "maxWidth": 16,
+                        "maxHeight": 16,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/_GameMap_WWZ04/Textures/Turret/FP/T_Turret_BH06_crate.tga"
+                    },
+                    {
+                        "maxWidth": 32,
+                        "maxHeight": 32,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Bot/noise.png"
+                    },
+                    {
+                        "maxWidth": 32,
+                        "maxHeight": 32,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/Map_Z8/fx_atlas01.png"
+                    },
+                    {
+                        "maxWidth": 128,
+                        "maxHeight": 128,
+                        "format": "default",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/_GameMap_WWZ04/Map/Map WWZombie4/Scene/scene_WWZ04-section3/Lightmap-0_comp_light.exr"
+                    },
+                    {
+                        "maxWidth": 64,
+                        "maxHeight": 64,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Textures/smoke.png"
+                    },
+                    {
+                        "maxWidth": 512,
+                        "maxHeight": 512,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/Texture/Broken_glass.png"
                     }
                 ]
             },
@@ -30220,8 +30364,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "00:03.261",
-                        "lengthInSeconds": 3.260999917984009,
+                        "endTime": "00:01.913",
+                        "lengthInSeconds": 1.9129999876022339,
                         "bitrate": 64,
                         "script": "",
                         "ext": "",
@@ -30230,8 +30374,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "00:03.261",
-                        "lengthInSeconds": 3.260999917984009,
+                        "endTime": "00:01.676",
+                        "lengthInSeconds": 1.6759999990463257,
                         "bitrate": 64,
                         "script": "",
                         "ext": "",
@@ -30250,8 +30394,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "00:03.261",
-                        "lengthInSeconds": 3.260999917984009,
+                        "endTime": "00:01.585",
+                        "lengthInSeconds": 1.5850000381469727,
                         "bitrate": 64,
                         "script": "",
                         "ext": "",
@@ -30530,8 +30674,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "00:03.261",
-                        "lengthInSeconds": 3.260999917984009,
+                        "endTime": "00:01.792",
+                        "lengthInSeconds": 1.7920000553131104,
                         "bitrate": 128,
                         "script": "",
                         "ext": "",
@@ -30550,8 +30694,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "00:03.261",
-                        "lengthInSeconds": 3.260999917984009,
+                        "endTime": "00:00.853",
+                        "lengthInSeconds": 0.8529999852180481,
                         "bitrate": 64,
                         "script": "",
                         "ext": "",
@@ -30570,8 +30714,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "00:03.261",
-                        "lengthInSeconds": 3.260999917984009,
+                        "endTime": "00:01.585",
+                        "lengthInSeconds": 1.5850000381469727,
                         "bitrate": 64,
                         "script": "",
                         "ext": "",
@@ -30660,8 +30804,8 @@
                     {
                         "channels": 1,
                         "startTime": "00:00.000",
-                        "endTime": "00:03.261",
-                        "lengthInSeconds": 3.260999917984009,
+                        "endTime": "00:01.296",
+                        "lengthInSeconds": 1.2960000038146973,
                         "bitrate": 64,
                         "script": "",
                         "ext": "",
@@ -30682,7 +30826,7 @@
                         "startTime": "00:00.000",
                         "endTime": "00:03.261",
                         "lengthInSeconds": 3.260999917984009,
-                        "bitrate": 128,
+                        "bitrate": 64,
                         "script": "",
                         "ext": "",
                         "name": "Assets/_GameManhGV/Sound/Zombie/boss/boss_zom_revenant/HitHouse_3_baseraid.wav"
@@ -30726,6 +30870,36 @@
                         "script": "",
                         "ext": "",
                         "name": "Assets/_GameManhGV/Sound/Hit/Vehicle-Hit-1.ogg"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:02.514",
+                        "lengthInSeconds": 2.5139999389648439,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/AudioClip/Game Over's.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:02.514",
+                        "lengthInSeconds": 2.5139999389648439,
+                        "bitrate": 64,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/AudioClip/Victory.mp3"
+                    },
+                    {
+                        "channels": 1,
+                        "startTime": "00:00.000",
+                        "endTime": "00:01.585",
+                        "lengthInSeconds": 1.5850000381469727,
+                        "bitrate": 128,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/AudioClip/Glass break.mp3"
                     }
                 ]
             },

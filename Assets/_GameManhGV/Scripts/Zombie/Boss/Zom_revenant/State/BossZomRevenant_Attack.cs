@@ -15,7 +15,7 @@ public class BossZomRevenant_Attack : StateBase<ZomAllState, BossZomRevenant_Net
         CanChangeState = false;
         thisBotNetworks.RotaToPlayerMain();
         
-        if (thisBotNetworks.DistanceToPlayermain() <= 9.74)
+        if (thisBotNetworks.DistanceToPlayermain() <= 11.5f)
         {
             attackType = 01;
             _attackCoroutine = StartCoroutine(IEAttackType_01(Random.Range(3, 5)));

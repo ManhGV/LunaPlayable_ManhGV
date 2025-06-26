@@ -41,8 +41,8 @@ public class StateControllerBase<TBotNet> : MonoBehaviour where TBotNet : Zombie
     
     protected virtual void Update()
     {
-        if(GameManager.Instance.GetGameState()!= GameState.Playing)
-            return;
+        // if(GameManager.Instance.GetGameState()!= GameState.Playing)
+        //     return;
         
         if (_currentState == null)
         {

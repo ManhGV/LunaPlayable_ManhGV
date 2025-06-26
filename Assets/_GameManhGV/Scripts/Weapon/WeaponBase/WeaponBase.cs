@@ -22,7 +22,7 @@ public class WeaponBase : Singleton<WeaponBase>
     [SerializeField] LayerMask _layerTarget;
     [SerializeField] float _distanceGizMod;
     
-    protected bool readyShoot;
+    public bool readyShoot;
     
     // kiểm tra có ang ấn vào UI không
     // Bộ nhớ tạm cho kiểm tra UI - static để tái sử dụng
@@ -39,6 +39,7 @@ public class WeaponBase : Singleton<WeaponBase>
 
     protected virtual void Start()
     {
+        this.readyShoot = WeaponBase.Instance.readyShoot;
         Instance = this;
     }
 

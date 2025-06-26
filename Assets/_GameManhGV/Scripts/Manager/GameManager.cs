@@ -18,9 +18,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float shakeCamMin;
     [SerializeField] private float shakeCamMax;
     
-    [Header("End Game")] 
+    [Header("End Game")]
+    [SerializeField] ScreenImpactEffect screenImpactEffect;
     public bool endGame;
-
     private void Start()
     {
         LunaLogStart();
@@ -59,7 +59,9 @@ public class GameManager : Singleton<GameManager>
     {
         if(gameState == GameConstants.GameState.EndGame)
             return;
-        SpawnBotManager.Instance.DespawnAllBot(2f);
+        AudioManager.Instance.StopAllAudio();
+        screenImpactEffect.ShowScreenImpact(_isWin);
+        SpawnBotManager.Instance.DespawnAllBot(4f);
         UIManager.Instance.GetUI<Canvas_GamePlay>().OpendEndGame(_isWin);
         soundCombatBoss.SetActive(false);
         soundBG.SetActive(false);

@@ -47,11 +47,14 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
 
     public IEnumerator IECallBossZom(float time)
     {
-        yield return new WaitForSeconds(time);
-        PlayerHP.Instance.ClearListDamage();
-        yield return new WaitForSeconds(1.5f);
-        GameManager.Instance.ActiveSoundCombat();
-        _boss.SetActive(true);
+        if (!GameManager.Instance.endGame)
+        { 
+            yield return new WaitForSeconds(time);
+            PlayerHP.Instance.ClearListDamage();
+            yield return new WaitForSeconds(1.5f);
+            GameManager.Instance.ActiveSoundCombat();
+            _boss.SetActive(true);
+        }
     }
 
     public void CallAllBotAttack()

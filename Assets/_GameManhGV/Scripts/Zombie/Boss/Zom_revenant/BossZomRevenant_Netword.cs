@@ -14,7 +14,7 @@ public class BossZomRevenant_Netword : BossNetwork
 
     [Header("Check Chạm tường ngừng đi")] 
     [SerializeField] private LayerMask _layerCantMove;
-
+    
     public bool CheckForardChamVaoGround()
     {
         Vector3 origin = transform.position + Vector3.up * 1.5f;

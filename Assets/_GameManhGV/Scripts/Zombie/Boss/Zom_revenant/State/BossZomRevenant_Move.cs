@@ -33,7 +33,7 @@ public class BossZomRevenant_Move : StateBase<ZomAllState, BossZomRevenant_Netwo
             // }
                 if (!humanMoveBase.isHaveParent)
                 {
-                    humanMoveBase.SetBotMove(path.WayPoints[moveIndex].position,1.5f);
+                    humanMoveBase.SetBotMove(path.WayPoints[moveIndex].position,2.25f);
                     float distance = Vector3.Distance(humanMoveBase.myTrans.position, path.WayPoints[moveIndex].position);
                     if (distance < 0.1f)
                         thisStateController.ChangeState(ZomAllState.Attack);

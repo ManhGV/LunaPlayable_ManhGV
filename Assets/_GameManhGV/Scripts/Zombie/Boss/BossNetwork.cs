@@ -32,13 +32,16 @@ public class BossNetwork : ZombieBase
         }
     }
 
+    public AchievementEvaluator achievementEvaluator;
+
     public override void BotDead()
     {
         base.BotDead();
         foreach (GameObject VARIABLE in detectors)
             VARIABLE.SetActive(false);
         SpawnBotManager.Instance.RemoveBotDead(this);
-        AchievementEvaluator.Instance.OnBotKilled(1.8f,false);
+        achievementEvaluator.ResetKillData();
+        achievementEvaluator.GrantMedal(4);
         GameManager.Instance.EndGame(true);
     }
     

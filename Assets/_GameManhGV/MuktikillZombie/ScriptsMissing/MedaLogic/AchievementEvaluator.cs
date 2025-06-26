@@ -191,7 +191,7 @@ public class AchievementEvaluator : Singleton<AchievementEvaluator>
         }
     }
 
-    private void GrantMedal(int index)
+    public void GrantMedal(int index)
     {
         var medal = medalDetails[index];
         _medalsUI.OnGetMedal(index);
