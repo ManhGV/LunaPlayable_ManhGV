@@ -3,11 +3,15 @@ using UnityEngine;
 
 public class BotZombieNor_Move : StateBase<ZomAllState, BotNetwork>
 {
+    [SerializeField] private BotZombieNorStateController _controller;
     [SerializeField] private HumanMoveBase humanMoveBase;
     private WayPoint path;
     private int moveIndex = 0;
     private int typeMove;
     private float speedTypeIndex;
+    private Vector3 pointMove;
+    
+    //độ chênh lêch y không lớn hơn 1 thì giữ nguyên điểm cho đi tới, nếu lớn hơn thì giữ nguyên điểm và chuyển sang nhảy
     
     public override void EnterState()
     {
@@ -35,8 +39,10 @@ public class BotZombieNor_Move : StateBase<ZomAllState, BotNetwork>
         else 
             speedTypeIndex = 3f;
         
-        path = thisBotNetworks.GetWayPoint;
         thisBotNetworks.ChangeAnimAndType("Move",typeMove);
+        path = thisBotNetworks.GetWayPoint;
+        if (moveIndex == 0)
+            pointMove = path.WayPoints[moveIndex].position;
     }
 
     public void Init()
@@ -50,18 +56,25 @@ public class BotZombieNor_Move : StateBase<ZomAllState, BotNetwork>
         {
             if (!humanMoveBase.isHaveParent && moveIndex < path.WayPoints.Count)
             {
-                humanMoveBase.SetBotMove(path.WayPoints[moveIndex].position,speedTypeIndex);
-                float distance = Vector3.Distance(humanMoveBase.myTrans.position, path.WayPoints[moveIndex].position);
+                humanMoveBase.SetBotMove(pointMove,speedTypeIndex);
+                if (!_controller.IsGround())
+                    thisStateController.ChangeState(ZomAllState.Jump);
+                
+                float distance = Vector3.Distance(humanMoveBase.myTrans.position, pointMove);
                 if (distance < 0.1)
                 {
                     moveIndex++;
+                    if (moveIndex >= path.WayPoints.Count)
+                        thisStateController.ChangeState(ZomAllState.Attack);
+                    
+                    if (Mathf.Abs(pointMove.y - path.WayPoints[moveIndex].position.y) > 1f)
+                    {
+                        pointMove = path.WayPoints[moveIndex].position;
+                        pointMove.y =path.WayPoints[moveIndex-1].position.y;
+                    }
+                    else
+                        pointMove = path.WayPoints[moveIndex].position;
                 }
-            }
-            //Debug.Log(moveIndex+ " - " + path.WayPoints.Count + " - " + path.WayPoints[moveIndex-1].position);
-            if (moveIndex >= path.WayPoints.Count)
-            {
-                Debug.Log(path.WayPoints[moveIndex-1].position + " - Move Done ");
-                thisStateController.ChangeState(ZomAllState.Attack);
             }
         }
             
@@ -69,6 +82,8 @@ public class BotZombieNor_Move : StateBase<ZomAllState, BotNetwork>
 
     public override void ExitState()
     {
-        
+        if(moveIndex>= path.WayPoints.Count)
+            return;
+        pointMove = path.WayPoints[moveIndex].position; //vì change nhảy
     }
 }

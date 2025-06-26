@@ -23,7 +23,7 @@ public class StateControllerBase<TBotNet> : MonoBehaviour where TBotNet : Zombie
             
         botNetworks.OnTakeDamage += OnTakeDame;
         botNetworks.ZombieDead += ZombieDead;
-        ResetState();
+        InitState();
     }
 
     protected virtual void OnEventDetectorDead(int obj)
@@ -55,7 +55,7 @@ public class StateControllerBase<TBotNet> : MonoBehaviour where TBotNet : Zombie
         _currentState.UpdateState();
     }
 
-    protected virtual void ResetState()
+    protected virtual void InitState()
     {
         
     }
@@ -72,7 +72,7 @@ public class StateControllerBase<TBotNet> : MonoBehaviour where TBotNet : Zombie
         canDead = false;
         ChangeState(ZomAllState.Dead);
     }
-
+    
     #region State Controller
     public void ChangeState(ZomAllState newAllState)
     {
