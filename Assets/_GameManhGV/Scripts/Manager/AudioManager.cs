@@ -8,6 +8,8 @@ public class AudioManager : Singleton<AudioManager>
     
     public void PlaySound(AudioClip _audioClip,float _volume)
     {
+        if(GameManager.Instance.endGame)
+            return;
         AudioChild _audioChild = SimplePool.Spawn<AudioChild>(GameConstants.PoolType.AudioChild,Vector3.zero,Quaternion.identity);
         _audioChild.OnInit(_audioClip, _volume);
     }

@@ -29,11 +29,11 @@ public class Bot_zomExplosion_DontStart_StateController : StateControllerBase<Bo
         _currentState.EnterState();
     }
     
-#if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(botNetworks.GetTransformCenter().position, _deadState._radiusExplosion);
-    }
-#endif
+// #if UNITY_EDITOR
+//     private void OnDrawGizmos()
+//     {
+//         Gizmos.color = Color.red;
+//         Gizmos.DrawWireSphere(botNetworks.GetTransformCenter().position, _deadState._radiusExplosion);
+//     }
+// #endif
 }
