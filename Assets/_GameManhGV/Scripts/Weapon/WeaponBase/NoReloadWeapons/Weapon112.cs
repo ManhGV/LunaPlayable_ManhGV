@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class Weapon112 : NoReloadWeapons
 {
@@ -13,18 +11,19 @@ public class Weapon112 : NoReloadWeapons
     /// <summary>0: Left, 1: Right, 2: Center</summary>
     [SerializeField] Transform[] _pincerRoots;
     
-    [SerializeField] float _animPincersOpenSpeed;  // tốc độ mở càng
-    [SerializeField] float _animPincersCloseSpeed; // tốc độ đóng càng
-    [SerializeField] float _animBodySpeed;
-    [SerializeField] float _desiredAngle;
-    [SerializeField] float _multiplierSpdOnRealease = 1;
-    [SerializeField] float _maxZValueBody;
+    [SerializeField] float _animPincersOpenSpeed = 30;  // tốc độ mở càng - 30
+    [SerializeField] float _animPincersCloseSpeed = 50; // tốc độ đóng càng - 50
+    [SerializeField] float _desiredAngle = 30; // - 30
+    [SerializeField] float _animBodyShoodSpeed = 2;// - 2
+    [SerializeField] float _animBodyHouldSpeed = .1f;// -.1
+    [SerializeField] float _multiplierSpdOnRealease = 1; // -10
+    [SerializeField] float maxZHold = 0;  // Max Z value when holding the weapon -0
+    [SerializeField] float maxZShoot = .15f; // Max Z value when shooting -.15
 
     [Header("Electric Ball")]
     [SerializeField] Transform electricBall;  // Transform của quả cầu điện
     [SerializeField] float electricBallMaxScale = 1f;  // Scale max của quả cầu
     Vector3 _bodyOrigin;
-    Vector3 _bodyRecoil;
     bool canShoot = false;
     int _precentBallScale = 0; // Tỉ lệ % scale của quả cầu điện
     
@@ -33,22 +32,28 @@ public class Weapon112 : NoReloadWeapons
     {
         base.Awake();
         _bodyOrigin = _body.localPosition;
-        _bodyRecoil = _body.localPosition;
-        _bodyRecoil.z = _maxZValueBody;
     
         if (electricBall != null)
             electricBall.localScale = Vector3.zero; // ẩn quả cầu lúc bắt đầu
     }
 
     #region Play - StopGun
+    private bool canPlayEventGun = false;
+    private bool canHold = true;
+    private Coroutine _coroutineGiatSung;
     protected override void LogicPlayGun()
     {
         base.LogicPlayGun();
+        if(!canHold)
+            return;
+        if(_coroutineGiatSung != null)
+            StopCoroutine(_coroutineGiatSung);
         UpdateElectricBallScale();
         OnOpenPincers();
         _crossHair.ScaleUp();
         _precentBallScale = (int)(GetOverallOpenRatio() * 100f);
         vfxElectricball.SetActive(true);
+        canPlayEventGun = true;
         if (_precentBallScale > 18)
         {
             // _audioSource.clip = weaponInfo.AudioStartBarrel;
@@ -75,6 +80,17 @@ public class Weapon112 : NoReloadWeapons
             _audioSource.clip = weaponInfo.AudioEndBarrel;
             _audioSource.PlayOneShot(weaponInfo.AudioEndBarrel);
             canShoot = false;
+            canPlayEventGun = false;
+        }
+
+        if (canPlayEventGun)
+        {
+            if(_coroutineGiatSung!=null)
+                StopCoroutine(_coroutineGiatSung);
+            // Recoil logic: move backward to maxZShoot, then forward to maxZHold
+            _coroutineGiatSung = StartCoroutine(RecoilAnimation_DontShoot());
+            _crossHair.ScaleDown();
+            canPlayEventGun = false;
         }
     }
 
@@ -92,16 +108,53 @@ public class Weapon112 : NoReloadWeapons
         );
         FireFromMuzzle(_muzzleTrans_1, forward);
     }
+    [Tooltip("Mượn tạm snakeCam")]public RocketController rocketController;
     
     protected override void FireFromMuzzle(Transform muzzle, Vector3 forward)
     {
+        print("fire");
         var shotRotation = Quaternion.Euler(Random.insideUnitCircle * weaponInfo.inaccuracy) * forward;
         var ray = new Ray(_cameraTransform.position, shotRotation);
         Weapon112_ProjectileElectricBall weapon112ProjectileElectricBall = SimplePool.Spawn<Weapon112_ProjectileElectricBall>(_bulletType, muzzle.position, muzzle.rotation);
         Vector3 posGizmod = GizmodCaculatorPointShoot();
         weapon112ProjectileElectricBall.OnInit((posGizmod - muzzle.position).normalized,_precentBallScale);
+        
+        if(_coroutineGiatSung!=null)
+            StopCoroutine(_coroutineGiatSung);
+        // Recoil logic: move backward to maxZShoot, then forward to maxZHold
+        _coroutineGiatSung = StartCoroutine(RecoilAnimation());
         _crossHair.ScaleDown();
-        print("SnakeCam");
+        rocketController.SnakeCameraRocket();
+    }
+
+    IEnumerator RecoilAnimation()
+    {
+        canHold = false;
+        // Move backward to maxZShoot
+        while (_body.localPosition.z > maxZShoot)
+        {
+            _body.localPosition = new Vector3(_bodyOrigin.x, _bodyOrigin.y, Mathf.MoveTowards(_body.localPosition.z, maxZShoot, _animBodyShoodSpeed * Time.deltaTime));
+            yield return null;
+        }
+
+        // Move forward to _bodyOrigin.z
+        while (_body.localPosition.z < _bodyOrigin.z)
+        {
+            _body.localPosition = new Vector3(_bodyOrigin.x, _bodyOrigin.y, Mathf.MoveTowards(_body.localPosition.z, _bodyOrigin.z, _animBodyShoodSpeed * Time.deltaTime));
+            yield return null;
+        }
+        canHold = true;
+    }
+    IEnumerator RecoilAnimation_DontShoot()
+    {
+        canHold = false;
+        // Move forward to _bodyOrigin.z
+        while (_body.localPosition.z < _bodyOrigin.z)
+        {
+            _body.localPosition = new Vector3(_bodyOrigin.x, _bodyOrigin.y, Mathf.MoveTowards(_body.localPosition.z, _bodyOrigin.z, _animBodyShoodSpeed * Time.deltaTime));
+            yield return null;
+        }
+        canHold = true;
     }
 
     #region Animations
@@ -112,11 +165,10 @@ public class Weapon112 : NoReloadWeapons
         void AnimPerform()
         {
             // Move body backward
-            if (_body.localPosition.z > _maxZValueBody)
-                _body.localPosition = new Vector3(
-                    _bodyOrigin.x, _bodyOrigin.y,
-                    _body.localPosition.z - _animBodySpeed * Time.deltaTime
-                );
+            if (_body.localPosition.z > maxZHold)
+            {
+                _body.localPosition = new Vector3(_bodyOrigin.x, _bodyOrigin.y, Mathf.MoveTowards(_body.localPosition.z, maxZHold, _animBodyHouldSpeed * Time.deltaTime));
+            }
 
             // Rotate pincer roots and child objects using open speed
             if (Quaternion.Angle(_pincerRoots[0].localRotation, Quaternion.identity) < _desiredAngle)
@@ -145,30 +197,16 @@ public class Weapon112 : NoReloadWeapons
                     _pincerChilds[2].Speed * Time.deltaTime
                 );
             }
-            
-            if(_body.localPosition.z > _maxZValueBody)
-            {
-                // Lerp body position to origin
-                _body.localPosition = Vector3.Lerp(
-                    _body.localPosition,
-                    _bodyRecoil,
-                    _animBodySpeed * Time.deltaTime
-                );
-            }
         }
     }
 
     void OnRealeasePincers()
     {
         // Reset body position (lerp) using body speed and multiplier
-        if (Vector3.Distance(_body.localPosition, _bodyOrigin) > 0.01f)
-        {
-            _body.localPosition = Vector3.Lerp(
-                _body.localPosition,
-                _bodyOrigin,
-                _animBodySpeed * _multiplierSpdOnRealease * Time.deltaTime
-            );
-        }
+        // if (Vector3.Distance(_body.localPosition, _bodyOrigin) > 0.01f)
+        // {
+        //     _body.localPosition = Vector3.Lerp(_body.localPosition, _bodyOrigin, _animBodySpeed * _multiplierSpdOnRealease * Time.deltaTime);
+        // }
 
         // Rotate pincers back to identity using close speed
         for (int i = 0; i < 3; i++)
