@@ -1,12 +1,22 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ReloadableWeapons : WeaponBase
 {
+    [Header("Độ đỏ đầu nòng")]
+    [SerializeField] protected ParticleSystem[] _vfxSmokeMuzzle; // Hiệu ứng khói từ nòng súng
+    private bool _isSmokePlaying = false;
+    [SerializeField] protected Transform _muzzleCenter; // Nơi bắn đạn từ nòng súng
+    [SerializeField] protected Material _materialGun;
+    [Tooltip("Độ đỏ tối đa của nòng")] protected float _maxGlowColor = 6f;
+    [Tooltip("Nhiệt độ nòng")] [SerializeField] protected float _temperatureCurrent;
+    [Tooltip("Nhiệt độ để nòng đạt độ đỏ tối đa")] [SerializeField] protected float _temperatureToColorMax = 2f;
+    
     [Header("Shooting")]
     protected float _timeSinceLastShoot = 0f; // Thời gian từ lần bắn cuối cùng
     [SerializeField] protected int _currentBulletCount; // Số lượng đạn hiện tại trong băng
-    protected bool isShooting = false; // Trạng thái đang bắn
     protected Coroutine shootingCoroutine;
     
     [Header("Reload")]
@@ -26,18 +36,24 @@ public class ReloadableWeapons : WeaponBase
     protected override void Awake()
     {
         base.Awake();
+        _temperatureCurrent = 0;
         _currentBulletCount = weaponInfo.bulletCount; // Khởi tạo số lượng đạn
+        _materialGun.SetVector("_Glow", Vector4.zero);
     }
 
     protected override void Update()
     {
         base.Update();
         if (_isReloading)
+        {
+            UpOrDowTemperature(false);
+            _materialGun.SetVector("_Muzzle", new Vector4(_muzzleCenter.position.x,_muzzleCenter.position.y, _muzzleCenter.position.z, 0f));
             return;
-
+        }
+        
         _timeSinceLastShoot += Time.deltaTime;
 
-        if (readyShoot)
+        if (_isHoldScreen)
             LogicPlayGun();
         else
             LogicStopGun();
@@ -50,37 +66,29 @@ public class ReloadableWeapons : WeaponBase
         EventManager.Invoke(EventName.UpdateBulletCountDefault, weaponInfo.bulletCount);
     }
 
-    private void LogicStopGun()
+    protected virtual void LogicStopGun()
     {
-        if (isShooting)
+        UpOrDowTemperature(false);
+        StopShootingSound();
+        if (shootingCoroutine != null)
         {
-            StopShootingSound();
-            isShooting = false;
-            if (shootingCoroutine != null)
-            {
-                StopCoroutine(shootingCoroutine);
-                shootingCoroutine = null;
-            }
-            StopGunEffect(); // Dừng hiệu ứng nổ súng
+            StopCoroutine(shootingCoroutine);
+            shootingCoroutine = null;
         }
+        StopGunEffect(); // Dừng hiệu ứng nổ súng
     }
 
     protected virtual void LogicPlayGun()
     {
+        _materialGun.SetVector("_Muzzle", new Vector4(_muzzleCenter.position.x,_muzzleCenter.position.y, _muzzleCenter.position.z, 0f));
         UICrosshairItem.Instance.Narrow_Crosshair();
-        if (!isShooting)
-        {
-            isShooting = true;
-            if (shootingCoroutine == null)
-                shootingCoroutine = StartCoroutine(StartShootingAfterDelay());
-        }
-
         if (_timeSinceLastShoot >= weaponInfo.FireRate)
         {
             if (_currentBulletCount <= 0 && !weaponInfo.infiniteBullet)
                 OnReload();
             else
             {
+                UpOrDowTemperature(true);
                 Shoot();
                 _timeSinceLastShoot = 0f;
 
@@ -95,16 +103,59 @@ public class ReloadableWeapons : WeaponBase
         }
     }
 
-    protected IEnumerator StartShootingAfterDelay()
+    protected void UpOrDowTemperature(bool _isUp)
     {
-        yield return new WaitForSeconds(weaponInfo.WaitToShoot);
-        shootingCoroutine = null;
+        if (_isUp)
+        {
+            if (_isSmokePlaying)
+            {
+                foreach (ParticleSystem _vfx in _vfxSmokeMuzzle)
+                    _vfx.Stop();
+
+                _isSmokePlaying = false;
+            }
+            if (Math.Abs(_temperatureCurrent + _temperatureToColorMax) < .01f)
+                return;
+            
+            if(_temperatureCurrent < _temperatureToColorMax)
+                _temperatureCurrent += 6f * Time.deltaTime;
+            else
+                _temperatureCurrent = _temperatureToColorMax;
+            _materialGun.SetVector("_Glow", new Vector4(0, .4f, _temperatureCurrent / _temperatureToColorMax * _maxGlowColor, 0));
+        }
+        else
+        {
+            if (_temperatureCurrent == 0)
+                return;
+            if (!_isSmokePlaying)
+            {
+                foreach (ParticleSystem _vfx in _vfxSmokeMuzzle)
+                    _vfx.Play();
+
+                _isSmokePlaying = true;
+            }
+            
+            if (_temperatureCurrent >= 0)
+                _temperatureCurrent -= .8f * Time.deltaTime;
+            else
+            {
+                if (_isSmokePlaying)
+                {
+                    foreach (ParticleSystem _vfx in _vfxSmokeMuzzle)
+                        _vfx.Stop();
+
+                    _isSmokePlaying = false;
+                }
+                _temperatureCurrent = 0;
+            }
+            _materialGun.SetVector("_Glow", new Vector4(0, .4f, _temperatureCurrent / _temperatureToColorMax * _maxGlowColor, 0));
+        }
     }
-    
+
     protected virtual void Shoot()
     {
         if (this == null || _cameraTransform == null) return;
-
+        
         Vector3 forward= _cameraTransform.forward;
         
         forward += new Vector3(

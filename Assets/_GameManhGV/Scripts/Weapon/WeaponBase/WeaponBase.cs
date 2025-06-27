@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class WeaponBase : Singleton<WeaponBase>
 {
@@ -22,7 +23,7 @@ public class WeaponBase : Singleton<WeaponBase>
     [SerializeField] LayerMask _layerTarget;
     [SerializeField] float _distanceGizMod;
     
-    public bool readyShoot;
+    [FormerlySerializedAs("readyShoot")] public bool _isHoldScreen;
     
     // kiểm tra có ang ấn vào UI không
     // Bộ nhớ tạm cho kiểm tra UI - static để tái sử dụng
@@ -39,7 +40,7 @@ public class WeaponBase : Singleton<WeaponBase>
 
     protected virtual void Start()
     {
-        readyShoot = WeaponBase.Instance.readyShoot;
+        _isHoldScreen = WeaponBase.Instance._isHoldScreen;
         Instance = this;
     }
 
@@ -56,11 +57,11 @@ public class WeaponBase : Singleton<WeaponBase>
         
         if (Input.GetMouseButtonDown(0) && !IsPointerOverUI())
         {
-            readyShoot = true;
+            _isHoldScreen = true;
         }
         else if(Input.GetMouseButtonUp(0))
         {
-            readyShoot = false;
+            _isHoldScreen = false;
         }
     }
 
@@ -147,7 +148,7 @@ public class WeaponBase : Singleton<WeaponBase>
 
     public void StopGunEffect()
     {
-        readyShoot = false;
+        _isHoldScreen = false;
         
         foreach (ParticleSystem fireEffect in _fireEffect)
             if (fireEffect != null && fireEffect.isPlaying)

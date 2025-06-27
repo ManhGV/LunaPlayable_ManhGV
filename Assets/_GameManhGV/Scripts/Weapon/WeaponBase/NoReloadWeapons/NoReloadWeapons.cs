@@ -13,7 +13,7 @@ public class NoReloadWeapons : WeaponBase
     {
         base.Update();
 
-        if (readyShoot)
+        if (_isHoldScreen)
             LogicPlayGun();
         else
             LogicStopGun();

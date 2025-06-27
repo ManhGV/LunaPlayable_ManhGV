@@ -25,14 +25,8 @@ public class Weapon26 : ReloadableWeapons
 
     protected override void LogicPlayGun()
     {
+        _materialGun.SetVector("_Muzzle", new Vector4(_muzzleCenter.position.x,_muzzleCenter.position.y, _muzzleCenter.position.z, 0f));
         UICrosshairItem.Instance.Narrow_Crosshair();
-        if (!isShooting)
-        {
-            isShooting = true;
-            if (shootingCoroutine == null)
-                shootingCoroutine = StartCoroutine(StartShootingAfterDelay());
-        }
-
         if (_timeSinceLastShoot >= weaponInfo.FireRate)
         {
             if (_currentBulletCount <= 0 && !weaponInfo.infiniteBullet)
@@ -41,6 +35,7 @@ public class Weapon26 : ReloadableWeapons
             }
             else
             {
+                UpOrDowTemperature(true);
                 Shoot();
                 _timeSinceLastShoot = 0f;
 
