@@ -155,8 +155,8 @@ public static class GameConstants
     public enum RewardType
     {
         None,
-        ChangeWeapon81,
-        ChangeWeapon112,
+        ChangeFirerate,
+        ChangeWeapon,
     }
     public enum GameState
     {

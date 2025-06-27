@@ -72,7 +72,7 @@ public class PowerUpDisplay : MonoBehaviour
 
     private void OnSetEventPerRewardType()
     {
-        if (rewardType == RewardType.ChangeWeapon81)
+        if (rewardType == RewardType.ChangeWeapon)
         {
             EventManager.Invoke(EventName.OnChangeWeapon, true);
             UIManager.Instance.GetUI<Canvas_GamePlay>().PowerupEffectUI();
