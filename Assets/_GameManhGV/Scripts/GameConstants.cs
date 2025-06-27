@@ -29,6 +29,20 @@ public static class GameConstants
         bot_zom_spider_suicide = PoolType.bot_zom_spider_suicide,
         bot_zom_bomber = PoolType.bot_zom_bomber,
         bot_zom_dog_suicide = PoolType.bot_zom_dog_suicide,
+        bot_zom_Doctor_Mix = PoolType.bot_zom_Doctor_Mix,
+        bot_zom_Infector_Z = PoolType.bot_zom_Infector_Z,
+        bot_zom_Lurker = PoolType.bot_zom_Lurker,
+        bot_zom_Male = PoolType.bot_zom_Male,
+        bot_zom_Men = PoolType.bot_zom_Men,
+        bot_zom_MurderClown = PoolType.bot_zom_MurderClown,
+        bot_zom_Nurse_Mix = PoolType.bot_zom_Nurse_Mix,
+        bot_zom_Police = PoolType.bot_zom_Police,
+        bot_zom_Screamer = PoolType.bot_zom_Screamer,
+        bot_zom_Slimnaked = PoolType.bot_zom_Slimnaked,
+        bot_zom_Suit = PoolType.bot_zom_Suit,
+        bot_zom_Women_Mix = PoolType.bot_zom_Women_Mix,
+        bot_zom_bikini = PoolType.bot_zom_bikini,
+        
     }
 
     public enum EffectType
@@ -108,6 +122,19 @@ public static class GameConstants
         bot_zom_spider_suicide = 36,
         bot_zom_bomber = 37,
         bot_zom_dog_suicide = 38,
+        bot_zom_Doctor_Mix =39,
+        bot_zom_Infector_Z = 40,
+        bot_zom_Lurker = 41,
+        bot_zom_Male = 42,
+        bot_zom_Men = 43,
+        bot_zom_MurderClown = 44,
+        bot_zom_Nurse_Mix = 45,
+        bot_zom_Police = 46,
+        bot_zom_Screamer = 47,
+        bot_zom_Slimnaked = 48,
+        bot_zom_Suit = 49,
+        bot_zom_Women_Mix = 50,
+        bot_zom_bikini = 51,
     }
     
     public enum ZomAllState

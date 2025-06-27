@@ -1,6 +1,17 @@
 using System.Collections;
 using UnityEngine;
-
+// - bot_zombie_nor_doctor
+// - bot_zombie_nor_slim_naked
+// - bot_zombie_nor_screamer
+// - bot_zombie_nor_police
+// - bot_zombie_nor_nurse_mix
+// - bot_zombie_nor_murder_clown
+// - bot_zombie_nor_men
+// - bot_zombie_nor_male
+// - bot_zombie_nor_lurker
+// - bot_zombie_nor_infector_z
+// - bot_zombie_nor_builder
+// - bot_zom_Women_Mix
 public class Weapon112 : NoReloadWeapons
 {
     [SerializeField] GameObject vfxElectricball; // Hiệu ứng caauf điện
