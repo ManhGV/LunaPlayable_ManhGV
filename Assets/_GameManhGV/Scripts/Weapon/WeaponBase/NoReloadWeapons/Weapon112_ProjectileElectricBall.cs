@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 public class Weapon112_ProjectileElectricBall : ProjectileExplosionBase
