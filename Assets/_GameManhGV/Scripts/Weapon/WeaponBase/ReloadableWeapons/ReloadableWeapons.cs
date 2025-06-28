@@ -41,6 +41,11 @@ public class ReloadableWeapons : WeaponBase
         _materialGun.SetVector("_Glow", Vector4.zero);
     }
 
+    private void FixedUpdate()
+    {
+        _materialGun.SetVector("_Muzzle", new Vector4(_muzzleCenter.position.x,_muzzleCenter.position.y, _muzzleCenter.position.z, 0f));
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -311,4 +316,6 @@ public class ReloadableWeapons : WeaponBase
         EventManager.Invoke(EventName.UpdateBulletCount, _currentBulletCount);
     }
     #endregion
+
+    public override void ChangeFireRate(GameConstants.PoolType typeBulletGift) => _bulletType = typeBulletGift;
 }

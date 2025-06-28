@@ -1,9 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using static GameConstants;
 
 public class PowerUpDisplay : MonoBehaviour
 {
+    public PoolType typeBulletGift;
+#if UNITY_EDITOR
+    public ProjecttilePlayer projecttilePlayer;
+    private void OnValidate()
+    {
+        typeBulletGift = (PoolType)projecttilePlayer;
+    }
+#endif
     public RewardNetwork rewardNetwork;
     public RewardType rewardType;
     public ParticleSystem[] CollectedEffect;
@@ -72,7 +81,11 @@ public class PowerUpDisplay : MonoBehaviour
 
     private void OnSetEventPerRewardType()
     {
-        if (rewardType == RewardType.ChangeWeapon)
+        if (rewardType == RewardType.ChangeFirerate)
+        {
+            WeaponBase.Instance.ChangeFireRate(typeBulletGift);
+        }
+        else if (rewardType == RewardType.ChangeWeapon)
         {
             EventManager.Invoke(EventName.OnChangeWeapon, true);
             UIManager.Instance.GetUI<Canvas_GamePlay>().PowerupEffectUI();

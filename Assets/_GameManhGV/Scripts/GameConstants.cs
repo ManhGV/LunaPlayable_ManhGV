@@ -73,6 +73,7 @@ public static class GameConstants
         Projectile_Bullet_Norman = PoolType.Projectile_Bullet_Norman,
         Projectile_Bullet_BBQ = PoolType.Projectile_Bullet_BBQ,
         bullet_Rocket = PoolType.bullet_Rocket,
+        projectile_Bullet_Electric = PoolType.Projectile_Bullet_Electric,
     }
 
     public enum LinhTinh
@@ -135,6 +136,7 @@ public static class GameConstants
         bot_zom_Suit = 49,
         bot_zom_Women_Mix = 50,
         bot_zom_bikini = 51,
+        Projectile_Bullet_Electric = 52,
     }
     
     public enum ZomAllState

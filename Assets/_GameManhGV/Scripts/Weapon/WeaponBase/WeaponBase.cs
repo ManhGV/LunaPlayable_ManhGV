@@ -155,4 +155,9 @@ public class WeaponBase : Singleton<WeaponBase>
                 fireEffect.Stop();
     }
     #endregion
+
+    public virtual void ChangeFireRate(GameConstants.PoolType typeBulletGift)
+    {
+        
+    }
 }
