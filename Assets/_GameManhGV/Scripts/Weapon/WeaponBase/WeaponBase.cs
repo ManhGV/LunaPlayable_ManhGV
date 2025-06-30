@@ -21,9 +21,8 @@ public class WeaponBase : Singleton<WeaponBase>
     [Header("DrawGizmod Caculator Point Shoot")]
     [SerializeField] protected Transform _cameraTransform;
     [SerializeField] LayerMask _layerTarget;
-    [SerializeField] float _distanceGizMod;
     
-    [FormerlySerializedAs("readyShoot")] public bool _isHoldScreen;
+    public bool _isHoldScreen;
     
     // kiểm tra có ang ấn vào UI không
     // Bộ nhớ tạm cho kiểm tra UI - static để tái sử dụng
@@ -55,14 +54,7 @@ public class WeaponBase : Singleton<WeaponBase>
             return;
         }
         
-        if (Input.GetMouseButtonDown(0) && !IsPointerOverUI())
-        {
-            _isHoldScreen = true;
-        }
-        else if(Input.GetMouseButtonUp(0))
-        {
-            _isHoldScreen = false;
-        }
+        _isHoldScreen = !IsPointerOverUI() && Input.GetMouseButton(0);
     }
 
     #endregion
@@ -123,10 +115,10 @@ public class WeaponBase : Singleton<WeaponBase>
         Ray ray = new Ray(_cameraTransform.position, _cameraTransform.forward);
         RaycastHit hit;
 
-        Debug.DrawLine(ray.origin, ray.origin + ray.direction * _distanceGizMod, Color.red);
+        Debug.DrawLine(ray.origin, ray.origin + ray.direction * 200f, Color.red);
 
         // Bắn raycast
-        if (Physics.Raycast(ray, out hit, _distanceGizMod, _layerTarget))
+        if (Physics.Raycast(ray, out hit, 200f, _layerTarget))
         {
             // Debug.Log("Va chạm tại vị trí: " + hit.point);
             // Debug.Log("Khoảng cách đến box: " + hit.distance);
