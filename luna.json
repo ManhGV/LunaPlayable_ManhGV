@@ -88,6 +88,7 @@
         "assets": {
             "export": [],
             "excludes": [
+                "Assets/_GameManhGV/Animations/Bots/bot/bot_zom_bighand/",
                 "Assets/Import/",
                 "Assets/HierarchyDecorator/",
                 "**/Editor/",
@@ -126,16 +127,40 @@
                 "Stubs/IronSource",
                 "Stubs/Vungle",
                 "Stubs/MoreMountains.NiceVibrations",
-                "Assets/_GameManhGV/Materials/KilledOccultBoss.ogg"
+                "Assets/_GameManhGV/Materials/KilledOccultBoss.ogg",
+                "Assets/_MapWWZ01/Scene/scene_WWZ01-section1/LightmapCam3/Lightmap-0_comp_light.exr",
+                "Assets/_MapWWZ01/Scene/scene_WWZ01-section1/LightmapCam1/Lightmap-0_comp_light.exr",
+                "Assets/_MapWWZ01/Scene/scene_WWZ01-section1/LightmapCam2/Lightmap-0_comp_light.exr",
+                "Assets/_MapWWZ01/Scene/scene_WWZ01-section1/Lightmap-0_comp_light.exr",
+                "Assets/_MapWWZ01/Scene/scene_WWZ01-section1/LightmapCam2/Lightmap-1_comp_light.exr",
+                "Assets/_MapWWZ01/Scene/scene_WWZ01-section1/LightmapCam3/Lightmap-1_comp_light.exr",
+                "Assets/_MapWWZ01/Scene/scene_WWZ01-section1/Lightmap-1_comp_light.exr",
+                "Assets/_MapWWZ01/Scene/scene_WWZ01-section1/LightmapCam1/Lightmap-1_comp_light.exr",
+                "Assets/_MapWWZ01/Map/Map WWZombie3/Mesh/Env_Z03_Tunnel.fbx",
+                "Assets/_MapWWZ01/Map/Map WWZombie3/Mesh/Env_Z03_Tunnel.fbx",
+                "Assets/_MapWWZ01/Map/Map WWZombie1/Mesh/Z01_AssetGlass_Break.fbx",
+                "Assets/_MapWWZ01/Map/Map WWZombie8/Mesh/Asset_Wood_Z08.fbx",
+                "Assets/_MapWWZ01/Map/Map WWZombie5/Texture/T_skybox_section1_Z05.png"
             ],
             "includes": [
                 "Assets/Resources/DOTweenSettings.asset"
             ]
         },
         "scenes": [
-            "Assets/_GameManhGV/Scenes/Demo.unity"
+            "Assets/_GameManhGV/Scenes/scene_WWZ01-section1_BuildLight.unity"
         ],
-        "disabledScenes": [],
+        "disabledScenes": [
+            "Assets/Tool/Plugins/SerializedCollections/Sample/SerializedDictionarySample.unity",
+            "Assets/_GameManhGV/Scenes/Demo 1.unity",
+            "Assets/_GameManhGV/Scenes/Demo.unity",
+            "Assets/_GameManhGV/Scenes/Develop.unity",
+            "Assets/_GameManhGV/Scenes/Develop_Zom.unity",
+            "Assets/_GameManhGV/Scenes/scene_WWZ01-section1_Build.unity",
+            "Assets/_GameManhGV/Scenes/scene_WWZ01-section1_DontCompineMesh.unity",
+            "Assets/_MapWWZ01/Scene/scene_WWZ01-section1.unity",
+            "Assets/_MapWWZ01/Scene/scene_WWZ01-section2.unity",
+            "Assets/_MapWWZ01/Scene/scene_WWZ01-section3.unity"
+        ],
         "startupScene": 0,
         "packages": {
             "default": {
@@ -1407,10 +1432,6 @@
                 "excluded": true
             },
             {
-                "name": "Luna.Unity.DTO.UnityEngine.Animation.Mecanim.Avatar.TOSPair",
-                "excluded": true
-            },
-            {
                 "name": "Luna.Unity.DTO.UnityEngine.Animation.Mecanim.TransformMaskElement",
                 "excluded": true
             },
@@ -1948,10 +1969,6 @@
             },
             {
                 "name": "UnityEngine.Audio.AudioMixerSnapshot",
-                "excluded": true
-            },
-            {
-                "name": "UnityEngine.Avatar",
                 "excluded": true
             },
             {
@@ -6120,7 +6137,7 @@
             },
             {
                 "name": "Luna.Unity.DTO.UnityEngine.Animation.Mecanim.Avatar",
-                "excluded": true
+                "excluded": false
             },
             {
                 "name": "Luna.Unity.DTO.UnityEngine.Animation.Mecanim.AvatarMask",
@@ -7639,96 +7656,8 @@
                 "excluded": false
             },
             {
-                "name": "DamageType",
-                "excluded": false
-            },
-            {
-                "name": "IReward",
-                "excluded": false
-            },
-            {
-                "name": "ITakeDamage",
-                "excluded": false
-            },
-            {
-                "name": "PoolAmount",
-                "excluded": false
-            },
-            {
-                "name": "EventName",
-                "excluded": false
-            },
-            {
-                "name": "CarryAttributes",
+                "name": "Helper",
                 "excluded": true
-            },
-            {
-                "name": "DamageScale",
-                "excluded": false
-            },
-            {
-                "name": "GameConstants",
-                "excluded": true
-            },
-            {
-                "name": "GameConstants.PoolType",
-                "excluded": false
-            },
-            {
-                "name": "GameConstants.RewardType",
-                "excluded": false
-            },
-            {
-                "name": "AchievementSystemRunner",
-                "excluded": true
-            },
-            {
-                "name": "BotConfig",
-                "excluded": false
-            },
-            {
-                "name": "ConfigGame",
-                "excluded": false
-            },
-            {
-                "name": "DataAttackBoss",
-                "excluded": false
-            },
-            {
-                "name": "FightRound",
-                "excluded": false
-            },
-            {
-                "name": "GameConstants.GameState",
-                "excluded": false
-            },
-            {
-                "name": "LimitWayPoint",
-                "excluded": true
-            },
-            {
-                "name": "listLimitWayPoint",
-                "excluded": true
-            },
-            {
-                "name": "MedalType",
-                "excluded": false
-            },
-            {
-                "name": "RewardConfig",
-                "excluded": true
-            },
-            {
-                "name": "VariableObject$1.DebugType",
-                "excluded": false
-            },
-            {
-                "name": "BossZomSwatState",
-                "excluded": false
-            },
-            {
-                "name": "BotZomNorState",
-                "excluded": false
             }
         ],
         "unusedMethods": [
@@ -15880,7 +15809,7 @@
                     },
                     {
                         "name": "localEulerAngles#set",
-                        "excluded": true
+                        "excluded": false
                     },
                     {
                         "name": "eulerAngles#get",
@@ -21673,104 +21602,6 @@
                 ]
             },
             {
-                "className": "EventManager",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ManualReloadDomain",
-                        "excluded": false
-                    },
-                    {
-                        "name": "AddListener",
-                        "excluded": false
-                    },
-                    {
-                        "name": "RemoveListener",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Invoke",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "Singleton$1",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "Instance#get",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Instance#set",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "UIManager",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "inherits",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OpenUI",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CloseUI",
-                        "excluded": true
-                    },
-                    {
-                        "name": "CloseUIDirectly",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IsLoaded",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IsOpened",
-                        "excluded": true
-                    },
-                    {
-                        "name": "GetUI",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetUIPrefab",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CloseAll",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
                 "className": "System.Type",
                 "staticMethods": [],
                 "instanceMethods": [
@@ -24475,306 +24306,6 @@
                 ]
             },
             {
-                "className": "GameUnit",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "TF#get",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "UICanvas",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Setup",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Open",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Close",
-                        "excluded": true
-                    },
-                    {
-                        "name": "CloseDirectly",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "PlayerView",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SetDefaultView",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Start",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnCheckCamShake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnChangeMachineGun",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateCrossHair",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "Pool",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Preload",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Spawn",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Despawn",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Collect",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Release",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "PoolControl",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "SimplePool",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Preload",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Spawn",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Despawn",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Collect",
-                        "excluded": true
-                    },
-                    {
-                        "name": "CollectAll",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Release",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ReleaseAll",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "WeaponInfo",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BulletTrail",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Init$1",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Init",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDespawn",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "Canvas_GamePlay",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "Setup",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnReloading",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IERotation",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateBulletCountDefault",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateBulletCount",
-                        "excluded": false
-                    },
-                    {
-                        "name": "InstructReload",
-                        "excluded": false
-                    },
-                    {
-                        "name": "InstructRocket",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Btn_Reload",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Btn_Rocket",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateGameProcess",
-                        "excluded": false
-                    },
-                    {
-                        "name": "PowerupEffectUI",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CaculatorFillCooldown",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ActiveReloadFast",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Btn_ReloadFast",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IEAnimActiveReloadFast",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OpendEndGame",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IEOpenEndGameWin",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IEOpenEndGameLose",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "Canvas_HoldToShood",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "event_HoldToShoot",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
                 "className": "Bridge.GeneratorEnumerator",
                 "staticMethods": [],
                 "instanceMethods": [
@@ -25731,154 +25262,6 @@
                 ]
             },
             {
-                "className": "DamageInfo",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "getDefaultValue",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ctor",
-                        "excluded": false
-                    },
-                    {
-                        "name": "getHashCode",
-                        "excluded": true
-                    },
-                    {
-                        "name": "equals",
-                        "excluded": true
-                    },
-                    {
-                        "name": "$clone",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "Effect",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDespawn",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnInit",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "GameManager",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "inherits",
-                        "excluded": false
-                    },
-                    {
-                        "name": "PauseGame",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ResumeGame",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetGameState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetMainCameraTransform",
-                        "excluded": false
-                    },
-                    {
-                        "name": "StartCutScene",
-                        "excluded": false
-                    },
-                    {
-                        "name": "EndCutScene",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Start",
-                        "excluded": false
-                    },
-                    {
-                        "name": "EndGame",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SlomotionTimeScale",
-                        "excluded": false
-                    },
-                    {
-                        "name": "DontSlomotionTimeScale",
-                        "excluded": false
-                    },
-                    {
-                        "name": "LunaEndGame",
-                        "excluded": false
-                    },
-                    {
-                        "name": "LunaLogStart",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "UICrosshairItem",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "inherits",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnCheckBotTakeDamage",
-                        "excluded": false
-                    },
-                    {
-                        "name": "NoDamageTimer",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ResetCorosshair",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Expand_Crosshair",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Narrow_Crosshair",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
                 "className": "System.Collections.Generic.KeyNotFoundException",
                 "staticMethods": [],
                 "instanceMethods": [
@@ -25893,26 +25276,6 @@
                     {
                         "name": "$ctor2",
                         "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "Canvas_BazookaIntroduction",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "btn_RocketFake",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "Canvas_ReloadIntroduction",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
                     }
                 ]
             },
@@ -25996,478 +25359,6 @@
                     },
                     {
                         "name": "Tick",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Tick\",this)}this.c$-=t;if(this.c$<=0){pc.Application.getApplication().events.off(\"update",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BaseState$1",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Initialize",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "VariableObject$1",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "op_Implicit",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Value#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Value#set",
-                        "excluded": true
-                    },
-                    {
-                        "name": "init",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnValidate",
-                        "excluded": true
-                    },
-                    {
-                        "name": "InvokeListeners",
-                        "excluded": true
-                    },
-                    {
-                        "name": "AddListener",
-                        "excluded": true
-                    },
-                    {
-                        "name": "RemoveListener",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Reset",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "VariableReference$1",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "op_Implicit",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Value#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Value#set",
-                        "excluded": true
-                    },
-                    {
-                        "name": "init",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ctor",
-                        "excluded": true
-                    },
-                    {
-                        "name": "$ctor1",
-                        "excluded": true
-                    },
-                    {
-                        "name": "AddListener",
-                        "excluded": true
-                    },
-                    {
-                        "name": "RemoveListener",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "AchievementEvaluator",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "inherits",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnBotKilled",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GrantSpecialMedal",
-                        "excluded": true
-                    },
-                    {
-                        "name": "AddKill",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CheckAchievementDelay",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CheckAchievement",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GrantMedal",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ReduceCachedPoints",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ResetKillData",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "LocalPlayer",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "inherits",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetLocalPlayer",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetTranformPlayer",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "PathManager",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "inherits",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetWayPoint",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "RocketController",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "inherits",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "PlayAudioExplosion",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Fire",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SnakeCameraRocket",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ShakeCamera",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetFillAmount",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IEReload",
-                        "excluded": false
-                    },
-                    {
-                        "name": "InstructRocket",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SetMoveTutorial",
-                        "excluded": true
-                    },
-                    {
-                        "name": "IEEnbleTutorial",
-                        "excluded": true
-                    },
-                    {
-                        "name": "IEMoveToPoint",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "SpawnBotManager",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "inherits",
-                        "excluded": false
-                    },
-                    {
-                        "name": "KillBot#get",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Start",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SpawnBot",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IEOnSpawnBot",
-                        "excluded": false
-                    },
-                    {
-                        "name": "RemoveBotDead",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ActiveGiftWeapon81",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IEDelaySpawnGiftWeapon81",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IEOnTutorialRocket",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IECallBossZomSwat",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "WeaponBase",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "inherits",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IsPointerOverUI",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CurrentBulletCount#get",
-                        "excluded": false
-                    },
-                    {
-                        "name": "DefaultBulletCount#get",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "AssignAnimationClips",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnShooting",
-                        "excluded": false
-                    },
-                    {
-                        "name": "LogicStopGun",
-                        "excluded": false
-                    },
-                    {
-                        "name": "LogicPlayGun",
-                        "excluded": false
-                    },
-                    {
-                        "name": "StartShootingAfterDelay",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GizmodTuVe",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Shoot",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IsInBotLayer",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IsInArmorBossLayer",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IsInGroundLayerMask",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IsInRewardLayer",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IsInGasLayer",
-                        "excluded": false
-                    },
-                    {
-                        "name": "FireFromMuzzle",
-                        "excluded": false
-                    },
-                    {
-                        "name": "PlayRandomAttackSound",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnReload",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Reload",
-                        "excluded": false
-                    },
-                    {
-                        "name": "StopShootingSound",
-                        "excluded": false
-                    },
-                    {
-                        "name": "AnimationAudioEvent",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ShakeCamera",
-                        "excluded": false
-                    },
-                    {
-                        "name": "PlayGunEffect",
-                        "excluded": false
-                    },
-                    {
-                        "name": "StopGunEffect",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnReloadFast",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Start",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "WeaponEvent",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "inherits",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Start",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnChangeMachineGun",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnChangeWeapon",
                         "excluded": false
                     }
                 ]
@@ -26643,1054 +25534,6 @@
                 ]
             },
             {
-                "className": "AchievementEvaluator.KillInfo",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "getDefaultValue",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ctor",
-                        "excluded": false
-                    },
-                    {
-                        "name": "getHashCode",
-                        "excluded": true
-                    },
-                    {
-                        "name": "equals",
-                        "excluded": true
-                    },
-                    {
-                        "name": "$clone",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "AchievementEvaluator.MedalDetail",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "getDefaultValue",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ctor",
-                        "excluded": false
-                    },
-                    {
-                        "name": "getHashCode",
-                        "excluded": true
-                    },
-                    {
-                        "name": "equals",
-                        "excluded": true
-                    },
-                    {
-                        "name": "$clone",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BossZomSwat",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnTakeDame",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": true
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "TransitionState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ChangeState",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BotConfigSO",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "GetDamageScale",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "BotZombieNor",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Enanle",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnTakeDame",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "TransitionState",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "DataAttackBoss.DataSkill",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "getDefaultValue",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ctor",
-                        "excluded": false
-                    },
-                    {
-                        "name": "getHashCode",
-                        "excluded": true
-                    },
-                    {
-                        "name": "equals",
-                        "excluded": true
-                    },
-                    {
-                        "name": "$clone",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "Detector",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "LateUpdate",
-                        "excluded": false
-                    },
-                    {
-                        "name": "DisableThis",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Play",
-                        "excluded": true
-                    },
-                    {
-                        "name": "AnimateScale",
-                        "excluded": true
-                    },
-                    {
-                        "name": "SetHealthImage",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "GradientText",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ModifyMesh$1",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "HumanMoveBase",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnBotDead",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SetBotMove",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SetBotMove$1",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CheckParent",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "MedalsUI",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnGetMedal_0",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnGetMedal_1",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnGetMedal_2",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnGetMedal_3",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnGetMedal_4",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnGetMedal",
-                        "excluded": false
-                    },
-                    {
-                        "name": "PlayFullSetAnimation",
-                        "excluded": true
-                    },
-                    {
-                        "name": "SpawnPlaneStrikeDropBomb",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ActionAnimMedal",
-                        "excluded": true
-                    },
-                    {
-                        "name": "ShowMedal",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "NUtiliti",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "AlignCamera",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "NUtiliti.UpdateSetting",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "PowerUpDisplay",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Start",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "HandleRewardCollected",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ShowEffectCollected",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnSetEventPerRewardType",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ShowFireRateContent",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "RotaWing",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "SlowDown#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "SlowDown#set",
-                        "excluded": true
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Tick",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SetRotaRate",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "WayPoint",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "WayPointlist",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetIndexPath",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "WingValue",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "getDefaultValue",
-                        "excluded": true
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ctor",
-                        "excluded": false
-                    },
-                    {
-                        "name": "getHashCode",
-                        "excluded": true
-                    },
-                    {
-                        "name": "equals",
-                        "excluded": true
-                    },
-                    {
-                        "name": "$clone",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BotNetwork",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "BotConfigSO#get",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IsDead#get",
-                        "excluded": false
-                    },
-                    {
-                        "name": "currentHealth#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "IsImmortal#get",
-                        "excluded": true
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "TakeDamage",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CheckImmortalStatus",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CacularHealth",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Die",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SetHealthBar",
-                        "excluded": false
-                    },
-                    {
-                        "name": "HideHealthBarAfterDelay",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ChangeAnim",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SetFloatAnim",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SetIntAnim",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SetAnimAndType",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ActiveFalseDetectors",
-                        "excluded": false
-                    },
-                    {
-                        "name": "RotaToTarget",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetNearestDirection",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDespawn",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExplosinArrmor",
-                        "excluded": false
-                    },
-                    {
-                        "name": "PlayAudioVoice",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "RewardNetwork",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "TakeCollect",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CalculateHealth",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Collect",
-                        "excluded": false
-                    },
-                    {
-                        "name": "PlayCollectSound",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "Rocket",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnInit",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "NormalFire",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Explosion",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CheckHitCollider",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CheckHitExplosion",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDrawGizmos",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnDespawn",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BossZomSwat_Attack",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "EnterState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IEDelaySkill",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExitState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetNextState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Stun",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IEDelayAnimEvent",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BossZomSwat_Dead",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "EnterState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExitState",
-                        "excluded": true
-                    },
-                    {
-                        "name": "GetNextState",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BossZomSwat_Idle",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "EnterState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExitState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetNextState",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BossZomSwat_Move",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "EnterState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExitState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetNextState",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BossZomSwat_Start",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "EnterState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExitState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetNextState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BossZomSwat_Stun_1",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "EnterState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExitState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetNextState",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BossZomSwat_Stun_2",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "EnterState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExitState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetNextState",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BotZombieNor_Attack",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "EnterState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExitState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetNextState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IETakeDamagePlayer",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BotZombieNor_Dead",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "EnterState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IEDelayAnimAndDespawn",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExitState",
-                        "excluded": true
-                    },
-                    {
-                        "name": "GetNextState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "TutorialReload",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BotZombieNor_DeadExplosion",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "EnterState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExitState",
-                        "excluded": true
-                    },
-                    {
-                        "name": "GetNextState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "TutorialReload",
-                        "excluded": true
-                    },
-                    {
-                        "name": "IEDelayAnimAndDespawn",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BotZombieNor_Idle",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "EnterState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExitState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetNextState",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BotZombieNor_Move",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "EnterState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExitState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetNextState",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "BotZombieNor_Start",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "OnTakeDamage",
-                        "excluded": false
-                    },
-                    {
-                        "name": "EnterState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExitState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "GetNextState",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CallOnTakeDamage",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "Weapon26",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Awake",
-                        "excluded": false
-                    },
-                    {
-                        "name": "AssignAnimationClips",
-                        "excluded": false
-                    },
-                    {
-                        "name": "LogicPlayGun",
-                        "excluded": false
-                    },
-                    {
-                        "name": "InstructReload",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "Weapon81",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "AssignAnimationClips",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Shoot",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "WeaponBase.LayerConstants",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
                 "className": "UnityEngine.UI.LayoutUtility",
                 "staticMethods": [],
                 "instanceMethods": [
@@ -27737,16 +25580,6 @@
                     {
                         "name": "GetLayoutProperty$1",
                         "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "AnimatorHashLib",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
                     }
                 ]
             },
@@ -27845,272 +25678,6 @@
                 ]
             },
             {
-                "className": "BallisticArmor",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExplosionArmor",
-                        "excluded": false
-                    },
-                    {
-                        "name": "TakeDamage",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CaculatorDropArmor",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ActiveFalseThis",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IEDropArmor",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "EventAnim_BossZomSwat",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "ExplosionDoor",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ShakeCamera",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ShakeCamera$1",
-                        "excluded": false
-                    },
-                    {
-                        "name": "StartShakeCameraLoop",
-                        "excluded": false
-                    },
-                    {
-                        "name": "StopShakeCamera",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ShakeCameraLoop",
-                        "excluded": false
-                    },
-                    {
-                        "name": "TakeDamagePlayer",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ChangeCam",
-                        "excluded": false
-                    },
-                    {
-                        "name": "PlaySoundIndex",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "ExplosionDor",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ExplosionDoor",
-                        "excluded": false
-                    },
-                    {
-                        "name": "IEDropArmor",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "EffectUI",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "inherits",
-                        "excluded": false
-                    },
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Start",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Play",
-                        "excluded": false
-                    },
-                    {
-                        "name": "PositionWithinPanel",
-                        "excluded": false
-                    },
-                    {
-                        "name": "FadeOutEffect",
-                        "excluded": false
-                    },
-                    {
-                        "name": "SetAlpha",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "CheckWithHeightManager",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "Start",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "UpdateWeaponPosition",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "OxygenTanks",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Explosion",
-                        "excluded": false
-                    },
-                    {
-                        "name": "CheckHitExplosion",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDrawGizmos",
-                        "excluded": true
-                    }
-                ]
-            },
-            {
-                "className": "PlayerHP",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnEnable",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnTakeDamagePlayer",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ProcessDamageQueue",
-                        "excluded": false
-                    },
-                    {
-                        "name": "inherits",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ClearListDamage",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "GameConstants.BotType",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "ButtomSyncLink",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "Start",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnDisable",
-                        "excluded": true
-                    },
-                    {
-                        "name": "OnCickButton",
-                        "excluded": false
-                    },
-                    {
-                        "name": "ButtonCTA",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "ButtonAnimSimulator",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    },
-                    {
-                        "name": "OnPlayButtonAnim",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "FlareAnimation",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "init",
-                        "excluded": false
-                    },
-                    {
-                        "name": "Update",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
                 "className": "System.NotImplemented",
                 "staticMethods": [],
                 "instanceMethods": [
@@ -28189,56 +25756,94 @@
                 ]
             },
             {
-                "className": "AudioManager",
+                "className": "Luna.Unity.DTO.UnityEngine.Animation.Mecanim.Avatar.TOSPair",
                 "staticMethods": [],
                 "instanceMethods": [
                     {
-                        "name": "inherits",
+                        "name": "getDefaultValue",
+                        "excluded": true
+                    },
+                    {
+                        "name": "ctor",
                         "excluded": false
                     },
                     {
-                        "name": "PlaySound",
-                        "excluded": false
+                        "name": "getHashCode",
+                        "excluded": true
+                    },
+                    {
+                        "name": "equals",
+                        "excluded": true
+                    },
+                    {
+                        "name": "$clone",
+                        "excluded": true
                     }
                 ]
             },
             {
-                "className": "CutSceneCam",
+                "className": "UnityEngine.Avatar",
                 "staticMethods": [],
                 "instanceMethods": [
                     {
-                        "name": "inherits",
-                        "excluded": false
+                        "name": "humanDescription#get",
+                        "excluded": true
                     },
                     {
-                        "name": "init",
-                        "excluded": false
+                        "name": "SetMuscleMinMax",
+                        "excluded": true
                     },
                     {
-                        "name": "Setparent",
-                        "excluded": false
+                        "name": "SetParameter",
+                        "excluded": true
                     },
                     {
-                        "name": "MoveFromAToB",
-                        "excluded": false
+                        "name": "GetAxisLength",
+                        "excluded": true
                     },
                     {
-                        "name": "IEMoveFromAToB",
-                        "excluded": false
-                    }
-                ]
-            },
-            {
-                "className": "AudioChild",
-                "staticMethods": [],
-                "instanceMethods": [
-                    {
-                        "name": "OnInit",
-                        "excluded": false
+                        "name": "GetPreRotation",
+                        "excluded": true
                     },
                     {
-                        "name": "OnDespawn",
-                        "excluded": false
+                        "name": "GetPostRotation",
+                        "excluded": true
+                    },
+                    {
+                        "name": "GetZYPostQ",
+                        "excluded": true
+                    },
+                    {
+                        "name": "GetZYRoll",
+                        "excluded": true
+                    },
+                    {
+                        "name": "GetLimitSign",
+                        "excluded": true
+                    },
+                    {
+                        "name": "public_GetAxisLength",
+                        "excluded": true
+                    },
+                    {
+                        "name": "public_GetPreRotation",
+                        "excluded": true
+                    },
+                    {
+                        "name": "public_GetPostRotation",
+                        "excluded": true
+                    },
+                    {
+                        "name": "public_GetZYPostQ",
+                        "excluded": true
+                    },
+                    {
+                        "name": "public_GetZYRoll",
+                        "excluded": true
+                    },
+                    {
+                        "name": "public_GetLimitSign",
+                        "excluded": true
                     }
                 ]
             }
@@ -28637,6 +26242,56 @@
                         "script": "",
                         "ext": "",
                         "name": "Assets/_GameManhGV/Textures/Map_Z8/muzzle_eff.tga"
+                    },
+                    {
+                        "maxWidth": 512,
+                        "maxHeight": 512,
+                        "format": "default",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Scenes/scene_WWZ01-section1_BuildLight/Lightmap-0_comp_light.exr"
+                    },
+                    {
+                        "maxWidth": 512,
+                        "maxHeight": 512,
+                        "format": "default",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_GameManhGV/Scenes/scene_WWZ01-section1_BuildLight/Lightmap-1_comp_light.exr"
+                    },
+                    {
+                        "maxWidth": 1024,
+                        "maxHeight": 1024,
+                        "format": "default",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_MapWWZ01/Map/Map WWZombie1/Texture/T_Asset_Z01.tga"
+                    },
+                    {
+                        "maxWidth": 1024,
+                        "maxHeight": 1024,
+                        "format": "default",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_MapWWZ01/Map/Map WWZombie1/Texture/T_Trans_Z01.tga"
+                    },
+                    {
+                        "maxWidth": 512,
+                        "maxHeight": 512,
+                        "format": "default",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/_MapWWZ01/Map/Map WWZombie1/Texture/T_Skybox_Z01.jpg"
                     }
                 ]
             },
