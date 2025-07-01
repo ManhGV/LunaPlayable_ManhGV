@@ -39,7 +39,7 @@ public class WeaponBase : Singleton<WeaponBase>
 
     protected virtual void Start()
     {
-        _isHoldScreen = WeaponBase.Instance._isHoldScreen;
+       // _isHoldScreen = WeaponBase.Instance._isHoldScreen;
         Instance = this;
     }
 

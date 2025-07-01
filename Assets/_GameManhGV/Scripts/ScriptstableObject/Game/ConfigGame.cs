@@ -21,6 +21,7 @@ public class BotConfig
     [Header("Thông tin Bot")]
     [Tooltip("Chọn loại Bot")]
     public PoolType botType;
+    public PoinSpawnbot PoinSpawnbot;
 
     [Tooltip("Số lượng bot sinh ra")]
     public int botQuantity;
@@ -42,5 +43,3 @@ public class RewardConfig
     [Tooltip("Thời gian delay từ đầu trận đấu để bắt đầu thả phần thưởng")]
     public float WaitToSpawn;
 }
-
-
