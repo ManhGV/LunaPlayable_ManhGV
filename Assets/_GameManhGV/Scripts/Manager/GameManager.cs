@@ -18,9 +18,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float shakeCamMin;
     [SerializeField] private float shakeCamMax;
     
-    [Header("End Game")] 
+    [Header("End Game")]
+    [SerializeField] ScreenImpactEffect screenImpactEffect;
     public bool endGame;
-
     private void Start()
     {
         LunaLogStart();
@@ -59,12 +59,21 @@ public class GameManager : Singleton<GameManager>
     {
         if(gameState == GameConstants.GameState.EndGame)
             return;
+        AudioManager.Instance.StopAllAudio();
+        screenImpactEffect.ShowScreenImpact(_isWin);
+        SpawnBotManager.Instance.DespawnAllBot(4f);
         UIManager.Instance.GetUI<Canvas_GamePlay>().OpendEndGame(_isWin);
         soundCombatBoss.SetActive(false);
         soundBG.SetActive(false);
         endGame = true;
         gameState = GameConstants.GameState.EndGame;
         LunaEndGame();
+    }
+
+    public void ActiveSoundCombat()
+    {
+        soundCombatBoss.SetActive(true);
+        soundBG.SetActive(false);
     }
 
     #region Slomotion
@@ -95,6 +104,17 @@ public class GameManager : Singleton<GameManager>
     }
     
     #endregion
+    
+    public void SnakeCamera(float duration, float magnitude)
+    {
+        if (shakeCam == null)
+        {
+            Debug.LogError("Shake camera transform is not assigned!");
+            return;
+        }
+        
+        StartCoroutine(ShakeCamera(duration, magnitude));
+    }
     
     // Thêm hàm rung lắc camera
     protected IEnumerator ShakeCamera(float duration, float magnitude)

@@ -39,7 +39,7 @@ public class WeaponBase : Singleton<WeaponBase>
 
     protected virtual void Start()
     {
-        _isHoldScreen = WeaponBase.Instance._isHoldScreen;
+       // _isHoldScreen = WeaponBase.Instance._isHoldScreen;
         Instance = this;
     }
 
@@ -148,7 +148,7 @@ public class WeaponBase : Singleton<WeaponBase>
     }
     #endregion
 
-    public virtual void ChangeFireRate(GameConstants.PoolType typeBulletGift)
+    public virtual void ChangeFireRate(GameConstants.PoolType typeBulletGift,float _fireRate)
     {
         
     }

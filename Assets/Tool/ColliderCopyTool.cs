@@ -7,8 +7,8 @@ using Object = UnityEngine.Object;
 
 public class ColliderCopyToolDragAndDrop : EditorWindow
 {
-    private List<GameObject> targetObjects = new List<GameObject>();
-    private List<GameObject> sourceObjects = new List<GameObject>();
+    private List<GameObject> targetObjects = new List<GameObject>(); // Bên trái - chưa có collider
+    private List<GameObject> sourceObjects = new List<GameObject>(); // Bên phải - đã có collider
 
     [MenuItem("Tools/Collider Copy Tool (Multi Drag & Drop)")]
     public static void ShowWindow()
@@ -23,18 +23,12 @@ public class ColliderCopyToolDragAndDrop : EditorWindow
 
         int rows = Mathf.Max(targetObjects.Count, sourceObjects.Count);
 
-        // Đồng bộ độ dài list
-        while (targetObjects.Count < rows)
-            targetObjects.Add(null);
-        while (sourceObjects.Count < rows)
-            sourceObjects.Add(null);
-
         for (int i = 0; i < rows; i++)
         {
             EditorGUILayout.BeginHorizontal();
 
-            GameObject target = targetObjects[i];
-            GameObject source = sourceObjects[i];
+            GameObject target = i < targetObjects.Count ? targetObjects[i] : null;
+            GameObject source = i < sourceObjects.Count ? sourceObjects[i] : null;
 
             GameObject newTarget = (GameObject)EditorGUILayout.ObjectField(target, typeof(GameObject), true);
             GUILayout.Label("<==>", GUILayout.Width(40));
@@ -42,14 +36,21 @@ public class ColliderCopyToolDragAndDrop : EditorWindow
 
             if (GUILayout.Button("X", GUILayout.Width(20)))
             {
-                targetObjects.RemoveAt(i);
-                sourceObjects.RemoveAt(i);
+                if (i < targetObjects.Count) targetObjects.RemoveAt(i);
+                if (i < sourceObjects.Count) sourceObjects.RemoveAt(i);
                 EditorGUILayout.EndHorizontal();
                 break;
             }
 
-            targetObjects[i] = newTarget;
-            sourceObjects[i] = newSource;
+            if (i < targetObjects.Count)
+                targetObjects[i] = newTarget;
+            else if (newTarget != null)
+                targetObjects.Add(newTarget);
+
+            if (i < sourceObjects.Count)
+                sourceObjects[i] = newSource;
+            else if (newSource != null)
+                sourceObjects.Add(newSource);
 
             EditorGUILayout.EndHorizontal();
         }
@@ -60,8 +61,8 @@ public class ColliderCopyToolDragAndDrop : EditorWindow
             for (int i = 0; i < targetObjects.Count; i++)
                 targetObjects[i] = null;
         if (GUILayout.Button("🧹 Clear Right", GUILayout.Height(30)))
-            for (int i = 0; i < sourceObjects.Count; i++)
-                sourceObjects[i] = null;
+        for (int i = 0; i < sourceObjects.Count; i++)
+            sourceObjects[i] = null;
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.Space(15);
@@ -140,13 +141,9 @@ public class ColliderCopyToolDragAndDrop : EditorWindow
     {
         foreach (var obj in objs)
         {
-            if (obj is GameObject go)
+            if (obj is GameObject go && !targetObjects.Contains(go))
             {
-                int nullIndex = targetObjects.FindIndex(o => o == null);
-                if (nullIndex >= 0)
-                    targetObjects[nullIndex] = go;
-                else if (!targetObjects.Contains(go))
-                    targetObjects.Add(go);
+                targetObjects.Add(go);
             }
         }
     }
@@ -155,13 +152,9 @@ public class ColliderCopyToolDragAndDrop : EditorWindow
     {
         foreach (var obj in objs)
         {
-            if (obj is GameObject go)
+            if (obj is GameObject go && !sourceObjects.Contains(go))
             {
-                int nullIndex = sourceObjects.FindIndex(o => o == null);
-                if (nullIndex >= 0)
-                    sourceObjects[nullIndex] = go;
-                else if (!sourceObjects.Contains(go))
-                    sourceObjects.Add(go);
+                sourceObjects.Add(go);
             }
         }
     }

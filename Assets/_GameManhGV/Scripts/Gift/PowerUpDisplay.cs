@@ -15,6 +15,7 @@ public class PowerUpDisplay : MonoBehaviour
 #endif
     public RewardNetwork rewardNetwork;
     public RewardType rewardType;
+    public float firerate = 0.1f; 
     public ParticleSystem[] CollectedEffect;
     public Transform mytrans;
     public GameObject myBody;
@@ -83,7 +84,7 @@ public class PowerUpDisplay : MonoBehaviour
     {
         if (rewardType == RewardType.ChangeFirerate)
         {
-            WeaponBase.Instance.ChangeFireRate(typeBulletGift);
+            WeaponBase.Instance.ChangeFireRate(typeBulletGift,firerate);
         }
         else if (rewardType == RewardType.ChangeWeapon)
         {
