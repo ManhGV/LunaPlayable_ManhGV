@@ -15,14 +15,6 @@ public class WeaponEvent : Singleton<WeaponEvent>
     public float PosWeaponChangeEnd;
     public float transitionTime = 1f;
 
-    private void Start()
-    {
-        // for (int i = 0; i < weaponInfo.Length; i++)
-        // {
-        //     DefaultFireRate[i] = weaponInfo[i].FireRate;
-        // }
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))    
@@ -31,20 +23,12 @@ public class WeaponEvent : Singleton<WeaponEvent>
 
     private void OnEnable()
     {
-        //EventManager.AddListener<float>(EventName.OnUpgradeFireRate, OnUpgradeFireRate);
         EventManager.AddListener<bool>(EventName.OnChangeWeapon, OnChangeMachineGun);
-        //EventManager.AddListener<bool>(EventName.OnSwithToggleRocket, OnSwichRocket);
     }
 
     private void OnDisable()
     {
-        //EventManager.RemoveListener<float>(EventName.OnUpgradeFireRate, OnUpgradeFireRate);
         EventManager.RemoveListener<bool>(EventName.OnChangeWeapon, OnChangeMachineGun);
-        //EventManager.RemoveListener<bool>(EventName.OnSwithToggleRocket, OnSwichRocket);
-        // for (int i = 0; i < weaponInfo.Length; i++)
-        // {
-        //     weaponInfo[i].FireRate = DefaultFireRate[i];
-        // }
     }
 
 
@@ -61,21 +45,11 @@ public class WeaponEvent : Singleton<WeaponEvent>
         }
 
     }
-    
-    // public void OnUpgradeFireRate(float Value)
-    // {
-    //     for (int i = 0; i < weaponInfo.Length; i++)
-    //     {
-    //         weaponInfo[i].FireRate = Value;
-    //     }
-    //
-    //     IsChangeBullet = true;
-    //     EventManager.Invoke(EventName.OnChangeFireRate, true);
-    // }
 
     private IEnumerator OnChangeWeapon()
     {
         // Di chuyển WeaponDefault từ vị trí A đến B theo trục Z
+        EventManager.Invoke(EventName.UpdateBulletCount, 0);
         float elapsedTime = 0f;
         Vector3 startPosition = WeaponDefault.localPosition;
         Vector3 endPosition = new Vector3(startPosition.x, startPosition.y, PosWeaponDefaultEnd);
@@ -108,5 +82,6 @@ public class WeaponEvent : Singleton<WeaponEvent>
             yield return null;
         }
         WeaponChange.localPosition = endPosition2;
+        UIManager.Instance.GetUI<Canvas_GamePlay>().UpdateBulletChangeWeapon();
     }
 }

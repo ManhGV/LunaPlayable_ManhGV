@@ -148,7 +148,7 @@ public class WeaponBase : Singleton<WeaponBase>
     }
     #endregion
 
-    public virtual void ChangeFireRate(GameConstants.PoolType typeBulletGift)
+    public virtual void ChangeFireRate(GameConstants.PoolType typeBulletGift,float _fireRate)
     {
         
     }

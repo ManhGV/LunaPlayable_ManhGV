@@ -40,7 +40,15 @@ public class ReloadableWeapons : WeaponBase
         _currentBulletCount = weaponInfo.bulletCount; // Khởi tạo số lượng đạn
         _materialGun.SetVector("_Glow", Vector4.zero);
     }
-
+    protected override void Start()
+    {
+        if (WeaponBase.Instance is ReloadableWeapons reloadableWeapons)
+        {
+            _bulletType = reloadableWeapons._bulletType;
+            weaponInfo.FireRate = reloadableWeapons.weaponInfo.FireRate;
+        }
+        base.Start();
+    }
     private void FixedUpdate()
     {
         _materialGun.SetVector("_Muzzle", new Vector4(_muzzleCenter.position.x,_muzzleCenter.position.y, _muzzleCenter.position.z, 0f));
@@ -317,5 +325,9 @@ public class ReloadableWeapons : WeaponBase
     }
     #endregion
 
-    public override void ChangeFireRate(GameConstants.PoolType typeBulletGift) => _bulletType = typeBulletGift;
+    public override void ChangeFireRate(GameConstants.PoolType typeBulletGift, float _fireRate)
+    {
+        weaponInfo.FireRate = _fireRate;
+        _bulletType = typeBulletGift;
+    }
 }

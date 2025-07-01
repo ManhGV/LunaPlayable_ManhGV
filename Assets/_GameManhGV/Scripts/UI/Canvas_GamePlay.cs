@@ -257,4 +257,9 @@ public class Canvas_GamePlay : UICanvas
         yield return new WaitForSeconds(.9f);
         _endGameLosePanel.SetActive(true);
     }
+    public void UpdateBulletChangeWeapon()
+    {
+        UpdateBulletCount(WeaponBase.Instance.weaponInfo.bulletCount);
+        UpdateBulletCountDefault(WeaponBase.Instance.weaponInfo.bulletCount);
+    }
 }
