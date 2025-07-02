@@ -31,4 +31,85 @@ public class Weapon123 : WeaponRotationMuzzle
 
         PlayGunEffect();
     }
+
+    private bool canCancreateVfx = true;
+    protected override void FireFromMuzzle(Transform muzzle, Vector3 forward)
+    {
+        canCancreateVfx = !canCancreateVfx;
+        var shotRotation = Quaternion.Euler(Random.insideUnitCircle * weaponInfo.inaccuracy) * forward;
+        var ray = new Ray(_cameraTransform.position, shotRotation);
+        BulletTrail bullet = SimplePool.Spawn<BulletTrail>(_bulletType, muzzle.position, muzzle.rotation);
+        Vector3 posGizmod = GizmodCaculatorPointShoot();
+        bullet.Init((posGizmod - muzzle.position).normalized, posGizmod);
+
+        bool CheckRayCast = Physics.Raycast(ray, out var hit, Mathf.Infinity, CombinedLayerMask());
+        GameConstants.PoolType typeEffect = GameConstants.PoolType.vfx_ConcreteImpact;
+        if (CheckRayCast)
+        {
+            DamageInfo damageInfo = new DamageInfo()
+            {
+                damageType = DamageType.Normal,
+                damage = weaponInfo.damage,
+                name = hit.collider.name,
+            };
+
+            if (IsInLayerIndex(hit.collider.gameObject,0))
+            {
+                var takeDamageController = hit.transform.gameObject.GetComponent<ITakeDamage>();
+                if (takeDamageController == null)
+                {
+                    takeDamageController = hit.transform.root.gameObject.GetComponent<ITakeDamage>();
+                }
+                if (takeDamageController != null) takeDamageController.TakeDamage(damageInfo);
+                typeEffect = GameConstants.PoolType.vfx_BloodEffectZom;
+                // Debug.Log(damageType.ToString() + " " + weaponInfo.damage + " " + hit.collider.name);
+            }
+            else if (IsInLayerIndex(hit.collider.gameObject,1))
+            {
+                var takeDamageController = hit.transform.gameObject.GetComponent<ITakeDamage>();
+                if (takeDamageController == null)
+                {
+                    takeDamageController = hit.transform.root.gameObject.GetComponent<ITakeDamage>();
+                }
+                if (takeDamageController != null) takeDamageController.TakeDamage(damageInfo);
+                typeEffect = GameConstants.PoolType.vfx_ShootGift;
+            }
+            else if (IsInLayerIndex(hit.collider.gameObject,2))
+            {
+                var rewardController = hit.transform.gameObject.GetComponent<IReward>();
+                if (rewardController == null)
+                {
+                    rewardController = hit.transform.root.gameObject.GetComponent<IReward>();
+                }
+                if (rewardController != null) rewardController.TakeCollect(weaponInfo.damage);
+                typeEffect = GameConstants.PoolType.vfx_ShootGift;
+            }
+            else if (IsInLayerIndex(hit.collider.gameObject,3))
+            {
+                var takeDamageController1 = hit.transform.gameObject.GetComponent<ITakeDamage>();
+                if (takeDamageController1 == null)
+                {
+                    takeDamageController1 = hit.transform.root.gameObject.GetComponent<ITakeDamage>();
+                }
+                if (takeDamageController1 != null) takeDamageController1.TakeDamage(damageInfo);
+                //Debug.Log(damageType.ToString() + " " + weaponInfo.damage + " " + hit.collider.name);
+                typeEffect = GameConstants.PoolType.vfx_ConcreteImpact;
+            }
+            else if (IsInLayerIndex(hit.collider.gameObject,4))
+            {
+                var takeDamageController1 = hit.transform.gameObject.GetComponent<ITakeDamage>();
+                if (takeDamageController1 == null)
+                    takeDamageController1 = hit.transform.root.gameObject.GetComponent<ITakeDamage>();
+                
+                if (takeDamageController1 != null) 
+                    takeDamageController1.TakeDamage(damageInfo);
+                typeEffect = GameConstants.PoolType.vfx_ShootGift;
+            }
+
+            // Tạo hiệu ứng va chạm
+            if(canCancreateVfx)
+                SimplePool.Spawn<EffectVfx>(typeEffect, hit.point, Quaternion.identity).OnInit();
+        }
+        EventManager.Invoke(EventName.OnCheckBotTakeDamage, CheckRayCast);
+    }
 }

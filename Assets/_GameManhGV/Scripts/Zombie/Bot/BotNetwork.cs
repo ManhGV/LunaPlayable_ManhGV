@@ -92,7 +92,6 @@ public class BotNetwork : ZombieBase
     public override void BotDead()
     {
         base.BotDead();
-        //SpawnBotManager.Instance.RemoveBotDead(this);
         AchievementEvaluator.Instance.OnBotKilled(1.8f,false);
     }
 

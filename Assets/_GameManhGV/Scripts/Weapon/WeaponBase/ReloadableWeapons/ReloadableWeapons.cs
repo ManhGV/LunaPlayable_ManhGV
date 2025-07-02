@@ -38,10 +38,10 @@ public class ReloadableWeapons : WeaponBase
         base.Awake();
         _temperatureCurrent = 0;
         _currentBulletCount = weaponInfo.bulletCount; // Khởi tạo số lượng đạn
-        _materialGun.SetVector("_Glow", Vector4.zero);
     }
     protected override void Start()
     {
+        _materialGun.SetVector("_Glow", Vector4.zero);
         if (WeaponBase.Instance is ReloadableWeapons reloadableWeapons)
         {
             _bulletType = reloadableWeapons._bulletType;

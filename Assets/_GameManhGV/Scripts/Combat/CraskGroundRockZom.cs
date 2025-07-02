@@ -44,11 +44,9 @@ public class CraskGroundRockZom : GameUnit
             spawnPos.y = -4f;
             _rockChildMove[i - 1].position = spawnPos;
             StartCoroutine(IEMoveRockChild(_rockChildMove[i-1]));
-            if (i == 4)
-            {
-                print("TODO: Take damage to player");
-            }
             yield return new WaitForSeconds(_timeDelay);
+            if (i == 4)
+                EventManager.Invoke(EventName.OnTakeDamagePlayer, 50);
         }
     }
     

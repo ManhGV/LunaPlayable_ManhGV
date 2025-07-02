@@ -84,12 +84,14 @@ public class PowerUpDisplay : MonoBehaviour
         if (rewardType == RewardType.ChangeFirerate)
         {
             WeaponBase.Instance.ChangeFireRate(typeBulletGift,firerate);
+            //UIManager.Instance.GetUI<Canvas_GamePlay>().PowerupEffectUI(0);
         }
         else if (rewardType == RewardType.ChangeWeapon)
         {
             EventManager.Invoke(EventName.OnChangeWeapon, true);
-            UIManager.Instance.GetUI<Canvas_GamePlay>().PowerupEffectUI();
+            //UIManager.Instance.GetUI<Canvas_GamePlay>().PowerupEffectUI(1);
         }
+        UIManager.Instance.GetUI<Canvas_GamePlay>().DoneReloadFast();
     }    
 
     private IEnumerator ShowFireRateContent()

@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &932472326629994063
 Transform:
   m_ObjectHideFlags: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3a87f2f475530814d8e079da01e7a9ef, type: 3}
   - {fileID: 8300000, guid: eef6dde0343b0ab45b3927833e0bcde1, type: 3}
   _audioVolume: 0
-  _maxHealth: 150
+  _maxHealth: 80
   _currentHealth: 0
   isCollected: 0
 --- !u!114 &6474361221376154520
@@ -75,6 +75,7 @@ MonoBehaviour:
   projecttilePlayer: 2
   rewardNetwork: {fileID: 4907186091990635573}
   rewardType: 1
+  firerate: 0.1
   CollectedEffect:
   - {fileID: 413840082963971212}
   - {fileID: 1974572104349526249}
@@ -102,7 +103,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -10251,7 +10252,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 86, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6742697710448170294
 MonoBehaviour:
@@ -15323,7 +15324,7 @@ Transform:
   m_GameObject: {fileID: 5430261799508202424}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0.5999999}
+  m_LocalPosition: {x: -0.297, y: 1, z: -0.838}
   m_LocalScale: {x: 2.2500005, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20188,7 +20189,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 43, y: -14.5}
-  m_SizeDelta: {x: 86, y: 0}
+  m_SizeDelta: {x: 86, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6235463542379395137
 CanvasRenderer:

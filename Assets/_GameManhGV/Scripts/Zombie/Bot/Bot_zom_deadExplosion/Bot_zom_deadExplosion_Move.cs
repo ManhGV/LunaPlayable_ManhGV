@@ -39,7 +39,9 @@ public class Bot_zom_deadExplosion_Move : StateBase<ZomAllState, BotNetwork>
                 if(isbotDog)
                     thisStateController.ChangeState(ZomAllState.Attack);
                 else
-                    thisStateController.ChangeState(ZomAllState.Dead);
+                {
+                    thisBotNetworks.TakeDamage(new DamageInfo(){damage = 1000, damageType = DamageType.Normal,name = "This"});
+                }
             }
         }
             

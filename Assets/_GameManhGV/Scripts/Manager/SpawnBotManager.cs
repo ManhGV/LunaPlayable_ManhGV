@@ -28,6 +28,7 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         foreach (BotConfig VARIABLE in dataBotSpawn.fightRound.botConfigs)
             foreach (SpawmQuantity quantity in VARIABLE.spawmQuantities)
                 AllBotsToSpawn += quantity.botQuantity;
+        AllBotsToSpawn += 7;
         _currentBot = AllBotsToSpawn;
     }
 

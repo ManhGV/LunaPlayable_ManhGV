@@ -36,7 +36,7 @@ public class Canvas_GamePlay : UICanvas
     Coroutine caculateFillCoroutine;
 
     [Header("Powerup Weapon")]
-    [SerializeField] private GameObject _powerupEffectUI;
+    [SerializeField] private GameObject[] _powerupEffectUI = new GameObject[2];
 
     [Header("Active Reload")] 
     [SerializeField] CanvasGroup _canvasGrupReloadFast;
@@ -215,9 +215,9 @@ public class Canvas_GamePlay : UICanvas
         }
     }
 
-    public void PowerupEffectUI()
+    public void PowerupEffectUI(int _type)
     {
-        _powerupEffectUI.SetActive(true);
+        _powerupEffectUI[_type].SetActive(true);
     }
 
     public void OpendEndGame(bool _isWin)
@@ -259,5 +259,11 @@ public class Canvas_GamePlay : UICanvas
     {
         UpdateBulletCount(WeaponBase.Instance.weaponInfo.bulletCount);
         UpdateBulletCountDefault(WeaponBase.Instance.weaponInfo.bulletCount);
+    }
+
+    public void DoneReloadFast()
+    {
+        _canvasGrupReloadFastFake.alpha = 0;
+        _canvasGrupReloadFast.alpha = 0;
     }
 }
