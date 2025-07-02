@@ -10,34 +10,30 @@ public class BotZombieNor_Move : StateBase<ZomAllState, BotNetwork>
     private int typeMove;
     private float speedTypeIndex;
     private Vector3 pointMove;
+    public bool canRandomMove;
     
     //độ chênh lêch y không lớn hơn 1 thì giữ nguyên điểm cho đi tới, nếu lớn hơn thì giữ nguyên điểm và chuyển sang nhảy
     
     public override void EnterState()
     {
-        if (Random.Range(0, 10) < 7)
+        if (canRandomMove)
         {
-            if (Random.Range(0, 2) == 0)
-                typeMove = 0;
-            else
-                typeMove = 3;
+            typeMove = Random.Range(0, 4);
+            if (typeMove == 0) 
+                speedTypeIndex = .9f;
+            else if (typeMove == 1) 
+                speedTypeIndex = .87f;
+            else if (typeMove == 2) 
+                speedTypeIndex = .28f;
+            else 
+                speedTypeIndex = 3f;
         }
         else
         {
-            if (Random.Range(0, 2) == 0)
-                typeMove = 1;
-            else
-                typeMove = 2;
+            typeMove = 3;
+            speedTypeIndex = 3f;
         }
         
-        if (typeMove == 0) 
-            speedTypeIndex = .9f;
-        else if (typeMove == 1) 
-            speedTypeIndex = .87f;
-        else if (typeMove == 2) 
-            speedTypeIndex = .28f;
-        else 
-            speedTypeIndex = 3f;
         
         thisBotNetworks.ChangeAnimAndType("Move",typeMove);
         path = thisBotNetworks.GetWayPoint;
@@ -65,9 +61,12 @@ public class BotZombieNor_Move : StateBase<ZomAllState, BotNetwork>
                 {
                     moveIndex++;
                     if (moveIndex >= path.WayPoints.Count)
+                    {
                         thisStateController.ChangeState(ZomAllState.Attack);
+                        return;
+                    }
                     
-                    if (Mathf.Abs(pointMove.y - path.WayPoints[moveIndex].position.y) > 1f)
+                    if (pointMove.y - path.WayPoints[moveIndex].position.y > 1f)
                     {
                         pointMove = path.WayPoints[moveIndex].position;
                         pointMove.y =path.WayPoints[moveIndex-1].position.y;

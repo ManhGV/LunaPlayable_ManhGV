@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using static GameConstants;
 
 [CreateAssetMenu(fileName = "ConfigGame", menuName = "ScriptableObjects/ConfigGame", order = 1)]
@@ -21,8 +21,15 @@ public class BotConfig
     [Header("Thông tin Bot")]
     [Tooltip("Chọn loại Bot")]
     public PoolType botType;
-    public PoinSpawnbot PoinSpawnbot;
 
+    public List<SpawmQuantity> spawmQuantities = new List<SpawmQuantity>();
+}
+
+[Serializable]
+public class SpawmQuantity
+{
+    public PoinSpawnbot PoinSpawnbot;
+ 
     [Tooltip("Số lượng bot sinh ra")]
     public int botQuantity;
 

@@ -65,7 +65,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425619106495166165}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c2c4d59d18de435489bacb5bbc479487, type: 3}
@@ -11045,8 +11045,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a198ebf1c3096174ca3977e68f5706ed, type: 3}
   wayPoint:
     isUse: 0
-    WayPoints:
-    - {fileID: 0}
+    WayPoints: []
     AttackWayPoints: []
   currentAnimName: 
   currentAnimType: 0
@@ -11082,6 +11081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   humanMoveBase: {fileID: 1136391650757996691}
   speed: 3.4
+  isbotDog: 0
 --- !u!114 &6600749558812974284
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,7 +24,6 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         LunaLogStart();
-        Time.timeScale = slowMotionTimeScale;
     }
 
     #region Pause and Resume
@@ -75,18 +74,6 @@ public class GameManager : Singleton<GameManager>
         soundCombatBoss.SetActive(true);
         soundBG.SetActive(false);
     }
-
-    #region Slomotion
-    public void SlomotionTimeScale()
-    {
-        Time.timeScale = slowMotionTimeScale;
-    }
-    
-    public void DontSlomotionTimeScale()
-    {
-        Time.timeScale = 1f;
-    }
-    #endregion
 
     #region Luna Unity Life Cycle
 

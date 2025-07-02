@@ -13,9 +13,14 @@ public class Bot_zom_deadExplosion_Move : StateBase<ZomAllState, BotNetwork>
     
     public override void EnterState()
     {
-        path = thisBotNetworks.GetWayPoint;
+        Invoke(nameof(DelayGetPath), 0.1f);
         thisBotNetworks.ChangeAnim("Move");
         moveIndex = 0;
+    }
+
+    public void DelayGetPath()
+    {
+        path = thisBotNetworks.GetWayPoint;
     }
 
     public override void UpdateState()

@@ -7592,11 +7592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1164209486341394907 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9143709070299873433, guid: 2724e52354c652f429abf758624fa68a, type: 3}
-  m_PrefabInstance: {fileID: 7984003252473106754}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1326852846541219141 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8981599370582897671, guid: 2724e52354c652f429abf758624fa68a, type: 3}
@@ -7694,15 +7689,6 @@ MonoBehaviour:
   _canvasGroupEndGame: {fileID: 7191559430185015464}
   _endGameWonPanel: {fileID: 7191559430332159094}
   _endGameLosePanel: {fileID: 2084052534137781914}
-  gameObjectsToDisable:
-  - {fileID: 1164209486341394907}
-  - {fileID: 2693383424600901327}
-  - {fileID: 7548537757686874157}
-  - {fileID: 8660890157425841183}
-  gameObjectsToEnable:
-  - {fileID: 3784289051954942684}
-  - {fileID: 7907650266382283607}
-  - {fileID: 5163546298532826980}
 --- !u!114 &6497796690434312593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8021,11 +8007,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8660890157425841183 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1656560630287713629, guid: 2724e52354c652f429abf758624fa68a, type: 3}
-  m_PrefabInstance: {fileID: 7984003252473106754}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8661609036424782745
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8057,6 +8038,10 @@ PrefabInstance:
     - target: {fileID: 2152761884493047514, guid: eaa6e89e8aac69a41baba9eabab37642, type: 3}
       propertyPath: m_Name
       value: Medals
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156258257968214889, guid: eaa6e89e8aac69a41baba9eabab37642, type: 3}
+      propertyPath: _audioSource
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2156258257968214889, guid: eaa6e89e8aac69a41baba9eabab37642, type: 3}
       propertyPath: _medalAudioClips.Array.data[4]

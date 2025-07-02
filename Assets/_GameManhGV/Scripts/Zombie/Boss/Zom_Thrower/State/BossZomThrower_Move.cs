@@ -57,7 +57,7 @@ public class BossZomThrower_Move : StateBase<ZomAllState, BossZomThrower_Netword
                 if (moveIndex == path.WayPoints.Count)
                 {
                     moveDoneToAttack = true;
-                    thisStateController.ChangeState(ZomAllState.Attack);
+                    thisStateController.ChangeState(ZomAllState.Jump);
                 }
             }
         }

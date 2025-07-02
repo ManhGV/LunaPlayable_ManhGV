@@ -107,7 +107,7 @@ MonoBehaviour:
   botType: 32
   botConfigSO: {fileID: 11400000, guid: 8bce0cb18d4df554ab3aa0d45a481e6c, type: 2}
   _centerBotZom: {fileID: 7618322148433556431}
-  isBotActiveEqualTay: 1
+  isBotActiveEqualTay: 0
   isBoss: 0
   mainCameraTranform: {fileID: 0}
   healthBarTransform: {fileID: 5540946372009704745}
@@ -118,9 +118,9 @@ MonoBehaviour:
   _audioSourceVoice: {fileID: 1822882176814228195}
   _listSoundBotVoice:
   - {fileID: 8300000, guid: a7badefd126b2354b8912942fb4c5460, type: 3}
-  - {fileID: 8300000, guid: 21bbac6950279c9418812a10467cd90c, type: 3}
-  - {fileID: 8300000, guid: 9f929d6fa7a16fe408c47c37f98351d3, type: 3}
-  - {fileID: 8300000, guid: ffe4cc86ff834d84fb1e34f62021b83b, type: 3}
+  - {fileID: 8300000, guid: 59e99dfdb3caf4a4ca96c87cd4aa1250, type: 3}
+  - {fileID: 8300000, guid: a7badefd126b2354b8912942fb4c5460, type: 3}
+  - {fileID: 8300000, guid: 07fa8e4e4f6be0a46a623de46a83bc8c, type: 3}
   - {fileID: 8300000, guid: d003c050a95f6de459e8bbd0d9db3646, type: 3}
   wayPoint:
     isUse: 0
@@ -223,8 +223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ebc34f6fd33afc4f97536c70933939e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 0}
+  _controller: {fileID: 8366734485670353351}
   humanMoveBase: {fileID: 9181360008607138600}
+  canRandomMove: 0
 --- !u!82 &1822882176814228195
 AudioSource:
   m_ObjectHideFlags: 0
@@ -236,7 +237,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

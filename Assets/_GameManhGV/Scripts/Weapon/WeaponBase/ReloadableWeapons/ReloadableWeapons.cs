@@ -320,7 +320,6 @@ public class ReloadableWeapons : WeaponBase
         _currentBulletCount = weaponInfo.bulletCount;
 
         _isReloading = false;
-        GameManager.Instance.DontSlomotionTimeScale();
         EventManager.Invoke(EventName.UpdateBulletCount, _currentBulletCount);
     }
     #endregion

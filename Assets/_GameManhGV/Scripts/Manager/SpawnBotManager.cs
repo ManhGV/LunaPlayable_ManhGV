@@ -16,6 +16,7 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
     
     [Header("Gift")]
     [SerializeField] GameObject giftWeapon81;
+    [SerializeField] GameObject giftPowerUp;
     
     [Header("BossZom")]
     [SerializeField] GameObject _boss;
@@ -25,8 +26,8 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
     {
         base.Awake();
         foreach (BotConfig VARIABLE in dataBotSpawn.fightRound.botConfigs)
-            AllBotsToSpawn += VARIABLE.botQuantity;
-        AllBotsToSpawn += 6;
+            foreach (SpawmQuantity quantity in VARIABLE.spawmQuantities)
+                AllBotsToSpawn += quantity.botQuantity;
         _currentBot = AllBotsToSpawn;
     }
 
@@ -35,14 +36,6 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         float progress = (float) KillBot / (float)AllBotsToSpawn;
         EventManager.Invoke(EventName.UpdateGameProcess, progress);
     }
-
-    // private void Update()
-    // {
-    //     if (canCallBoss && _currentBot <= 1)
-    //     {
-    //         canCallBoss = false;
-    //     }
-    // }
 
     public IEnumerator IECallBossZom(float time)
     {
@@ -65,27 +58,33 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
     public void SpawnBot()
     {
         StartCoroutine(IECallBossZom(20f));
-        StartCoroutine(IEDelaySpawnGiftWeapon81(6.5f));
+        StartCoroutine(IEDelaySpawnGiftWeapon81());
         foreach(BotConfig botConfig in dataBotSpawn.fightRound.botConfigs)
             StartCoroutine(IEOnSpawnBot(botConfig));
     }
 
     IEnumerator IEOnSpawnBot(BotConfig _botConfig)
     {
-        yield return new WaitForSeconds(_botConfig.WaitToSpawn);
-        GameConstants.PoolType poolType;
-        WayPoint wayPoint;
-
-        for (int i = 0; i < _botConfig.botQuantity; i++)
+        List<SpawmQuantity> spawmQuantities = _botConfig.spawmQuantities;
+        
+        foreach (SpawmQuantity VARIABLE in spawmQuantities)
         {
-            
-            poolType = _botConfig.botType;
-            wayPoint = _pathManager.GetWayPoint(_botConfig.PoinSpawnbot);
-            ZombieBase botNetworks = SimplePool.Spawn<ZombieBase>(poolType, wayPoint.WayPoints[0].position, Quaternion.Euler(0, 180, 0));
-            botNetworks.OnInit(wayPoint);
-            botInScene.Add(botNetworks);
+            yield return new WaitForSeconds(VARIABLE.WaitToSpawn);
+            GameConstants.PoolType poolType;
+            WayPoint wayPoint;
 
-            yield return new WaitForSeconds(_botConfig.botDelaySpawn);
+            for (int i = 0; i < VARIABLE.botQuantity; i++)
+            {
+                if(GameManager.Instance.endGame)
+                    yield break;
+                poolType = _botConfig.botType;
+                wayPoint = _pathManager.GetWayPoint(VARIABLE.PoinSpawnbot);
+                ZombieBase botNetworks = SimplePool.Spawn<ZombieBase>(poolType, wayPoint.WayPoints[0].position, Quaternion.Euler(0, 180, 0));
+                botNetworks.OnInit(wayPoint);
+                botInScene.Add(botNetworks);
+
+                yield return new WaitForSeconds(VARIABLE.botDelaySpawn);
+            }
         }
     }
 
@@ -97,9 +96,11 @@ public class SpawnBotManager : Singleton<SpawnBotManager>
         EventManager.Invoke(EventName.UpdateGameProcess, progress);
     }
     
-    private IEnumerator IEDelaySpawnGiftWeapon81(float _timer)
+    private IEnumerator IEDelaySpawnGiftWeapon81()
     {
-        yield return new WaitForSeconds(_timer);
+        yield return new WaitForSeconds(4f);
+        giftPowerUp.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
         giftWeapon81.SetActive(true);
     }
     public void DespawnAllBot(float _timer)=>StartCoroutine(IEDespawnAllBot(_timer));

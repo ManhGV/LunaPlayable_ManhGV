@@ -9,5 +9,6 @@ public class Canvas_HoldToShood : UICanvas
         CloseDirectly();
         UIManager.Instance.OpenUI<Canvas_GamePlay>();
         SpawnBotManager.Instance.SpawnBot();
+        SpawnBotManager.Instance.CallAllBotAttack();
     }
 }

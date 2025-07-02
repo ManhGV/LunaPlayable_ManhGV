@@ -12,7 +12,7 @@ public class BossZomThrower_Attack : StateBase<ZomAllState, BossZomThrower_Netwo
     {
         _doneAttack = false;
         thisBotNetworks.RotaToPlayerMain();
-        StartCoroutine(IEAttack(Random.Range(0,2)));
+        _attackCoroutine = StartCoroutine(IEAttack(Random.Range(0,2)));
     }
 
     public override void UpdateState()
@@ -39,8 +39,8 @@ public class BossZomThrower_Attack : StateBase<ZomAllState, BossZomThrower_Netwo
         if (_attackCoroutine != null)
         {
             StopCoroutine(_attackCoroutine);
-            bulletParabolZombie.OnDespawn();
-            craskGroundRockZom.OnDespawn();
+            // bulletParabolZombie.OnDespawn();
+            // craskGroundRockZom.OnDespawn();
             thisBotNetworks.SetFloatAnim("animAttackSpeed", 1);
         }
     }
@@ -80,10 +80,7 @@ public class BossZomThrower_Attack : StateBase<ZomAllState, BossZomThrower_Netwo
             craskGroundRockZom = SimplePool.Spawn<CraskGroundRockZom>(PoolType.GroundCrashZom, postSpawn.position, Quaternion.identity);
             craskGroundRockZom.OnInit(transform.position,LocalPlayer.Instance.GetPosLocalPlayer());
         }
-        else
-            thisStateController.ChangeState(ZomAllState.Idle);
-
-        _attackCoroutine = null;
+        
         _doneAttack = true;
     }
 }

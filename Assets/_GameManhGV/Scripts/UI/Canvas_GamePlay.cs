@@ -156,8 +156,6 @@ public class Canvas_GamePlay : UICanvas
     
     public void Btn_ReloadFast()
     {
-        GameManager.Instance.DontSlomotionTimeScale();
-        
         StartCoroutine(IEAnimActiveReloadFast());
         
         

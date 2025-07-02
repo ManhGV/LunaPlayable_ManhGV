@@ -11,7 +11,7 @@ public class BotZombieNor_DeadExplosion : StateBase<ZomAllState, BotNetwork>
     {
         int animType = thisBotNetworks.GetNearestDirection();
         
-        thisBotNetworks.PlayAudioVoice(Random.Range(0,4),1, true);
+        thisBotNetworks.PlayAudioVoice(Random.Range(0,4),1, false);
         thisBotNetworks.ChangeAnimAndType("DeadExplosion", animType);
 
         StartCoroutine(IEDelayAnimAndDespawn(3f));

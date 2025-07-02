@@ -104,14 +104,14 @@ public class BotZombieNorStateController : StateControllerBase<BotNetwork>
         _currentState.EnterState();
     }
 
-    protected override void OnTakeDame(int damage)
-    {
-        base.OnTakeDame(damage);
-        if(!haveStart)
-            return;
-        if(_startState.StateKey == ZomAllState.Start)
-            _startState.CallOnTakeDamage();
-    }
+    // protected override void OnTakeDame(int damage)
+    // {
+    //     base.OnTakeDame(damage);
+    //     if(!haveStart)
+    //         return;
+    //     if(_startState.StateKey == ZomAllState.Start)
+    //         _startState.CallOnTakeDamage();
+    // }
     
     public bool EndJump() => !Physics.Raycast(groundCheck.position, Vector3.down, 2f, groundLayer);
 
